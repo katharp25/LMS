@@ -62,6 +62,9 @@
 					<li class="nav-item">
 					    <a href="index.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
 					</li>
+                    <li class="nav-item pcoded-menu-caption">
+						<label>Site Page</label>
+					</li>
                     <li class="nav-item">
 					    <a href="index.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Home</span></a>
 					</li>
@@ -71,7 +74,31 @@
                     <li class="nav-item">
 					    <a href="index.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext"> Contact Details</span></a>
 					</li>
-					<li class="nav-item pcoded-hasmenu">
+                    <li class="nav-item">
+					    <a href="index.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Privacy policy </span></a>
+					</li>
+                    <li class="nav-item">
+					    <a href="index.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Terms & Conditions</span></a>
+					</li>
+                    <li class="nav-item">
+					    <a href="index.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Sustainable Development</span></a>
+					</li>
+                    <li class="nav-item pcoded-menu-caption">
+						<label>Masters</label>
+					</li>
+                    <li class="nav-item">
+					    <a href="index.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Topics</span></a>
+					</li>
+                    <li class="nav-item">
+					    <a href="index.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Sub Topic admin</span></a>
+					</li>
+                    <li class="nav-item">
+					    <a href="index.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Courses</span></a>
+					</li>
+                    <li class="nav-item">
+					    <a href="index.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Students</span></a>
+					</li>
+					<!-- <li class="nav-item pcoded-hasmenu">
 					    <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-layout"></i></span><span class="pcoded-mtext">Manage Masters</span></a>
 					    <ul class="pcoded-submenu">
 					        <li><a href="layout-vertical.html" target="_blank">Topics</a></li>
@@ -79,7 +106,7 @@
                             <li><a href="layout-horizontal.html" target="_blank">Courses</a></li>
                             <li><a href="layout-horizontal.html" target="_blank">Students</a></li>
 					    </ul>
-					</li>
+					</li> -->
                     <li class="nav-item">
 					    <a href="index.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Subscriptions</span></a>
 					</li>
@@ -99,23 +126,21 @@
 						<label>Reports</label>
 					</li>
                     <li class="nav-item">
-					    <a href="index.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">MIS Reports</span></a>
+					    <a href="index.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">MIS</span></a>
 					</li>
                     <li class="nav-item">
-					    <a href="index.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Daily Payment report</span></a>
+					    <a href="index.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Daily Payment</span></a>
 					</li>
                     <li class="nav-item">
-					    <a href="index.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Pending Subscriptions report</span></a>
+					    <a href="index.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Pending Subscriptions</span></a>
 					</li>
                     <li class="nav-item">
-					    <a href="index.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Courses List report</span></a>
+					    <a href="index.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Courses List</span></a>
 					</li>
                     <li class="nav-item">
-					    <a href="index.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Students List report</span></a>
+					    <a href="index.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Students List</span></a>
 					</li>
-                    <li class="nav-item">
-					    <a href="index.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Sustainable Development</span></a>
-					</li>
+                    
                     <li class="nav-item">
 					    <a href="index.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Blog</span></a>
 					</li><li class="nav-item">
@@ -127,12 +152,10 @@
 					</li><li class="nav-item">
 					    <a href="index.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Corporate Governance</span></a>
 					</li>
-                    <li class="nav-item">
-					    <a href="index.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Privacy policy </span></a>
+                    <li class="nav-item pcoded-menu-caption">
+						<label>Auth</label>
 					</li>
-                    <li class="nav-item">
-					    <a href="index.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Terms & Conditions</span></a>
-					</li>
+                    
                     <li class="nav-item">
 					    <a href="index.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Forgot Password</span></a>
 					</li>
@@ -140,7 +163,7 @@
 					    <a href="index.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Change Password</span></a>
 					</li>
 
-					<li class="nav-item pcoded-menu-caption">
+					<!-- <li class="nav-item pcoded-menu-caption">
 						<label>UI Element</label>
 					</li>
 					<li class="nav-item pcoded-hasmenu">
@@ -192,7 +215,7 @@
 					        <li><a href="auth-signin.html" target="_blank">Sign in</a></li>
 					    </ul>
 					</li>
-					<li class="nav-item"><a href="sample-page.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-sidebar"></i></span><span class="pcoded-mtext">Sample page</span></a></li>
+					<li class="nav-item"><a href="sample-page.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-sidebar"></i></span><span class="pcoded-mtext">Sample page</span></a></li> -->
 
 				</ul>
 				
