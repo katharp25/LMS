@@ -1,0 +1,500 @@
+Uri: https://dashlite.net/demo2/assets/css/dashlite.css?ver=3.2.3
+File Name: D:\vishal\dashlite.net\demo2\assets\css\dashlite.css
+Content Type: text/css
+
+Uri: https://dashlite.net/demo2/assets/css/editors/quill.css?ver=3.2.3
+File Name: D:\vishal\dashlite.net\demo2\assets\css\editors\quill.css
+Content Type: text/css
+
+Uri: https://dashlite.net/demo2/assets/css/theme.css?ver=3.2.3
+File Name: D:\vishal\dashlite.net\demo2\assets\css\theme.css
+Content Type: text/css
+
+Uri: https://dashlite.net/demo2/assets/js/apps/chats.js?ver=3.2.3
+File Name: D:\vishal\dashlite.net\demo2\assets\js\apps\chats.js
+Content Type: application/javascript
+
+Uri: https://dashlite.net/demo2/assets/js/bundle.js?ver=3.2.3
+File Name: D:\vishal\dashlite.net\demo2\assets\js\bundle.js
+Content Type: application/javascript
+
+Uri: https://dashlite.net/demo2/assets/js/charts/chart-lms.js?ver=3.2.3
+File Name: D:\vishal\dashlite.net\demo2\assets\js\charts\chart-lms.js
+Content Type: application/javascript
+
+Uri: https://dashlite.net/demo2/assets/js/demo-settings.js?ver=3.2.3
+File Name: D:\vishal\dashlite.net\demo2\assets\js\demo-settings.js
+Content Type: application/javascript
+
+Uri: https://dashlite.net/demo2/assets/js/editors.js?ver=3.2.3
+File Name: D:\vishal\dashlite.net\demo2\assets\js\editors.js
+Content Type: application/javascript
+
+Uri: https://dashlite.net/demo2/assets/js/libs/editors/quill.js?ver=3.2.3
+File Name: D:\vishal\dashlite.net\demo2\assets\js\libs\editors\quill.js
+Content Type: application/javascript
+
+Uri: https://dashlite.net/demo2/assets/js/scripts.js?ver=3.2.3
+File Name: D:\vishal\dashlite.net\demo2\assets\js\scripts.js
+Content Type: application/javascript
+
+Uri: https://dashlite.net/demo2/images/avatar/a-sm.jpg
+File Name: D:\vishal\dashlite.net\demo2\images\avatar\a-sm.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/demo2/images/avatar/b-sm.jpg
+File Name: D:\vishal\dashlite.net\demo2\images\avatar\b-sm.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/demo2/images/avatar/c-sm.jpg
+File Name: D:\vishal\dashlite.net\demo2\images\avatar\c-sm.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/demo2/images/avatar/d-sm.jpg
+File Name: D:\vishal\dashlite.net\demo2\images\avatar\d-sm.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/demo2/images/favicon.png
+File Name: D:\vishal\dashlite.net\demo2\images\favicon.png
+Content Type: image/png
+
+Uri: https://dashlite.net/demo2/images/flags/arg.png
+File Name: D:\vishal\dashlite.net\demo2\images\flags\arg.png
+Content Type: image/png
+
+Uri: https://dashlite.net/demo2/images/flags/aus.png
+File Name: D:\vishal\dashlite.net\demo2\images\flags\aus.png
+Content Type: image/png
+
+Uri: https://dashlite.net/demo2/images/flags/bangladesh.png
+File Name: D:\vishal\dashlite.net\demo2\images\flags\bangladesh.png
+Content Type: image/png
+
+Uri: https://dashlite.net/demo2/images/flags/canada.png
+File Name: D:\vishal\dashlite.net\demo2\images\flags\canada.png
+Content Type: image/png
+
+Uri: https://dashlite.net/demo2/images/flags/china.png
+File Name: D:\vishal\dashlite.net\demo2\images\flags\china.png
+Content Type: image/png
+
+Uri: https://dashlite.net/demo2/images/flags/english-sq.png
+File Name: D:\vishal\dashlite.net\demo2\images\flags\english-sq.png
+Content Type: image/png
+
+Uri: https://dashlite.net/demo2/images/flags/english.png
+File Name: D:\vishal\dashlite.net\demo2\images\flags\english.png
+Content Type: image/png
+
+Uri: https://dashlite.net/demo2/images/flags/french.png
+File Name: D:\vishal\dashlite.net\demo2\images\flags\french.png
+Content Type: image/png
+
+Uri: https://dashlite.net/demo2/images/flags/germany.png
+File Name: D:\vishal\dashlite.net\demo2\images\flags\germany.png
+Content Type: image/png
+
+Uri: https://dashlite.net/demo2/images/flags/iran.png
+File Name: D:\vishal\dashlite.net\demo2\images\flags\iran.png
+Content Type: image/png
+
+Uri: https://dashlite.net/demo2/images/flags/italy.png
+File Name: D:\vishal\dashlite.net\demo2\images\flags\italy.png
+Content Type: image/png
+
+Uri: https://dashlite.net/demo2/images/flags/mexico.png
+File Name: D:\vishal\dashlite.net\demo2\images\flags\mexico.png
+Content Type: image/png
+
+Uri: https://dashlite.net/demo2/images/flags/philipine.png
+File Name: D:\vishal\dashlite.net\demo2\images\flags\philipine.png
+Content Type: image/png
+
+Uri: https://dashlite.net/demo2/images/flags/portugal.png
+File Name: D:\vishal\dashlite.net\demo2\images\flags\portugal.png
+Content Type: image/png
+
+Uri: https://dashlite.net/demo2/images/flags/s-africa.png
+File Name: D:\vishal\dashlite.net\demo2\images\flags\s-africa.png
+Content Type: image/png
+
+Uri: https://dashlite.net/demo2/images/flags/spanish.png
+File Name: D:\vishal\dashlite.net\demo2\images\flags\spanish.png
+Content Type: image/png
+
+Uri: https://dashlite.net/demo2/images/flags/switzerland.png
+File Name: D:\vishal\dashlite.net\demo2\images\flags\switzerland.png
+Content Type: image/png
+
+Uri: https://dashlite.net/demo2/images/flags/turkey.png
+File Name: D:\vishal\dashlite.net\demo2\images\flags\turkey.png
+Content Type: image/png
+
+Uri: https://dashlite.net/demo2/images/flags/uk.png
+File Name: D:\vishal\dashlite.net\demo2\images\flags\uk.png
+Content Type: image/png
+
+Uri: https://dashlite.net/demo2/images/lms/theme/a.jpg
+File Name: D:\vishal\dashlite.net\demo2\images\lms\theme\a.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/demo2/images/lms/theme/b.jpg
+File Name: D:\vishal\dashlite.net\demo2\images\lms\theme\b.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/demo2/images/lms/theme/c.jpg
+File Name: D:\vishal\dashlite.net\demo2\images\lms\theme\c.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/demo2/images/logo-dark.png
+File Name: D:\vishal\dashlite.net\demo2\images\logo-dark.png
+Content Type: image/png
+
+Uri: https://dashlite.net/demo2/images/logo-dark2x.png
+File Name: D:\vishal\dashlite.net\demo2\images\logo-dark2x.png
+Content Type: image/png
+
+Uri: https://dashlite.net/demo2/images/logo-small.png
+File Name: D:\vishal\dashlite.net\demo2\images\logo-small.png
+Content Type: image/png
+
+Uri: https://dashlite.net/demo2/images/logo-small2x.png
+File Name: D:\vishal\dashlite.net\demo2\images\logo-small2x.png
+Content Type: image/png
+
+Uri: https://dashlite.net/demo2/images/logo.png
+File Name: D:\vishal\dashlite.net\demo2\images\logo.png
+Content Type: image/png
+
+Uri: https://dashlite.net/demo2/images/logo2x.png
+File Name: D:\vishal\dashlite.net\demo2\images\logo2x.png
+Content Type: image/png
+
+Uri: https://dashlite.net/demo2/images/slides/slide-a.jpg
+File Name: D:\vishal\dashlite.net\demo2\images\slides\slide-a.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/demo2/images/slides/slide-b.jpg
+File Name: D:\vishal\dashlite.net\demo2\images\slides\slide-b.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/demo2/images/slides/slide-c.jpg
+File Name: D:\vishal\dashlite.net\demo2\images\slides\slide-c.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/demo2/lms/
+File Name: D:\vishal\dashlite.net\demo2\lms\index.htm
+Content Type: text/html
+
+Uri: https://dashlite.net/demo2/lms/admin-profile-activity.html
+File Name: D:\vishal\dashlite.net\demo2\lms\admin-profile-activity.html
+Content Type: text/html
+
+Uri: https://dashlite.net/demo2/lms/admin-profile-notification.html
+File Name: D:\vishal\dashlite.net\demo2\lms\admin-profile-notification.html
+Content Type: text/html
+
+Uri: https://dashlite.net/demo2/lms/admin-profile-setting.html
+File Name: D:\vishal\dashlite.net\demo2\lms\admin-profile-setting.html
+Content Type: text/html
+
+Uri: https://dashlite.net/demo2/lms/admin-profile.html
+File Name: D:\vishal\dashlite.net\demo2\lms\admin-profile.html
+Content Type: text/html
+
+Uri: https://dashlite.net/demo2/lms/category.html
+File Name: D:\vishal\dashlite.net\demo2\lms\category.html
+Content Type: text/html
+
+Uri: https://dashlite.net/demo2/lms/courses.html
+File Name: D:\vishal\dashlite.net\demo2\lms\courses.html
+Content Type: text/html
+
+Uri: https://dashlite.net/demo2/lms/enroll-history.html
+File Name: D:\vishal\dashlite.net\demo2\lms\enroll-history.html
+Content Type: text/html
+
+Uri: https://dashlite.net/demo2/lms/enroll-student.html
+File Name: D:\vishal\dashlite.net\demo2\lms\enroll-student.html
+Content Type: text/html
+
+Uri: https://dashlite.net/demo2/lms/index.html
+File Name: D:\vishal\dashlite.net\demo2\lms\index.html
+Content Type: text/html
+
+Uri: https://dashlite.net/demo2/lms/instructor-dashborad.html
+File Name: D:\vishal\dashlite.net\demo2\lms\instructor-dashborad.html
+Content Type: text/html
+
+Uri: https://dashlite.net/demo2/lms/instructor-details.html
+File Name: D:\vishal\dashlite.net\demo2\lms\instructor-details.html
+Content Type: text/html
+
+Uri: https://dashlite.net/demo2/lms/instructor-list.html
+File Name: D:\vishal\dashlite.net\demo2\lms\instructor-list.html
+Content Type: text/html
+
+Uri: https://dashlite.net/demo2/lms/instructor-payment.html
+File Name: D:\vishal\dashlite.net\demo2\lms\instructor-payment.html
+Content Type: text/html
+
+Uri: https://dashlite.net/demo2/lms/message.html
+File Name: D:\vishal\dashlite.net\demo2\lms\message.html
+Content Type: text/html
+
+Uri: https://dashlite.net/demo2/lms/settings.html
+File Name: D:\vishal\dashlite.net\demo2\lms\settings.html
+Content Type: text/html
+
+Uri: https://dashlite.net/demo2/lms/student-invoice-details.html
+File Name: D:\vishal\dashlite.net\demo2\lms\student-invoice-details.html
+Content Type: text/html
+
+Uri: https://dashlite.net/demo2/lms/student-invoice-list.html
+File Name: D:\vishal\dashlite.net\demo2\lms\student-invoice-list.html
+Content Type: text/html
+
+Uri: https://dashlite.net/demo2/lms/student-invoice-print.html
+File Name: D:\vishal\dashlite.net\demo2\lms\student-invoice-print.html
+Content Type: text/html
+
+Uri: https://dashlite.net/demo2/lms/students-details-activity.html
+File Name: D:\vishal\dashlite.net\demo2\lms\students-details-activity.html
+Content Type: text/html
+
+Uri: https://dashlite.net/demo2/lms/students-details-courses.html
+File Name: D:\vishal\dashlite.net\demo2\lms\students-details-courses.html
+Content Type: text/html
+
+Uri: https://dashlite.net/demo2/lms/students-details.html
+File Name: D:\vishal\dashlite.net\demo2\lms\students-details.html
+Content Type: text/html
+
+Uri: https://dashlite.net/demo2/lms/students.html
+File Name: D:\vishal\dashlite.net\demo2\lms\students.html
+Content Type: text/html
+
+Uri: https://dashlite.net/images/landing/demo-ai-copywriter.jpg
+File Name: D:\vishal\dashlite.net\images\landing\demo-ai-copywriter.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/images/landing/demo-ai-copywriter2x.jpg
+File Name: D:\vishal\dashlite.net\images\landing\demo-ai-copywriter2x.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/images/landing/demo-buysell.jpg
+File Name: D:\vishal\dashlite.net\images\landing\demo-buysell.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/images/landing/demo-buysell2x.jpg
+File Name: D:\vishal\dashlite.net\images\landing\demo-buysell2x.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/images/landing/demo-chats.jpg
+File Name: D:\vishal\dashlite.net\images\landing\demo-chats.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/images/landing/demo-chats2x.jpg
+File Name: D:\vishal\dashlite.net\images\landing\demo-chats2x.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/images/landing/demo-cms.jpg
+File Name: D:\vishal\dashlite.net\images\landing\demo-cms.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/images/landing/demo-cms2x.jpg
+File Name: D:\vishal\dashlite.net\images\landing\demo-cms2x.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/images/landing/demo-covid19.jpg
+File Name: D:\vishal\dashlite.net\images\landing\demo-covid19.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/images/landing/demo-covid192x.jpg
+File Name: D:\vishal\dashlite.net\images\landing\demo-covid192x.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/images/landing/demo-crm.jpg
+File Name: D:\vishal\dashlite.net\images\landing\demo-crm.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/images/landing/demo-crm2x.jpg
+File Name: D:\vishal\dashlite.net\images\landing\demo-crm2x.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/images/landing/demo-ecommerce.jpg
+File Name: D:\vishal\dashlite.net\images\landing\demo-ecommerce.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/images/landing/demo-ecommerce2x.jpg
+File Name: D:\vishal\dashlite.net\images\landing\demo-ecommerce2x.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/images/landing/demo-file-manager.jpg
+File Name: D:\vishal\dashlite.net\images\landing\demo-file-manager.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/images/landing/demo-file-manager2x.jpg
+File Name: D:\vishal\dashlite.net\images\landing\demo-file-manager2x.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/images/landing/demo-hospital.jpg
+File Name: D:\vishal\dashlite.net\images\landing\demo-hospital.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/images/landing/demo-hospital2x.jpg
+File Name: D:\vishal\dashlite.net\images\landing\demo-hospital2x.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/images/landing/demo-hotel.jpg
+File Name: D:\vishal\dashlite.net\images\landing\demo-hotel.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/images/landing/demo-hotel2x.jpg
+File Name: D:\vishal\dashlite.net\images\landing\demo-hotel2x.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/images/landing/demo-inbox.jpg
+File Name: D:\vishal\dashlite.net\images\landing\demo-inbox.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/images/landing/demo-inbox2x.jpg
+File Name: D:\vishal\dashlite.net\images\landing\demo-inbox2x.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/images/landing/demo-invest.jpg
+File Name: D:\vishal\dashlite.net\images\landing\demo-invest.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/images/landing/demo-invest2x.jpg
+File Name: D:\vishal\dashlite.net\images\landing\demo-invest2x.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/images/landing/demo-lms.jpg
+File Name: D:\vishal\dashlite.net\images\landing\demo-lms.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/images/landing/demo-lms2x.jpg
+File Name: D:\vishal\dashlite.net\images\landing\demo-lms2x.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/images/landing/demo-loan.jpg
+File Name: D:\vishal\dashlite.net\images\landing\demo-loan.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/images/landing/demo-loan2x.jpg
+File Name: D:\vishal\dashlite.net\images\landing\demo-loan2x.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/images/landing/demo-messages.jpg
+File Name: D:\vishal\dashlite.net\images\landing\demo-messages.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/images/landing/demo-messages2x.jpg
+File Name: D:\vishal\dashlite.net\images\landing\demo-messages2x.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/images/landing/demo-pharmacy.jpg
+File Name: D:\vishal\dashlite.net\images\landing\demo-pharmacy.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/images/landing/demo-pharmacy2x.jpg
+File Name: D:\vishal\dashlite.net\images\landing\demo-pharmacy2x.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/images/landing/demo-subscription.jpg
+File Name: D:\vishal\dashlite.net\images\landing\demo-subscription.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/images/landing/demo-subscription2x.jpg
+File Name: D:\vishal\dashlite.net\images\landing\demo-subscription2x.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/images/landing/layout-1d.jpg
+File Name: D:\vishal\dashlite.net\images\landing\layout-1d.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/images/landing/layout-1d2x.jpg
+File Name: D:\vishal\dashlite.net\images\landing\layout-1d2x.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/images/landing/layout-2d.jpg
+File Name: D:\vishal\dashlite.net\images\landing\layout-2d.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/images/landing/layout-2d2x.jpg
+File Name: D:\vishal\dashlite.net\images\landing\layout-2d2x.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/images/landing/layout-3d.jpg
+File Name: D:\vishal\dashlite.net\images\landing\layout-3d.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/images/landing/layout-3d2x.jpg
+File Name: D:\vishal\dashlite.net\images\landing\layout-3d2x.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/images/landing/layout-4d.jpg
+File Name: D:\vishal\dashlite.net\images\landing\layout-4d.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/images/landing/layout-4d2x.jpg
+File Name: D:\vishal\dashlite.net\images\landing\layout-4d2x.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/images/landing/layout-5d.jpg
+File Name: D:\vishal\dashlite.net\images\landing\layout-5d.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/images/landing/layout-5d2x.jpg
+File Name: D:\vishal\dashlite.net\images\landing\layout-5d2x.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/images/landing/layout-6d.jpg
+File Name: D:\vishal\dashlite.net\images\landing\layout-6d.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/images/landing/layout-6d2x.jpg
+File Name: D:\vishal\dashlite.net\images\landing\layout-6d2x.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/images/landing/layout-7d.jpg
+File Name: D:\vishal\dashlite.net\images\landing\layout-7d.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/images/landing/layout-7d2x.jpg
+File Name: D:\vishal\dashlite.net\images\landing\layout-7d2x.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/images/landing/layout-8d.jpg
+File Name: D:\vishal\dashlite.net\images\landing\layout-8d.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/images/landing/layout-8d2x.jpg
+File Name: D:\vishal\dashlite.net\images\landing\layout-8d2x.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/images/landing/layout-9d.jpg
+File Name: D:\vishal\dashlite.net\images\landing\layout-9d.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/images/landing/layout-9d2x.jpg
+File Name: D:\vishal\dashlite.net\images\landing\layout-9d2x.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/images/landing/main-landing.jpg
+File Name: D:\vishal\dashlite.net\images\landing\main-landing.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/images/landing/main-landing2x.jpg
+File Name: D:\vishal\dashlite.net\images\landing\main-landing2x.jpg
+Content Type: image/jpeg
+
+Uri: https://dashlite.net/images/landing/promo-investorm.png
+File Name: D:\vishal\dashlite.net\images\landing\promo-investorm.png
+Content Type: image/png
+
+Uri: https://www.googletagmanager.com/gtag/js?id=UA-91615293-4
+File Name: D:\vishal\dashlite.net\gtag\js
+Content Type: application/javascript
+
