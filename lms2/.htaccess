@@ -1,0 +1,17 @@
+RewriteEngine On
+RewriteBase /LMS/lms2/
+
+# Redirect URLs without .php extension to the corresponding PHP file
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
+
+# Redirect the root URL to index.php
+RewriteRule ^$ dashboard.php [L]
+
+RewriteRule ^contact contactdetails.php [L]
+RewriteRule ^development sustainabledev.php [L]
+RewriteRule ^home home.php [L]
+# RewriteRule ^dash dashboard.php [L]
+RewriteRule ^privacy privacypolicy.php [L]
+RewriteRule ^terms terms.php [L]
