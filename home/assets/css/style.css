@@ -1,0 +1,11 @@
+.nk-menu-toggle:after {
+    position: absolute;
+    font-family: Nioicon;
+    top: 50%;
+    content: "\e9d3";
+    right: 1.25rem;
+    transform: translateY(-50%);
+    font-size: 1rem;
+    color: #8094ae;
+    transition: transform 0.3s, color 0.1s, opacity 0.3s ease 0.3s;
+  }

@@ -163,7 +163,7 @@
 					    <a href="index.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Change Password</span></a>
 					</li>
 
-					<!-- <li class="nav-item pcoded-menu-caption">
+					<li class="nav-item pcoded-menu-caption">
 						<label>UI Element</label>
 					</li>
 					<li class="nav-item pcoded-hasmenu">
@@ -215,7 +215,7 @@
 					        <li><a href="auth-signin.html" target="_blank">Sign in</a></li>
 					    </ul>
 					</li>
-					<li class="nav-item"><a href="sample-page.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-sidebar"></i></span><span class="pcoded-mtext">Sample page</span></a></li> -->
+					<li class="nav-item"><a href="sample-page.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-sidebar"></i></span><span class="pcoded-mtext">Sample page</span></a></li>
 
 				</ul>
 				
