@@ -56,13 +56,13 @@
                                 <li class="nav-item"><a class="nav-link" href="pages/forms/basic_elements.html">Manage
                                         Students</a></li>
                                 <li class="nav-item"><a class="nav-link"
-                                        href="pages/forms/basic_elements.html">Subscriptions</a></li>
-                                <li class="nav-item"><a class="nav-link" href="pages/forms/basic_elements.html">Student
+                                        href="<?=$mainlink?>subscription">Subscriptions</a></li>
+                                <li class="nav-item"><a class="nav-link" href="<?=$mainlink?>student_sub">Student
                                         Subscriptions</a></li>
-                                <li class="nav-item"><a class="nav-link" href="pages/forms/basic_elements.html">Bulk
+                                <li class="nav-item"><a class="nav-link" href="<?=$mainlink?>bulk_reg">Bulk
                                         registrations</a></li>
                                 <li class="nav-item"><a class="nav-link"
-                                        href="pages/forms/basic_elements.html">Payments</a></li>
+                                        href="<?=$mainlink?>payments">Payments</a></li>
                                 <li class="nav-item"><a class="nav-link"
                                 href="<?= $mainlink;?>manageUser">Users</a></li>
                             </ul>
