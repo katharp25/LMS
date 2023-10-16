@@ -5,14 +5,37 @@ include('includes/sidebar.php');
 
 
 <!-- Main Content Panel -->
-        <div class="content-wrapper">
-            <div class="row">
-                <div class="col-sm-12">
-                    <!-- What ever creating, create here -->
-                    <h3>Privacy & Policy Page</h3>
+<div class="content-wrapper">
+    <div class="row">
+        <div class="col-md-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Privacy Policy Page</h4>
+                    <p class="card-description">
+                        Write the privacy policy content
+                    </p>
+                   
+                    <form class="forms-sample">
+                        <div class="form-group">
+                            <label for="banner_desc">Privacy & Policy Content</label>
+                            <textarea class="richtext">
+                                        Welcome to Saburi LMS
+                                    </textarea>
+                        </div>
+                        <!-- <div class="form-group">
+                            <label for="banner_image">Banner Image</label>
+                            <input type="file" class="form-control-file" id="banner_image" accept="image/*">
+                        </div> -->
+
+                        <button type="submit" class="btn btn-primary me-2">Submit</button>
+                        <button class="btn btn-light">Cancel</button>
+                    </form>
                 </div>
             </div>
         </div>
+
+    </div>
+</div>
 <!-- Main Content ends -->
 
 <?php
