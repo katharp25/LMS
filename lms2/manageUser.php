@@ -2,27 +2,8 @@
 include('includes/header.php');
 include('includes/sidebar.php');
 ?>
-<!-- <style>
-    .center-form {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-    }
-
-    .custom-form {
-    max-width: 400px;
-    background: #f4f4f4;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-</style> -->
-
-<!-- Main Content Panel -->
-
 <div class="content-wrapper">
-<div class=" grid-margin stretch-card custom-form">
+<div class=" grid-margin stretch-card ">
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Default form</h4>
@@ -58,7 +39,7 @@ include('includes/sidebar.php');
                             </div>
                             <div class="form-group">
                                 <label for="address">Address</label>
-                                <textarea type="text" class="form-control" name="address" placeholder="Enter Address"> </textarea>
+                                <input type="text" class="form-control" name="address" placeholder="Enter Address"> </input>
                             </div>
                            
                             
