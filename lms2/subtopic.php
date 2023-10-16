@@ -7,7 +7,7 @@ include('includes/sidebar.php');
         <div class="col-md-12 grid-margin stretch-card ">
             <div class="card">
                 <div class="card-body">
-                <h4 class="card-title">User Management</h4>
+                <h4 class="card-title">Sub Topic Details</h4>
                     <!-- <h4 class="card-title">Default form</h4>
                         <p class="card-description">
                             Basic form layout
@@ -15,22 +15,22 @@ include('includes/sidebar.php');
                     <form class="forms-sample row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="name">Name</label>
-                                <input type="text" class="form-control" name="name" placeholder="Enter Name">
+                                <label for="name"> Sub Topic Name</label>
+                                <input type="text" class="form-control" name="name" placeholder="Enter Sub Topic Name">
                             </div>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label for="phoneNumber">Phone Number</label>
                                 <input type="text" class="form-control" name="phoneNumber" placeholder="Enter Phone Number">
-                            </div>
+                            </div> -->
 
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label for="userType">User Type</label>
                                 <select class="form-control" name="userType">
                                     <option></option>
                                 </select>
-                            </div>
+                            </div> -->
                         </div>
-                        <div class="col-md-6">
+                        <!-- <div class="col-md-6">
                             <div class="form-group">
                                 <label for="userId">User Id</label>
                                 <input type="text" class="form-control" name="UserId" placeholder="Enter Address">
@@ -45,7 +45,7 @@ include('includes/sidebar.php');
                             </div>
 
 
-                        </div>
+                        </div> -->
                         <div>
                             <button type="submit" class="btn btn-primary me-2">Submit</button>
                             <button class="btn btn-light">Cancel</button>
@@ -62,22 +62,22 @@ include('includes/sidebar.php');
                         <thead>
                             <tr>
                                 <th>S.no</th>
-                                <th>Name</th>
-                                <th>Email</th>
+                                <th>Sub Topic Name</th>
+                                <!-- <th>Email</th>
                                 <th>Phone</th>
-                                <th>Address</th>
+                                <th>Address</th> -->
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>1</td>
-                                <td>Pradip Kathar</td>
-                                <td>katharp24@gmail.com</td>
+                                <td>Form</td>
+                                <!-- <td>katharp24@gmail.com</td>    -->
                                 <!-- <td style="white-space: wrap;">Lorem ipsum dolor sit amet consectetur adipisicing
                                     elit. Facilis excepturi perferendis</td> -->
-                                <td> 8668275307 </td>
-                                <td> Maharashtra </td>
+                                <!-- <td> 8668275307 </td>
+                                <td> Maharashtra </td> -->
                                 <td>
                                     <button type="submit" class="btn btn-primary me-2 p-2">Edit</button>
                                     <button class="btn btn-danger p-2">Delete</button>
@@ -85,12 +85,12 @@ include('includes/sidebar.php');
                             </tr>
                             <tr>
                                 <td>2</td>
-                                <td>Vishal Khatri</td>
-                                <td>vishal@gmail.com</td>
+                                <td>Events</td>
+                                <!-- <td>vishal@gmail.com</td> -->
                                 <!-- <td style="white-space: wrap;">Lorem ipsum dolor sit amet consectetur adipisicing
                                     elit. Facilis excepturi perferendis</td> -->
-                                <td> 8888888888 </td>
-                                <td> hyderabad </td>
+                                <!-- <td> 8888888888 </td> -->
+                                <!-- <td> hyderabad </td> -->
                                 <td>
                                     <button type="submit" class="btn btn-primary me-2 p-2">Edit</button>
                                     <button class="btn btn-danger p-2">Delete</button>
