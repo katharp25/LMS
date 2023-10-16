@@ -64,7 +64,7 @@
                                 <li class="nav-item"><a class="nav-link"
                                         href="pages/forms/basic_elements.html">Payments</a></li>
                                 <li class="nav-item"><a class="nav-link"
-                                        href="pages/forms/basic_elements.html">Users</a></li>
+                                href="<?= $mainlink;?>manageUser">Users</a></li>
                             </ul>
                         </div>
                     </li>

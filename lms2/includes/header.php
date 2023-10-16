@@ -24,7 +24,7 @@ $mainlink="http://localhost/LMS/lms2/";
     <!-- inject:css -->
     <link rel="stylesheet" href="css/vertical-layout-light/style.css">
     <!-- endinject -->
-    <!-- <link rel="shortcut icon" href="images/favicon.png" /> -->
+    <link rel="shortcut icon" href="images/favicon.png" />
 </head>
 
 <body>
@@ -212,7 +212,7 @@ $mainlink="http://localhost/LMS/lms2/";
                             <a class="dropdown-item"><i
                                     class="dropdown-item-icon mdi mdi-help-circle-outline text-primary me-2"></i>
                                 FAQ</a>
-                            <a class="dropdown-item"><i
+                            <a class="dropdown-item" href="<?= $mainlink ?>login"><i
                                     class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Sign Out</a>
                         </div>
                     </li>
