@@ -48,10 +48,10 @@
                             <ul class="nav flex-column sub-menu">
                                 <!-- <li class="nav-item"><a class="nav-link" href="pages/forms/basic_elements.html">Basic Elements</a></li> -->
                                 <li class="nav-item"><a class="nav-link"
-                                        href="pages/forms/basic_elements.html">Topics</a></li>
-                                <li class="nav-item"><a class="nav-link" href="pages/forms/basic_elements.html">Sub
+                                href="<?= $mainlink;?>topic">Topics</a></li>
+                                <li class="nav-item"><a class="nav-link" href="<?= $mainlink;?>subtopic">Sub
                                         Topic admin</a></li>
-                                <li class="nav-item"><a class="nav-link" href="pages/forms/basic_elements.html">Manage
+                                <li class="nav-item"><a class="nav-link" href="<?= $mainlink;?>manageCourse">Manage
                                         Courses</a></li>
                                 <li class="nav-item"><a class="nav-link" href="pages/forms/basic_elements.html">Manage
                                         Students</a></li>
