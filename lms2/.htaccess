@@ -7,7 +7,7 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^([^\.]+)$ $1.php [NC,L]
 
 # Redirect the root URL to index.php
-RewriteRule ^$ dashboard.php [L]
+RewriteRule ^$ index.php [L]
 
 RewriteRule ^contact contactdetails.php [L]
 RewriteRule ^development sustainabledev.php [L]

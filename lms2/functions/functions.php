@@ -5,17 +5,31 @@ include('config.php');
 
 if(isset($_POST['login_admin'])){
 
-    $name = $_POST['admin_email'];
+    $name = $_POST['admin_name'];
     $password = $_POST['admin_password'];
 
-    $fetch_sql_user=mysqli_query($con,"SELECT * from users where Email='$name' and Password='$password'");
-    
-    if($fetch_sql_user){
-        header("location: $mainlink");
+    mysqli_real_escape_string($con,$name);
+    mysqli_real_escape_string($con,$password);
+    $user_sql = mysqli_query($con, "SELECT * FROM users WHERE Name='$name'");
+    $fetch_user_sql = mysqli_fetch_assoc($user_sql);
 
-    }else{
-        echo "not matched";
+    if ($fetch_user_sql) { // Check if a matching user was found
+        $user_name = $fetch_user_sql['Name'];
+        $pwd = $fetch_user_sql['Password'];
+        if($password === $pwd)
+        {
+            header("location: $mainlink"."dashboard");
+        }else{
+            $_SESSION['message']="Wrong Username or Password";
+            header("location: $mainlink"."404");
+        }
+        
+        // You can now use $user_name and $password as needed
+    } else {
+        
+        // Handle the case where no user with the specified 'Name' was found
     }
+
 
     // if($password = )
 
@@ -33,7 +47,7 @@ if(isset($_POST['login_admin'])){
     $insert_query=mysqli_query($con,"INSERT INTO users(Name,Email,Phone,Address,UserType,UserId,Password) VALUES('$name','$email','$phoneNumber','$address','$userType','$uid','$pwd')");
 
     if($insert_query){
-        header("location: $mainlink/manageUser");
+        header("location: $mainlink"."manageUser");
     }else{
         echo "not done";
     }
