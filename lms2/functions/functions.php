@@ -27,10 +27,10 @@ if(isset($_POST['login_admin'])){
     $userType = $_POST['userType'];
     $email = $_POST['email'];
     $uid= $_POST['user_id'];
-    // $pwd = $_POST['pwd'];
+    $pwd = $_POST['pwd'];
     $address = $_POST['address'];
     
-    $insert_query=mysqli_query($con,"INSERT INTO users(Name,Email,Phone,Address,UserType,UserId) VALUES('$name','$email','$phoneNumber','$address','$userType','$uid')");
+    $insert_query=mysqli_query($con,"INSERT INTO users(Name,Email,Phone,Address,UserType,UserId,Password) VALUES('$name','$email','$phoneNumber','$address','$userType','$uid','$pwd')");
 
     if($insert_query){
         header("location: $mainlink/manageUser");
