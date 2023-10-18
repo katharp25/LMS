@@ -26,7 +26,9 @@ include('includes/sidebar.php');
                             <div class="form-group">
                                 <label for="userType">User Type</label>
                                 <select class="form-control" name="userType">
-                                    <option></option>
+                                    <option>
+                                        select User Type
+                                    </option>
                                 </select>
                             </div>
                         </div>
@@ -37,7 +39,7 @@ include('includes/sidebar.php');
                             </div>
                             <div class="form-group">
                                 <label for="pwd">Password</label>
-                                <input type="password" class="form-control" id="pwd" placeholder="Password">
+                                <input type="password" class="form-control" id="pwd" placeholder=" Enter Password">
                             </div>
                             <div class="form-group">
                                 <label for="address">Address</label>

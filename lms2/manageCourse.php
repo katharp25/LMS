@@ -100,7 +100,7 @@ include('includes/sidebar.php');
                                 <td>1</td>
                                 <td>xyz</td>
                                 <td>xyz</td>
-                                <td></td>
+                                <td>xyz</td>
                                 <!-- <td style="white-space: wrap;">Lorem ipsum dolor sit amet consectetur adipisicing
                                     elit. Facilis excepturi perferendis</td> -->
                                 <td> 100000 </td>

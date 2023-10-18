@@ -10,36 +10,41 @@ include('includes/sidebar.php');
         <div class="col-md-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Home Page</h4>
-                    <p class="card-description">
-                        You can add banners from here, maximum 3 banners you can add.
-                    </p>
-                    <div class="dropdown">
-                        <div class="form-group">
-                            <label for="banner" class="form-group">Choos No of Banners</label>
-                            <select class="form-control w-25" id="banners" name="banners">
-                                <option value="volvo">1</option>
-                                <option value="saab">2</option>
-                                <option value="opel">3</option>
-                            </select>
-                        </div>
-                    </div>
+                    <h4 class="card-title">Free Resources Page</h4>
+                    <!-- <p class="card-description">
+                        You can Write the content for about page.
+                    </p> -->
+                   
                     <form class="forms-sample">
-                        <div class="form-group">
-                            <label for="banner_title">Title</label>
-                            <input type="text" class="form-control" id="exampleInputUsername1"
-                                placeholder="Enter Banner Title">
+                    <div class="form-group">
+                            <label for="heading">Heading</label>
+                            <input type="text" class="form-control" name="heading"
+                                placeholder="Enter Heading">
                         </div>
                         <div class="form-group">
-                            <label for="banner_desc">Description</label>
-                            <textarea class="richtext">
-                            Welcome to Saburi LMS
+                            <label for="title">Title</label>
+                            <input type="text" class="form-control" name="title"
+                                placeholder="Enter Title ">
+                        </div>
+                        <div class="form-group">
+                            <label for="image">Image</label>
+                            <input type="file" class="form-control-file" id="image" accept="image/*">
+                        </div>
+                        <!-- <div class="form-group">
+                            <label for="writer">Writer</label>
+                            <input type="text" class="form-control" name="writer"
+                                placeholder="Enter Title For About Section">
+                        </div> -->
+                        <div class="form-group">
+                            <label for="desc">Description</label>
+                            <textarea class="richtext" name="desc">
+                                        Welcome to Saburi LMS
                                     </textarea>
                         </div>
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label for="banner_image">Banner Image</label>
                             <input type="file" class="form-control-file" id="banner_image" accept="image/*">
-                        </div>
+                        </div> -->
 
                         <button type="submit" class="btn btn-primary me-2">Submit</button>
                         <button class="btn btn-light">Cancel</button>
@@ -50,13 +55,14 @@ include('includes/sidebar.php');
         <div class="col-md-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Home Grid View</h4>
+                <h4 class="card-title">Free Resources List</h4>
                     <table id="example" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                             <tr>
                                 <th>S.no</th>
-                                <th>Banner</th>
+                                <th> Heading </th>
                                 <th>Title</th>
+                                <th>Image</th>
                                 <th>Description</th>
                                 <th>Actions</th>
                             </tr>
@@ -64,15 +70,17 @@ include('includes/sidebar.php');
                         <tbody>
                             <tr>
                                 <td>1</td>
-                                <td><img src="images/saburi.png" class="img-fluid w-50" /></td>
                                 <td>Saburi Educations</td>
+                                
+                                <td>xyz</td>
+                                <td><img src="images/saburi.png" class="img-fluid w-50" /></td>
                                 <td style="white-space: wrap;">Lorem ipsum dolor sit amet consectetur adipisicing
                                     elit. Facilis excepturi perferendis</td>
                                 <td><button type="submit" class="btn btn-primary me-2 p-2">Edit</button>
                                     <button class="btn btn-danger p-2">Delete</button>
                                 </td>
                             </tr>
-                            <tr>
+                            <!-- <tr>
                                 <td>2</td>
                                 <td><img src="images/faces/face1.jpg" class="img-fluid w-50" /></td>
                                 <td>Saburi Educations</td>
@@ -81,7 +89,7 @@ include('includes/sidebar.php');
                                 <td><button type="submit" class="btn btn-primary me-2 p-2">Edit</button>
                                     <button class="btn btn-danger p-2">Delete</button>
                                 </td>
-                            </tr>
+                            </tr> -->
                         </tbody>
                     </table>
                 </div>
