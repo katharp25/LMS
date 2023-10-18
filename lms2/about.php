@@ -22,6 +22,10 @@ include('includes/sidebar.php');
                                 placeholder="Enter Title For About Section">
                         </div>
                         <div class="form-group">
+                            <label for="banner_image">Banner Image</label>
+                            <input type="file" class="form-control-file" id="banner_image" accept="image/*">
+                        </div>
+                        <div class="form-group">
                             <label for="banner_desc">Description</label>
                             <textarea class="richtext">
                                         Welcome to Saburi LMS
@@ -38,10 +42,10 @@ include('includes/sidebar.php');
                 </div>
             </div>
         </div>
-        <!-- <div class="col-md-12 grid-margin stretch-card">
+        <div class="col-md-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                <h4 class="card-title">Banner list</h4>
+                <h4 class="card-title">About Grid View</h4>
                     <table id="example" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                             <tr>
@@ -77,7 +81,7 @@ include('includes/sidebar.php');
                     </table>
                 </div>
             </div>
-        </div> -->
+        </div>
 
     </div>
 </div>

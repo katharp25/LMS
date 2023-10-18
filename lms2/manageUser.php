@@ -28,10 +28,7 @@ include('functions/list_grid.php');
                             <div class="form-group">
                                 <label for="userType">User Type</label>
                                 <select class="form-control" name="userType">
-                                    <option value="">--select--</option>
-                                    <option value="admin">Admin</option>
-                                    <option value="student">Student</option>
-                                    <option value="company">Company</option>
+                                    <option></option>
                                 </select>
                             </div>
                         </div>
@@ -48,11 +45,12 @@ include('functions/list_grid.php');
                                 <label for="pwd">Password</label>
                                 <input type="password" class="form-control" id="pwd" placeholder="Password">
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="address">Address</label>
-                            <textarea name="address" id="" class="form-control richtext" cols="30" rows="10">
-                                </textarea>
+                            <div class="form-group">
+                                <label for="address">Address</label>
+                                <textarea type="text" class="form-control" name="address" placeholder="Enter Address"> </textarea>
+                            </div>
+
+
                         </div>
                         <div>
                             <button type="submit" class="btn btn-primary me-2" name="user_manage">Submit</button>

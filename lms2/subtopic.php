@@ -14,6 +14,13 @@ include('includes/sidebar.php');
                         </p> -->
                     <form class="forms-sample row">
                         <div class="col-md-6">
+                        <div class="form-group">
+                                <label for="name"> Topic Name</label>
+                                <select class="form-control" name="topic">
+                                    <option> Select Topic Name</option>
+                                </select>
+                                <!-- <input type="text" class="form-control" name="topic" placeholder="Enter Topic Name"> -->
+                            </div>
                             <div class="form-group">
                                 <label for="name"> Sub Topic Name</label>
                                 <input type="text" class="form-control" name="name" placeholder="Enter Sub Topic Name">
@@ -57,15 +64,16 @@ include('includes/sidebar.php');
         <div class="col-md-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Manage User</h4>
+                    <h4 class="card-title">Manage Sub Topics</h4>
                     <table id="example" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                             <tr>
                                 <th>S.no</th>
+                                <th>Topic Name</th>
                                 <th>Sub Topic Name</th>
-                                <!-- <th>Email</th>
-                                <th>Phone</th>
-                                <th>Address</th> -->
+                                
+                                <!-- <th>Phone</th> -->
+                                <!-- <th>Address</th> -->
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -73,7 +81,7 @@ include('includes/sidebar.php');
                             <tr>
                                 <td>1</td>
                                 <td>Form</td>
-                                <!-- <td>katharp24@gmail.com</td>    -->
+                                <td>xyz</td>   
                                 <!-- <td style="white-space: wrap;">Lorem ipsum dolor sit amet consectetur adipisicing
                                     elit. Facilis excepturi perferendis</td> -->
                                 <!-- <td> 8668275307 </td>
@@ -86,7 +94,7 @@ include('includes/sidebar.php');
                             <tr>
                                 <td>2</td>
                                 <td>Events</td>
-                                <!-- <td>vishal@gmail.com</td> -->
+                                <td>xyz</td>
                                 <!-- <td style="white-space: wrap;">Lorem ipsum dolor sit amet consectetur adipisicing
                                     elit. Facilis excepturi perferendis</td> -->
                                 <!-- <td> 8888888888 </td> -->
