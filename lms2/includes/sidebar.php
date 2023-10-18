@@ -80,8 +80,8 @@
                         <div class="collapse" id="charts">
                             <ul class="nav flex-column sub-menu">
                                 <!-- <li class="nav-item"> <a class="nav-link" href="pages/charts/chartjs.html">ChartJs</a></li> -->
-                                <li class="nav-item"> <a class="nav-link" href="pages/charts/chartjs.html">MIS</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="pages/charts/chartjs.html">Daily
+                                <li class="nav-item"> <a class="nav-link" href="#">MIS</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="#">Daily
                                         Payment</a></li>
                                 <li class="nav-item"> <a class="nav-link"  href="<?= $mainlink;?>pandingSubscriptionReport">Pending
                                         Subscriptions</a></li>
