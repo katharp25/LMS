@@ -1,18 +1,19 @@
 <?php
 include('includes/header.php');
 include('includes/sidebar.php');
+include('functions/list_grid.php');
 ?>
 <div class="content-wrapper">
     <div class="row">
-        <div class="col-md-12 grid-margin stretch-card ">
+        <div class="col-md-6 grid-margin stretch-card ">
             <div class="card">
                 <div class="card-body">
-                <h4 class="card-title">User Management</h4>
+                    <h4 class="card-title">User Management</h4>
                     <!-- <h4 class="card-title">Default form</h4>
                         <p class="card-description">
                             Basic form layout
                         </p> -->
-                    <form class="forms-sample row">
+                    <form class="forms-sample row" action="functions/functions" method="POST">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="name">Name</label>
@@ -20,84 +21,102 @@ include('includes/sidebar.php');
                             </div>
                             <div class="form-group">
                                 <label for="phoneNumber">Phone Number</label>
-                                <input type="text" class="form-control" name="phoneNumber" placeholder="Enter Phone Number">
+                                <input type="text" class="form-control" name="phoneNumber"
+                                    placeholder="Enter Phone Number">
                             </div>
 
                             <div class="form-group">
                                 <label for="userType">User Type</label>
                                 <select class="form-control" name="userType">
-                                    <option></option>
+                                    <option value="">--select--</option>
+                                    <option value="admin">Admin</option>
+                                    <option value="student">Student</option>
+                                    <option value="company">Company</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="userId">User Id</label>
-                                <input type="text" class="form-control" name="UserId" placeholder="Enter Address">
+                                <label for="userId">Email</label>
+                                <input type="email" class="form-control" name="email" placeholder="Enter Email Address">
+                            </div>
+                            <div class="form-group">
+                                <label for="userId">User ID</label>
+                                <input type="text" class="form-control" name="user_id" placeholder="Enter user id">
                             </div>
                             <div class="form-group">
                                 <label for="pwd">Password</label>
                                 <input type="password" class="form-control" id="pwd" placeholder="Password">
                             </div>
-                            <div class="form-group">
-                                <label for="address">Address</label>
-                                <textarea type="text" class="form-control" name="address" placeholder="Enter Address"> </textarea>
-                            </div>
-
-
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <textarea name="address" id="" class="form-control richtext" cols="30" rows="10">
+                                </textarea>
                         </div>
                         <div>
-                            <button type="submit" class="btn btn-primary me-2">Submit</button>
+                            <button type="submit" class="btn btn-primary me-2" name="user_manage">Submit</button>
                             <button class="btn btn-light">Cancel</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-        <div class="col-md-12 grid-margin stretch-card">
+        <div class="col-md-6 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Manage User</h4>
-                    <table id="example" class="table table-striped table-bordered" style="width:100%">
-                        <thead>
-                            <tr>
-                                <th>S.no</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Phone</th>
-                                <th>Address</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Pradip Kathar</td>
-                                <td>katharp24@gmail.com</td>
-                                <!-- <td style="white-space: wrap;">Lorem ipsum dolor sit amet consectetur adipisicing
-                                    elit. Facilis excepturi perferendis</td> -->
-                                <td> 8668275307 </td>
-                                <td> Maharashtra </td>
-                                <td>
-                                    <button type="submit" class="btn btn-primary me-2 p-2">Edit</button>
-                                    <button class="btn btn-danger p-2">Delete</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Vishal Khatri</td>
-                                <td>vishal@gmail.com</td>
-                                <!-- <td style="white-space: wrap;">Lorem ipsum dolor sit amet consectetur adipisicing
-                                    elit. Facilis excepturi perferendis</td> -->
-                                <td> 8888888888 </td>
-                                <td> hyderabad </td>
-                                <td>
-                                    <button type="submit" class="btn btn-primary me-2 p-2">Edit</button>
-                                    <button class="btn btn-danger p-2">Delete</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+
+                    </style>
+                    <div style="overflow-x: auto;">
+                        <table id="example" class="table table-striped table-bordered" style="width:100%;">
+                            <thead>
+                                <tr>
+                                    <th>S.no</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Address</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                            if($fetch_list_query)
+                            {
+                                $i = 1;
+                                while($row=mysqli_fetch_assoc($fetch_list_query))
+                                {
+                                    $user_name=$row['Name'];
+                                    $user_email = $row['Email'];
+                                    $user_phone = $row['Phone'];
+                                    $user_address = $row['Address'];
+                                    ?>
+                                <tr>
+                                    <td><?= $i;?></td>
+                                    <td><?= $user_name; ?></td>
+                                    <td><?= $user_email; ?></td>
+                                    <td><?= $user_phone; ?></td>
+                                    <td><?= $user_address; ?></td>
+                                    <td>
+                                        <button type="submit" class="btn btn-primary me-2 p-2">Edit</button>
+                                        <button class="btn btn-danger p-2">Delete</button>
+                                    </td>
+                                </tr>
+
+
+                                <?php
+                            $i++;
+                                }
+                                
+                            }else {
+                                echo "Query failed!";
+                            }
+                            ?>
+                            </tbody>
+                        </table>
+                    </div>
+
                 </div>
             </div>
         </div>
