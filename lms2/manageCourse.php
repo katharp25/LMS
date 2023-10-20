@@ -1,7 +1,9 @@
 <?php
 include('includes/header.php');
 include('includes/sidebar.php');
+include('functions/list_grid.php');
 ?>
+
 <div class="content-wrapper">
     <div class="row">
         <div class="col-md-12 grid-margin stretch-card ">
@@ -12,13 +14,28 @@ include('includes/sidebar.php');
                         <p class="card-description">
                             Basic form layout
                         </p> -->
-                    <form class="forms-sample row">
+                    <form class="forms-sample row" action="functions/functions" method="POST">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="topic"> Topic Name</label>
                                 <!-- <input type="text" class="form-control" name="name" placeholder="Enter Name"> -->
                                 <select class="form-control" name="topic">
-                                    <option> select topic name</option>
+                                <?php
+                                    if($fetch_list_topic_query)
+                                    {
+                                        // $i = 1;
+                                        while($row=mysqli_fetch_assoc($fetch_list_topic_query))
+                                        {
+                                            
+                                            echo $topic_id;
+                                            ?>
+                                            <option value=<?= $row['Id']; ?>> <?= $row['topicName']; ?></option>
+                                            <?php
+                                        }
+                                    }else{
+                                        echo "Query failed!";
+                                    }
+                                   ?> 
                                 </select>
                             </div>
                             <div class="form-group">
@@ -60,7 +77,7 @@ include('includes/sidebar.php');
 
                         </div>
                         <div>
-                            <button type="submit" class="btn btn-primary me-2">Submit</button>
+                            <button type="submit" class="btn btn-primary me-2" name="course_manage">Submit</button>
                             <button class="btn btn-light">Cancel</button>
                         </div>
                     </form>
