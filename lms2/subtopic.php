@@ -63,13 +63,15 @@ include('functions/list_grid.php');
                             if($fetch_list_subtopic_query)
                             {
                                 $i = 1;
-                                while($row=mysqli_fetch_assoc($fetch_list_subtopic_query))
+                                while($row=mysqli_fetch_assoc($fetch_list_join_topics_subtopic_query))
                                 {
                                     $topic_name=$row['topicName'];
+                                    $subtopic_name=$row['subTopicName']
                                     ?>
                                     <tr>
                                     <td><?= $i;?></td>
                                     <td><?= $topic_name; ?></td>
+                                    <td><?= $subtopic_name; ?></td>
                                     <td>
                                         <button type="submit" class="btn btn-primary me-2 p-2">Edit</button>
                                         <button class="btn btn-danger p-2">Delete</button>
