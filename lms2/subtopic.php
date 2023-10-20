@@ -70,6 +70,7 @@ include('functions/list_grid.php');
                                     <tr>
                                     <td><?= $i;?></td>
                                     <td><?= $topic_name; ?></td>
+                                    
                                     <td>
                                         <button type="submit" class="btn btn-primary me-2 p-2">Edit</button>
                                         <button class="btn btn-danger p-2">Delete</button>
