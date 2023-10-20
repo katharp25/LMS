@@ -1,6 +1,7 @@
 <?php
 include('includes/header.php');
 include('includes/sidebar.php');
+include('functions/list_grid.php');
 ?>
 <div class="content-wrapper">
     <div class="row">
@@ -8,53 +9,36 @@ include('includes/sidebar.php');
             <div class="card">
                 <div class="card-body">
                 <h4 class="card-title">Sub Topic Details</h4>
-                    <!-- <h4 class="card-title">Default form</h4>
-                        <p class="card-description">
-                            Basic form layout
-                        </p> -->
-                    <form class="forms-sample row">
+                    <form class="forms-sample row" action="functions/functions" method="POST">
                         <div class="col-md-6">
                         <div class="form-group">
                                 <label for="name"> Topic Name</label>
                                 <select class="form-control" name="topic">
-                                    <option> Select Topic Name</option>
+                                    <?php
+                                    if($fetch_list_topic_query)
+                                    {
+                                        // $i = 1;
+                                        while($row=mysqli_fetch_assoc($fetch_list_topic_query))
+                                        {
+                                            
+                                            echo $topic_id;
+                                            ?>
+                                            <option value=<?= $row['Id']; ?>> <?= $row['topicName']; ?></option>
+                                            <?php
+                                        }
+                                    }else{
+                                        echo "Query failed!";
+                                    }
+                                   ?> 
                                 </select>
-                                <!-- <input type="text" class="form-control" name="topic" placeholder="Enter Topic Name"> -->
                             </div>
                             <div class="form-group">
                                 <label for="name"> Sub Topic Name</label>
-                                <input type="text" class="form-control" name="name" placeholder="Enter Sub Topic Name">
+                                <input type="text" class="form-control" name="subtopic" placeholder="Enter Sub Topic Name">
                             </div>
-                            <!-- <div class="form-group">
-                                <label for="phoneNumber">Phone Number</label>
-                                <input type="text" class="form-control" name="phoneNumber" placeholder="Enter Phone Number">
-                            </div> -->
-
-                            <!-- <div class="form-group">
-                                <label for="userType">User Type</label>
-                                <select class="form-control" name="userType">
-                                    <option></option>
-                                </select>
-                            </div> -->
                         </div>
-                        <!-- <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="userId">User Id</label>
-                                <input type="text" class="form-control" name="UserId" placeholder="Enter Address">
-                            </div>
-                            <div class="form-group">
-                                <label for="pwd">Password</label>
-                                <input type="password" class="form-control" id="pwd" placeholder="Password">
-                            </div>
-                            <div class="form-group">
-                                <label for="address">Address</label>
-                                <textarea type="text" class="form-control" name="address" placeholder="Enter Address"> </textarea>
-                            </div>
-
-
-                        </div> -->
                         <div>
-                            <button type="submit" class="btn btn-primary me-2">Submit</button>
+                            <button type="submit" class="btn btn-primary me-2" name="subtopic_manage">Submit</button>
                             <button class="btn btn-light">Cancel</button>
                         </div>
                     </form>
@@ -71,39 +55,33 @@ include('includes/sidebar.php');
                                 <th>S.no</th>
                                 <th>Topic Name</th>
                                 <th>Sub Topic Name</th>
-                                
-                                <!-- <th>Phone</th> -->
-                                <!-- <th>Address</th> -->
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Form</td>
-                                <td>xyz</td>   
-                                <!-- <td style="white-space: wrap;">Lorem ipsum dolor sit amet consectetur adipisicing
-                                    elit. Facilis excepturi perferendis</td> -->
-                                <!-- <td> 8668275307 </td>
-                                <td> Maharashtra </td> -->
-                                <td>
-                                    <button type="submit" class="btn btn-primary me-2 p-2">Edit</button>
-                                    <button class="btn btn-danger p-2">Delete</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Events</td>
-                                <td>xyz</td>
-                                <!-- <td style="white-space: wrap;">Lorem ipsum dolor sit amet consectetur adipisicing
-                                    elit. Facilis excepturi perferendis</td> -->
-                                <!-- <td> 8888888888 </td> -->
-                                <!-- <td> hyderabad </td> -->
-                                <td>
-                                    <button type="submit" class="btn btn-primary me-2 p-2">Edit</button>
-                                    <button class="btn btn-danger p-2">Delete</button>
-                                </td>
-                            </tr>
+                        <?php
+                            if($fetch_list_subtopic_query)
+                            {
+                                $i = 1;
+                                while($row=mysqli_fetch_assoc($fetch_list_subtopic_query))
+                                {
+                                    $topic_name=$row['topicName'];
+                                    ?>
+                                    <tr>
+                                    <td><?= $i;?></td>
+                                    <td><?= $topic_name; ?></td>
+                                    <td>
+                                        <button type="submit" class="btn btn-primary me-2 p-2">Edit</button>
+                                        <button class="btn btn-danger p-2">Delete</button>
+                                    </td>
+                                    </tr>
+                                    <?php
+                            $i++;
+                                }
+                                } else {
+                                    echo "Query failed!";
+                                }
+                            ?>
                         </tbody>
                     </table>
                 </div>
@@ -111,26 +89,6 @@ include('includes/sidebar.php');
         </div>
     </div>
 </div>
-<!-- Main Content ends -->
-
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col">
-
-            </div>
-            <div class="col"></div>
-        </div>
-    </div>
-</body>
-</html> -->
 
 <?php
 
