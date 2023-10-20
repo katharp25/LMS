@@ -30,26 +30,13 @@ include('includes/sidebar.php');
                             </div>
                             <div class="form-group">
                                 <label for="courseName">Course Name</label>
-                                <input type="text" class="form-control" name="courseName" placeholder="Enter Course Name">
+                                <input type="text" class="form-control" name="courseName"
+                                    placeholder="Enter Course Name">
                             </div>
                             <div class="form-group">
                                 <label for="price">Price</label>
                                 <input type="number" class="form-control" name="price" placeholder="Enter Price">
                             </div>
-                        </div>
-                        <div class="col-md-6">
-                            <!-- <div class="form-group">
-                                <label for="userId">User Id</label>
-                                <input type="text" class="form-control" name="UserId" placeholder="Enter Address">
-                            </div>
-                            <div class="form-group">
-                                <label for="pwd">Password</label>
-                                <input type="password" class="form-control" id="pwd" placeholder="Password">
-                            </div>
-                            <div class="form-group">
-                                <label for="address">Address</label>
-                                <textarea type="text" class="form-control" name="address" placeholder="Enter Address"> </textarea>
-                            </div> -->
                             <div class="form-group">
                                 <label for="image">Image</label>
                                 <input type="file" class="form-control-file" name="image" accept="image/*">
@@ -62,6 +49,8 @@ include('includes/sidebar.php');
                                 <label for="image">Upload Video</label>
                                 <input type="file" class="form-control-file" name="image" accept="image/*">
                             </div>
+                        </div>
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label for="banner_desc">Description</label>
                                 <textarea class="richtext">
