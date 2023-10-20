@@ -1,5 +1,10 @@
 <?php
-include('config.php');
+$host="localhost";
+$db="saburi_lms_2023";
+$password="";
+$username="root";
+
+$con = mysqli_connect($host,$username,$password,$db);
 
 
 // fetching list of Users to users module
