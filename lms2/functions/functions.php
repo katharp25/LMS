@@ -79,19 +79,78 @@ elseif(isset($_POST['topic_manage'])){
         echo $topic, $subtopic,$currentDate ;
     }
 } elseif (isset($_POST['course_manage'])) {
-    $name = $_POST['name'];
-    $phoneNumber = $_POST['phoneNumber'];
-    $userType = $_POST['userType'];
-    $email = $_POST['email'];
-    $uid = $_POST['user_id'];
-    $pwd = $_POST['pwd'];
-    $address = $_POST['address'];
+    $topic = $_POST['topic'];
+    $subtopic = $_POST['subtopic'];
+    $courseName = $_POST['courseName'];
+    $price = $_POST['price'];
+    // $image = $_POST['image'];
+    // Handle image upload
+    if (isset($_FILES['image'])) {
+        $imageFile = $_FILES['image'];
+        $imageFileName = $imageFile['name'];
+        // Process and move the image file to your desired location
+        move_uploaded_file($imageFile['tmp_name'], 'upload/image/' . $imageFileName);
+    }
+    // $uploadfile = $_POST['uploadfile'];
+     // Handle file upload
+     if (isset($_FILES['uploadfile'])) {
+        $uploadFile = $_FILES['uploadfile'];
+        $uploadFileName = $uploadFile['name'];
+        // Process and move the upload file to your desired location
+        move_uploaded_file($uploadFile['tmp_name'], 'upload/file/' . $uploadFileName);
+    }
+    // $uploadfile = isset($_POST['uploadfile']) ? $_POST['uploadfile'] : '';
+    // $video = $_POST['video'];
+    // Handle video upload
+    if (isset($_FILES['video'])) {
+        $videoFile = $_FILES['video'];
+        $videoFileName = $videoFile['name'];
+        // Process and move the video file to your desired location
+        move_uploaded_file($videoFile['tmp_name'], 'upload/video/' . $videoFileName);
+    }
+    // $video = isset($_POST['video']) ? $_POST['video'] : '';
+    // $desc = $_POST['desc'];
+    $desc = isset($_POST['desc']) ? $_POST['desc'] : '';
+    
 
-    $insert_query = mysqli_query($con, "INSERT INTO users(Name,Email,Phone,Address,UserType,UserId,Password) VALUES('$name','$email','$phoneNumber','$address','$userType','$uid','$pwd')");
+    $insert_query = mysqli_query($con, "INSERT INTO courses(topicID ,subTopicId ,courseName,courseCost,bannerImage,uploadfile,video,courseDesc) VALUES('$topic','$subtopic','$courseName','$price','$imageFileName','$uploadFileName','$videoFileName','$desc')");
 
     if ($insert_query) {
-        header("location: $mainlink" . "manageUser");
+        header("location: $mainlink" . "manageCourse");
     } else {
         echo "not done";
     }
+}elseif (isset($_POST['subscription_manage'])){
+    $subscription = $_POST['subscription'];
+    $type = $_POST['type'];
+    $price = $_POST['price'];
+    $duration = $_POST['duration'];
+    $courseName = $_POST['courseName'];
+
+    $insert_query = mysqli_query($con, "INSERT INTO subscriptions_1(subscription, type, price, duration,courseName) VALUES('$subscription','$type','$price','$duration','$courseName')");
+
+    if ($insert_query) {
+        header("location: $mainlink" . "manageSubscriptions");
+    } else {
+        echo "not done";
+    }
+}elseif (isset($_POST['blog_manage'])){
+    $title = $_POST['title'];
+    if (isset($_FILES['image'])) {
+        $imageFile = $_FILES['image'];
+        $imageFileName = $imageFile['name'];
+        // Process and move the image file to your desired location
+        move_uploaded_file($imageFile['tmp_name'], 'upload/image/' . $imageFileName);
+    }
+    $writer = $_POST['writer'];
+    $desc = $_POST['desc'];
+
+    $insert_query = mysqli_query($con, "INSERT INTO blogs(blogTitle, bannerImage, writer, description) VALUES('$title','$imageFileName ','$writer','$desc')");
+
+    if ($insert_query) {
+        header("location: $mainlink" . "blog");
+    } else {
+        echo "not done";
+    }
+  
 }

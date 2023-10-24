@@ -14,6 +14,7 @@ include('functions/list_grid.php');
                         <div class="form-group">
                                 <label for="name"> Topic Name</label>
                                 <select class="form-control" name="topic">
+                                <option value=""> Select Topic Name</option>
                                     <?php
                                     if($fetch_list_topic_query)
                                     {
@@ -23,6 +24,7 @@ include('functions/list_grid.php');
                                             
                                             echo $topic_id;
                                             ?>
+                                            
                                             <option value=<?= $row['Id']; ?>> <?= $row['topicName']; ?></option>
                                             <?php
                                         }

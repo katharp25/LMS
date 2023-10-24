@@ -1,6 +1,7 @@
 <?php
 include('includes/header.php');
 include('includes/sidebar.php');
+include('functions/list_grid.php');
 ?>
 <div class="content-wrapper">
     <div class="row">
@@ -12,11 +13,11 @@ include('includes/sidebar.php');
                         <p class="card-description">
                             Basic form layout
                         </p> -->
-                    <form class="forms-sample row">
+                    <form class="forms-sample row" action="functions/functions" method="POST">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="name"> Subscription Name</label>
-                                <input type="text" class="form-control" name="name" placeholder="Enter Subscription Name">
+                                <input type="text" class="form-control" name="subscription" placeholder="Enter Subscription Name">
                             </div>
                             <div class="form-group">
                                 <label for="type">Type</label>
@@ -50,7 +51,7 @@ include('includes/sidebar.php');
                                 <input type="text" class="form-control" name="courseName" placeholder="Enter Course Name">
                             </div>
                             <div>
-                            <button type="submit" class="btn btn-primary me-2">Submit</button>
+                            <button type="submit" class="btn btn-primary me-2" name="subscription_manage">Submit</button>
                             <button class="btn btn-light">Cancel</button>
                             </div>
 
@@ -77,18 +78,37 @@ include('includes/sidebar.php');
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>xyz</td>
-                                <td>gold</td>   
-                                <td>9999</td>
-                                <td> 3 Months </td>
-                                <td> 101 </td>
-                                <td>
-                                    <button type="submit" class="btn btn-primary me-2 p-2">Edit</button>
-                                    <button class="btn btn-danger p-2">Delete</button>
-                                </td>
-                            </tr>
+                        <?php
+                            if($fetch_list_query_subscription)
+                            {
+                                $i = 1;
+                                while($row=mysqli_fetch_assoc($fetch_list_query_subscription))
+                                {
+                                    $subscription=$row['subscription'];
+                                    $type=$row['type'];
+                                    $price=$row['price'];
+                                    $duration=$row['duration'];
+                                    $courseName=$row['courseName'];
+                                    ?>
+                                    <tr>
+                                    <td><?= $i;?></td>
+                                    <td><?= $subscription;?></td>
+                                    <td><?= $type;?></td>
+                                    <td><?= $price;?></td>
+                                    <td><?= $duration;?></td>
+                                    <td><?= $courseName;?></td>
+                                    <td>
+                                        <button type="submit" class="btn btn-primary me-2 p-2">Edit</button>
+                                        <button class="btn btn-danger p-2">Delete</button>
+                                    </td>
+                                    </tr>
+                                    <?php
+                            $i++;
+                                }
+                                } else {
+                                    echo "Query failed!";
+                                }
+                            ?>
                         </tbody>
                     </table>
                 </div>

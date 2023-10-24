@@ -1,6 +1,7 @@
 <?php
 include('includes/header.php');
 include('includes/sidebar.php');
+include('functions/list_grid.php');
 ?>
 
 
@@ -15,7 +16,7 @@ include('includes/sidebar.php');
                         You can Write the content for about page.
                     </p> -->
                    
-                    <form class="forms-sample">
+                    <form class="forms-sample" action="functions/functions" method="POST" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="title">Title</label>
                             <input type="text" class="form-control" name="title"
@@ -23,7 +24,7 @@ include('includes/sidebar.php');
                         </div>
                         <div class="form-group">
                             <label for="image">Image</label>
-                            <input type="file" class="form-control-file" id="image" accept="image/*">
+                            <input type="file" class="form-control-file" id="image" name="image" accept="image/*">
                         </div>
                         <div class="form-group">
                             <label for="writer">Writer</label>
@@ -41,7 +42,7 @@ include('includes/sidebar.php');
                             <input type="file" class="form-control-file" id="banner_image" accept="image/*">
                         </div> -->
 
-                        <button type="submit" class="btn btn-primary me-2">Submit</button>
+                        <button type="submit" class="btn btn-primary me-2" name="blog_manage">Submit</button>
                         <button class="btn btn-light">Cancel</button>
                     </form>
                 </div>
