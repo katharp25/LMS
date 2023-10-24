@@ -50,7 +50,9 @@ if (isset($_POST['login_admin'])) {
         echo "not done";
     }
 }
-
+//  else {
+//     echo "not coming";
+// }
 
 elseif(isset($_POST['topic_manage'])){
     $topic = $_POST['topic'];
@@ -75,5 +77,21 @@ elseif(isset($_POST['topic_manage'])){
     } else {
         echo "not done";
         echo $topic, $subtopic,$currentDate ;
+    }
+} elseif (isset($_POST['course_manage'])) {
+    $name = $_POST['name'];
+    $phoneNumber = $_POST['phoneNumber'];
+    $userType = $_POST['userType'];
+    $email = $_POST['email'];
+    $uid = $_POST['user_id'];
+    $pwd = $_POST['pwd'];
+    $address = $_POST['address'];
+
+    $insert_query = mysqli_query($con, "INSERT INTO users(Name,Email,Phone,Address,UserType,UserId,Password) VALUES('$name','$email','$phoneNumber','$address','$userType','$uid','$pwd')");
+
+    if ($insert_query) {
+        header("location: $mainlink" . "manageUser");
+    } else {
+        echo "not done";
     }
 }

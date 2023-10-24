@@ -1,5 +1,7 @@
 <?php
 include("./functions/config.php");
+include('./functions/list_grid.php');
+// include('./functions/modals_data.php');
 $mainlink="http://localhost/LMS/lms2/";
 ?>
 <!DOCTYPE html>
@@ -20,11 +22,12 @@ $mainlink="http://localhost/LMS/lms2/";
     <!-- endinject -->
     <!-- Plugin css for this page -->
     <link rel="stylesheet" href="vendors/datatables.net-bs4/dataTables.bootstrap4.css">
-    <link rel="stylesheet" href="js/select.dataTables.min.css">
+    <!-- <link rel="stylesheet" href="js/select.dataTables.min.css"> -->
     <!-- End plugin css for this page -->
     <!-- Rich Text Editor -->
     <script src="https://cdn.tiny.cloud/1/rnq798i697frg8htdej9ur8w0jc59pic7kqe5eysm8mti1ch/tinymce/6/tinymce.min.js">
     </script>
+    <script src="js/jquery-3.6.0.min.js"></script>
     <!-- <script src="./outsides/richtexteditor/tinymce.min.js"></script> -->
     
     <!-- inject:css -->
