@@ -1,6 +1,7 @@
 <?php
 include('includes/header.php');
 include('includes/sidebar.php');
+include('functions/list_grid.php');
 ?>
 
 
@@ -15,39 +16,22 @@ include('includes/sidebar.php');
                         You can Write the content for about page.
                     </p> -->
                    
-                    <form class="forms-sample">
+                    <form class="forms-sample" action="functions/functions" method="POST" enctype="multipart/form-data">
                     <div class="form-group">
                             <label for="title">Title</label>
                             <input type="text" class="form-control" name="title"
                                 placeholder="Enter Title ">
-                        </div>
-                    <!-- <div class="form-group">
-                            <label for="exp">Years of Experience	</label>
-                            <input type="number" class="form-control" name="exp"
-                                placeholder="Enter Years of Experience">
-                        </div> -->
-                        
-                        <div class="form-group">
+                        </div> `
+                        <div class="form-group"> 
                             <label for="image">Image</label>
-                            <input type="file" class="form-control-file" id="image" accept="image/*">
+                            <input type="file" class="form-control-file" name="image" accept="image/*">
                         </div>
                         <div class="form-group">
                             <label for="neme">Name</label>
-                            <input type="text" class="form-control" name="neme"
+                            <input type="text" class="form-control" name="name"
                                 placeholder="Enter Name">
                         </div>
-                        <!-- <div class="form-group">
-                            <label for="desc">Description</label>   
-                            <textarea class="richtext" name="desc">
-                                        Welcome to Saburi LMS
-                                    </textarea>
-                        </div> -->
-                        <!-- <div class="form-group">
-                            <label for="banner_image">Banner Image</label>
-                            <input type="file" class="form-control-file" id="banner_image" accept="image/*">
-                        </div> -->
-
-                        <button type="submit" class="btn btn-primary me-2">Submit</button>
+                        <button type="submit" class="btn btn-primary me-2" name="corporateGovernance_manage">Submit</button>
                         <button class="btn btn-light">Cancel</button>
                     </form>
                 </div>
@@ -61,37 +45,40 @@ include('includes/sidebar.php');
                         <thead>
                             <tr>
                                 <th>S.no</th>
+                                <th> titlegit</th>
                                 <th> Name    </th>
                                 <th> Image </th>
-                                <!-- <th>Image</th> -->
-                                <!-- <th>Description</th> -->
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>xyz</td>
-                                
-                                <td>xyz</td>
-                                <!-- <td><img src="images/saburi.png" class="img-fluid w-50" /></td> -->
-                                <!-- <td style="white-space: wrap;">Lorem ipsum dolor sit amet consectetur adipisicing
-                                    elit. Facilis excepturi perferendis</td> -->
-                                <td><button type="submit" class="btn btn-primary me-2 p-2">Edit</button>
-                                    <button class="btn btn-danger p-2">Delete</button>
-                                    <!-- <button class="btn btn-success p-2">View</button> -->
-                                </td>
-                            </tr>
-                            <!-- <tr>
-                                <td>2</td>
-                                <td><img src="images/faces/face1.jpg" class="img-fluid w-50" /></td>
-                                <td>Saburi Educations</td>
-                                <td style="white-space: wrap;">Lorem ipsum dolor sit amet consectetur adipisicing
-                                    elit. Facilis excepturi perferendis</td>
-                                <td><button type="submit" class="btn btn-primary me-2 p-2">Edit</button>
-                                    <button class="btn btn-danger p-2">Delete</button>
-                                </td>
-                            </tr> -->
+                        <?php
+                            if($fetch_list_corporategovernance_query)
+                            {
+                                $i = 1;
+                                while($row=mysqli_fetch_assoc($fetch_list_corporategovernance_query))
+                                {
+                                    $title=$row['title'];
+                                    $image=$row['image'];
+                                    $name=$row['name'];
+                                    ?>
+                                    <tr>
+                                    <td><?= $i;?></td>
+                                    <td><?= $title; ?></td>
+                                    <td><?= $image; ?></td>
+                                    <td><?= $name; ?></td>
+                                    <td>
+                                        <button type="submit" class="btn btn-primary me-2 p-2">Edit</button>
+                                        <button class="btn btn-danger p-2">Delete</button>
+                                    </td>
+                                    </tr>
+                                    <?php
+                            $i++;
+                                }
+                                } else {
+                                    echo "Query failed!";
+                                }
+                            ?>
                         </tbody>
                     </table>
                 </div>

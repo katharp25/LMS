@@ -24,14 +24,9 @@ include('includes/sidebar.php');
                                             
                                             echo $topic_id;
                                             ?>
-<<<<<<< HEAD
                                             
                                             <option value=<?= $row['Id']; ?>> <?= $row['topicName']; ?></option>
                                             <?php
-=======
-                                    <option value=<?= $row['Id']; ?>> <?= $row['topicName']; ?></option>
-                                    <?php
->>>>>>> 831f81774683a26fc1cf70b34d1c83177db9b36e
                                         }
                                     }else{
                                         echo "Query failed!";

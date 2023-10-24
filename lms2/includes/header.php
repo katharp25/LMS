@@ -2,7 +2,7 @@
 include("./functions/config.php");
 include('./functions/list_grid.php');
 // include('./functions/modals_data.php');
-$mainlink="http://localhost/LMS/lms2/";
+// $mainlink="http://localhost:8080/LMS/lms2/";
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -64,28 +64,43 @@ include('functions/list_grid.php');
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Saburi Educations</td>
-                                
-                                <td>xyz</td>
-                                <td><img src="images/saburi.png" class="img-fluid w-50" /></td>
-                                <td style="white-space: wrap;">Lorem ipsum dolor sit amet consectetur adipisicing
-                                    elit. Facilis excepturi perferendis</td>
-                                <td><button type="submit" class="btn btn-primary me-2 p-2">Edit</button>
-                                    <button class="btn btn-danger p-2">Delete</button>
-                                </td>
-                            </tr>
-                            <!-- <tr>
-                                <td>2</td>
-                                <td><img src="images/faces/face1.jpg" class="img-fluid w-50" /></td>
-                                <td>Saburi Educations</td>
-                                <td style="white-space: wrap;">Lorem ipsum dolor sit amet consectetur adipisicing
-                                    elit. Facilis excepturi perferendis</td>
-                                <td><button type="submit" class="btn btn-primary me-2 p-2">Edit</button>
-                                    <button class="btn btn-danger p-2">Delete</button>
-                                </td>
-                            </tr> -->
+                        <?php
+                            if($fetch_list_blog_query)
+                            {
+                                $i = 1;
+                                while($row=mysqli_fetch_assoc($fetch_list_blog_query))
+                                {
+                                    $title=$row['blogTitle'];
+                                    $writer=$row['writer'];
+                                    $image=$row['bannerImage'];
+                                    $description=$row['description'];
+                                    // $desc=$row['courseDesc'];
+                                    // $img=$row['bannerImage'];
+                                    // $file=$row['uploadfile'];
+                                    // $video=$row['video'];
+                                    ?>
+                                    <tr>
+                                    <td><?= $i;?></td>
+                                    <td><?= $title; ?></td>
+                                    <td><?= $writer; ?></td>
+                                    <td><?= $image; ?></td>
+                                    <td><?= $description; ?></td>
+                                    <!-- <td><?= $desc; ?></td>
+                                    <td><?= $img; ?></td>
+                                    <td><?= $file; ?></td>
+                                    <td><?= $video; ?></td> -->
+                                    <td>
+                                        <button type="submit" class="btn btn-primary me-2 p-2">Edit</button>
+                                        <button class="btn btn-danger p-2">Delete</button>
+                                    </td>
+                                    </tr>
+                                    <?php
+                            $i++;
+                                }
+                                } else {
+                                    echo "Query failed!";
+                                }
+                            ?>
                         </tbody>
                     </table>
                 </div>
