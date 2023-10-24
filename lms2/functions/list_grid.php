@@ -12,6 +12,7 @@ $con = mysqli_connect($host,$username,$password,$db);
 $fetch_list_query=mysqli_query($con,"SELECT * FROM users");
 $fetch_list_topic_query=mysqli_query($con,"SELECT * FROM topics");
 $fetch_list_subtopic_query=mysqli_query($con,"SELECT * FROM subtopics");
+<<<<<<< HEAD
 $fetch_list_join_topics_subtopic_query=mysqli_query($con,"SELECT topics.topicName,subtopics.subTopicName FROM subtopics INNER JOIN topics ON topics.Id = subtopics.topicId;");
 $fetch_list_join_topics_subtopic_course_query=mysqli_query($con,"SELECT 
 topics.Id AS topic_id,
@@ -34,6 +35,9 @@ courses ON subtopics.Id = courses.subTopicId;");
 
 $fetch_list_query_subscription=mysqli_query($con,"SELECT * FROM subscriptions_1");
 
+=======
+$fetch_list_join_topics_subtopic_query=mysqli_query($con,"SELECT * FROM subtopics INNER JOIN topics ON topics.Id = subtopics.topicId;");
+>>>>>>> 831f81774683a26fc1cf70b34d1c83177db9b36e
 // $fetch_list=mysqli_fetch_assoc($fetch_list_query);
 // $users_name=$fetch_list['Name'];
 // echo $users_name;
