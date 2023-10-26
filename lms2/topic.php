@@ -51,7 +51,7 @@ include('functions/list_grid.php');
                                 <td>
                                     <button type="submit" class="btn btn-primary me-2 p-2 edit-button"
                                         data-bs-toggle="modal" data-bs-target="#editmodal"
-                                        data-id="<?= $row['id']; ?>">Edit</button>
+                                        data-id="<?= $row['Id']; ?>">Edit</button>
                                     <button class="btn btn-danger p-2 delete_topic" data-id="<?= $row['id']; ?>">Delete</button>
                                 </td>
                             </tr>
