@@ -153,4 +153,67 @@ elseif(isset($_POST['topic_manage'])){
         echo "not done";
     }
   
+}elseif (isset($_POST['freeResources_manage'])){
+    $heading = $_POST['heading'];
+    $title = $_POST['title'];
+    if (isset($_FILES['image'])) {
+        $imageFile = $_FILES['image'];
+        $imageFileName = $imageFile['name'];
+        // Process and move the image file to your desired location
+        move_uploaded_file($imageFile['tmp_name'], 'upload/image/' . $imageFileName);
+    }
+    // $writer = $_POST['writer'];
+    $desc = $_POST['desc'];
+
+    $insert_query = mysqli_query($con, "INSERT INTO freeresources(resourcesName, title, bannerImage,description) VALUES('$heading', '$title', '$imageFileName','$desc')");
+
+    if ($insert_query) {
+        header("location: $mainlink" . "freeResources");
+    } else {
+        echo "not done";
+    }
+}elseif (isset($_POST['affiliate_manage'])){
+    $name = $_POST['name'];
+    $details = $_POST['details'];
+    $contactdetails = $_POST['contactdetails'];
+    $contactPerson = $_POST['contactPerson'];
+    $address = $_POST['address'];
+
+
+    $insert_query = mysqli_query($con, "INSERT INTO affiliates(companyName, details, contactDetail, contactPerson, address) VALUES('$name', '$details', '$contactdetails','$contactPerson','$address')");
+
+    if ($insert_query) {
+        header("location: $mainlink" . "affiliate");
+    } else {
+        echo "not done";
+    }
+}elseif (isset($_POST['career_manage'])){
+    $title = $_POST['title'];
+    $exp = $_POST['exp'];
+    $desc = $_POST['desc'];
+   
+    $insert_query = mysqli_query($con, "INSERT INTO careers(Title, Experience, Description) VALUES('$title', '$exp', '$desc')");
+
+    if ($insert_query) {
+        header("location: $mainlink" . "career");
+    } else {
+        echo "not done";
+    }
+}elseif (isset($_POST['corporateGovernance_manage'])){
+    $title = $_POST['title'];
+    if (isset($_FILES['image'])) {
+        $imageFile = $_FILES['image'];
+        $imageFileName = $imageFile['name'];
+        // Process and move the image file to your desired location
+        move_uploaded_file($imageFile['tmp_name'], 'upload/image/' . $imageFileName);
+    }
+    $name = $_POST['name'];
+   
+    $insert_query = mysqli_query($con, "INSERT INTO corporategovernance(title, image, name) VALUES('$title', '$imageFileName', '$name')");
+
+    if ($insert_query) {
+        header("location: $mainlink" . "corporateGovernance");
+    } else {
+        echo "not done";
+    }
 }

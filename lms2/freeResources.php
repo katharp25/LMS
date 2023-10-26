@@ -1,6 +1,7 @@
 <?php
 include('includes/header.php');
 include('includes/sidebar.php');
+include('functions/list_grid.php');
 ?>
 
 
@@ -15,7 +16,7 @@ include('includes/sidebar.php');
                         You can Write the content for about page.
                     </p> -->
                    
-                    <form class="forms-sample">
+                    <form class="forms-sample" action="functions/functions" method="POST" enctype="multipart/form-data">
                     <div class="form-group">
                             <label for="heading">Heading</label>
                             <input type="text" class="form-control" name="heading"
@@ -28,25 +29,17 @@ include('includes/sidebar.php');
                         </div>
                         <div class="form-group">
                             <label for="image">Image</label>
-                            <input type="file" class="form-control-file" id="image" accept="image/*">
+                            <input type="file" class="form-control-file" name="image" accept="image/*">
                         </div>
-                        <!-- <div class="form-group">
-                            <label for="writer">Writer</label>
-                            <input type="text" class="form-control" name="writer"
-                                placeholder="Enter Title For About Section">
-                        </div> -->
+                       
                         <div class="form-group">
                             <label for="desc">Description</label>
                             <textarea class="richtext" name="desc">
                                         Welcome to Saburi LMS
                                     </textarea>
                         </div>
-                        <!-- <div class="form-group">
-                            <label for="banner_image">Banner Image</label>
-                            <input type="file" class="form-control-file" id="banner_image" accept="image/*">
-                        </div> -->
-
-                        <button type="submit" class="btn btn-primary me-2">Submit</button>
+                       
+                        <button type="submit" class="btn btn-primary me-2" name="freeResources_manage">Submit</button>
                         <button class="btn btn-light">Cancel</button>
                     </form>
                 </div>
@@ -56,6 +49,7 @@ include('includes/sidebar.php');
             <div class="card">
                 <div class="card-body">
                 <h4 class="card-title">Free Resources List</h4>
+                    <div class="table-responsive">
                     <table id="example" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                             <tr>
@@ -68,30 +62,46 @@ include('includes/sidebar.php');
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Saburi Educations</td>
-                                
-                                <td>xyz</td>
-                                <td><img src="images/saburi.png" class="img-fluid w-50" /></td>
-                                <td style="white-space: wrap;">Lorem ipsum dolor sit amet consectetur adipisicing
-                                    elit. Facilis excepturi perferendis</td>
-                                <td><button type="submit" class="btn btn-primary me-2 p-2">Edit</button>
-                                    <button class="btn btn-danger p-2">Delete</button>
-                                </td>
-                            </tr>
-                            <!-- <tr>
-                                <td>2</td>
-                                <td><img src="images/faces/face1.jpg" class="img-fluid w-50" /></td>
-                                <td>Saburi Educations</td>
-                                <td style="white-space: wrap;">Lorem ipsum dolor sit amet consectetur adipisicing
-                                    elit. Facilis excepturi perferendis</td>
-                                <td><button type="submit" class="btn btn-primary me-2 p-2">Edit</button>
-                                    <button class="btn btn-danger p-2">Delete</button>
-                                </td>
-                            </tr> -->
+                        <?php
+                            if($fetch_list_freeResources_query)
+                            {
+                                $i = 1;
+                                while($row=mysqli_fetch_assoc($fetch_list_freeResources_query))
+                                {
+                                    $resourcesName=$row['resourcesName'];
+                                    $title=$row['title'];
+                                    $image=$row['bannerImage'];
+                                    $description=$row['description'];
+                                    // $desc=$row['courseDesc'];
+                                    // $img=$row['bannerImage'];
+                                    // $file=$row['uploadfile'];
+                                    // $video=$row['video'];
+                                    ?>
+                                    <tr>
+                                    <td><?= $i;?></td>
+                                    <td><?= $resourcesName; ?></td>
+                                    <td><?= $title; ?></td>
+                                    <td><?= $image; ?></td>
+                                    <td><?= $description; ?></td>
+                                    <!-- <td><?= $desc; ?></td>
+                                    <td><?= $img; ?></td>
+                                    <td><?= $file; ?></td>
+                                    <td><?= $video; ?></td> -->
+                                    <td>
+                                        <button type="submit" class="btn btn-primary me-2 p-2">Edit</button>
+                                        <button class="btn btn-danger p-2">Delete</button>
+                                    </td>
+                                    </tr>
+                                    <?php
+                            $i++;
+                                }
+                                } else {
+                                    echo "Query failed!";
+                                }
+                            ?>
                         </tbody>
                     </table>
+                    </div>
                 </div>
             </div>
         </div>

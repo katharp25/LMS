@@ -1,6 +1,7 @@
 <?php
 include('includes/header.php');
 include('includes/sidebar.php');
+include('functions/list_grid.php');
 ?>
 
 
@@ -15,7 +16,7 @@ include('includes/sidebar.php');
                         You can Write the content for about page.
                     </p> -->
                    
-                    <form class="forms-sample row">
+                    <form class="forms-sample row" action="functions/functions" method="POST">
                       <div class="col-md-6">
                       <div class="form-group">
                             <label for="name">Name</label>
@@ -44,27 +45,7 @@ include('includes/sidebar.php');
                             <input type="text" class="form-control " name="address"
                                 placeholder="Enter Address ">
                         </div>
-                        <!-- <div class="form-group">
-                            <label for="image">Image</label>
-                            <input type="file" class="form-control-file" id="image" accept="image/*">
-                        </div> -->
-                        <!-- <div class="form-group">
-                            <label for="writer">Writer</label>
-                            <input type="text" class="form-control" name="writer"
-                                placeholder="Enter Title For About Section">
-                        </div> -->
-                        <!-- <div class="form-group">
-                            <label for="desc">Description</label>
-                            <textarea class="richtext" name="desc">
-                                        Welcome to Saburi LMS
-                                    </textarea>
-                        </div> -->
-                        <!-- <div class="form-group">
-                            <label for="banner_image">Banner Image</label>
-                            <input type="file" class="form-control-file" id="banner_image" accept="image/*">
-                        </div> -->
-
-                        <button type="submit" class="btn btn-primary me-2">Submit</button>
+                        <button type="submit" class="btn btn-primary me-2" name="affiliate_manage">Submit</button>
                         <button class="btn btn-light">Cancel</button>
                        </div>
                     </form>
@@ -88,28 +69,40 @@ include('includes/sidebar.php');
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Glansa</td>
-                                
-                                <td>xyz</td>
-                                <td>888888888</td>
-                                <td>pk</td>
-                                <td>hyb</td>
-                                <td><button type="submit" class="btn btn-primary me-2 p-2">Edit</button>
-                                    <button class="btn btn-danger p-2">Delete</button>
-                                </td>
-                            </tr>
-                            <!-- <tr>
-                                <td>2</td>
-                                <td><img src="images/faces/face1.jpg" class="img-fluid w-50" /></td>
-                                <td>Saburi Educations</td>
-                                <td style="white-space: wrap;">Lorem ipsum dolor sit amet consectetur adipisicing
-                                    elit. Facilis excepturi perferendis</td>
-                                <td><button type="submit" class="btn btn-primary me-2 p-2">Edit</button>
-                                    <button class="btn btn-danger p-2">Delete</button>
-                                </td>
-                            </tr> -->
+                        <?php
+                            if($fetch_list_affiliate_query)
+                            {
+                                $i = 1;
+                                while($row=mysqli_fetch_assoc($fetch_list_affiliate_query))
+                                {
+                                    $companyName=$row['companyName'];
+                                    $details=$row['details'];
+                                    $contactDetail=$row['contactDetail'];
+                                    $contactPerson=$row['contactPerson'];
+                                    $address=$row['address'];
+                                    // $img=$row['bannerImage'];
+                                    // $file=$row['uploadfile'];
+                                    // $video=$row['video'];
+                                    ?>
+                                    <tr>
+                                    <td><?= $i;?></td>
+                                    <td><?= $companyName; ?></td>
+                                    <td><?= $details; ?></td>
+                                    <td><?= $contactDetail; ?></td>
+                                    <td><?= $contactPerson; ?></td>
+                                    <td><?= $address; ?></td>
+                                    <td>
+                                        <button type="submit" class="btn btn-primary me-2 p-2">Edit</button>
+                                        <button class="btn btn-danger p-2">Delete</button>
+                                    </td>
+                                    </tr>
+                                    <?php
+                            $i++;
+                                }
+                                } else {
+                                    echo "Query failed!";
+                                }
+                            ?>
                         </tbody>
                     </table>
                 </div>

@@ -24,8 +24,9 @@ include('includes/sidebar.php');
                                             
                                             echo $topic_id;
                                             ?>
-                                    <option value=<?= $row['Id']; ?>> <?= $row['topicName']; ?></option>
-                                    <?php
+                                            
+                                            <option value=<?= $row['Id']; ?>> <?= $row['topicName']; ?></option>
+                                            <?php
                                         }
                                     }else{
                                         echo "Query failed!";
