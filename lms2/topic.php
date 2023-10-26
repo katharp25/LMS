@@ -51,8 +51,8 @@ include('functions/list_grid.php');
                                 <td>
                                     <button type="submit" class="btn btn-primary me-2 p-2 edit-button"
                                         data-bs-toggle="modal" data-bs-target="#editmodal"
-                                        data-id="<?= $row['Id']; ?>">Edit</button>
-                                    <button class="btn btn-danger p-2">Delete</button>
+                                        data-id="<?= $row['id']; ?>">Edit</button>
+                                    <button class="btn btn-danger p-2 delete_topic" data-id="<?= $row['id']; ?>">Delete</button>
                                 </td>
                             </tr>
                             <?php
@@ -87,15 +87,8 @@ include('functions/list_grid.php');
                                                 <label for="name">Topic Name</label>
                                                 <input type="hidden" class="form-control" name="name"
                                                     placeholder="Enter Name" id="editrow">
-                                                    <input type="text" class="form-control" name="subtopic"
-                                                    id="topic_name">
+                                                <input type="text" class="form-control" name="subtopic" id="topic_name">
                                             </div>
-                                            <!-- <div class="form-group">
-                                                <label for="details">Sub Topic Name</label>
-                                                <input type="text" class="form-control" name="subtopic"
-                                                    id="subtopic_name">
-                                            </div> -->
-
                                         </div>
 
                                         <!-- </div>
@@ -106,8 +99,7 @@ include('functions/list_grid.php');
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary"
                                         data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary update_tpc"
-                                        name="update_tpc">Update
+                                    <button type="button" class="btn btn-primary update_tpc" name="update_tpc" id="update_topic">Update
                                         Changes</button>
                                 </div>
                             </div>
@@ -125,44 +117,85 @@ $(document).ready(function() {
     $('.edit-button').on('click', function() {
         var rowid = $(this).data('id');
         var editRow = $('#editrow').val(rowid);
-
-        console.log(rowid);
-
         $.ajax({
-            url: 'functions/edit_data.php', // Replace with the actual server-side script
-            data: {
-                topic_id: rowid
-            },
+            url: 'functions/dataget.php',
             method: 'GET',
-            success: function(data) {
-                // Populate the subtopic select with the retrieved data
-                $('#topic_name').val(data);
-                // $('#subtopic_name').html(data);
-            }
-        });
-    });
-    $('.update_tpc').on('click', function() {
-        var tp_id = $('#editrow').val();
-        var tp_id_name = $('#topic_name').val();
-
-        console.log("Topic Name: " + tp_id + ", Sub Topic Name: " + tp_id_name);
-        $.ajax({
-            url: 'functions/modals_data.php',
             data: {
-                updated_topic_name: tp_id_name,
-                updated_topic_id: tp_id,
+                topic_row_id: rowid
             },
-            method: 'POST',
             success: function(data) {
-                console.log("Response from server:", data);
 
-                // Reload the page after a successful update
-                if (data.success) {
-                    location.href = location.href + '?refresh=' + new Date().getTime();
-                }
+                var topic_data =JSON.parse(data);
+                console.log(topic_data);
+
+                // Populate the input elements with data received from the server
+                $('#topic_name').val(topic_data.topic_name);
+                // You can process the data returned from the server here.
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.error("AJAX Error: " + errorThrown);
+                // Handle the error appropriately, e.g., display an error message.
             }
         });
     });
+
+    $('#update_topic').on('click',function(){
+        var topic_id = $('#editrow').val();
+        var topic_name = $('#topic_name').val();
+        // alert(topic_id);
+        $.ajax({
+            url:'functions/datapost.php',
+            method: 'POST',
+            data:{
+                topic_name_update : topic_name,
+                topic_row_id: topic_id
+            },
+            success:function(data){
+                console.log(data);
+                window.location.reload();
+            }
+        });
+
+    });
+    // $('.delete_topic').on('click',function(){
+    //     var delete_topic_id = $(this).data('id');
+    //     // alert(delete_topic_id);
+    //     $.ajax({
+    //         url:'functions/datapost.php',
+    //         method: 'POST',
+    //         data:{
+    //             delete_topic_id : delete_topic_id
+    //         },
+    //         success:function(data){
+    //             console.log(data);
+    //             // window.location.reload();
+    //         }
+    //     });
+
+    // });
+
+    // $('.update_tpc').on('click', function() {
+    //     var tp_id = $('#editrow').val();
+    //     var tp_id_name = $('#topic_name').val();
+
+    //     console.log("Topic Name: " + tp_id + ", Sub Topic Name: " + tp_id_name);
+    //     $.ajax({
+    //         url: 'functions/modals_data.php',
+    //         data: {
+    //             updated_topic_name: tp_id_name,
+    //             updated_topic_id: tp_id,
+    //         },
+    //         method: 'POST',
+    //         success: function(data) {
+    //             console.log("Response from server:", data);
+
+    //             // Reload the page after a successful update
+    //             if (data.success) {
+    //                 location.href = location.href + '?refresh=' + new Date().getTime();
+    //             }
+    //         }
+    //     });
+    // });
 
 });
 </script>

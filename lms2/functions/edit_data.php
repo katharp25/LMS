@@ -4,8 +4,29 @@
 include('config.php');
 
 // Get the selected subtopic ID from the AJAX request
-$sub_topic_id = $_GET['sub_topic_id'];
-$topic_id = $_GET['topic_id'];
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    $sub_topic_id = $_GET['sub_topic_id'];
+
+    $topic_id = $_GET['topic_id'];
+
+    $get_topic_query = mysqli_query($con,"SELECT * FROM topics where id= $topic_id");
+    $row= mysqli_fetch_assoc($get_topic_query);
+    $topic_name = $row["topicName"];
+    
+    if($get_topic_query)
+    {
+        echo $topic_name;
+    } 
+
+} else if ($_SERVER[''] === 'POST') {
+
+}
+if ($_SERVER[''] === 'POST') {
+
+}
+if ($_SERVER[''] === '') {
+
+}
 
 // Query the database to get all topics and the related subtopic
 $query = "SELECT t.id, t.topicName, s.id AS subtopic_id
