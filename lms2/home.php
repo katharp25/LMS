@@ -11,7 +11,7 @@ include('includes/sidebar.php');
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Home Page</h4>
-                    <p class="card-description">
+                    <!-- <p class="card-description">
                         You can add banners from here, maximum 3 banners you can add.
                     </p>
                     <div class="dropdown">
@@ -23,7 +23,7 @@ include('includes/sidebar.php');
                                 <option value="opel">3</option>
                             </select>
                         </div>
-                    </div>
+                    </div> -->
                     <form class="forms-sample">
                         <div class="form-group">
                             <label for="banner_title">Title</label>

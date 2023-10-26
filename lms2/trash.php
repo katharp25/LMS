@@ -310,7 +310,37 @@ include('includes/sidebar.php');
     <!-- partial -->
 </div>
 
+// console.log(rowid);
+        // $.ajax({
+        //     url: 'functions/datapost.php',
+        //     method: 'POST',
+        //     data: {
+        //         topic_row_id: rowid
+        //     },
+        //     success: function(data) {
+        //         try {
+        //             // Attempt to parse the JSON response
+        //             var responseData = JSON.parse(data);
 
+        //             // Check if the expected properties exist in the response
+        //             if (responseData && responseData.topic_name && responseData
+        //                 .topic_cron) {
+        //                 // Populate the input elements with data received from the server
+        //                 $('#topic_name').val(responseData.topic_name);
+        //                 $('#topic_cron').val(responseData.topic_cron);
+        //                 // You can process the data returned from the server here.
+        //             } else {
+        //                 console.error("Incomplete or unexpected data in the response.");
+        //             }
+        //         } catch (error) {
+        //             console.error("Error parsing JSON data: " + error);
+        //         }
+        //     },
+        //     error: function(jqXHR, textStatus, errorThrown) {
+        //         console.error("AJAX Error: " + errorThrown);
+        //         // Handle the error appropriately, e.g., display an error message.
+        //     }
+        // });
 
 <?php
 

@@ -1,5 +1,7 @@
 <?php
 include("includes/header.php");
+include("functions/config.php.php");
+
 ?>
 
 <div class="search-wrap">
