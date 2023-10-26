@@ -121,57 +121,6 @@ include('functions/list_grid.php');
                 <div class="card-body">
                     <h4 class="card-title">Manage Courses Details</h4>
                     <div class="table-responsive">
-<<<<<<< HEAD
-                    <table id="example" class="table table-striped table-bordered" style="width:100%">
-                        <thead>
-                            <tr>
-                                <th>S.no</th>
-                                <th>Topic Name</th>
-                                <th>Sub Topic Name</th>
-                                <th>Course Name</th>
-                                <th>Price</th>
-                                <th>Description</th>
-                                <th>Image</th>
-                                <th>Upload File</th>
-                                <th>Video</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        <?php
-                            if($fetch_list_join_topics_subtopic_course_query)
-                            {
-                                $i = 1;
-                                while($row=mysqli_fetch_assoc($fetch_list_join_topics_subtopic_course_query))
-                                {
-                                    $topic_name=$row['topicName'];
-                                    $subtopic_name=$row['subTopicName'];
-                                    $course_name=$row['courseName'];
-                                    $price=$row['courseCost'];
-                                    $desc=$row['courseDesc'];
-                                    $img=$row['bannerImage'];
-                                    $file=$row['uploadfile'];
-                                    $video=$row['video'];
-                                    ?>
-                                    <tr>
-                                    <td><?= $i;?></td>
-                                    <td><?= $topic_name; ?></td>
-                                    <td><?= $subtopic_name; ?></td>
-                                    <td><?= $course_name; ?></td>
-                                    <td><?= $price; ?></td>
-                                    <td><?= $desc; ?></td>
-                                    <td><?= $img; ?></td>
-                                    <td><?= $file; ?></td>
-                                    <td><?= $video; ?></td>
-                                    <td>
-                                        <button type="submit" class="btn btn-primary me-2 p-2" data-toggle="modal" data-target="#exampleModalCenter">Edit</button>
-                                        <button class="btn btn-danger p-2">Delete</button>
-                                    </td>
-                                    </tr>
-                                    <?php
-                            $i++;
-                                }
-=======
                         <table id="example" class="table table-striped table-bordered" style="width:100%">
                             <thead>
                                 <tr>
@@ -220,7 +169,6 @@ include('functions/list_grid.php');
                                 <?php
                                         $i++;
                                     }
->>>>>>> d62d86e64ae8e5f8e8af50ad0e0bd31112898e41
                                 } else {
                                     echo "Query failed!";
                                 }
@@ -315,65 +263,6 @@ include('functions/list_grid.php');
         </div>
     </div>
 </div>
-<<<<<<< HEAD
-
-<!-- Edit manage Courses -->
-
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form>
-            <label for="editTopic">Topic Name:</label>
-            <input type="text" id="editTopic" name="editTopic" placeholder="Edit Topic Name">
-            <br>
-
-            <label for="editSubtopic">Subtopic Name:</label>
-            <input type="text" id="editSubtopic" name="editSubtopic" placeholder="Edit Subtopic Name">
-            <br>
-
-            <label for="editCourse">Course Name:</label>
-            <input type="text" id="editCourse" name="editCourse" placeholder="Edit Course Name">
-            <br>
-
-            <label for="editPrice">Price:</label>
-            <input type="text" id="editPrice" name="editPrice" placeholder="Edit Price">
-            <br>
-
-            <label for="editDesc">Description:</label>
-            <textarea id="editDesc" name="editDesc" placeholder="Edit Description"></textarea>
-            <br>
-
-            <label for="editImage">Image URL:</label>
-            <input type="text" id="editImage" name="editImage" placeholder="Edit Image URL">
-            <br>
-
-            <label for="editFile">File URL:</label>
-            <input type="text" id="editFile" name="editFile" placeholder="Edit File URL">
-            <br>
-
-            <label for="editVideo">Video URL:</label>
-            <input type="text" id="editVideo" name="editVideo" placeholder="Edit Video URL">
-            <br>
-
-      </div>
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Main Content ends -->
-=======
->>>>>>> d62d86e64ae8e5f8e8af50ad0e0bd31112898e41
 
 
 
