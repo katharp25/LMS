@@ -98,7 +98,8 @@ include('functions/list_grid.php');
                                     <td><?= $duration;?></td>
                                     <td><?= $courseName;?></td>
                                     <td>
-                                        <button type="submit" class="btn btn-primary me-2 p-2">Edit</button>
+                                    <button type="button" class="btn btn-primary me-2 p-2" data-bs-toggle="modal" data-bs-target="#editModal">Edit</button>
+
                                         <button class="btn btn-danger p-2">Delete</button>
                                     </td>
                                     </tr>
@@ -116,7 +117,7 @@ include('functions/list_grid.php');
         </div>
     </div>
 </div>
-<!-- Main Content ends -->
+
 
 <!-- <!DOCTYPE html>
 <html lang="en">

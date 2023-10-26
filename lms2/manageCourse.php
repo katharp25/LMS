@@ -159,7 +159,7 @@ $(document).ready(function() {
                                     <td><?= $file; ?></td>
                                     <td><?= $video; ?></td>
                                     <td>
-                                        <button type="submit" class="btn btn-primary me-2 p-2">Edit</button>
+                                        <button type="submit" class="btn btn-primary me-2 p-2" data-toggle="modal" data-target="#exampleModalCenter">Edit</button>
                                         <button class="btn btn-danger p-2">Delete</button>
                                     </td>
                                     </tr>
@@ -177,6 +177,61 @@ $(document).ready(function() {
             </div>
         </div>
     </div>
+</div>
+
+<!-- Edit manage Courses -->
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+            <label for="editTopic">Topic Name:</label>
+            <input type="text" id="editTopic" name="editTopic" placeholder="Edit Topic Name">
+            <br>
+
+            <label for="editSubtopic">Subtopic Name:</label>
+            <input type="text" id="editSubtopic" name="editSubtopic" placeholder="Edit Subtopic Name">
+            <br>
+
+            <label for="editCourse">Course Name:</label>
+            <input type="text" id="editCourse" name="editCourse" placeholder="Edit Course Name">
+            <br>
+
+            <label for="editPrice">Price:</label>
+            <input type="text" id="editPrice" name="editPrice" placeholder="Edit Price">
+            <br>
+
+            <label for="editDesc">Description:</label>
+            <textarea id="editDesc" name="editDesc" placeholder="Edit Description"></textarea>
+            <br>
+
+            <label for="editImage">Image URL:</label>
+            <input type="text" id="editImage" name="editImage" placeholder="Edit Image URL">
+            <br>
+
+            <label for="editFile">File URL:</label>
+            <input type="text" id="editFile" name="editFile" placeholder="Edit File URL">
+            <br>
+
+            <label for="editVideo">Video URL:</label>
+            <input type="text" id="editVideo" name="editVideo" placeholder="Edit Video URL">
+            <br>
+
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
 </div>
 <!-- Main Content ends -->
 
