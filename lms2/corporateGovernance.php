@@ -45,7 +45,7 @@ include('functions/list_grid.php');
                         <thead>
                             <tr>
                                 <th>S.no</th>
-                                <th> titlegit</th>
+                                <th> title</th>
                                 <th> Name    </th>
                                 <th> Image </th>
                                 <th>Actions</th>
