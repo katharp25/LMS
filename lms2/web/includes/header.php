@@ -1,5 +1,7 @@
 <?php 
-include("../functions/config.php");
+// include("../functions/config.php");
+$mainlink="http://localhost/LMS/lms2/";
+
 ?>
 
 
@@ -34,6 +36,7 @@ include("../functions/config.php");
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/responsive.css">
+  <!-- <script src="./js/jquery-3.6.0.min.js"></script> -->
 
 </head>
 
