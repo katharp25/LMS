@@ -100,16 +100,16 @@ include('functions/list_grid.php');
                                     $courseName = $row['courseName'];
                             ?>
                                     <tr>
-                                        <td><?= $i; ?></td>
-                                        <td><?= $subscription; ?></td>
-                                        <td><?= $type; ?></td>
-                                        <td><?= $price; ?></td>
-                                        <td><?= $duration; ?></td>
-                                        <td><?= $courseName; ?></td>
-                                        <td>
-                                            <button type="submit" class="btn btn-primary me-2 p-2 edit-sub" data-bs-toggle="modal" data-bs-target="#editmodal" data-id="<?= $row['id']?>">Edit</button>
-                                            <button class="btn btn-danger p-2">Delete</button>
-                                        </td>
+                                    <td><?= $i;?></td>
+                                    <td><?= $subscription;?></td>
+                                    <td><?= $type;?></td>
+                                    <td><?= $price;?></td>
+                                    <td><?= $duration;?></td>
+                                    <td><?= $courseName;?></td>
+                                    <td>
+                                        <button type="submit" class="btn btn-primary me-2 p-2">Edit</button>
+                                        <button class="btn btn-danger p-2">Delete</button>
+                                    </td>
                                     </tr>
                             <?php
                                     $i++;
@@ -123,67 +123,22 @@ include('functions/list_grid.php');
                 </div>
             </div>
         </div>
-        <!-- Edit Modal -->
-        <div class="modal fade" id="editmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <form class="forms-sample">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Edit Subscription Details</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
+    </div>
+</div>
+<!-- Main Content ends -->
 
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-md-12 grid-margin stretch-card ">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h4 class="card-title">Add Subscription </h4>
-                                           <form class="forms-sample row" action="functions/functions" method="POST">
-                                                <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="name"> Subscription Name</label>
-                                                        <input type="text" class="form-control" name="subscription" placeholder="Enter Subscription Name">
-                                                        <input type="hidden" class="form-control" name="name" placeholder="Enter Name" id="editrow">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="type">Type</label>
-                                                        <input type="text" class="form-control" name="type" placeholder="Enter Type">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="price">Price</label>
-                                                        <input type="number" class="form-control" name="price" placeholder="Enter Price">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
 
-                                                    <div class="form-group">
-                                                        <label for="duration">Duration</label>
-                                                        <input type="text" class="form-control" name="duration" placeholder="Enter Duration">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="courseName">Course Name</label>
-                                                        <input type="text" class="form-control" name="courseName" placeholder="Enter Course Name">
-                                                    </div>
-                                                </div>
-
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary update_sb_tpc" name="update_sb_tpc">Update
-                                Changes</button>
-                        </div>
-                    </div>
-                </form>
             </div>
         </div>
         <!-- Edit Modal end -->

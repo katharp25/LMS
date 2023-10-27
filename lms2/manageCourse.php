@@ -162,7 +162,7 @@ include('functions/list_grid.php');
                                             <td><?= $file; ?></td>
                                             <td><?= $video; ?></td>
                                             <td>
-                                                <button type="submit" class="btn btn-primary me-2 p-2 edit-button" data-bs-toggle="modal" data-bs-target="#editmodal" data-soumya="<?= $row['id']; ?>">Edit</button>
+                                                <button type="submit" class="btn btn-primary me-2 p-2 edit-button" data-bs-toggle="modal" data-bs-target="#editmodal">Edit</button>
                                                 <button class="btn btn-danger p-2">Delete</button>
                                             </td>
                                         </tr>
@@ -264,71 +264,7 @@ include('functions/list_grid.php');
     </div>
 </div>
 
-<!-- <script>
-    $(document).ready(function() {
-        $('.edit-button').on('click', function() {
-            var rowid = $(this).data('soumya');
-            $('#editrow').val(rowid);
-            var editRow = $('#editrow').val(rowid);
 
-            console.log(rowid);
-
-            $.ajax({
-                url: 'functions/edit_data.php', // Replace with the actual server-side script
-                data: {
-                    course_id: rowid
-                },
-                method: 'GET',
-                success: function(data) {
-                    // Populate the subtopic select with the retrieved data
-                    $('#topic_name').html(data);
-                    // $('#subtopic_name').html(data);
-                }
-            });
-            $.ajax({
-                url: 'functions/modals_data.php', // Replace with the actual server-side script
-                data: {
-                    sub_topic_name: rowid
-                },
-                method: 'GET',
-                success: function(data) {
-                    // Populate the subtopic select with the retrieved data
-                    var editRow = $('#subtopic_name').val(data);
-                    // $('#subtopic_name').val(data);
-                    // $('#subtopic_name').html(data);
-                }
-            });
-
-
-        });
-        $('.update_sb_tpc').on('click', function() {
-            var sb_tp_id = $('#editrow').val();
-            var tp_id = $('#topic_name').val();
-            var sub_tp_name = $('#subtopic_name').val();
-
-            console.log("Topic Name: " + tp_id + ", Sub Topic Name: " + sub_tp_name);
-            $.ajax({
-                url: 'functions/modals_data.php',
-                data: {
-                    updated_subtopic_name: sub_tp_name,
-                    updated_topic_id: tp_id,
-                    sb_tp_id: sb_tp_id
-                },
-                method: 'POST',
-                success: function(data) {
-                    console.log("Response from server:", data);
-
-                    // Reload the page after a successful update
-
-                    // location.href = location.href + '?refresh=' + new Date().getTime();
-                    window.location.reload();
-
-                }
-            });
-        });
-
-    });
-</script> -->
 
 
 <?php
