@@ -92,7 +92,8 @@ include('functions/list_grid.php');
                                     <td><?= $contactPerson; ?></td>
                                     <td><?= $address; ?></td>
                                     <td>
-                                        <button type="submit" class="btn btn-primary me-2 p-2">Edit</button>
+                                        <button type="submit" class="btn btn-primary me-2 p-2 edit-button"  data-bs-toggle="modal" data-bs-target="#editmodal"
+                                        data-id="<?= $id; ?>">Edit</button>
                                         <button class="btn btn-danger p-2">Delete</button>
                                     </td>
                                     </tr>
