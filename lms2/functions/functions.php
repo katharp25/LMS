@@ -166,7 +166,28 @@ elseif(isset($_POST['subtopic_manage'])){
     } else {
         echo "not done";
     }
-}elseif (isset($_POST['subscription_manage'])){
+}
+elseif (isset($_POST['checking_course_btn'])) {
+    $courseId = $_POST['course_id'];
+    $result_array = [];
+
+    // Prepare and execute a query to fetch the blog data by ID
+    $query = "SELECT * FROM `courses` WHERE id = $courseId";
+    $query_run = mysqli_query($con, $query);
+    if(mysqli_num_rows($query_run) > 0)
+    {
+        foreach($query_run as $row)
+        {
+            array_push($result_array, $row);
+            header('Content-type: application/json');
+            echo json_encode($result_array);
+        }
+    }
+    else{
+        echo $return = "<h5>No Record Found</h5>";
+    }
+}
+elseif (isset($_POST['subscription_manage'])){
     $subscription = $_POST['subscription'];
     $type = $_POST['type'];
     $price = $_POST['price'];
@@ -180,7 +201,48 @@ elseif(isset($_POST['subtopic_manage'])){
     } else {
         echo "not done";
     }
-}elseif (isset($_POST['blog_manage'])) {
+}
+elseif (isset($_POST['checking_subscription_btn'])) {
+    $subscriptionId = $_POST['subscription_id'];
+    $result_array = [];
+
+    // Prepare and execute a query to fetch the blog data by ID
+    $query = "SELECT * FROM `subscriptions_1` WHERE id = $subscriptionId";
+    $query_run = mysqli_query($con, $query);
+    if(mysqli_num_rows($query_run) > 0)
+    {
+        foreach($query_run as $row)
+        {
+            array_push($result_array, $row);
+            header('Content-type: application/json');
+            echo json_encode($result_array);
+        }
+    }
+    else{
+        echo $return = "<h5>No Record Found</h5>";
+    }
+}
+elseif(isset($_POST['update_subscription']))
+{
+    $id = $_POST['subscription_id'];
+    $name = $_POST['editname'];
+    $type = $_POST['edittype'];
+    $price = $_POST['editprice'];
+    $duration = $_POST['editduration'];
+    $courseId = $_POST['courseId'];
+
+    $update = "UPDATE subscriptions_1 set subscription='$name', type ='$type', price='$price', duration='$duration', courseName='$courseId' WHERE id='$id'";
+    $query = mysqli_query($con, $update);
+
+    if($query)
+    {
+        header("location: $mainlink" . "manageSubscriptions");
+    }
+    else{
+        echo "not working";
+    }
+}
+elseif (isset($_POST['blog_manage'])) {
     // Process the form data as needed
     $title = $_POST['title'];
     if (isset($_FILES['image'])) {
