@@ -132,4 +132,38 @@ if (isset($_POST['delete_cg'])) {
     // Close the database connection
     mysqli_close($conn);
 }
+
+if (isset($_POST['delete_subscription'])) {
+    // Get the ID from the URL
+    $id = $_POST['delete_id'];
+    $sql = "DELETE FROM subscriptions_1 WHERE id = $id";
+    $query=mysqli_query($con, $sql);
+    if ($query) {
+        // If the delete operation is successful, you can redirect to a success page
+        header("location: $mainlink" . "manageSubscriptions");
+        // exit();
+    } else {
+        echo "Error: " . $sql . "<br>" . mysqli_error($con);
+    }
+
+    // Close the database connection
+    mysqli_close($conn);
+}
+
+if (isset($_POST['delete_course'])) {
+    // Get the ID from the URL
+    $id = $_POST['delete_id'];
+    $sql = "DELETE FROM courses WHERE id = $id";
+    $query=mysqli_query($con, $sql);
+    if ($query) {
+        // If the delete operation is successful, you can redirect to a success page
+        header("location: $mainlink" . "manageCourse");
+        // exit();
+    } else {
+        echo "Error: " . $sql . "<br>" . mysqli_error($con);
+    }
+
+    // Close the database connection
+    mysqli_close($conn);
+}
 ?>

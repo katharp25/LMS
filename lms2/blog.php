@@ -126,8 +126,7 @@ include('functions/list_grid.php');
                                     <td class="blogId" hidden><?= $id;?>
                                     <td><?= $title; ?></td>
                                     <td><?= $writer; ?></td>
-                                    <td><img src="./functions/upload/image/<?= $image; ?>" width="80" height="80"></td>
-                                    <!-- <td><?= $image; ?></td> -->
+                                    <td><img src="./functions/<?= $image; ?>" width="80" height="80"></td>
                                     <td><?= $description; ?></td>
                                    
                                     <td>
@@ -181,7 +180,15 @@ include('functions/list_grid.php');
                     <div class="form-group">
                         <label for="editImage">Image</label>
                         <input type="file" class="form-control-file" id="editImage" name="editImage" accept="image/*">
+                        <input type="hidden" id="oldImage" name="oldImage" width="80" height="80" />
                     </div>
+
+                    <div class="form-group">
+                                <label for="editTitle">Existing Image</label><br>
+                                <!-- <input type="file" class="form-control" onchange="loadFile(event)" id="banner_image" name="banner_image"> -->
+                                <img src="" id="output" name="output" width="80" height="80" />
+                            </div>
+
                     <div class="form-group">
                         <label for="editDescription">Description</label>
                         <textarea class="form-control" id="editDescription" name="editDescription"></textarea>
@@ -305,6 +312,7 @@ $(document).ready(function() {
             {
                 $('#editTitle').val(value['blogTitle']);
                 $('#editWriter').val(value['writer']);
+                $('#output').attr('src', './functions/' + value['bannerImage']); 
                 // You can handle image display or updating as needed
                 $('#editDescription').val(value['description']);
                 $('#blog_id').val(value['id']); 

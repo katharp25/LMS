@@ -19,10 +19,6 @@ include('functions/list_grid.php');
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Add Subscription </h4>
-                    <!-- <h4 class="card-title">Default form</h4>
-                        <p class="card-description">
-                            Basic form layout
-                        </p> -->
                     <form class="forms-sample row" action="functions/functions" method="POST">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -38,18 +34,6 @@ include('functions/list_grid.php');
                                 <label for="price">Price</label>
                                 <input type="number" class="form-control" name="price" placeholder="Enter Price">
                             </div>
-
-                            <!-- <div class="form-group">
-                                <label for="phoneNumber">Phone Number</label>
-                                <input type="text" class="form-control" name="phoneNumber" placeholder="Enter Phone Number">
-                            </div> -->
-
-                            <!-- <div class="form-group">
-                                <label for="userType">User Type</label>
-                                <select class="form-control" name="userType">
-                                    <option></option>
-                                </select>
-                            </div> -->
                         </div>
                         <div class="col-md-6">
 
@@ -72,6 +56,7 @@ include('functions/list_grid.php');
                 </div>
             </div>
         </div>
+</div>
         <div class="col-md-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
@@ -80,6 +65,7 @@ include('functions/list_grid.php');
                         <thead>
                             <tr>
                                 <th>S.no</th>
+                                <th hidden></th>
                                 <th>Subscription Name</th>
                                 <th>Type</th>
                                 <th>Price</th>
@@ -93,6 +79,7 @@ include('functions/list_grid.php');
                             if ($fetch_list_query_subscription) {
                                 $i = 1;
                                 while ($row = mysqli_fetch_assoc($fetch_list_query_subscription)) {
+                                    $id = $row['id'];
                                     $subscription = $row['subscription'];
                                     $type = $row['type'];
                                     $price = $row['price'];
@@ -100,6 +87,7 @@ include('functions/list_grid.php');
                                     $courseName = $row['courseName'];
                             ?>
                                     <tr>
+                                    <td class="edit_id" hidden><?= $id;?>
                                     <td><?= $i;?></td>
                                     <td><?= $subscription;?></td>
                                     <td><?= $type;?></td>
@@ -107,8 +95,11 @@ include('functions/list_grid.php');
                                     <td><?= $duration;?></td>
                                     <td><?= $courseName;?></td>
                                     <td>
-                                        <button type="submit" class="btn btn-primary me-2 p-2">Edit</button>
-                                        <button class="btn btn-danger p-2">Delete</button>
+                                    <button type="button" class="btn btn-primary p-2 edit-button" data-bs-toggle="modal" data-bs-target="#editModal"  data-id="<?= $id ?>">
+                                        edit
+                                    </button>
+
+                                        <button class="btn btn-danger p-2 delete-button" data-bs-toggle="modal" data-bs-target="#deleteModal"  data-id="<?= $id ?>">Delete</button>
                                     </td>
                                     </tr>
                             <?php
@@ -123,113 +114,131 @@ include('functions/list_grid.php');
                 </div>
             </div>
         </div>
+    <!-- </div>
+</div>
+    </div>
+</div> -->
+
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editBlogModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editBlogModalLabel">Edit Subscription</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="POST" action="./functions/functions.php">
+              <div class="modal-body">
+                <!-- Form for editing the blog content -->
+                
+                    <input type ="hidden" id="subscription_id" name="subscription_id">
+                      <div class="form-group">
+                        <label for="editTitle">Name</label>
+                        <input type="text" class="form-control" id="editname" name="editname">
+                    </div>
+                    <div class="form-group">
+                        <label for="editWriter">Type</label>
+                        <input type="text" class="form-control" id="edittype" name="edittype">
+                    </div>
+                    <div class="form-group">
+                        <label for="editImage">price</label>
+                        
+                        <input type="text" class="form-control" id="editprice" name="editprice" width="80" height="80" />
+                    </div>
+
+                    <div class="form-group">
+                                <label for="editTitle">Duration</label><br>
+                                <input type="text" class="form-control" id="editduration" name="editduration" width="80" height="80" />
+                            </div>
+
+                    <div class="form-group">
+                        <label for="editDescription">Course Id</label>
+                        <textarea class="form-control" id="courseId" name="courseId"></textarea>
+                    </div>
+               </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" id="update_subscription" name="update_subscription">Save Changes</button>
+            </div>
+            </form>
+        </div>
     </div>
 </div>
-<!-- Main Content ends -->
 
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col">
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteConfirmationModalLabel">Confirm Deletion</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="delete_blog.php" method="POST">
 
+            <div class="modal-body">
+
+                <input type="hidden" id="delete_id" name="delete_id">
+                Are you sure you want to delete this record?
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-danger" name="delete_subscription" id="delete_subscription">Delete</button>
             </div>
         </div>
-        <!-- Edit Modal end -->
     </div>
 </div>
 
 <script>
 
-    $(document).ready(function(){
-      $('.edit-sub').on('click', function(){
-        var rowid = $(this).data('id')
-        $('#editrow').val(rowid)
-        var editRow = $('#editrow').val(rowid);
-
+    $(document).ready(function() {
+    $('.edit-button').on('click', function() {
+        var subscriptionId = $(this).closest('tr').find('.edit_id').text();
+        // console.log(blogId);
         $.ajax({
-            url: 'functions/edit_data.php', // Replace with the actual server-side script
-            data: {
-                    sub_id: rowid
-                } ,
-                mehod: 'GET',
-                success: function(data){
-
-                }
-        })
+        type: 'POST',
+        url: './functions/functions.php', // Replace with the URL of your server-side script
+        data: { 
+            'checking_subscription_btn' : true,
+             'subscription_id': subscriptionId, },
+        // dataType: 'json',
+        success: function(response) {
+            console.log(response);
+            $.each(response, function (key, value)
+            {
+                $('#editname').val(value['subscription']);
+                $('#edittype').val(value['type']);
+                $('#editprice').val(value['price']);
+                // You can handle image display or updating as needed
+                $('#editduration').val(value['duration']);
+                $('#courseId').val(value['courseName']);
+                $('#subscription_id').val(value['id']); 
+            
+            
+                $('#editModal').modal('show'); 
+            });
+           
+        }
       });
     });
+ });
+        
+</script>
 
+<script>
 
-    $(document).ready(function() {
-        $('.edit-button').on('click', function() {
-            var rowid = $(this).data('soumya');
-            $('#editrow').val(rowid);
-            var editRow = $('#editrow').val(rowid);
+$(document).ready(function() {
+    $('.delete-button').on('click', function(e) {
+        e.preventDefault();
+        var subscription_id = $(this).closest('tr').find('.edit_id').text();
 
-            console.log(rowid);
-
-            $.ajax({
-                url: 'functions/edit_data.php', // Replace with the actual server-side script
-                data: {
-                    course_id: rowid
-                },
-                method: 'GET',
-                success: function(data) {
-                    // Populate the subtopic select with the retrieved data
-                    $('#topic_name').html(data);
-                    // $('#subtopic_name').html(data);
-                }
-            });
-            $.ajax({
-                url: 'functions/modals_data.php', // Replace with the actual server-side script
-                data: {
-                    sub_topic_name: rowid
-                },
-                method: 'GET',
-                success: function(data) {
-                    // Populate the subtopic select with the retrieved data
-                    var editRow = $('#subtopic_name').val(data);
-                    // $('#subtopic_name').val(data);
-                    // $('#subtopic_name').html(data);
-                }
-            });
-
-
-        });
-        $('.update_sb_tpc').on('click', function() {
-            var sb_tp_id = $('#editrow').val();
-            var tp_id = $('#topic_name').val();
-            var sub_tp_name = $('#subtopic_name').val();
-
-            console.log("Topic Name: " + tp_id + ", Sub Topic Name: " + sub_tp_name);
-            $.ajax({
-                url: 'functions/modals_data.php',
-                data: {
-                    updated_subtopic_name: sub_tp_name,
-                    updated_topic_id: tp_id,
-                    sb_tp_id: sb_tp_id
-                },
-                method: 'POST',
-                success: function(data) {
-                    console.log("Response from server:", data);
-
-                    // Reload the page after a successful update
-
-                    // location.href = location.href + '?refresh=' + new Date().getTime();
-                    window.location.reload();
-
-                }
-            });
-        });
-
+        console.log(subscription_id);
+        $('#delete_id').val(subscription_id);
+        $('#deleteModal').modal('show'); 
+    
     });
+});
 </script>
 
 <?php

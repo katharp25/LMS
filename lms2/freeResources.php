@@ -84,7 +84,7 @@ include('functions/list_grid.php');
                                     <td class="edit_id" hidden><?= $id; ?></td>
                                     <td><?= $resourcesName; ?></td>
                                     <td><?= $title; ?></td>
-                                    <td><img src="./functions/upload/image/<?= $image; ?>" width="80" height="80"></td>
+                                    <td><img src="./functions/<?= $image; ?>" width="80" height="80"></td>
                                     <td><?= $description; ?></td>
                                     <!-- <td><?= $desc; ?></td>
                                     <td><?= $img; ?></td>
@@ -208,7 +208,7 @@ $(document).ready(function() {
                 // Populate the input elements with data received from the server
                 $('#resourses_name').val(value['resourcesName']);
                 $('#title').val(value['title']); 
-                $('#output').attr('src', './functions/upload/image/' + value['bannerImage']); 
+                $('#output').attr('src', './functions/' + value['bannerImage']); 
                 // if (response.bannerImage) {
                 //         $('#output').attr('src', './functions/upload/image/' + response.bannerImage);
                 //     }

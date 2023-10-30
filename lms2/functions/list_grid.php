@@ -18,12 +18,15 @@ topics.Id AS topic_id,
 topics.topicName,
 subtopics.Id AS subtopic_id,
 subtopics.subTopicName,
-courses.Id AS course_id,
+courses.id AS course_id,
 courses.courseName,
 courses.courseCost,
 courses.courseDesc,
 courses.bannerImage,
 courses.uploadfile,
+courses.learn,
+courses.requirements,
+courses.tag,
 courses.video
 FROM 
 topics
