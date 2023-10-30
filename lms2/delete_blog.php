@@ -21,7 +21,7 @@ if (isset($_POST['delete_blog'])) {
     $query=mysqli_query($con, $sql);
     if ($query) {
         // If the delete operation is successful, you can redirect to a success page
-        header("location: $mainlink" . "blogs");
+        header("location: $mainlink" . "blog");
         // exit();
     } else {
         echo "Error: " . $sql . "<br>" . mysqli_error($con);
@@ -34,12 +34,6 @@ if (isset($_POST['delete_blog'])) {
 if (isset($_POST['delete_subtopic'])) {
     // Get the ID from the URL
     $id = $_POST['delete_id'];
-
-    // Create a database connection (adjust these settings according to your database)
-   
-    // Check the database connection
-   
-    // Perform the delete operation using the ID (replace "your_table" with your table name)
     $sql = "DELETE FROM subtopics WHERE Id = $id";
     $query=mysqli_query($con, $sql);
     if ($query) {
@@ -57,12 +51,6 @@ if (isset($_POST['delete_subtopic'])) {
 if (isset($_POST['delete_topic'])) {
     // Get the ID from the URL
     $id = $_POST['delete_id'];
-
-    // Create a database connection (adjust these settings according to your database)
-   
-    // Check the database connection
-   
-    // Perform the delete operation using the ID (replace "your_table" with your table name)
     $sql = "DELETE FROM topics WHERE Id = $id";
     $query=mysqli_query($con, $sql);
     if ($query) {
@@ -80,17 +68,62 @@ if (isset($_POST['delete_topic'])) {
 if (isset($_POST['delete_resources'])) {
     // Get the ID from the URL
     $id = $_POST['delete_id'];
-
-    // Create a database connection (adjust these settings according to your database)
-   
-    // Check the database connection
-   
-    // Perform the delete operation using the ID (replace "your_table" with your table name)
     $sql = "DELETE FROM freeresources WHERE Id = $id";
     $query=mysqli_query($con, $sql);
     if ($query) {
         // If the delete operation is successful, you can redirect to a success page
         header("location: $mainlink" . "freeResources");
+        // exit();
+    } else {
+        echo "Error: " . $sql . "<br>" . mysqli_error($con);
+    }
+
+    // Close the database connection
+    mysqli_close($conn);
+}
+
+if (isset($_POST['delete_affiliate'])) {
+    // Get the ID from the URL
+    $id = $_POST['delete_id'];
+    $sql = "DELETE FROM affiliates WHERE Id = $id";
+    $query=mysqli_query($con, $sql);
+    if ($query) {
+        // If the delete operation is successful, you can redirect to a success page
+        header("location: $mainlink" . "affiliate");
+        // exit();
+    } else {
+        echo "Error: " . $sql . "<br>" . mysqli_error($con);
+    }
+
+    // Close the database connection
+    mysqli_close($conn);
+}
+
+if (isset($_POST['delete_career'])) {
+    // Get the ID from the URL
+    $id = $_POST['delete_id'];
+    $sql = "DELETE FROM careers WHERE Id = $id";
+    $query=mysqli_query($con, $sql);
+    if ($query) {
+        // If the delete operation is successful, you can redirect to a success page
+        header("location: $mainlink" . "career");
+        // exit();
+    } else {
+        echo "Error: " . $sql . "<br>" . mysqli_error($con);
+    }
+
+    // Close the database connection
+    mysqli_close($conn);
+}
+
+if (isset($_POST['delete_cg'])) {
+    // Get the ID from the URL
+    $id = $_POST['delete_id'];
+    $sql = "DELETE FROM corporategovernance WHERE Id = $id";
+    $query=mysqli_query($con, $sql);
+    if ($query) {
+        // If the delete operation is successful, you can redirect to a success page
+        header("location: $mainlink" . "corporateGovernance");
         // exit();
     } else {
         echo "Error: " . $sql . "<br>" . mysqli_error($con);

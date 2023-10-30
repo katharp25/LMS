@@ -84,7 +84,7 @@ include('functions/list_grid.php');
                                     <td class="edit_id" hidden><?= $id; ?></td>
                                     <td><?= $resourcesName; ?></td>
                                     <td><?= $title; ?></td>
-                                    <td><?= $image; ?></td>
+                                    <td><img src="./functions/upload/image/<?= $image; ?>" width="80" height="80"></td>
                                     <td><?= $description; ?></td>
                                     <!-- <td><?= $desc; ?></td>
                                     <td><?= $img; ?></td>
@@ -116,47 +116,52 @@ include('functions/list_grid.php');
 <!-- Main Content ends -->
 
 <div class="modal fade" id="editmodal" tabindex="-1" role="dialog" aria-labelledby="editBlogModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="editBlogModalLabel">Edit Resources</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form method="POST" action="./functions/functions.php">
-              <div class="modal-body">
-                <!-- Form for editing the blog content -->
-                
-                    <input type ="hidden" id="resource_id" name="resource_id">
-                      <div class="form-group">
-                        <label for="editTitle">Resources Name</label>
-                        <input type="text" class="form-control" id="resourses_name" name="resourses_name">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editBlogModalLabel">Edit Resources</h5>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
+                    <form method="POST" action="./functions/functions.php" enctype="multipart/form-data">
+                        <div class="modal-body">
+                            <input type="hidden" id="resource_id" name="resource_id">
+                            <div class="form-group">
+                                <label for="editTitle">Resources Name</label>
+                                <input type="text" class="form-control" id="resourses_name" name="resourses_name">
+                            </div>
+                            <div class="form-group">
+                                <label for="editTitle">Title</label>
+                                <input type="text" class="form-control" id="title" name="title">
+                            </div>
+                            <div class="form-group">
+                                <label for="editTitle">Banner Image</label>
+                                <input type="file" class="form-control" onchange="loadFile(event)" id="banner_image" name="banner_image">
+                                <input type="hidden" id="oldImage" name="oldImage" width="80" height="80" />
+                            </div>
 
-                    <div class="form-group">
-                        <label for="editTitle">Title</label>
-                        <input type="text" class="form-control" id="title" name="title">
-                    </div>
+                            <div class="form-group">
+                                <label for="editTitle">Existing Image</label><br>
+                                <!-- <input type="file" class="form-control" onchange="loadFile(event)" id="banner_image" name="banner_image"> -->
+                                <img src="" id="output" name="output" width="80" height="80" />
+                            </div>
 
-                    <div class="form-group">
-                        <label for="editTitle">Banner Image</label>
-                        <input type="text" class="form-control" id="banner_image" name="banner_image">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="editTitle">Description</label>
-                        <input type="text" class="form-control" id="description" name="description">
-                    </div>
-                    
-                
+                            <div class="form-group">
+                                <label for="editTitle">Description</label>
+                                <input type="text" class="form-control" id="description" name="description">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary" id="saveChanges" name="update_resources">Save Changes</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary" id="saveChanges" name="update_resources">Save Changes</button>
-            </div>
-            </form>
         </div>
+
+        <!-- Rest of your HTML content and JavaScript scripts... -->
     </div>
 </div>
 
@@ -203,7 +208,12 @@ $(document).ready(function() {
                 // Populate the input elements with data received from the server
                 $('#resourses_name').val(value['resourcesName']);
                 $('#title').val(value['title']); 
-                $('#banner_image').val(value['bannerImage']);
+                $('#output').attr('src', './functions/upload/image/' + value['bannerImage']); 
+                // if (response.bannerImage) {
+                //         $('#output').attr('src', './functions/upload/image/' + response.bannerImage);
+                //     }
+                    
+                // $('#banner_image').val(value['bannerImage']);
                 $('#description').val(value['description']); 
                 $('#resource_id').val(value['id']); 
                 $('#editmodal').modal('show'); 
@@ -230,6 +240,26 @@ $(document).ready(function() {
     });
 });
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script>
+
+var loadFile = function(event) {
+
+    var output = document.getElementById('output');
+
+    output.src = URL.createObjectURL(event.target.files[0]);
+
+    output.onload = function() {
+
+        URL.revokeObjectURL(output.src) // free memory
+
+    }
+
+};
+
+</script>
+
 <?php
 
 include('includes/footer.php');

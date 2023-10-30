@@ -68,7 +68,19 @@ include('functions/list_grid.php');
                          <div class="container">
                             <label for="desc">Tags</label>
                             <input type="text" id="tags" name="tags" class="form-control" placeholder="Add a tag" >
-                            <div id="taglist"></div>
+                             <div id="taglist"></div>
+                            <div class="tag-container" id="selectedTagsContainer"></div>
+                            <input type="hidden" id="selectedTags" name="selectedTags">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                         <div class="container">
+                            <label for="desc">Category</label>
+                            <input type="text" id="category" name="category" class="form-control" placeholder="Add a tag" >
+                             <!-- <div id="catlist"></div>
+                            <div class="tag-container" id="selectedTagsContainer"></div>
+                            <input type="hidden" id="selectedTags" name="selectedTags"> -->
                         </div>
                     </div>
                     
@@ -114,7 +126,8 @@ include('functions/list_grid.php');
                                     <td class="blogId" hidden><?= $id;?>
                                     <td><?= $title; ?></td>
                                     <td><?= $writer; ?></td>
-                                    <td><?= $image; ?></td>
+                                    <td><img src="./functions/upload/image/<?= $image; ?>" width="80" height="80"></td>
+                                    <!-- <td><?= $image; ?></td> -->
                                     <td><?= $description; ?></td>
                                    
                                     <td>
@@ -212,37 +225,65 @@ include('functions/list_grid.php');
 </div>
 
 <script>
-    $(document).ready(function()
-    {
-        $('#tags').keyup(function()
-        {
-            var tag = $(this).val();
-            // alert(tag);
-            if(tag != '')
-            {
-                $.ajax({
-                    url : "./search.php",
-                    method:"POST",
-                    data:{tag:tag},
-                    success:function(data)
-                    {
-                        $('#taglist').fadeIn();
-                        $('#taglist').html(data);
+$(document).ready(function() {
+    // Initialize an array to store selected tags
+    var selectedTags = [];
 
-                    }
-                });
-            }
-            else{
-                $('#taglist').fadeOut();
-                $('#taglist').html("");
-            }
-        });
-        $(document).on('click','li',function()
-        {
-            $('tags').val($(this).text());
+    // Function to add a selected tag to the container
+    function addTagToContainer(tagText) {
+        var tagElement = '<div class="tag">' +
+            '<span class="tag-text">' + tagText + '</span>' +
+            '<span class="tag-remove" data-tag="' + tagText + '">&times;</span>' +
+        '</div>';
+        $('#selectedTagsContainer').append(tagElement);
+    }
+
+    // Function to update the hidden input field with selected tags
+    function updateSelectedTagsInput() {
+        $('#selectedTags').val(selectedTags.join(','));
+    }
+
+    $('#tags').keyup(function() {
+        var tag = $(this).val();
+
+        if (tag != '') {
+            $.ajax({
+                url: "./search.php",
+                method: "POST",
+                data: { tag: tag },
+                success: function(data) {
+                    $('#taglist').fadeIn();
+                    $('#taglist').html(data);
+                }
+            });
+        } else {
             $('#taglist').fadeOut();
-        });
+            $('#taglist').html("");
+        }
     });
+
+    $(document).on('click', 'li', function() {
+        var tagText = $(this).text();
+        // Check if the tag is not already in the selected tags array
+        if (!selectedTags.includes(tagText)) {
+            selectedTags.push(tagText);
+            addTagToContainer(tagText);
+            updateSelectedTagsInput();
+        }
+        $('#tags').val('');
+        $('#taglist').fadeOut();
+        $('#taglist').html("");
+    });
+
+    $(document).on('click', '.tag-remove', function() {
+        var tagText = $(this).data('tag');
+        // Remove the tag from the selected tags array
+        selectedTags = selectedTags.filter(tag => tag !== tagText);
+        $(this).parent().remove();
+        updateSelectedTagsInput();
+    });
+});
+
 </script>
 
 <script>
@@ -273,9 +314,9 @@ $(document).ready(function() {
             });
            
         }
+      });
     });
-    });
-});
+ });
 </script>
 <script>
 
