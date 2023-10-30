@@ -111,9 +111,15 @@ elseif(isset($_POST['topic_manage'])){
     // $video = isset($_POST['video']) ? $_POST['video'] : '';
     // $desc = $_POST['desc'];
     $desc = isset($_POST['desc']) ? $_POST['desc'] : '';
+    $learn = $_POST['learnMore'];
+    $requirements = $_POST['requirementsMore'];
+    $tag = $_POST['tag'];
     
+    echo $learn;
+    echo $requirements;
 
-    $insert_query = mysqli_query($con, "INSERT INTO courses(topicID ,subTopicId ,courseName,courseCost,bannerImage,uploadfile,video,courseDesc) VALUES('$topic','$subtopic','$courseName','$price','$imageFileName','$uploadFileName','$videoFileName','$desc')");
+
+    $insert_query = mysqli_query($con, "INSERT INTO courses(topicID ,subTopicId ,courseName,courseCost,bannerImage,uploadfile,video,courseDesc,learn,requirements,tag) VALUES('$topic','$subtopic','$courseName','$price','$imageFileName','$uploadFileName','$videoFileName','$desc','$learn','$requirements','$tag')");
 
     if ($insert_query) {
         header("location: $mainlink" . "manageCourse");

@@ -38,6 +38,14 @@ include('functions/list_grid.php');
         height: 80vh;
         /* Adjust this value to control the height */
     }
+
+    #suggestions {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        max-height: 100px;
+        overflow-y: auto;
+    }
 </style>
 
 <div class="content-wrapper">
@@ -83,6 +91,10 @@ include('functions/list_grid.php');
                                 <input type="text" class="form-control" name="courseName" placeholder="Enter Course Name">
                             </div>
                             <div class="form-group">
+                                <label for="summary">Summary</label>
+                                <textarea type="text" class="form-control" name="Summary" placeholder="Enter summary" rows="4" cols="50"> </textarea>
+                            </div>
+                            <div class="form-group">
                                 <label for="price">Price</label>
                                 <input type="number" class="form-control" name="price" placeholder="Enter Price">
                             </div>
@@ -100,6 +112,118 @@ include('functions/list_grid.php');
                             </div>
                         </div>
                         <div class="col-md-6">
+                            <div class="from-group">
+                                <div>
+                                    <label for="numberDropdown" class="mt-4">What You Will Learn?</label>
+                                </div>
+                                <div id="container" class="mt-3">
+                                    <textarea id="inputTextLearn" rows="4" cols="50" placeholder="Enter a value"></textarea>
+                                    <button type="button" class="btn btn-primary" onclick="addLearnValue()">Add</button>
+                                    <div id="display" name="learn"></div>
+                                    <input id="learnMore" type="hidden" name="learnMore">
+                                </div>
+
+                                <script>
+                                    const arr = [];
+                                    function addLearnValue() {
+                                        
+                                        const inputText = document.getElementById("inputTextLearn").value;
+                                        if (inputText.trim() !== "") {
+                                            
+                                            const display = document.getElementById("display");
+                                            const p = document.createElement("p");
+                                            arr.push(inputText);
+
+                                            p.textContent = inputText;
+                                            console.log(arr)
+                                            display.appendChild(p);
+                                            $('#learnMore').val(arr);
+                                            document.getElementById("inputTextLearn").value = "";
+                                        }
+                                    }
+                                </script>
+                            </div>
+                            <div class="from-group">
+                                <div class="mt-4">
+                                    <label for="numberRequirements">Requirements</label>
+                                </div>
+                                <div id="container" class="mt-3">
+                                    <textarea id="inputText" rows="4" cols="50" placeholder="Enter a value"></textarea>
+                                    <button type="button" class="btn btn-primary" onclick="addText()">Add</button>
+                                    <div id="displaybelow" name="requirements"></div>
+                                    <input id="requirementsMore" type="hidden" name="requirementsMore">
+                                </div>
+
+                                <script>
+                                    const arrRequirements = [];
+                                    function addText() {
+                                        const inputText = document.getElementById("inputText").value;
+                                        if (inputText.trim() !== "") {
+                                            const display = document.getElementById("display");
+                                            const p = document.createElement("p");
+                                            arrRequirements.push(inputText);
+
+                                            p.textContent = inputText;
+                                            console.log(arrRequirements)
+                                            displaybelow.appendChild(p);
+                                            $('#requirementsMore').val(arr);
+                                            document.getElementById("inputText").value = "";
+                                        }
+                                    }
+                                </script>
+                            </div>
+                            <div class="form-group">
+                                <div>
+                                    <label for="numberRequirements">Add Tag</label>
+                                </div>
+                                <div class="row">
+                                    <div class="col-8">
+                                        <input class="form-control" type="text" id="searchInput" oninput="showSuggestions()">
+                                        <div id="suggestions"></div>
+                                    </div>
+                                    <div class="col-4">
+                                        <button type="button" class="btn btn-primary" onclick="addWord()">Add</button>
+                                    </div>
+                                </div>
+                                <textarea id="addedWords" style="margin-top: 15px;" name="tag" rows="5" cols="40"></textarea>
+
+                                <script>
+                                    const words = ["apple", "banana", "cherry", "date", "grape", "kiwi", "mango", "orange", "pear", "quince", "raspberry", "strawberry", "watermelon"];
+
+                                    function showSuggestions() {
+                                        const input = document.getElementById("searchInput").value;
+                                        const suggestions = document.getElementById("suggestions");
+
+                                        suggestions.innerHTML = "";
+                                        for (let i = 0; i < words.length; i++) {
+                                            if (words[i].startsWith(input)) {
+                                                const suggestionItem = document.createElement("div");
+                                                suggestionItem.textContent = words[i];
+                                                suggestionItem.addEventListener("click", () => {
+                                                    document.getElementById("searchInput").value = words[i];
+                                                    suggestions.style.display = "none";
+                                                });
+                                                suggestions.appendChild(suggestionItem);
+                                            }
+                                        }
+
+                                        if (suggestions.children.length > 0) {
+                                            suggestions.style.display = "block";
+                                        } else {
+                                            suggestions.style.display = "none";
+                                        }
+                                    }
+
+                                    function addWord() {
+                                        const addedWords = document.getElementById("addedWords");
+                                        const wordToAdd = document.getElementById("searchInput").value;
+                                        if (wordToAdd) {
+                                            addedWords.value += wordToAdd + "\n";
+                                            document.getElementById("searchInput").value = "";
+                                        }
+                                    }
+                                </script>
+                            </div>
                             <div class="form-group">
                                 <label for="banner_desc">Description</label>
                                 <textarea class="richtext" name="desc">
@@ -130,6 +254,9 @@ include('functions/list_grid.php');
                                     <th>Course Name</th>
                                     <th>Price</th>
                                     <th>Description</th>
+                                    <th>learn</th>
+                                    <th>requirements</th>
+                                    <th>tag</th>
                                     <th>Image</th>
                                     <th>Upload File</th>
                                     <th>Video</th>
@@ -146,10 +273,13 @@ include('functions/list_grid.php');
                                         $course_name = $row['courseName'];
                                         $price = $row['courseCost'];
                                         $desc = $row['courseDesc'];
+                                        $learn = $row['learn'];
+                                        $requirements = $row['requirements'];
+                                        $tag = $row['tag'];
                                         $img = $row['bannerImage'];
                                         $file = $row['uploadfile'];
                                         $video = $row['video'];
-                                        $id = $row['id'];
+                                        // $id = $row['id'];
                                 ?>
                                         <tr>
                                             <td><?= $i; ?></td>
@@ -158,6 +288,9 @@ include('functions/list_grid.php');
                                             <td><?= $course_name; ?></td>
                                             <td><?= $price; ?></td>
                                             <td><?= $desc; ?></td>
+                                            <td><?= $learn; ?></td>
+                                            <td><?= $requirements; ?></td>
+                                            <td><?= $tag; ?></td>
                                             <td><?= $img; ?></td>
                                             <td><?= $file; ?></td>
                                             <td><?= $video; ?></td>
@@ -233,7 +366,8 @@ include('functions/list_grid.php');
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
                                                                         <label for="banner_desc">Description</label>
-                                                                        <textarea class="richtext" name="desc">
+                                                                        <!-- <textarea class="richtext" name="desc"> -->
+                                                                        <textarea name="desc">
                                                                         Welcome to Saburi LMS
                                                                      </textarea>
                                                                     </div>
@@ -263,6 +397,7 @@ include('functions/list_grid.php');
         </div>
     </div>
 </div>
+
 
 
 
