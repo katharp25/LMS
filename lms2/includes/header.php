@@ -25,9 +25,14 @@ include('./functions/list_grid.php');
     <!-- <link rel="stylesheet" href="js/select.dataTables.min.css"> -->
     <!-- End plugin css for this page -->
     <!-- Rich Text Editor -->
-    <script src="https://cdn.tiny.cloud/1/rnq798i697frg8htdej9ur8w0jc59pic7kqe5eysm8mti1ch/tinymce/6/tinymce.min.js">
-    </script>
+    <script src="https://cdn.tiny.cloud/1/rnq798i697frg8htdej9ur8w0jc59pic7kqe5eysm8mti1ch/tinymce/6/tinymce.min.js"></script>
     <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+      tinymce.init({
+        selector: '#mytextarea'
+      });
+    </script>
     <!-- <script src="./outsides/richtexteditor/tinymce.min.js"></script> -->
     
     <!-- inject:css -->

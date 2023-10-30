@@ -65,7 +65,47 @@ elseif(isset($_POST['topic_manage'])){
         echo "not done";
     }
 
-}elseif(isset($_POST['subtopic_manage'])){
+
+
+}
+elseif (isset($_POST['checking_topic_btn'])) {
+    $topic_id = $_POST['topicId'];
+    $result_array = [];
+
+    // Prepare and execute a query to fetch the blog data by ID
+    $query = "SELECT * FROM `topics` WHERE Id = $topic_id";
+    $query_run = mysqli_query($con, $query);
+    if(mysqli_num_rows($query_run) > 0)
+    {
+        foreach($query_run as $row)
+        {
+            array_push($result_array, $row);
+            header('Content-type: application/json');
+            echo json_encode($result_array);
+        }
+    }
+    else{
+        echo $return = "<h5>No Record Found</h5>";
+    }
+}
+elseif(isset($_POST['update_topic']))
+{
+    $id = $_POST['topicId'];
+    $topic_name = $_POST['topic_name'];
+
+    $update_topic = "UPDATE topics set topicName='$topic_name' WHERE Id='$id'";
+    $query = mysqli_query($con, $update_topic);
+
+    if($query)
+    {
+        header("location: $mainlink" . "topic");
+    }
+    else{
+        echo "not working";
+    }
+}
+
+elseif(isset($_POST['subtopic_manage'])){
     $topic = $_POST['topic'];
     $subtopic = $_POST['subtopic'];
     $currentDate = date("Y-m-d H:i:s"); 
@@ -140,7 +180,8 @@ elseif(isset($_POST['topic_manage'])){
     } else {
         echo "not done";
     }
-}elseif (isset($_POST['blog_manage'])){
+}elseif (isset($_POST['blog_manage'])) {
+    // Process the form data as needed
     $title = $_POST['title'];
     if (isset($_FILES['image'])) {
         $imageFile = $_FILES['image'];
@@ -150,16 +191,71 @@ elseif(isset($_POST['topic_manage'])){
     }
     $writer = $_POST['writer'];
     $desc = $_POST['desc'];
+    $category = $_POST['category'];
 
-    $insert_query = mysqli_query($con, "INSERT INTO blogs(blogTitle, bannerImage, writer, description) VALUES('$title','$imageFileName ','$writer','$desc')");
+    // Insert the blog into the database and get the blog ID
+    $insert_query = mysqli_query($con, "INSERT INTO blogs(blogTitle, bannerImage, writer, description,category) VALUES('$title','$imageFileName','$writer','$desc','$category')");
+    
+    // Get the ID of the newly inserted blog
+    $blogId = mysqli_insert_id($con);
 
-    if ($insert_query) {
-        header("location: $mainlink" . "blog");
-    } else {
-        echo "not done";
+    // Check if tags have been provided
+   if (isset($_POST['tags'])) {
+    $tags = $_POST['tags'];
+
+    // Split the comma-separated tags string into an array
+    $tagsArray = explode(',', $tags);
+
+    foreach ($tagsArray as $tag) {
+        $tag = mysqli_real_escape_string($con, trim($tag)); // Remove leading/trailing whitespace
+        $insertTagQuery = "INSERT INTO blogtag (name, blog_id) VALUES ('$tag', $blogId)";
+        mysqli_query($con, $insertTagQuery);
     }
-  
-}elseif (isset($_POST['freeResources_manage'])){
+
+    header("location: $mainlink" . "blog");
+} else {
+    echo "Tag insertion failed";
+}
+}elseif (isset($_POST['checking_edit_btn'])) {
+    $blogId = $_POST['blog_id'];
+    $result_array = [];
+
+    // Prepare and execute a query to fetch the blog data by ID
+    $query = "SELECT * FROM `blogs` WHERE id = $blogId";
+    $query_run = mysqli_query($con, $query);
+    if(mysqli_num_rows($query_run) > 0)
+    {
+        foreach($query_run as $row)
+        {
+            array_push($result_array, $row);
+            header('Content-type: application/json');
+            echo json_encode($result_array);
+        }
+    }
+    else{
+        echo $return = "<h5>No Record Found</h5>";
+    }
+}
+elseif(isset($_POST['update']))
+{
+    $id = $_POST['blog_id'];
+    $title = $_POST['editTitle'];
+    $writer = $_POST['editWriter'];
+    $image = $_POST['editImage'];
+    $description = $_POST['editDescription'];
+
+    $update = "UPDATE blogs set blogTitle='$title', writer ='$writer', bannerImage='$image', description='$description' WHERE id='$id'";
+    $query = mysqli_query($con, $update);
+
+    if($query)
+    {
+        header("location: $mainlink" . "blog");
+    }
+    else{
+        echo "not working";
+    }
+}
+elseif (isset($_POST['freeResources_manage'])){
     $heading = $_POST['heading'];
     $title = $_POST['title'];
     if (isset($_FILES['image'])) {
@@ -178,7 +274,75 @@ elseif(isset($_POST['topic_manage'])){
     } else {
         echo "not done";
     }
-}elseif (isset($_POST['affiliate_manage'])){
+}
+    elseif (isset($_POST['checking_resource_btn'])) {
+        $resource_id = $_POST['resource_id'];
+        $result_array = [];
+    
+        // Prepare and execute a query to fetch the blog data by ID
+        $query = "SELECT * FROM `freeresources` WHERE id = $resource_id";
+        $query_run = mysqli_query($con, $query);
+        if(mysqli_num_rows($query_run) > 0)
+        {
+            foreach($query_run as $row)
+            {
+                array_push($result_array, $row);
+                header('Content-type: application/json');
+                echo json_encode($result_array);
+            }
+        }
+        else{
+            echo $return = "<h5>No Record Found</h5>";
+        }
+    }
+//     elseif(isset($_POST['update_resources']))
+// {
+//     $id = $_POST['resource_id'];
+//     $resourcename = $_POST['resourses_name'];
+//     $title = $_POST['title'];
+//     $image = $_POST['banner_image'];
+//     $description = $_POST['description'];
+
+//     $update = "UPDATE freeresources set resourcesName='$resourcename', title ='$title', bannerImage='$image', description='$description' WHERE id='$id'";
+//     $query = mysqli_query($con, $update);
+
+//     if($query)
+//     {
+//         header("location: $mainlink" . "freeResources");
+//     }
+//     else{
+//         echo "not working";
+//     }
+// }
+if(isset($_POST['update_resources'])) {
+    $id = $_POST['resource_id'];
+    $resourcename = $_POST['resourses_name'];
+    $title = $_POST['title'];
+    $description = $_POST['description'];
+
+    // Check if a new image has been uploaded
+    if(isset($_FILES['banner_image']['tmp_name']) && !empty($_FILES['banner_image']['tmp_name'])) {
+        // Handle the new image upload
+        $newImage = $_FILES['banner_image']['name'];
+        $imagePath = "upload/image/" . $newImage; // Update with your actual image upload path
+        move_uploaded_file($_FILES['banner_image']['tmp_name'], $imagePath);
+    } else {
+        // No new image uploaded, keep the old image
+        $imagePath = $_POST['oldImage']; // This should be the path to the old image
+    }
+
+    $update = "UPDATE freeresources SET resourcesName='$resourcename', title='$title', bannerImage='$imagePath', description='$description' WHERE id='$id'";
+    $query = mysqli_query($con, $update);
+
+    if($query) {
+        header("location: $mainlink" . "freeResources");
+    } else {
+        echo "Update failed!";
+    }
+}
+
+
+elseif (isset($_POST['affiliate_manage'])){
     $name = $_POST['name'];
     $details = $_POST['details'];
     $contactdetails = $_POST['contactdetails'];
@@ -193,6 +357,46 @@ elseif(isset($_POST['topic_manage'])){
     } else {
         echo "not done";
     }
+}
+elseif (isset($_POST['checking_affiliate_btn'])) {
+    $affiliateId = $_POST['affiliateId'];
+    $result_array = [];
+
+    // Prepare and execute a query to fetch the blog data by ID
+    $query = "SELECT * FROM `affiliates` WHERE id = $affiliateId";
+    $query_run = mysqli_query($con, $query);
+    if(mysqli_num_rows($query_run) > 0)
+    {
+        foreach($query_run as $row)
+        {
+            array_push($result_array, $row);
+            header('Content-type: application/json');
+            echo json_encode($result_array);
+        }
+    }
+    else{
+        echo $return = "<h5>No Record Found</h5>";
+    }
+}
+elseif(isset($_POST['update_affiliate']))
+{
+    $id = $_POST['affiliateId'];
+    $company_name = $_POST['company_name'];
+    $details = $_POST['details'];
+    $contact_details = $_POST['contact_details'];
+    $contact_person = $_POST['contact_person'];
+    $address = $_POST['address'];
+    
+    $update = "UPDATE affiliates set companyName='$company_name', details ='$details', contactDetail='$contact_details', contactPerson='$contact_person', address='$address' WHERE id='$id'";
+    $query = mysqli_query($con, $update);
+
+    if($query)
+    {
+        header("location: $mainlink" . "affiliate");
+    }
+    else{
+        echo "not working";
+    }
 }elseif (isset($_POST['career_manage'])){
     $title = $_POST['title'];
     $exp = $_POST['exp'];
@@ -205,7 +409,47 @@ elseif(isset($_POST['topic_manage'])){
     } else {
         echo "not done";
     }
-}elseif (isset($_POST['corporateGovernance_manage'])){
+}
+    elseif (isset($_POST['checking_career_btn'])) {
+        $careerId = $_POST['careerId'];
+        $result_array = [];
+    
+        // Prepare and execute a query to fetch the blog data by ID
+        $query = "SELECT * FROM `careers` WHERE id = $careerId";
+        $query_run = mysqli_query($con, $query);
+        if(mysqli_num_rows($query_run) > 0)
+        {
+            foreach($query_run as $row)
+            {
+                array_push($result_array, $row);
+                header('Content-type: application/json');
+                echo json_encode($result_array);
+            }
+        }
+        else{
+            echo $return = "<h5>No Record Found</h5>";
+        }
+    }
+    elseif(isset($_POST['update_career']))
+{
+    $id = $_POST['careerId'];
+    $title = $_POST['title'];
+    $yoe = $_POST['yoe'];
+    $description = $_POST['description'];
+    
+    
+    $update = "UPDATE careers set Title='$title', Experience ='$yoe', Description='$description' WHERE id='$id'";
+    $query = mysqli_query($con, $update);
+
+    if($query)
+    {
+        header("location: $mainlink" . "career");
+    }
+    else{
+        echo "not working";
+    }
+}
+elseif (isset($_POST['corporateGovernance_manage'])){
     $title = $_POST['title'];
     if (isset($_FILES['image'])) {
         $imageFile = $_FILES['image'];
@@ -221,5 +465,69 @@ elseif(isset($_POST['topic_manage'])){
         header("location: $mainlink" . "corporateGovernance");
     } else {
         echo "not done";
+    }
+}
+elseif (isset($_POST['checking_cg_btn'])) {
+    $careerId = $_POST['cgId'];
+    $result_array = [];
+
+    // Prepare and execute a query to fetch the blog data by ID
+    $query = "SELECT * FROM `corporategovernance` WHERE id = $careerId";
+    $query_run = mysqli_query($con, $query);
+    if(mysqli_num_rows($query_run) > 0)
+    {
+        foreach($query_run as $row)
+        {
+            array_push($result_array, $row);
+            header('Content-type: application/json');
+            echo json_encode($result_array);
+        }
+    }
+    else{
+        echo $return = "<h5>No Record Found</h5>";
+    }
+}
+// elseif(isset($_POST['update_cg']))
+// {
+//     $id = $_POST['cgId'];
+//     $title = $_POST['title'];
+//     $name = $_POST['name'];
+//     $image = $_POST['image'];
+    
+    
+//     $update = "UPDATE corporategovernance set Title='$title', name ='$name', image='$image' WHERE id='$id'";
+//     $query = mysqli_query($con, $update);
+
+//     if($query)
+//     {
+//         header("location: $mainlink" . "corporateGovernance");
+//     }
+//     else{
+//         echo "not working";
+//     }
+// }
+elseif(isset($_POST['update_cg'])) {
+    $id = $_POST['cgId'];
+    $title = $_POST['title'];
+    $name = $_POST['name'];
+
+    // Check if a new image has been uploaded
+    if(isset($_FILES['image']['tmp_name']) && !empty($_FILES['image']['tmp_name'])) {
+        // Handle the new image upload
+        $newImage = $_FILES['image']['name'];
+        $imagePath = "upload/image/" . $newImage; // Update with your actual image upload path
+        move_uploaded_file($_FILES['image']['tmp_name'], $imagePath);
+    } else {
+        // No new image uploaded, keep the old image
+        $imagePath = $_POST['oldImage']; // This should be the path to the old image
+    }
+
+    $update = "UPDATE corporategovernance SET Title='$title', name='$name', image='$imagePath' WHERE id='$id'";
+    $query = mysqli_query($con, $update);
+
+    if($query) {
+        header("location: $mainlink" . "corporateGovernance");
+    } else {
+        echo "not working";
     }
 }
