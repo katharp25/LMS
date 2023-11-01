@@ -2,7 +2,7 @@
 include("includes/header.php");
 // include('config.php');
 
-include('../functions/registerStudent.php');
+include('../functions/companyReg.php');
 
 ?>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -56,42 +56,69 @@ include('../functions/registerStudent.php');
 <main class="site-main page-wrapper woocommerce single single-product">
     <section class="space-3">
         <div class="container">
-        <form method="post" class="woocommerce-form woocommerce-form-register register" action="../functions/registerStudent.php">
+        <form method="post" class="woocommerce-form woocommerce-form-register register" action="../functions/companyReg.php">
         <h2 class="font-weight-bold mb-4">Register</h2>
             <div class="row">            
                 <div class="col-md-6">               
                         <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-                            <label>Full Name&nbsp;<span class="required">*</span></label>
-                            <input type="text" class="woocommerce-Input woocommerce-Input--text input-text form-control" name="fullName" id="" autocomplete="user-name" value="">
+                            <label>Company Name&nbsp;<span class="required">*</span></label>
+                            <input type="text" class="woocommerce-Input woocommerce-Input--text input-text form-control" name="company_name" id="company_name" autocomplete="user-name" value="">
                         </p>
+                        
+                        
+
                         <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-                            <label>Date Of Birth&nbsp;<span class="required">*</span></label>
-                            <input type="date" class="woocommerce-Input woocommerce-Input--text input-text form-control" name="dateOfBirth" id="" autocomplete="email" value="">
+                            <label>Mobile No&nbsp;<span class="required">*</span></label>
+                            <input type="text" class="woocommerce-Input woocommerce-Input--text input-text form-control" name="phoneNumber" id="phoneNumber" autocomplete="password" value="">
                         </p>
+
+                       
+
                         <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-                            <label>Phone Number&nbsp;<span class="required">*</span></label>
-                            <input type="text" class="woocommerce-Input woocommerce-Input--text input-text form-control" name="phoneNumber" id="" autocomplete="password" value="">
+                            <label>Address&nbsp;<span class="required">*</span></label>
+                            <input type="text" class="woocommerce-Input woocommerce-Input--text input-text form-control" name="address" id="address" autocomplete="password" value="">
                         </p>
-                        <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-                            <label>Email&nbsp;<span class="required">*</span></label>
-                            <input type="email" class="woocommerce-Input woocommerce-Input--text input-text form-control" name="email" id="" autocomplete="password" value="">
-                        </p>
-                        <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-                            <label>Select Gender&nbsp;<span class="required">*</span></label>
-                            <select class="form-select" name="gender">
-                                <option value="-1">Choose..</option>
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
-                                <option value="others">Others</option>
+
+                        
+                       
+                         <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                            <label>Select State&nbsp;<span class="required">*</span></label>
+                            <select class="form-select" name="state" class='stateList' id="stateList">                               
+                                <option value="-1">Choose States...</option>
+                                
                             </select>
                         </p>
+                   
+
+                    <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                            <label>District&nbsp;<span class="required">*</span></label>
+                            <input type="text" class="woocommerce-Input woocommerce-Input--text input-text form-control" name="dist" id="dist" autocomplete="email" value="">
+                        </p>
+
+                        <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                            <label>Id Details&nbsp;<span class="required">*</span></label>
+                            <input type="text" class="woocommerce-Input woocommerce-Input--text input-text form-control" name="id_details" id="id_details" autocomplete="password" value="">
+                        </p>
+
+                        </div>
+                <div class="col-md-6">
+                <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                            <label>Contact Name&nbsp;<span class="required">*</span></label>
+                            <input type="text" class="woocommerce-Input woocommerce-Input--text input-text form-control" name="contact_name" id="contact_name" autocomplete="password" value="">
+                        </p>
+
+                        <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                            <label>Company Email&nbsp;<span class="required">*</span></label>
+                            <input type="email" class="woocommerce-Input woocommerce-Input--text input-text form-control" name="email" id="" autocomplete="password" value="">
+                        </p>
+
                         <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
                             <label>Select Country&nbsp;<span class="required">*</span></label>
                             <select class="form-select" name="country" class='countryList' id="countryList">
                                 <option>Choose Country..</option>
                                 <!-- <option> -->
                                 <?php
-                                // $fetchCountries = mysqli_query($con, "SELECT * FROM awt_countries");
+                                $fetchCountries = mysqli_query($con, "SELECT * FROM awt_countries");
                                     if($fetchCountries){
                                         while($row = mysqli_fetch_assoc($fetchCountries))
                                         {
@@ -108,22 +135,16 @@ include('../functions/registerStudent.php');
                                 
                             </select>
                         </p>
-                    </div>
-                <div class="col-md-6">
-                <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-                            <label>Select State&nbsp;<span class="required">*</span></label>
-                            <select class="form-select" name="state" class='stateList' id="stateList">                               
-                                <option value="-1">Choose States...</option>
-                            </select>
-                        </p>
+
+               
+                       
                         <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-                            <label>City Name&nbsp;<span class="required">*</span></label>
-                            <input type="text" class="woocommerce-Input woocommerce-Input--text input-text form-control" name="city" id="" autocomplete="email" value="">
-                        </p>
-                        <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-                            <label>Area PinCode&nbsp;<span class="required">*</span></label>
+                            <label>PinCode&nbsp;<span class="required">*</span></label>
                             <input type="text" class="woocommerce-Input woocommerce-Input--text input-text form-control" name="pinCode" id="" autocomplete="password" value="">
                         </p>
+
+                        
+
                         <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
                             <label>Select Your ID Proof&nbsp;<span class="required">*</span></label>
                             <select class="form-select" name="idProof">
@@ -131,13 +152,11 @@ include('../functions/registerStudent.php');
                                 <option>Passport</option>
                             </select>
                         </p>
-                        <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-                            <label>Id Proof Unique Id&nbsp;<span class="required">*</span></label>
-                            <input type="text" class="woocommerce-Input woocommerce-Input--text input-text form-control" name="uniqueIdNo" id="" autocomplete="password" value="">
-                        </p>
+                        
+                        
                         <p class="woocommerce-FormRow form-row">
                             <input type="hidden" id="woocommerce-register-nonce" name="woocommerce-register-nonce" value="b1c661ab82"><input type="hidden" name="_wp_http_referer" value="/my-account/">
-                            <button type="submit" class="woocommerce-Button button" name="registerStudent" value="Register">Register</button>
+                            <button type="submit" class="woocommerce-Button button" name="registerCompany" value="Register">Register</button>
                         </p>
                 </div>    
                 </form>
@@ -150,13 +169,13 @@ include('../functions/registerStudent.php');
 
 <script>
     $(document).ready(function() {
-        $('#countryList').on('change', function() {
-            var countryId = $(this).val();
-            // console.log('countryId');
+        $('#countryList').on('change', function () {
+            var selectedCountryId = $(this).val();
+            console.log('Selected Country ID: ' + selectedCountryId);
             $.ajax({
-                method:'GET',
-                url:'../functions/registerStudent.php',
-                data: {countryId : countryId},
+                method:'get',
+                url:'../functions/companyReg.php',
+                data: {selectedCountryId : selectedCountryId},
                 success: function(datas){
                     var states = JSON.parse(datas);
                     $('#stateList').empty();

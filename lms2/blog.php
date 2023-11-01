@@ -31,6 +31,15 @@ include('functions/list_grid.php');
         li{
             padding:12px;
         }
+        
+    .truncate-text {
+        max-width: 100px; /* Adjust the max width as needed */
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+
     </style>
 <!-- Main Content Panel -->
 <div class="content-wrapper">
@@ -74,15 +83,7 @@ include('functions/list_grid.php');
                         </div>
                     </div>
 
-                    <div class="form-group">
-                         <div class="container">
-                            <label for="desc">Category</label>
-                            <input type="text" id="category" name="category" class="form-control" placeholder="Add a tag" >
-                             <!-- <div id="catlist"></div>
-                            <div class="tag-container" id="selectedTagsContainer"></div>
-                            <input type="hidden" id="selectedTags" name="selectedTags"> -->
-                        </div>
-                    </div>
+                   
                     
 
                         <button type="submit" class="btn btn-primary me-2" name="blog_manage">Submit</button>
@@ -119,6 +120,7 @@ include('functions/list_grid.php');
                                     $writer=$row['writer'];
                                     $image=$row['bannerImage'];
                                     $description=$row['description'];
+                                    $created_on=$row['createdOn'];
                                     
                                     ?>
                                     <tr>
@@ -126,8 +128,9 @@ include('functions/list_grid.php');
                                     <td class="blogId" hidden><?= $id;?>
                                     <td><?= $title; ?></td>
                                     <td><?= $writer; ?></td>
-                                    <td><img src="./functions/<?= $image; ?>" width="80" height="80"></td>
-                                    <td><?= $description; ?></td>
+                                    <td><img src="./functions/upload/image/<?= $image; ?>" width="80" height="80"></td>
+                                    <td class="truncate-text"><?= $description; ?></td>
+
                                    
                                     <td>
                                     <button type="button" class="btn btn-primary p-2 edit-button" data-bs-toggle="modal" data-bs-target="#editBlogModal"  data-blog-id="<?= $id ?>">
@@ -179,19 +182,20 @@ include('functions/list_grid.php');
                     </div>
                     <div class="form-group">
                         <label for="editImage">Image</label>
-                        <input type="file" class="form-control-file" id="editImage" name="editImage" accept="image/*">
+                        <input type="file" class="form-control" onchange="loadFile(event)" id="editImage" name="editImage">
+
                         <input type="hidden" id="oldImage" name="oldImage" width="80" height="80" />
                     </div>
 
                     <div class="form-group">
                                 <label for="editTitle">Existing Image</label><br>
-                                <!-- <input type="file" class="form-control" onchange="loadFile(event)" id="banner_image" name="banner_image"> -->
+                                
                                 <img src="" id="output" name="output" width="80" height="80" />
                             </div>
 
                     <div class="form-group">
                         <label for="editDescription">Description</label>
-                        <textarea class="form-control" id="editDescription" name="editDescription"></textarea>
+                        <textarea class="form-control richtext" id="editDescription" name="editDescription"></textarea>
                     </div>
                     <!-- Additional fields for tags, if needed -->
                     <!-- Add hidden input fields for blog ID or other necessary data -->
@@ -312,7 +316,7 @@ $(document).ready(function() {
             {
                 $('#editTitle').val(value['blogTitle']);
                 $('#editWriter').val(value['writer']);
-                $('#output').attr('src', './functions/' + value['bannerImage']); 
+                $('#output').attr('src', './functions/upload/image/' + value['bannerImage']); 
                 // You can handle image display or updating as needed
                 $('#editDescription').val(value['description']);
                 $('#blog_id').val(value['id']); 
@@ -340,7 +344,25 @@ $(document).ready(function() {
     });
 });
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
+<script>
+
+var loadFile = function(event) {
+
+    var output = document.getElementById('output');
+
+    output.src = URL.createObjectURL(event.target.files[0]);
+
+    output.onload = function() {
+
+        URL.revokeObjectURL(output.src) // free memory
+
+    }
+
+};
+
+</script>
 <!-- Main Content ends -->
 
 <?php

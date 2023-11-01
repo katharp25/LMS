@@ -16,7 +16,7 @@ include('functions/list_grid.php');
                         You can Write the content for about page.
                     </p> -->
                    
-                    <form class="forms-sample" action="functions/functions" method="POST" enctype="multipart/form-data">
+                    <form class="forms-sample" action="functions/functions.php" method="POST" enctype="multipart/form-data">
                     <div class="form-group">
                             <label for="heading">Heading</label>
                             <input type="text" class="form-control" name="heading"

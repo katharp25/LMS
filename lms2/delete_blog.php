@@ -31,6 +31,24 @@ if (isset($_POST['delete_blog'])) {
     mysqli_close($conn);
 }
 
+if (isset($_POST['delete_user'])) {
+    // Get the ID from the URL
+    $id = $_POST['delete_id'];
+    $sql = "DELETE FROM users WHERE Id = $id";
+    $query=mysqli_query($con, $sql);
+    if ($query) {
+        // If the delete operation is successful, you can redirect to a success page
+        header("location: $mainlink" . "manageUser");
+        // exit();
+    } else {
+        echo "Error: " . $sql . "<br>" . mysqli_error($con);
+    }
+
+    // Close the database connection
+    mysqli_close($conn);
+}
+
+
 if (isset($_POST['delete_subtopic'])) {
     // Get the ID from the URL
     $id = $_POST['delete_id'];

@@ -294,7 +294,7 @@ include('functions/list_grid.php');
                                             <td><?= $learn; ?></td>
                                             <td><?= $requirements; ?></td>
                                             <td><?= $tag; ?></td>
-                                            <td><?= $img; ?></td>
+                                            <td><img src="./functions/upload/image/<?= $img; ?>" width="80" height="80"></td>
                                             <td><?= $file; ?></td>
                                             <td><?= $video; ?></td>
                                             <td>
@@ -372,14 +372,14 @@ include('functions/list_grid.php');
                                                                     <div class="form-group">
                                                                         <label for="image">Upload Video</label>
                                                                         <input type="file" class="form-control-file"  id="video" name="video" accept="video/*">
-                                                                        <input type="hidden" id="oldImage" name="oldImage" width="100" height="100" />
+                                                                        <input type="hidden" id="oldVideo" name="oldVideo" width="100" height="100" />
                                                                     </div>
                                                                 
 
                                                                 <div class="form-group">
                                                                         <label for="editTitle">Existing Image</label><br>
                                                                         <!-- <input type="file" class="form-control" onchange="loadFile(event)" id="banner_image" name="banner_image"> -->
-                                                                        <img src="" id="output" name="output" width="100" height="100" />
+                                                                        <img src="" id="output1" name="output1" width="100" height="100" />
                                                                     </div>
                                                                </div>
                                                                 <div class="col-md-6">
@@ -397,13 +397,13 @@ include('functions/list_grid.php');
                                                                     <div class="form-group">
                                                                         <label for="uploadfile">Upload File</label>
                                                                         <input type="file" class="form-control-file" id="uploadfile" name="uploadfile">
-                                                                        <input type="hidden" id="oldImage" name="oldImage" width="100" height="100" />
+                                                                        <input type="hidden" id="oldImage2" name="oldImage2" width="100" height="100" />
                                                                     </div>
 
                                                                     <div class="form-group">
                                                                         <label for="editTitle">Existing Image</label><br>
                                                                         <!-- <input type="file" class="form-control" onchange="loadFile(event)" id="banner_image" name="banner_image"> -->
-                                                                        <img src="" id="output" name="output" width="100" height="100" />
+                                                                        <img src="" id="output2" name="output2" width="100" height="100" />
                                                                     </div>
 
                                                                     <div class="form-group">
@@ -486,6 +486,7 @@ $(document).ready(function() {
                 $('#courseName').val(value['courseName']);
                 $('#price').val(value['courseCost']);
                 $('#editDescription').val(value['description']);
+                $('#output')..attr('src', './functions/upload/image/' + value['bannerImage']); 
                 $('#course_id').val(value['id']); 
             
             

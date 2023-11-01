@@ -47,6 +47,8 @@ $fetch_list_affiliate_query=mysqli_query($con,"SELECT * FROM affiliates");
 
 $fetch_list_careers_query=mysqli_query($con,"SELECT * FROM careers");
 
+$fetch_list_company_query=mysqli_query($con,"SELECT * FROM company");
+
 $fetch_list_corporategovernance_query=mysqli_query($con,"SELECT * FROM corporategovernance");
 // $fetch_list=mysqli_fetch_assoc($fetch_list_query);
 // $users_name=$fetch_list['Name'];
