@@ -34,8 +34,8 @@ include('functions/list_grid.php');
                        
                         <div class="form-group">
                             <label for="desc">Description</label>
-                            <textarea class="richtext" name="desc">
-                                        Welcome to Saburi LMS
+                            <textarea class="rte" name="desc">
+                                        
                                     </textarea>
                         </div>
                        

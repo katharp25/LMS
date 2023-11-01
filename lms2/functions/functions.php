@@ -123,6 +123,24 @@ elseif(isset($_POST['subtopic_manage'])){
     $subtopic = $_POST['subtopic'];
     $courseName = $_POST['courseName'];
     $price = $_POST['price'];
+    $summary = $_POST['Summary'];
+    $desc = $_POST['description'];
+    $wyl = $_POST['wyl'];
+    $requirements = $_POST['req'];
+    // echo $learn;
+    // echo $requirements;
+    // echo "<pre>";
+    // echo "$topic";
+    // echo "$subtopic";
+    // echo "$courseName";
+    // echo "$price";
+    // echo "$summary";
+    // echo "$desc";
+    // echo "$wyl";
+    // echo "$requirements";
+
+
+    // exit();
     // $image = $_POST['image'];
     // Handle image upload
     if (isset($_FILES['image'])) {
@@ -150,18 +168,16 @@ elseif(isset($_POST['subtopic_manage'])){
     }
     // $video = isset($_POST['video']) ? $_POST['video'] : '';
     // $desc = $_POST['desc'];
-    $desc = isset($_POST['desc']) ? $_POST['desc'] : '';
-    $learn = $_POST['learnMore'];
-    $requirements = $_POST['requirementsMore'];
-    $tag = $_POST['tag'];
+    // $desc = isset($_POST['desc']) ? $_POST['desc'] : '';
+    // $learn = $_POST['learnMore'];
+    // $requirements = $_POST['requirementsMore'];
+    // $tag = $_POST['tag'];
     
-    echo $learn;
-    echo $requirements;
+    
+    $insert_course = mysqli_query($con,"INSERT INTO courses(topicID,subTopicId,courseName,courseCost,courseDesc,learn,summary,requirements,bannerImage,uploadfile,video) VALUES('$topic','$subtopic','$courseName','$price','$desc','$wyl','$summary','$requirements','$imageFileName','$uploadFileName','$videoFileName')");
+    // $insert_query = mysqli_query($con, "INSERT INTO courses(topicID ,subTopicId ,courseName,courseCost,bannerImage,uploadfile,video,courseDesc,learn,summary,requirements) VALUES('$topic','$subtopic','$courseName','$price','$imageFileName','$uploadFileName','$videoFileName','$desc','$wyl','$summary','$requirements')");
 
-
-    $insert_query = mysqli_query($con, "INSERT INTO courses(topicID ,subTopicId ,courseName,courseCost,bannerImage,uploadfile,video,courseDesc,learn,requirements,tag) VALUES('$topic','$subtopic','$courseName','$price','$imageFileName','$uploadFileName','$videoFileName','$desc','$learn','$requirements','$tag')");
-
-    if ($insert_query) {
+    if ($insert_course) {
         header("location: $mainlink" . "manageCourse");
     } else {
         echo "not done";

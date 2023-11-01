@@ -54,13 +54,8 @@ include('functions/list_grid.php');
                                 <td>
                                     <button type="submit" class="btn btn-primary me-2 p-2 edit-button"
                                         data-bs-toggle="modal" data-bs-target="#editmodal"
-<<<<<<< HEAD
-                                        data-id="<?= $row['Id']; ?>">Edit</button>
-                                    <button class="btn btn-danger p-2 delete_topic" data-id="<?= $row['Id']; ?>">Delete</button>
-=======
                                         data-id="<?= $id; ?>">Edit</button>
                                         <button type="submit" class="btn btn-danger p-2 delete-button" data-bs-toggle="modal" data-bs-target="#deleteModal"  data-id="<?= $id; ?>">Delete</button>
->>>>>>> e1247cc3996b004e9f42f6e3a5f8eb44cb176761
                                 </td>
                             </tr>
                             <?php
