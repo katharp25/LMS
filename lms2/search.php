@@ -1,14 +1,9 @@
 <?php
 
-$host="localhost";
-$db="saburi_lms_2023";
-$password="";
-$username="root";
-
-$con = mysqli_connect($host,$username,$password,$db);
+include("functions/config.php");
 
 if(isset($_POST["tag"]))
-{
+{   
     $output = '';
     $query = "SELECT * FROM blogtag WHERE name LIKE '%".$_POST["tag"]."%'";
     $result = mysqli_query($con, $query);
@@ -25,7 +20,28 @@ if(isset($_POST["tag"]))
     }
     $output .= '</ul>';
     echo $output;
+}elseif(isset($_POST["course_tags"]))
+{   
+    $output = '';
+    $query = "SELECT * FROM coursetag WHERE name LIKE '%".$_POST["tag"]."%'";
+    $result = mysqli_query($con, $query);
+    $output = '<ul class ="list-unstyled">';
+    if(mysqli_num_rows($result) > 0)
+    {
+        while($row = mysqli_fetch_array($result))
+        {
+            $output .= '<li>'.$row["name"].'</li>';
+        }
+    }
+    else{
+        $output .= '<li>Tag Not Found</li>';
+    }
+    $output .= 'bhai';
+    echo $output;
 }
+
+// course tags
+
 
 
 if(isset($_POST['update']))

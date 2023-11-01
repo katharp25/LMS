@@ -20,6 +20,7 @@ include('./functions/list_grid.php');
     <link rel="stylesheet" href="vendors/simple-line-icons/css/simple-line-icons.css">
     <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
     <!-- endinject -->
+    <link rel="stylesheet" href="vendors/richtexteditor/rte_theme_default.css" />
     <!-- Plugin css for this page -->
     <link rel="stylesheet" href="vendors/datatables.net-bs4/dataTables.bootstrap4.css">
     <!-- <link rel="stylesheet" href="js/select.dataTables.min.css"> -->

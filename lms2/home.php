@@ -32,8 +32,8 @@ include('includes/sidebar.php');
                         </div>
                         <div class="form-group">
                             <label for="banner_desc">Description</label>
-                            <textarea class="richtext">
-                            Welcome to Saburi LMS
+                            <textarea class="rte">
+                            
                                     </textarea>
                         </div>
                         <div class="form-group">

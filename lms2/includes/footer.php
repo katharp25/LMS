@@ -36,9 +36,22 @@
 <script src="js/dashboard.js"></script>
 <script src="js/Chart.roundedBarCharts.js"></script>
 <!-- End custom js for this page-->
-
-<!-- Rich Text Editor by Tiny -->
+<script type="text/javascript" src="vendors/richtexteditor/rte.js"></script>
+<script type="text/javascript" src='vendors/richtexteditor/plugins/all_plugins.js'></script>
 <script>
+var editor1 = new RichTextEditor(".summary");
+var editor2 = new RichTextEditor(".desc");
+var editor3 = new RichTextEditor(".wyl");
+var editor4 = new RichTextEditor(".req");
+
+</script>
+<script>
+var editor4 = new RichTextEditor(".rte");
+// var editor2 = new RichTextEditor(".desc");
+// var editor3 = new RichTextEditor(".wyl");
+</script>
+<!-- Rich Text Editor by Tiny -->
+<!-- <script>
 tinymce.init({
     selector: '.richtext',
     plugins: 'ai tinycomments mentions anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography inlinecss',
@@ -57,7 +70,7 @@ tinymce.init({
     ai_request: (request, respondWith) => respondWith.string(() => Promise.reject(
         "See docs to implement AI Assistant")),
 });
-</script>
+</script> -->
 
 <!-- data table -->
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>

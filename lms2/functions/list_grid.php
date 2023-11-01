@@ -6,7 +6,8 @@ $username="root";
 
 $con = mysqli_connect($host,$username,$password,$db);
 
-
+// include "database_functions.php";
+// $courseList = fetchCoursesList();
 // fetching list of Users to users module
 
 $fetch_list_query=mysqli_query($con,"SELECT * FROM users");
@@ -33,7 +34,7 @@ topics
 JOIN 
 subtopics ON topics.Id = subtopics.topicId
 JOIN 
-courses ON subtopics.Id = courses.subTopicId;");
+courses ON subtopics.Id = courses.subTopicId ORDER By courses.id DESC");
 
 $fetch_list_query_subscription=mysqli_query($con,"SELECT * FROM subscriptions_1");
 
