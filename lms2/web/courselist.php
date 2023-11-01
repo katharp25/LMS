@@ -1,6 +1,5 @@
 <?php
 include("includes/header.php");
-<<<<<<< HEAD
 include("../functions/list_grid.php");
 
 
@@ -9,20 +8,9 @@ include("../functions/list_grid.php");
                                     while ($row = mysqli_fetch_assoc($fetch_list_topic_query)) {
                                         $id = $row['Id'];
                                         $topic_name = $row['topicName'];
-                                        $subtopic_name = $row['subTopicName'];
-                                        $course_name = $row['courseName'];
-                                        $price = $row['courseCost'];
-                                        $desc = $row['courseDesc'];
-                                        $learn = $row['learn'];
-                                        $requirements = $row['requirements'];
-                                        $tag = $row['tag'];
-                                        $img = $row['bannerImage'];
-                                        $file = $row['uploadfile'];
-                                        $video = $row['video'];
+                                        
                                     }
                                 }
-=======
->>>>>>> 7da0e060b91cc8d9957ee45776de852172d08555
 ?>
 
 
@@ -37,12 +25,7 @@ include("../functions/list_grid.php");
                     </div>
                     <div class="col-md-2 col-3 text-right">
                         <div class="search_toggle toggle-wrap d-inline-block">
-<<<<<<< HEAD
                             <img class="search-close" src="assets/images/close.png" srcset="assets/images/close%402x.png 2x" alt="">
-=======
-                            <img class="search-close" src="assets/images/close.png"
-                                srcset="assets/images/close%402x.png 2x" alt="">
->>>>>>> 7da0e060b91cc8d9957ee45776de852172d08555
                         </div>
                     </div>
                 </div>
@@ -437,12 +420,7 @@ include("../functions/list_grid.php");
                         <form role="search" method="get" class="woocommerce-product-search" action="#">
                             <label class="screen-reader-text" for="woocommerce-product-search-field-0">
                                 Search for:</label>
-<<<<<<< HEAD
                             <input type="search" id="woocommerce-product-search-field-0" class="search-field" placeholder="Search products…" value="" name="s">
-=======
-                            <input type="search" id="woocommerce-product-search-field-0" class="search-field"
-                                placeholder="Search products…" value="" name="s">
->>>>>>> 7da0e060b91cc8d9957ee45776de852172d08555
                             <button type="submit" value="Search">Search</button>
                             <input type="hidden" name="post_type" value="product">
                         </form>
@@ -451,7 +429,6 @@ include("../functions/list_grid.php");
                         <h3 class="widget-title">Filter by price</h3>
                         <form method="get" action="#">
                             <div class="price_slider_wrapper">
-<<<<<<< HEAD
                                 <div class="price_slider ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
 
                                     <div class="ui-slider-range ui-widget-header ui-corner-all" style="left: 22.2222%; width: 44.4444%;"></div>
@@ -461,23 +438,6 @@ include("../functions/list_grid.php");
                                 <div class="price_slider_amount" data-step="10">
                                     <input type="text" id="min_price" name="min_price" value="0" data-min="0" placeholder="Min price" style="display: none;">
                                     <input type="text" id="max_price" name="max_price" value="90" data-max="90" placeholder="Max price" style="display: none;">
-=======
-                                <div
-                                    class="price_slider ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
-
-                                    <div class="ui-slider-range ui-widget-header ui-corner-all"
-                                        style="left: 22.2222%; width: 44.4444%;"></div>
-                                    <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"
-                                        style="left: 22.2222%;"></span>
-                                    <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"
-                                        style="left: 66.6667%;"></span>
-                                </div>
-                                <div class="price_slider_amount" data-step="10">
-                                    <input type="text" id="min_price" name="min_price" value="0" data-min="0"
-                                        placeholder="Min price" style="display: none;">
-                                    <input type="text" id="max_price" name="max_price" value="90" data-max="90"
-                                        placeholder="Max price" style="display: none;">
->>>>>>> 7da0e060b91cc8d9957ee45776de852172d08555
                                     <button type="submit" class="button">Filter</button>
                                     <div class="price_label">
                                         Price: <span class="from">৳&nbsp;20</span> — <span class="to">৳&nbsp;60</span>
@@ -487,7 +447,6 @@ include("../functions/list_grid.php");
                             </div>
                         </form>
                     </section>
-<<<<<<< HEAD
                     <section id="woocommerce_layered_nav-2" class="widget woocommerce widget_layered_nav woocommerce-widget-layered-nav">
                         <h3 class="widget-title">Filter by</h3>
                         <ul class="woocommerce-widget-layered-nav-list">
@@ -540,74 +499,22 @@ include("../functions/list_grid.php");
                         <div class="edutim-course-topics-contents">
 
                         </div>
-=======
-                    <section id="woocommerce_layered_nav-2"
-                        class="widget woocommerce widget_layered_nav woocommerce-widget-layered-nav">
-                        <h3 class="widget-title">Filter by</h3>
-                        <ul class="woocommerce-widget-layered-nav-list">
-                            <li class="woocommerce-widget-layered-nav-list__item wc-layered-nav-term "><a rel="nofollow"
-                                    href="#">Blue</a> <span class="count">(4)</span></li>
-                            <li class="woocommerce-widget-layered-nav-list__item wc-layered-nav-term current-cat"><a
-                                    rel="nofollow" href="#">Gray</a> <span class="count">(2)</span></li>
-                            <li class="woocommerce-widget-layered-nav-list__item wc-layered-nav-term "><a rel="nofollow"
-                                    href="#">Green</a> <span class="count">(3)</span></li>
-                            <li class="woocommerce-widget-layered-nav-list__item wc-layered-nav-term "><a rel="nofollow"
-                                    href="#">Red</a> <span class="count">(4)</span></li>
-                            <li class="woocommerce-widget-layered-nav-list__item wc-layered-nav-term "><a rel="nofollow"
-                                    href="#">Yellow</a> <span class="count">(1)</span></li>
-                        </ul>
-                    </section>
-                    <section id="woocommerce_product_categories-2" class="widget woocommerce widget_product_categories">
-                        <h3 class="widget-title">Product categories</h3>
-                        <ul class="product-categories nav flex-column">
-                            <li class="cat-item cat-item-17 cat-parent nav-item"><a href="#"
-                                    class="nav-link">Clothing</a>
-                                <ul class="children nav flex-column">
-                                    <li class="cat-item cat-item-20 nav-item current-cat"><a href="#"
-                                            class="nav-link">Accessories</a></li>
-                                    <li class="cat-item cat-item-19 nav-item"><a href="#" class="nav-link">Hoodies</a>
-                                    </li>
-                                    <li class="cat-item cat-item-18 nav-item"><a href="#" class="nav-link">Tshirts</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="cat-item cat-item-22 nav-item"><a href="#" class="nav-link">Decor</a></li>
-                            <li class="cat-item cat-item-21 nav-item"><a href="#" class="nav-link">Music</a></li>
-                            <li class="cat-item cat-item-15 nav-item"><a href="#" class="nav-link">Uncategorized</a>
-                            </li>
-                        </ul>
->>>>>>> 7da0e060b91cc8d9957ee45776de852172d08555
                     </section>
                     <section id="woocommerce_top_rated_products-2" class="widget woocommerce widget_top_rated_products">
                         <h3 class="widget-title">Top rated products</h3>
                         <ul class="product_list_widget">
                             <li>
                                 <a href="#">
-<<<<<<< HEAD
                                     <img width="300" height="300" src="assets/images/shop/p1.jpg" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="">
-=======
-                                    <img width="300" height="300" src="assets/images/shop/p1.jpg"
-                                        class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="">
->>>>>>> 7da0e060b91cc8d9957ee45776de852172d08555
                                     <span class="product-title">V-Neck T-Shirt</span>
                                 </a>
 
                                 <span class="woocommerce-Price-amount amount">
-<<<<<<< HEAD
                                     <span class="woocommerce-Price-currencySymbol">৳&nbsp;</span>15.00</span> – <span class="woocommerce-Price-amount amount">
                                     <span class="woocommerce-Price-currencySymbol">৳&nbsp;</span>20.00</span>
                             </li>
                             <li> <a href="#">
                                     <img width="300" height="300" src="assets/images/shop/p2.jpg" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="">
-=======
-                                    <span class="woocommerce-Price-currencySymbol">৳&nbsp;</span>15.00</span> – <span
-                                    class="woocommerce-Price-amount amount">
-                                    <span class="woocommerce-Price-currencySymbol">৳&nbsp;</span>20.00</span>
-                            </li>
-                            <li> <a href="#">
-                                    <img width="300" height="300" src="assets/images/shop/p2.jpg"
-                                        class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="">
->>>>>>> 7da0e060b91cc8d9957ee45776de852172d08555
                                     <span class="product-title">Album</span>
                                 </a>
 
@@ -616,7 +523,6 @@ include("../functions/list_grid.php");
                             </li>
                             <li>
                                 <a href="#">
-<<<<<<< HEAD
                                     <img width="300" height="300" src="assets/images/shop/p3.jpg" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="">
                                     <span class="product-title">Hoodie</span>
                                 </a>
@@ -637,37 +543,6 @@ include("../functions/list_grid.php");
                                     <span class="product-title">Hoodie with Logo</span>
                                 </a>
                                 <span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">৳&nbsp;</span>45.00</span>
-=======
-                                    <img width="300" height="300" src="assets/images/shop/p3.jpg"
-                                        class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="">
-                                    <span class="product-title">Hoodie</span>
-                                </a>
-                                <span class="woocommerce-Price-amount amount"><span
-                                        class="woocommerce-Price-currencySymbol">৳&nbsp;</span>42.00</span> – <span
-                                    class="woocommerce-Price-amount amount"><span
-                                        class="woocommerce-Price-currencySymbol">৳&nbsp;</span>45.00</span>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img width="300" height="300" src="assets/images/shop/p4.jpg"
-                                        class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="">
-                                    <span class="product-title">Single</span>
-                                </a>
-
-                                <del><span class="woocommerce-Price-amount amount"><span
-                                            class="woocommerce-Price-currencySymbol">৳&nbsp;</span>3.00</span></del>
-                                <ins><span class="woocommerce-Price-amount amount"><span
-                                            class="woocommerce-Price-currencySymbol">৳&nbsp;</span>2.00</span></ins>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img width="300" height="300" src="assets/images/shop/p5.jpg"
-                                        class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="">
-                                    <span class="product-title">Hoodie with Logo</span>
-                                </a>
-                                <span class="woocommerce-Price-amount amount"><span
-                                        class="woocommerce-Price-currencySymbol">৳&nbsp;</span>45.00</span>
->>>>>>> 7da0e060b91cc8d9957ee45776de852172d08555
                             </li>
                         </ul>
                     </section>
