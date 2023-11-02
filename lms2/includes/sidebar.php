@@ -89,6 +89,8 @@
                                         List</a></li>
                                 <li class="nav-item"> <a class="nav-link" href="<?= $mainlink;?>studentsListReport">Students
                                         List</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="<?= $mainlink;?>studentsListReport">User Contact List
+                                        List</a></li>
                             </ul>
                         </div>
                     </li>

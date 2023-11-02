@@ -1,4 +1,13 @@
-﻿<!DOCTYPE html>
+﻿<?php
+  include("./includes/header.php");
+  include('./includes/sidebar.php');
+  include('./functions/list_grid.php');
+ ?>
+
+
+
+
+<!DOCTYPE html>
 <html lang="zxx">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

@@ -16,7 +16,7 @@ $con = mysqli_connect($host, $username, $password, $db);
 //     echo "Connected successfully";
 // }
 
-$mainlink = "http://localhost/LMS/lms2/";
+// $mainlink = "http://localhost/LMS/lms2/";
 
 $mainlink="http://localhost/LMS/lms2/";
 // $mainlink="http://localhost:8080/LMS/lms2/";

@@ -1,6 +1,7 @@
 <?php 
 // include("../functions/config.php");
 $mainlink="http://localhost/LMS/lms2/";
+// $mainlink="http://localhost:8080/LMS/lms2/";
 
 ?>
 
@@ -110,7 +111,7 @@ $mainlink="http://localhost/LMS/lms2/";
                         </li>
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link js-scroll-trigger" href="<?=$mainlink?>web/courses">
+                            <a class="nav-link js-scroll-trigger" href="<?=$mainlink?>web/courselist.php">
                                 Course List
                             </a>
                             <!-- <div class="dropdown-menu" aria-labelledby="navbar3">
