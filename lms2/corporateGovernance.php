@@ -68,8 +68,7 @@ include('functions/list_grid.php');
                                     <td><?= $i;?></td>
                                     <td class="edit_id" hidden><?= $id;?></td>
                                     <td><?= $title; ?></td>
-                                    <td><img src="./functions/upload/image/<?= $image; ?>" width="80" height="80"></td>
-                                    <td><?= $name; ?></td>
+                                    <td><img src="./functions/<?= $image; ?>" width="80" height="80"></td>                                    <td><?= $name; ?></td>
                                     <td>
                                         <button type="submit" class="btn btn-primary me-2 p-2 edit-button"  data-bs-toggle="modal" data-bs-target="#editmodal"
                                         data-id="<?= $id; ?>">Edit</button>
@@ -104,7 +103,7 @@ include('functions/list_grid.php');
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method="POST" action="./functions/functions.php">
+            <form method="POST" action="./functions/functions.php" enctype="multipart/form-data">
               <div class="modal-body">
                 <!-- Form for editing the blog content -->
                 
@@ -121,10 +120,13 @@ include('functions/list_grid.php');
 
                     <div class="form-group">
                         <label for="editTitle">Image</label>
-                        <input type="file" class="form-control" id="image" name="image">
-                        <!-- <input type="file" class="form-control" id="editImage" name="editImage"> -->
-                        <img src="" id="oldImage" width="80" height="80" />
+                        <input type="file" class="form-control" onchange="loadFile(event)" id="image" name="image">
+                        <input type="hidden" id="oldImage" name="oldImage" width="80" height="80" />
                     </div>
+                    <div class="form-group">
+                                <label for="editTitle">Existing Image</label><br>
+                                <img src="" id="output" name="output" width="80" height="80" />
+                            </div>
                 </div>
             <div class="modal-footer">
                 <button type="submit" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -180,7 +182,7 @@ $(document).ready(function() {
                 // Populate the input elements with data received from the server
                 $('#title').val(value['title']);
                 $('#name').val(value['name']); 
-                $('#oldImage').attr('src', './functions/upload/image/' + value['image']); 
+                $('#output').attr('src', './functions/' + value['image']); 
                 $('#cgId').val(value['id']); 
                 $('#editmodal').modal('show'); 
             });
@@ -205,6 +207,26 @@ $(document).ready(function() {
     
     });
 });
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script>
+
+var loadFile = function(event) {
+
+    var output = document.getElementById('output');
+
+    output.src = URL.createObjectURL(event.target.files[0]);
+
+    output.onload = function() {
+
+        URL.revokeObjectURL(output.src) // free memory
+
+    }
+
+};
+
 </script>
 <?php
 

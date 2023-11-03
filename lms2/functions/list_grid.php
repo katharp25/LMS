@@ -6,7 +6,8 @@ $username="root";
 
 $con = mysqli_connect($host,$username,$password,$db);
 
-
+// include "database_functions.php";
+// $courseList = fetchCoursesList();
 // fetching list of Users to users module
 
 $fetch_list_query=mysqli_query($con,"SELECT * FROM users");
@@ -18,19 +19,22 @@ topics.Id AS topic_id,
 topics.topicName,
 subtopics.Id AS subtopic_id,
 subtopics.subTopicName,
-courses.Id AS course_id,
+courses.id AS course_id,
 courses.courseName,
 courses.courseCost,
 courses.courseDesc,
 courses.bannerImage,
 courses.uploadfile,
+courses.learn,
+courses.requirements,
+courses.tag,
 courses.video
 FROM 
 topics
 JOIN 
 subtopics ON topics.Id = subtopics.topicId
 JOIN 
-courses ON subtopics.Id = courses.subTopicId;");
+courses ON subtopics.Id = courses.subTopicId ORDER By courses.id DESC");
 
 
 $fetch_list_Contect=mysqli_query($con,"SELECT * FROM ");
@@ -49,6 +53,8 @@ $fetch_list_freeResources_query=mysqli_query($con,"SELECT * FROM freeresources")
 $fetch_list_affiliate_query=mysqli_query($con,"SELECT * FROM affiliates");
 
 $fetch_list_careers_query=mysqli_query($con,"SELECT * FROM careers");
+
+$fetch_list_company_query=mysqli_query($con,"SELECT * FROM company");
 
 $fetch_list_corporategovernance_query=mysqli_query($con,"SELECT * FROM corporategovernance");
 

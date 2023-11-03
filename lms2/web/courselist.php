@@ -3,20 +3,12 @@ include("includes/header.php");
 include("../functions/list_grid.php");
 
 
-                                if ($fetch_list_join_topics_subtopic_course_query) {
+                                if ($fetch_list_topic_query) {
                                     $i = 1;
-                                    while ($row = mysqli_fetch_assoc($fetch_list_join_topics_subtopic_course_query)) {
+                                    while ($row = mysqli_fetch_assoc($fetch_list_topic_query)) {
+                                        $id = $row['Id'];
                                         $topic_name = $row['topicName'];
-                                        $subtopic_name = $row['subTopicName'];
-                                        $course_name = $row['courseName'];
-                                        $price = $row['courseCost'];
-                                        $desc = $row['courseDesc'];
-                                        $learn = $row['learn'];
-                                        $requirements = $row['requirements'];
-                                        $tag = $row['tag'];
-                                        $img = $row['bannerImage'];
-                                        $file = $row['uploadfile'];
-                                        $video = $row['video'];
+                                        
                                     }
                                 }
 ?>
@@ -465,110 +457,45 @@ include("../functions/list_grid.php");
                             <li class="woocommerce-widget-layered-nav-list__item wc-layered-nav-term "><a rel="nofollow" href="#">Yellow</a> <span class="count">(1)</span></li>
                         </ul>
                     </section>
+
                     <section id="woocommerce_product_categories-2" class="widget woocommerce widget_product_categories">
-                        <h3 class="widget-title">Product categories</h3>
-                        <div class="edutim-course-topic ">
-                            <div class="accordion" id="accordionExample">
-                                <div class="card">
-                                    <div class="card-header" id="headingOne">
-                                        <h2 class="mb-0">
-                                            <button class="btn-block text-left curriculmn-title-btn" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                <h4 class="curriculmn-title"> <?= $topic_name?></h4>
-                                            </button>
-                                        </h2>
-                                    </div>
-
-                                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                                        <div class="course-lessons">
-                                            <div class="single-course-lesson">
-                                                <div class="course-topic-lesson">
-                                                    <i class="fab fa-youtube"></i>
-                                                    <span> Work with Smart Objects</span>
-                                                </div>
-                                                <div class="course-lesson-duration">
-                                                    00:05:20
-                                                </div>
-                                            </div>
+    <h3 class="widget-title">Product categories</h3>
+    <div class="edutim-course-topic">
+        <div class="accordion" id="accordionExample">
+            <?php $index = 0; ?>
+            <?php foreach ($fetch_list_topic_query as $row) : ?>
+                <div class="card">
+                    <div class="card-header" id="heading<?= $index ?>">
+                        <h2 class="mb-0">
+                            <button class="btn-block text-left curriculmn-title-btn" type="button" data-toggle="collapse" data-target="#collapse<?= $row['Id'] ?>" >
+                                <h4 class="curriculmn-title"><?= $row['topicName'] ?></h4>
+                            </button>
+                        </h2>
+                    </div>
+                    <div id="collapse<?= $row['Id'] ?>" class="collapse"  data-parent="#accordionExample">
+                        <div class="course-lessons">
+                            <?php foreach ($fetch_list_subtopic_query as $subtopic) : ?>
+                                <?php if ($subtopic['topicId'] == $row['Id']) : ?>
+                                    <div class="single-course-lesson">
+                                        <div class="course-topic-lesson">
+                                            <i class="fab fa-youtube"></i>
+                                            <a href=""><?= $subtopic['subTopicName'] ?></a>
                                         </div>
                                     </div>
-                                </div>
-
-                                <div class="card">
-                                    <div class="card-header" id="headingTwo">
-                                        <h2 class="mb-0">
-                                            <button class="btn-block text-left collapsed curriculmn-title-btn" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                                <h4 class="curriculmn-title"> Artboards & Raster Layers</h4>
-                                            </button>
-                                        </h2>
-                                    </div>
-                                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                                        <div class="course-lessons">
-                                            <div class="single-course-lesson">
-                                                <div class="course-topic-lesson">
-                                                    <i class="fab fa-youtube"></i>
-                                                    <span>Use Photoshop’s Interface Efficiently</span>
-                                                </div>
-                                                <div class="course-lesson-duration">
-                                                    00:05:20
-                                                </div>
-                                            </div>
-                                            <div class="single-course-lesson">
-                                                <div class="course-topic-lesson">
-                                                    <i class="fab fa-youtube"></i>
-                                                    <span>Use the Eye Dropper & Swatches</span>
-                                                </div>
-                                                <div class="course-lesson-duration">
-                                                    00:05:20
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="card">
-                                    <div class="card-header" id="headingThree">
-                                        <h2 class="mb-0">
-                                            <button class="btn-block text-left collapsed curriculmn-title-btn" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                                <h4 class="curriculmn-title">Work with Smart Objects</h4>
-                                            </button>
-                                        </h2>
-                                    </div>
-
-                                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                                        <div class="course-lessons">
-                                            <div class="single-course-lesson">
-                                                <div class="course-topic-lesson">
-                                                    <i class="fab fa-youtube"></i>
-                                                    <span>Smart Objects Explained</span>
-                                                </div>
-                                                <div class="course-lesson-duration">
-                                                    00:05:20
-                                                </div>
-                                            </div>
-                                            <div class="single-course-lesson">
-                                                <div class="course-topic-lesson">
-                                                    <i class="fab fa-youtube"></i>
-                                                    <span>Filters with Smart Objects</span>
-                                                </div>
-                                                <div class="course-lesson-duration">
-                                                    00:05:20
-                                                </div>
-                                            </div>
-
-                                            <div class="single-course-lesson">
-                                                <div class="course-topic-lesson">
-                                                    <i class="fab fa-youtube"></i>
-                                                    <span>Clean Up Face Imperfections</span>
-                                                </div>
-                                                <div class="course-lesson-duration">
-                                                    00:05:20
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
                         </div>
+                    </div>
+                </div>
+                <?php $index++; ?>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</section>
+
+
+
+                    
                         <div class="edutim-course-topics-contents">
 
                         </div>

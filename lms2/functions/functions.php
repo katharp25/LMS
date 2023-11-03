@@ -50,10 +50,46 @@ if (isset($_POST['login_admin'])) {
         echo "not done";
     }
 }
-//  else {
-//     echo "not coming";
-// }
+elseif (isset($_POST['checking_user_btn'])) {
+    $userId = $_POST['user_id'];
+    $result_array = [];
 
+    // Prepare and execute a query to fetch the blog data by ID
+    $query = "SELECT * FROM `users` WHERE Id = $userId";
+    $query_run = mysqli_query($con, $query);
+    if(mysqli_num_rows($query_run) > 0)
+    {
+        foreach($query_run as $row)
+        {
+            array_push($result_array, $row);
+            header('Content-type: application/json');
+            echo json_encode($result_array);
+        }
+    }
+    else{
+        echo $return = "<h5>No Record Found</h5>";
+    }
+}
+
+elseif(isset($_POST['update_user']))
+{
+    $id = $_POST['user_id'];
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $phone = $_POST['phone'];
+    $address = $_POST['address'];
+
+    $update_topic = "UPDATE users set Name = '$name',Email = '$email',Phone = '$phone',Address = '$address' WHERE id='$id'";
+    $query = mysqli_query($con, $update_topic);
+
+    if($query)
+    {
+        header("location: $mainlink" . "manageUser");
+    }
+    else{
+        echo "not working";
+    }
+}
 elseif(isset($_POST['topic_manage'])){
     $topic = $_POST['topic'];
     $currentDate = date("Y-m-d H:i:s"); 
@@ -123,6 +159,24 @@ elseif(isset($_POST['subtopic_manage'])){
     $subtopic = $_POST['subtopic'];
     $courseName = $_POST['courseName'];
     $price = $_POST['price'];
+    $summary = $_POST['Summary'];
+    $desc = $_POST['description'];
+    $wyl = $_POST['wyl'];
+    $requirements = $_POST['req'];
+    // echo $learn;
+    // echo $requirements;
+    // echo "<pre>";
+    // echo "$topic";
+    // echo "$subtopic";
+    // echo "$courseName";
+    // echo "$price";
+    // echo "$summary";
+    // echo "$desc";
+    // echo "$wyl";
+    // echo "$requirements";
+
+
+    // exit();
     // $image = $_POST['image'];
     // Handle image upload
     if (isset($_FILES['image'])) {
@@ -150,23 +204,42 @@ elseif(isset($_POST['subtopic_manage'])){
     }
     // $video = isset($_POST['video']) ? $_POST['video'] : '';
     // $desc = $_POST['desc'];
-    $desc = isset($_POST['desc']) ? $_POST['desc'] : '';
-    $learn = $_POST['learnMore'];
-    $requirements = $_POST['requirementsMore'];
-    $tag = $_POST['tag'];
+    // $desc = isset($_POST['desc']) ? $_POST['desc'] : '';
+    // $learn = $_POST['learnMore'];
+    // $requirements = $_POST['requirementsMore'];
+    // $tag = $_POST['tag'];
     
-    echo $learn;
-    echo $requirements;
+    
+    $insert_course = mysqli_query($con,"INSERT INTO courses(topicID,subTopicId,courseName,courseCost,courseDesc,learn,summary,requirements,bannerImage,uploadfile,video) VALUES('$topic','$subtopic','$courseName','$price','$desc','$wyl','$summary','$requirements','$imageFileName','$uploadFileName','$videoFileName')");
+    // $insert_query = mysqli_query($con, "INSERT INTO courses(topicID ,subTopicId ,courseName,courseCost,bannerImage,uploadfile,video,courseDesc,learn,summary,requirements) VALUES('$topic','$subtopic','$courseName','$price','$imageFileName','$uploadFileName','$videoFileName','$desc','$wyl','$summary','$requirements')");
 
-
-    $insert_query = mysqli_query($con, "INSERT INTO courses(topicID ,subTopicId ,courseName,courseCost,bannerImage,uploadfile,video,courseDesc,learn,requirements,tag) VALUES('$topic','$subtopic','$courseName','$price','$imageFileName','$uploadFileName','$videoFileName','$desc','$learn','$requirements','$tag')");
-
-    if ($insert_query) {
+    if ($insert_course) {
         header("location: $mainlink" . "manageCourse");
     } else {
         echo "not done";
     }
-}elseif (isset($_POST['subscription_manage'])){
+}
+elseif (isset($_POST['checking_course_btn'])) {
+    $courseId = $_POST['course_id'];
+    $result_array = [];
+
+    // Prepare and execute a query to fetch the blog data by ID
+    $query = "SELECT * FROM `courses` WHERE id = $courseId";
+    $query_run = mysqli_query($con, $query);
+    if(mysqli_num_rows($query_run) > 0)
+    {
+        foreach($query_run as $row)
+        {
+            array_push($result_array, $row);
+            header('Content-type: application/json');
+            echo json_encode($result_array);
+        }
+    }
+    else{
+        echo $return = "<h5>No Record Found</h5>";
+    }
+}
+elseif (isset($_POST['subscription_manage'])){
     $subscription = $_POST['subscription'];
     $type = $_POST['type'];
     $price = $_POST['price'];
@@ -180,7 +253,48 @@ elseif(isset($_POST['subtopic_manage'])){
     } else {
         echo "not done";
     }
-}elseif (isset($_POST['blog_manage'])) {
+}
+elseif (isset($_POST['checking_subscription_btn'])) {
+    $subscriptionId = $_POST['subscription_id'];
+    $result_array = [];
+
+    // Prepare and execute a query to fetch the blog data by ID
+    $query = "SELECT * FROM `subscriptions_1` WHERE id = $subscriptionId";
+    $query_run = mysqli_query($con, $query);
+    if(mysqli_num_rows($query_run) > 0)
+    {
+        foreach($query_run as $row)
+        {
+            array_push($result_array, $row);
+            header('Content-type: application/json');
+            echo json_encode($result_array);
+        }
+    }
+    else{
+        echo $return = "<h5>No Record Found</h5>";
+    }
+}
+elseif(isset($_POST['update_subscription']))
+{
+    $id = $_POST['subscription_id'];
+    $name = $_POST['editname'];
+    $type = $_POST['edittype'];
+    $price = $_POST['editprice'];
+    $duration = $_POST['editduration'];
+    $courseId = $_POST['courseId'];
+
+    $update = "UPDATE subscriptions_1 set subscription='$name', type ='$type', price='$price', duration='$duration', courseName='$courseId' WHERE id='$id'";
+    $query = mysqli_query($con, $update);
+
+    if($query)
+    {
+        header("location: $mainlink" . "manageSubscriptions");
+    }
+    else{
+        echo "not working";
+    }
+}
+elseif (isset($_POST['blog_manage'])) {
     // Process the form data as needed
     $title = $_POST['title'];
     if (isset($_FILES['image'])) {
@@ -191,10 +305,11 @@ elseif(isset($_POST['subtopic_manage'])){
     }
     $writer = $_POST['writer'];
     $desc = $_POST['desc'];
-    $category = $_POST['category'];
+    // $category = $_POST['category'];
+    // $created_on = $_POST['created_on'];
 
     // Insert the blog into the database and get the blog ID
-    $insert_query = mysqli_query($con, "INSERT INTO blogs(blogTitle, bannerImage, writer, description,category) VALUES('$title','$imageFileName','$writer','$desc','$category')");
+    $insert_query = mysqli_query($con, "INSERT INTO blogs(blogTitle, bannerImage, writer, description,createdOn) VALUES('$title','$imageFileName','$writer','$desc',NOW())");
     
     // Get the ID of the newly inserted blog
     $blogId = mysqli_insert_id($con);
@@ -243,6 +358,16 @@ elseif(isset($_POST['update']))
     $writer = $_POST['editWriter'];
     $image = $_POST['editImage'];
     $description = $_POST['editDescription'];
+
+    if(isset($_FILES['editImage']['tmp_name']) && !empty($_FILES['editImage']['tmp_name'])) {
+        // Handle the new image upload
+        $newImage = $_FILES['editImage']['name'];
+        $imagePath = "upload/image/" . $newImage; // Update with your actual image upload path
+        move_uploaded_file($_FILES['editImage']['tmp_name'], $imagePath);
+    } else {
+        // No new image uploaded, keep the old image
+        $imagePath = $_POST['oldImage']; // This should be the path to the old image
+    }
 
     $update = "UPDATE blogs set blogTitle='$title', writer ='$writer', bannerImage='$image', description='$description' WHERE id='$id'";
     $query = mysqli_query($con, $update);
@@ -510,6 +635,7 @@ elseif(isset($_POST['update_cg'])) {
     $id = $_POST['cgId'];
     $title = $_POST['title'];
     $name = $_POST['name'];
+    $image = $_POST['image'];
 
     // Check if a new image has been uploaded
     if(isset($_FILES['image']['tmp_name']) && !empty($_FILES['image']['tmp_name'])) {

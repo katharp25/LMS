@@ -13,21 +13,35 @@ $con = mysqli_connect($host,$username,$password,$db);
 // Fetch CountryList
 
 $fetchCountries = mysqli_query($con, "SELECT * FROM awt_countries");
+// $countryId = [];
+if (isset($_GET['selectedCountryId'])) {
+    $selectedCountryId = $_GET['selectedCountryId'];
 
-$countryId = $_GET['countryId'];
+    $fetchStates = mysqli_query($con, "SELECT * FROM awt_states WHERE country_id = '$selectedCountryId'");
 
-$fetchStates = mysqli_query($con, "SELECT * FROM awt_states WHERE country_id = '$countryId'");
+    $states = array();
 
-// Prepare an array to store the states
-$states = array();
+    while ($row = mysqli_fetch_assoc($fetchStates)) {
+        $states[] = $row;
+    }
 
-// Fetch states and add them to the $states array
-while($row = mysqli_fetch_assoc($fetchStates)) {
-    $states[] = $row;
+    echo json_encode($states);
+    // exit; // Terminate the script after sending JSON response
 }
+// $countryId = $_GET['selectedCountryId'];
 
-// Convert the PHP array to JSON format
-echo json_encode($states);
+// $fetchStates = mysqli_query($con, "SELECT * FROM awt_states WHERE country_id = '$countryId'");
+
+// // Prepare an array to store the states
+// $states = array();
+
+// // Fetch states and add them to the $states array
+// while($row = mysqli_fetch_assoc($fetchStates)) {
+//     $states[] = $row;
+// }
+
+// // Convert the PHP array to JSON format
+// echo json_encode($states);
 
 if (isset($_POST['registerStudent'])) {
     $verificationToken = md5(uniqid(rand(), true));
@@ -90,7 +104,10 @@ if (isset($_POST['registerStudent'])) {
         {
         echo "<script>alert('Data not inserted');</script>";
         }
-        }
+
+       
+        
+    }
     
 
 

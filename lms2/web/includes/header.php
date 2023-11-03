@@ -111,7 +111,11 @@ $mainlink="http://localhost/LMS/lms2/";
                         </li>
 
                         <li class="nav-item dropdown">
+<<<<<<< HEAD
                             <a class="nav-link js-scroll-trigger" href="<?=$mainlink?>web/courselist.php">
+=======
+                            <a class="nav-link js-scroll-trigger" href="<?=$mainlink?>web/courselist">
+>>>>>>> a889a2bde0223490d0922c1016b28f0813992814
                                 Course List
                             </a>
                             <!-- <div class="dropdown-menu" aria-labelledby="navbar3">

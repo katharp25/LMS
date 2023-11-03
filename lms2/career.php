@@ -27,8 +27,8 @@ include('functions/list_grid.php');
                         </div>
                         <div class="form-group">
                             <label for="desc">Description</label>
-                            <textarea class="richtext" name="desc">
-                                        Welcome to Saburi LMS
+                            <textarea class="rte" name="desc">
+                                        
                                     </textarea>
                         </div>
                         <button type="submit" class="btn btn-primary me-2" name="career_manage">Submit</button>
