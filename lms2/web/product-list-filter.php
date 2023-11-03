@@ -302,7 +302,7 @@
         <input type="hidden" name="paged" value="1">
     </form>
 </div>
-                        <ul class="products columns-3">
+<ul class="products columns-3">
     <li class="product">
         <div class="product-wrap">
             <a href="#" class="">

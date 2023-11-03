@@ -9,9 +9,10 @@
             </div>
             <div class="col-lg-6">
                 <div class="subscribe-form">
-                    <form action="#">
-                        <input type="text" class="form-control" placeholder="Email Address">
-                        <a href="#" class="btn btn-main">Subscribe<i class="fa fa-angle-right ml-2"></i> </a>
+                    <form action="../functions/companyReg.php" method="POST">
+                        <input type="email" class="form-control" name="email" placeholder="Email Address">
+						<button type="submit" class="btn btn-main" name="send_email">Send Newsletter<i class="fa fa-angle-right ml-2"></i></button>
+                        <!-- <a href="#" class="btn btn-main" name ="send_email">Subscribe<i class="fa fa-angle-right ml-2"></i> </a> -->
                     </form>
                 </div>
             </div>

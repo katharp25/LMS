@@ -1,5 +1,9 @@
 <?php
 include('config.php');
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
 
 // Admin Login
 
@@ -657,3 +661,108 @@ elseif(isset($_POST['update_cg'])) {
         echo "not working";
     }
 }
+
+elseif (isset($_POST['contact_details'])){
+    
+    $email = $_POST['email'];
+    $phone = $_POST['phone_no'];
+    $address = $_POST['address'];
+    
+    $currentDate = date("Y-m-d H:i:s");
+   
+    $insert_query1 = mysqli_query($con, "INSERT INTO contact_details(email, phone_no, address, created_on) VALUES('$email','$phone','$address','$currentDate')");
+
+    if ($insert_query1) {
+        header("location: $mainlink" . "contactdetails");
+    } else {
+        echo "Error: " . mysqli_error($con);
+    }
+}
+
+
+if (isset($_POST['sending_email'])) {
+    $des = $_POST['descriptions'];
+
+    // Check if a file was uploaded
+    if (isset($_FILES['uploads']) && $_FILES['uploads']['error'] === UPLOAD_ERR_OK) {
+        $upload_dir = "upload/image/"; // Change this to your desired upload directory
+        $upload_file = $upload_dir . basename($_FILES['uploads']['name']);
+
+        if (move_uploaded_file($_FILES['uploads']['tmp_name'], $upload_file)) {
+            // File uploaded successfully, insert into the database
+            $insert_info = mysqli_query($con, "INSERT INTO adminnewsletter (upload, description, created_on) VALUES ('$upload_file', '$des', NOW())");
+
+            if ($insert_info) {
+                // Fetch email addresses from the subscribers table
+                $select_subscribers = mysqli_query($con, "SELECT email FROM newsletter");
+
+                $recipient_emails = array();
+
+                while ($row = mysqli_fetch_assoc($select_subscribers)) {
+                    $recipient_emails[] = $row['email'];
+                }
+
+                // Use PHPMailer to send emails
+                require "../PHPMailer/PHPMailer.php";
+                require "../PHPMailer/SMTP.php";
+                require "../PHPMailer/Exception.php";
+                $mail = new PHPMailer(true);
+
+                $subject = "Your Newsletter Subject";
+                $sender_email = "soumya05ranjan@gmail.com"; // Change to your sender email address
+
+                // Set up SMTP configuration
+                $mail->isSMTP();
+                $mail->Host = 'smtp.gmail.com';
+                $mail->SMTPAuth = true;
+                $mail->Username = 'soumya05ranjan@gmail.com'; // Replace with your Gmail username
+                $mail->Password = 'omxnmogdokgduolo'; // Replace with your Gmail app password
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+                $mail->Port = 587;
+
+                $mail->setFrom($sender_email);
+                $mail->isHTML(true);
+
+                foreach ($recipient_emails as $email) {
+                    $mail->addAddress($email);
+                    $mail->Subject = $subject;
+
+                    $unsubscribe_link = "http://localhost/LMS/lms2/unsubscribe.php?email=" . urlencode($email);
+                    $message = "$des<br><br>";
+                    $message .= "The content of your newsletter goes here.";
+                    $message .= "<br><a href='$unsubscribe_link'>Unsubscribe</a>";
+
+                    $mail->Body = $message;
+
+                    // Attach the uploaded file
+                    $mail->addAttachment($upload_file);
+
+                    try {
+                        $mail->send();
+                    } catch (Exception $e) {
+                        echo 'Message could not be sent.';
+                        echo 'Mailer Error: ' . $mail->ErrorInfo;
+                    }
+
+                    $mail->clearAddresses();
+                    $mail->clearAttachments();
+                }
+
+                // Redirect to the desired page after sending emails
+                header("location: $mainlink" . "managenewsLetter");
+            } else {
+                echo "Error inserting data into the database: " . mysqli_error($con);
+            }
+        } else {
+            echo "Failed to move the uploaded file to the destination directory.";
+        }
+    } else {
+        echo "No file was uploaded or an error occurred during the upload.";
+    }
+}
+?>
+
+
+
+
+
