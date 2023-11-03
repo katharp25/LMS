@@ -106,7 +106,7 @@ include('functions/list_grid.php');
               <div class="modal-body">
                 <!-- Form for editing the blog content -->
                 
-                    <input type ="text" id="careerId" name="careerId">
+                    <input type ="hidden" id="careerId" name="careerId">
                       <div class="form-group">
                         <label for="editTitle">Title</label>
                         <input type="text" class="form-control" id="title" name="title">
@@ -146,7 +146,7 @@ include('functions/list_grid.php');
 
             <div class="modal-body">
 
-                <input type="text" id="delete_id" name="delete_id">
+                <input type="hidden" id="delete_id" name="delete_id">
                 Are you sure you want to delete this record?
             </div>
             <div class="modal-footer">

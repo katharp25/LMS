@@ -80,4 +80,73 @@ if (isset($_POST['registerCompany'])) {
         echo "Failed to insert data.";
     }
 }
+
+elseif (isset($_POST['add'])){
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $subject = $_POST['subject'];
+    $msg = $_POST['message'];
+    $admin_email = $_POST['admin_email'];
+    $currentDate = date("Y-m-d H:i:s");
+   
+    $insert_query1 = mysqli_query($con, "INSERT INTO contact(name, email, subject, message, created_on) VALUES('$name', '$email','$subject','$msg','$currentDate')");
+
+    if ($insert_query1) {
+        // Send an email
+        require("../PHPMailer/PHPMailer.php");
+        require("../PHPMailer/SMTP.php");
+        require("../PHPMailer/Exception.php");
+        $mail =  new PHPMailer(true);
+
+        try {
+               //Server settings
+               $mail->isSMTP();                                            //Send using SMTP
+               $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+               $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+               $mail->Username   = 'soumya05ranjan@gmail.com';                     //SMTP username
+               $mail->Password   = 'omxnmogdokgduolo';                               //SMTP password
+               $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+               $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+               $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            // $admin_mail="anita.glansa@gmail.com";
+            $mail->setFrom('soumya05ranjan@gmail.com', 'Soumya Ranjan'); // Change to your Gmail email and your name
+            $mail->addAddress($admin_email);
+
+            $mail->isHTML(true);
+            $mail->Subject = 'Contacted You';
+            $mail->Body = 'Name: ' . $name . '<br>Email: ' . $email;
+
+            $mail->send();
+            header("location: ../web/contact.php");
+
+            echo "Inserted successfully, and an email has been sent.";
+        } catch (Exception $e) {
+            echo "Inserted successfully, but email sending failed. Error: {$mail->ErrorInfo}";
+        }
+    } else {
+        echo "Failed to insert data.";
+    }
+}
+
+elseif(isset($_POST['send_email']))
+{
+    $email = $_POST['email'];
+    $currentDate = date("Y-m-d H:i:s");
+
+    $insert_query = mysqli_query($con, "INSERT INTO newsletter(email,created_on) VALUES('$email','$currentDate')");
+
+    if($insert_query)
+    {
+        header("location: ../web/contact.php");
+    }
+    else {
+        echo "Failed to insert data.";
+    }
+    
+}
+
+
+// Include your database connection code here
+
 ?>
+

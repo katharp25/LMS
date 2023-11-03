@@ -1,5 +1,18 @@
 <?php
 include("includes/header.php");
+include('../functions/list_grid.php');
+
+if($fetch_user_contact_details_query)
+{
+    while($row=mysqli_fetch_assoc($fetch_user_contact_details_query))
+    {
+        $id = $row['id'];
+        $email=$row['email'];
+        $phone_no=$row['phone_no'];
+        $address=$row['address'];
+       
+    }
+}
 ?>
 
 <div class="search-wrap">
@@ -65,70 +78,90 @@ include("includes/header.php");
                     <div class="col-lg-12 col-md-6">
                         <div class="contact-item">
                             <p>Email Us</p>
-                            <h4>support@email.com</h4>
+                            <h4><?= $email;?></h4>
                         </div>
                     </div>
                     <div class="col-lg-12 col-md-6">
                         <div class="contact-item">
                             <p>Make a Call</p>
-                            <h4>+45 234 345467</h4>
+                            <h4><?= $phone_no;?></h4>
                         </div>
                     </div>
                     <div class="col-lg-12 col-md-6">
                         <div class="contact-item">
                             <p>Corporate Office</p>
-                            <h4>Moon Street Light Avenue, 14/05
-                                Jupiter, JP 80630 </h4>
+                            <h4><?= $address;?></h4>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="col-lg-8">
-                <form class="contact__form form-row " method="POST" action="mail.php" id="contactForm">
+                <section class="mb-4">
                     <div class="row">
-                        <div class="col-12">
-                            <div class="alert alert-success contact__msg" style="display: none" role="alert">
-                                Your message was sent successfully.
-                            </div>
+                        <div class="col-md-9 mb-md-0 mb-5">
+                            <form id="contact-form" action="../functions/companyReg.php" method="POST">
+                                <!--Grid row-->
+                                <div class="row">
+                                    <!--Grid column-->
+                                    <div class="col-md-6">
+                                        <div class="md-form mb-0">
+                                            <input type="text" id="name" name="name" placeholder="Enter Your Name"
+                                                class="form-control">
+                                            <br>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="md-form mb-0">
+                                            <input type="text" id="email" name="email" placeholder="Enter Your Email"
+                                                class="form-control">
+                                                <input type="hidden" id="email" name="admin_email" placeholder="Enter Your Email"
+                                                class="form-control" value="<?= $email;?>">
+                                            <br>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <!--Grid row-->
+
+                                <!--Grid row-->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="md-form mb-0">
+                                            <input type="text" id="subject" name="subject"
+                                                placeholder="Enter Your Subject" class="form-control">
+                                            <br>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-md-12">
+                                        <div class="md-form">
+                                            <textarea type="text" id="message" name="message" rows="2"
+                                                class="form-control md-textarea"
+                                                placeholder="Enter Your Msessage"></textarea>
+                                            <br>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <!--Grid row-->
+
+                                <div class="text-center text-md-left">
+                                    <button class="btn btn-main" type="submit" name="add">Send Message <i
+                                            class="fa fa-angle-right ml-2"></i></button>
+                                </div>
+                            </form>
                         </div>
+                        <!--Grid column-->
+
                     </div>
 
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <input type="text" id="name" name="name" class="form-control" placeholder="Your Name">
-                            </div>
-                        </div>
-
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <input type="text" name="email" id="email" class="form-control"
-                                    placeholder="Email Address">
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="form-group">
-                                <input type="text" name="subject" id="subject" class="form-control"
-                                    placeholder="Subject">
-                            </div>
-                        </div>
-
-                        <div class="col-lg-12">
-                            <div class="form-group">
-                                <textarea id="message" name="message" cols="30" rows="6" class="form-control"
-                                    placeholder="Your Message"></textarea>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-12">
-                        <div class="mt-4 text-right">
-                            <button class="btn btn-main" type="submit">Send Message <i
-                                    class="fa fa-angle-right ml-2"></i></button>
-                        </div>
-                    </div>
-                </form>
+                </section>
             </div>
         </div>
     </div>

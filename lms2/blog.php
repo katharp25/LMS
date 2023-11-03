@@ -5,7 +5,6 @@ include('functions/list_grid.php');
 ?>
 
 <style>
-<<<<<<< HEAD
         .tag-container {
             display: flex;
             flex-wrap: wrap;
@@ -42,40 +41,6 @@ include('functions/list_grid.php');
 
 
     </style>
-=======
-    .tag-container {
-        display: flex;
-        flex-wrap: wrap;
-    }
-
-    .tag {
-        background-color: #0073e6;
-        color: #fff;
-        padding: 5px 10px;
-        margin: 5px;
-        border-radius: 5px;
-        display: flex;
-        align-items: center;
-    }
-
-    .tag-text {
-        margin-right: 5px;
-    }
-
-    .tag-remove {
-        cursor: pointer;
-    }
-
-    ul {
-        background-color: #eee;
-        cursor: pointer;
-    }
-
-    li {
-        padding: 12px;
-    }
-</style>
->>>>>>> 7da0e060b91cc8d9957ee45776de852172d08555
 <!-- Main Content Panel -->
 <div class="content-wrapper">
     <div class="row">
@@ -116,22 +81,8 @@ include('functions/list_grid.php');
                             </div>
                         </div>
 
-<<<<<<< HEAD
                    
                     
-=======
-                        <div class="form-group">
-                            <div class="container">
-                                <label for="desc">Category</label>
-                                <input type="text" id="category" name="category" class="form-control"
-                                    placeholder="Add a tag">
-                                <!-- <div id="catlist"></div>
-                            <div class="tag-container" id="selectedTagsContainer"></div>
-                            <input type="hidden" id="selectedTags" name="selectedTags"> -->
-                            </div>
-                        </div>
-
->>>>>>> 7da0e060b91cc8d9957ee45776de852172d08555
 
                         <button type="submit" class="btn btn-primary me-2" name="blog_manage">Submit</button>
                         <button class="btn btn-light">Cancel</button>
@@ -161,7 +112,6 @@ include('functions/list_grid.php');
                                 $i = 1;
                                 while ($row = mysqli_fetch_assoc($fetch_list_blog_query)) {
                                     $id = $row['id'];
-<<<<<<< HEAD
                                     $title=$row['blogTitle'];
                                     $writer=$row['writer'];
                                     $image=$row['bannerImage'];
@@ -175,38 +125,7 @@ include('functions/list_grid.php');
                                     <td><?= $title; ?></td>
                                     <td><?= $writer; ?></td>
                                     <td><img src="./functions/upload/image/<?= $image; ?>" width="80" height="80"></td>
-                                    <td class="truncate-text"><?= $description; ?></td>
-
-                                   
-                                    <td>
-                                    <button type="button" class="btn btn-primary p-2 edit-button" data-bs-toggle="modal" data-bs-target="#editBlogModal"  data-blog-id="<?= $id ?>">
-                                        edit
-                                    </button>
-=======
-                                    $title = $row['blogTitle'];
-                                    $writer = $row['writer'];
-                                    $image = $row['bannerImage'];
-                                    $description = $row['description'];
-
-                                    ?>
-                                    <tr>
-                                        <td>
-                                            <?= $i; ?>
-                                        </td>
-                                        <td class="blogId" hidden>
-                                            <?= $id; ?>
-                                        <td>
-                                            <?= $title; ?>
-                                        </td>
-                                        <td>
-                                            <?= $writer; ?>
-                                        </td>
-                                        <td><img src="./functions/<?= $image; ?>" width="80" height="80"></td>
-                                        <td>
-                                            <?= $description; ?>
-                                        </td>
->>>>>>> 7da0e060b91cc8d9957ee45776de852172d08555
-
+                                    <td class="truncate-text"><?= $description; ?></td>                          
                                         <td>
                                             <button type="button" class="btn btn-primary p-2 edit-button" data-bs-toggle="modal"
                                                 data-bs-target="#editBlogModal" data-blog-id="<?= $id ?>">
@@ -234,14 +153,13 @@ include('functions/list_grid.php');
 </div> -->
 
 
-<<<<<<< HEAD
 <!-- Modal for editing blog content -->
 <div class="modal fade" id="editBlogModal" tabindex="-1" role="dialog" aria-labelledby="editBlogModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="editBlogModalLabel">Edit Blog</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -263,38 +181,7 @@ include('functions/list_grid.php');
                         <input type="file" class="form-control" onchange="loadFile(event)" id="editImage" name="editImage">
 
                         <input type="hidden" id="oldImage" name="oldImage" width="80" height="80" />
-=======
-        <!-- Modal for editing blog content -->
-        <div class="modal fade" id="editBlogModal" tabindex="-1" role="dialog" aria-labelledby="editBlogModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="editBlogModalLabel">Edit Blog</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
->>>>>>> 7da0e060b91cc8d9957ee45776de852172d08555
-                    </div>
-                    <form method="POST" action="./functions/functions.php">
-                        <div class="modal-body">
-                            <!-- Form for editing the blog content -->
-
-                            <input type="hidden" id="blog_id" name="blog_id">
-                            <div class="form-group">
-                                <label for="editTitle">Title</label>
-                                <input type="text" class="form-control" id="editTitle" name="editTitle">
-                            </div>
-                            <div class="form-group">
-                                <label for="editWriter">Writer</label>
-                                <input type="text" class="form-control" id="editWriter" name="editWriter">
-                            </div>
-                            <div class="form-group">
-                                <label for="editImage">Image</label>
-                                <input type="file" class="form-control-file" id="editImage" name="editImage"
-                                    accept="image/*">
-                                <input type="hidden" id="oldImage" name="oldImage" width="80" height="80" />
-                            </div>
+                        </div>
 
                             <div class="form-group">
                                 <label for="editTitle">Existing Image</label><br>
@@ -302,46 +189,34 @@ include('functions/list_grid.php');
                                 <img src="" id="output" name="output" width="80" height="80" />
                             </div>
 
-<<<<<<< HEAD
                     <div class="form-group">
                         <label for="editDescription">Description</label>
-                        <textarea class="form-control richtext" id="editDescription" name="editDescription"></textarea>
-=======
-                            <div class="form-group">
-                                <label for="editDescription">Description</label>
-                                <textarea class="form-control" id="editDescription" name="editDescription"></textarea>
-                            </div>
-                            <!-- Additional fields for tags, if needed -->
-                            <!-- Add hidden input fields for blog ID or other necessary data -->
-
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary" id="saveChanges" name="update">Save
-                                Changes</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal for delete confirmation -->
-        <div class="modal fade" id="deleteBlogModal" tabindex="-1" role="dialog"
-            aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="deleteConfirmationModalLabel">Confirm Deletion</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
->>>>>>> 7da0e060b91cc8d9957ee45776de852172d08555
+                        <textarea class="form-control" id="editDescription" name="editDescription"></textarea>
                     </div>
-                    <form action="delete_blog.php" method="POST">
 
+                    </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" id="saveChanges" name="update">Save Changes</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="deleteBlogModal" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteConfirmationModalLabel">Confirm Deletion</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+                    <form action="delete_blog.php" method="POST">
                         <div class="modal-body">
 
-                            <input type="text" id="delete_id" name="delete_id">
+                            <input type="hidden" id="delete_id" name="delete_id">
                             Are you sure you want to delete this record?
                         </div>
                         <div class="modal-footer">
@@ -434,46 +309,19 @@ include('functions/list_grid.php');
                             $.each(response, function (key, value) {
                                 $('#editTitle').val(value['blogTitle']);
                                 $('#editWriter').val(value['writer']);
-                                $('#output').attr('src', './functions/' + value['bannerImage']);
+                                $('#output').attr('src', './functions/upload/image/' + value['bannerImage']);
                                 // You can handle image display or updating as needed
                                 $('#editDescription').val(value['description']);
                                 $('#blog_id').val(value['id']);
-
-
-<<<<<<< HEAD
-$(document).ready(function() {
-    $('.edit-button').on('click', function() {
-        var blogId = $(this).closest('tr').find('.blogId').text();
-        // console.log(blogId);
-        $.ajax({
-        type: 'POST',
-        url: './functions/functions.php', // Replace with the URL of your server-side script
-        data: { 
-            'checking_edit_btn' : true,
-             'blog_id': blogId, },
-        // dataType: 'json',
-        success: function(response) {
-            console.log(response);
-            $.each(response, function (key, value)
-            {
-                $('#editTitle').val(value['blogTitle']);
-                $('#editWriter').val(value['writer']);
-                $('#output').attr('src', './functions/upload/image/' + value['bannerImage']); 
-                // You can handle image display or updating as needed
-                $('#editDescription').val(value['description']);
-                $('#blog_id').val(value['id']); 
-            
-            
-                $('#editBlogModal').modal('show'); 
-=======
-                                $('#editBlogModal').modal('show');
                             });
-
                         }
+                            });
+                        });
                     });
-                });
->>>>>>> 7da0e060b91cc8d9957ee45776de852172d08555
-            });
+
+
+
+
         </script>
         <script>
 
@@ -482,7 +330,6 @@ $(document).ready(function() {
                     e.preventDefault();
                     var blogId = $(this).closest('tr').find('.blogId').text();
 
-<<<<<<< HEAD
         console.log(blogId);
         $('#delete_id').val(blogId);
         $('#deleteBlogModal').modal('show'); 
@@ -510,15 +357,6 @@ var loadFile = function(event) {
 
 </script>
 <!-- Main Content ends -->
-=======
-                    console.log(blogId);
-                    $('#delete_id').val(blogId);
-                    $('#deleteBlogModal').modal('show');
-
-                });
-            });
-        </script>
->>>>>>> 7da0e060b91cc8d9957ee45776de852172d08555
 
         <!-- Main Content ends -->
 
