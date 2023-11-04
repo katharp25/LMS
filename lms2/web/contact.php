@@ -71,7 +71,6 @@ if($fetch_user_contact_details_query)
                 </div>
             </div>
         </div>
-
         <div class="row justify-content-center">
             <div class="col-lg-4">
                 <div class="row">
@@ -97,72 +96,57 @@ if($fetch_user_contact_details_query)
             </div>
 
             <div class="col-lg-8">
-                <section class="mb-4">
-                    <div class="row">
-                        <div class="col-md-9 mb-md-0 mb-5">
-                            <form id="contact-form" action="../functions/companyReg.php" method="POST">
-                                <!--Grid row-->
-                                <div class="row">
-                                    <!--Grid column-->
-                                    <div class="col-md-6">
-                                        <div class="md-form mb-0">
-                                            <input type="text" id="name" name="name" placeholder="Enter Your Name"
-                                                class="form-control">
-                                            <br>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div class="md-form mb-0">
-                                            <input type="text" id="email" name="email" placeholder="Enter Your Email"
-                                                class="form-control">
-                                                <input type="hidden" id="email" name="admin_email" placeholder="Enter Your Email"
-                                                class="form-control" value="<?= $email;?>">
-                                            <br>
-                                        </div>
-                                    </div>
-
-
-                                </div>
-                                <!--Grid row-->
-
-                                <!--Grid row-->
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="md-form mb-0">
-                                            <input type="text" id="subject" name="subject"
-                                                placeholder="Enter Your Subject" class="form-control">
-                                            <br>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-
-                                    <div class="col-md-12">
-                                        <div class="md-form">
-                                            <textarea type="text" id="message" name="message" rows="2"
-                                                class="form-control md-textarea"
-                                                placeholder="Enter Your Msessage"></textarea>
-                                            <br>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <!--Grid row-->
-
-                                <div class="text-center text-md-left">
-                                    <button class="btn btn-main" type="submit" name="add">Send Message <i
-                                            class="fa fa-angle-right ml-2"></i></button>
-                                </div>
-                            </form>
+                <form class="contact__form form-row " action="../functions/companyReg.php" method="POST"
+                    id="contactForm">
+                    <!-- <div class="row">
+                        <div class="col-12">
+                            <div class="alert alert-success " style="display: none" role="alert">
+                                Your message was sent successfully.
+                            </div>
                         </div>
-                        <!--Grid column-->
+                    </div> -->
 
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <input type="text" id="name" name="name" class="form-control" placeholder="Your Name">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <input type="text" name="email" id="email" class="form-control"
+                                    placeholder="Email Address">
+                                <input type="hidden" id="email" name="admin_email" placeholder="Enter Your Email"
+                                    class="form-control" value="<?= $email;?>">
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <input type="text" name="subject" id="subject" class="form-control"
+                                    placeholder="Subject">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <textarea id="message" name="message" cols="30" rows="6" class="form-control"
+                                    placeholder="Your Message"></textarea>
+                            </div>
+                        </div>
                     </div>
 
-                </section>
+                    <div class="col-lg-12">
+                        <div class="mt-4 text-right">
+                            <button class="btn btn-main" type="submit" name="add">Send Message <i
+                                    class="fa fa-angle-right ml-2"></i></button>
+                        </div>
+                    </div>
+                </form>
             </div>
+        </div>
+        <div class="row justify-content-center">
+
         </div>
     </div>
 </section>

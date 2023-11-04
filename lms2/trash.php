@@ -588,3 +588,5 @@ include('includes/sidebar.php');
 include('includes/footer.php');
 
 ?>
+
+Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cumque deserunt ullam quo hic odio voluptate doloremque beatae voluptatibus possimus officiis adipisci nisi vel magni, in incidunt quidem quam accusantium repellat.
