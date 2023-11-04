@@ -11,6 +11,11 @@ $con = mysqli_connect($host,$username,$password,$db);
 // fetching list of Users to users module
 
 $fetch_list_query=mysqli_query($con,"SELECT * FROM users");
+$fetch_user_contact_query=mysqli_query($con,"SELECT * FROM contact");
+$fetch_user_contact_details_query=mysqli_query($con,"SELECT * FROM contact_details");
+
+$fetch_user_newsletter_query=mysqli_query($con,"SELECT * FROM newsletter");
+
 $fetch_list_topic_query=mysqli_query($con,"SELECT * FROM topics");
 $fetch_list_subtopic_query=mysqli_query($con,"SELECT * FROM subtopics");
 $fetch_list_join_topics_subtopic_query=mysqli_query($con,"SELECT topics.topicName,subtopics.subTopicName FROM subtopics INNER JOIN topics ON topics.Id = subtopics.topicId;");

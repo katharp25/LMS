@@ -59,6 +59,7 @@
                                         href="<?=$mainlink?>manageSubscriptions">Subscriptions</a></li>
                                 <li class="nav-item"><a class="nav-link" href="<?=$mainlink?>manageStudentSubscription">Student
                                         Subscriptions</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="<?=$mainlink?>managenewsLetter">Newsletter</a></li>
                                 <li class="nav-item"><a class="nav-link" href="<?=$mainlink?>manageBulkRegistration">Bulk
                                         registrations</a></li>
                                 <li class="nav-item"><a class="nav-link"
@@ -89,6 +90,8 @@
                                         List</a></li>
                                 <li class="nav-item"> <a class="nav-link" href="<?= $mainlink;?>studentsListReport">Students
                                         List</a></li>
+                                        <li class="nav-item"> <a class="nav-link" href="<?= $mainlink;?>newsLetter">Newsletter</a></li>
+                                        <li class="nav-item"> <a class="nav-link" href="<?= $mainlink;?>userContactList">User Contact List</a></li>
                             </ul>
                         </div>
                     </li>

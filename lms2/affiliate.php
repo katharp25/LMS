@@ -130,7 +130,7 @@ include('functions/list_grid.php');
               <div class="modal-body">
                 <!-- Form for editing the blog content -->
                 
-                    <input type ="text" id="affiliateId" name="affiliateId">
+                    <input type ="hidden" id="affiliateId" name="affiliateId">
                       <div class="form-group">
                         <label for="editTitle">Company Name</label>
                         <input type="text" class="form-control" id="company_name" name="company_name">

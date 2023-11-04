@@ -10,7 +10,7 @@ include('includes/sidebar.php');
                 <div class="card-body">
                     <h4 class="card-title">Manage Bulk Registration</h4>
                     <div class="table-responsive">
-                        <table id="example" class="table table-striped table-bordered" style="width:100%">
+                        <table id="example2" class="table table-striped table-bordered" style="width:100%">
                             <thead>
                                 <tr>
                                     <th>S.no</th>
@@ -24,8 +24,7 @@ include('includes/sidebar.php');
                                     <th>State</th>
                                     <th>Pincode</th>
                                     <th>Id Proof</th>
-                                    <th>Id Proof Details</th>
-                                    
+                                    <th>Id Proof Details</th>     
                                 </tr>
                             </thead>
                             <tbody>
