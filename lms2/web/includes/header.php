@@ -1,6 +1,6 @@
-<?php 
+<?php
 // include("../functions/config.php");
-$mainlink="http://localhost/LMS/lms2/";
+$mainlink = "http://localhost/LMS/lms2/";
 // $mainlink="http://localhost:8080/LMS/lms2/";
 
 ?>
@@ -75,7 +75,7 @@ $mainlink="http://localhost/LMS/lms2/";
                                 </ul>
                             </div>
                             <div class="header-btn">
-                                <a href="<?= $mainlink?>web/log_reg.php" class="btn btn-main btn-small"><i
+                                <a href="<?= $mainlink ?>web/log_reg.php" class="btn btn-main btn-small"><i
                                         class="fa fa-user mr-2"></i>Login / Register</a>
                             </div>
                         </div>
@@ -100,17 +100,16 @@ $mainlink="http://localhost/LMS/lms2/";
                         <span class="fa fa-bars"></span>
                     </button>
 
-<<<<<<< HEAD
                     <!-- Collapse -->
                     <div class="collapse navbar-collapse" id="navbarMenu">
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item dropdown">
-                                <a class="nav-link js-scroll-trigger" href="<?=$mainlink?>web">
+                                <a class="nav-link js-scroll-trigger" href="<?= $mainlink ?>web">
                                     Home
                                 </a>
                             </li>
                             <!-- <li class="nav-item ">
-                                <a href="<?=$mainlink?>web/about" class="nav-link js-scroll-trigger">
+                                <a href="<?= $mainlink ?>web/about" class="nav-link js-scroll-trigger">
                                     Company
                                 </a>
                             </li> -->
@@ -119,33 +118,36 @@ $mainlink="http://localhost/LMS/lms2/";
                                     Company
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbar3">
-                                    <a class="dropdown-item " href="<?=$mainlink?>web/about">
+                                    <a class="dropdown-item " href="<?= $mainlink ?>web/about">
                                         About
                                     </a>
                                     <a class="dropdown-item " href="#">
                                         Governance
                                     </a>
-=======
-                        <li class="nav-item dropdown">
-                            <a class="nav-link js-scroll-trigger" href="<?=$mainlink?>web/courselist">
-                                Course List
-                            </a>
-                            <!-- <div class="dropdown-menu" aria-labelledby="navbar3">
+                                    <a class="dropdown-item " href="<?= $mainlink ?>web/career">
+                                        Career
+                                    </a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link js-scroll-trigger" href="<?= $mainlink ?>web/courselist">
+                                    Course List
+                                </a>
+                                <!-- <div class="dropdown-menu" aria-labelledby="navbar3">
                                 <a class="dropdown-item " href="course-grid.html">
                                    Course Style 1
                                </a>
                                <a class="dropdown-item " href="course-grid-2.html">
                                    Course Style 2
                                </a> 
->>>>>>> 970036399f6f1e324f7c60ba786e3a8f6b537b37
+=======
+>>>>>>> 686bb6621cfa3c42cb5e28b468a3f54a98b309c4
 
-                                    <a class="dropdown-item " href="<?=$mainlink?>web/career">
+                                    <a class="dropdown-item " href="<?= $mainlink ?>web/career">
                                         Careers
                                     </a>
                                 </div>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link js-scroll-trigger" href="<?=$mainlink?>web/blogs">
+                                <a class="nav-link js-scroll-trigger" href="<?= $mainlink ?>web/blogs">
                                     Blogs
                                 </a>
                             </li>
@@ -155,13 +157,13 @@ $mainlink="http://localhost/LMS/lms2/";
                                 </a>
                             </li>
 
-                            <!-- <li class="nav-item ">
+                             <li class="nav-item ">
                                 <a href="contact.html" class="nav-link">
                                     Affiliated
                                 </a>
                             </li> -->
                             <li class="nav-item ">
-                                <a href="<?= $mainlink?>web/contact" class="nav-link">
+                                <a href="<?= $mainlink ?>web/contact" class="nav-link">
                                     Contact Us
                                 </a>
                             </li>
