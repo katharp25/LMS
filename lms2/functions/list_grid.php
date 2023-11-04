@@ -1,9 +1,9 @@
-$password="";
+<!-- $password=""; -->
 <?php
 $host="localhost";
 $db="saburi_lms_2023";
 $username="root";
-
+$password = "";
 $con = mysqli_connect($host,$username,$password,$db);
 
 // include "database_functions.php";
@@ -42,7 +42,7 @@ JOIN
 courses ON subtopics.Id = courses.subTopicId ORDER By courses.id DESC");
 
 
-$fetch_list_Contect=mysqli_query($con,"SELECT * FROM ");
+// $fetch_list_Contect=mysqli_query($con,"SELECT * FROM ");
 
 
 
