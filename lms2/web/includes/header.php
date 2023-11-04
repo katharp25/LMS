@@ -100,7 +100,6 @@ $mainlink="http://localhost/LMS/lms2/";
                         <span class="fa fa-bars"></span>
                     </button>
 
-<<<<<<< HEAD
                     <!-- Collapse -->
                     <div class="collapse navbar-collapse" id="navbarMenu">
                         <ul class="navbar-nav ml-auto">
@@ -125,23 +124,6 @@ $mainlink="http://localhost/LMS/lms2/";
                                     <a class="dropdown-item " href="#">
                                         Governance
                                     </a>
-=======
-                        <li class="nav-item dropdown">
-<<<<<<< HEAD
-                            <a class="nav-link js-scroll-trigger" href="<?=$mainlink?>web/courselist.php">
-=======
-                            <a class="nav-link js-scroll-trigger" href="<?=$mainlink?>web/courselist">
->>>>>>> a889a2bde0223490d0922c1016b28f0813992814
-                                Course List
-                            </a>
-                            <!-- <div class="dropdown-menu" aria-labelledby="navbar3">
-                                <a class="dropdown-item " href="course-grid.html">
-                                   Course Style 1
-                               </a>
-                               <a class="dropdown-item " href="course-grid-2.html">
-                                   Course Style 2
-                               </a> 
->>>>>>> 970036399f6f1e324f7c60ba786e3a8f6b537b37
 
                                     <a class="dropdown-item " href="<?=$mainlink?>web/career">
                                         Careers
