@@ -78,18 +78,20 @@ include("includes/header.php");
                         <a class="btn" href="#">Apply</a>
                     </div>
                     <!-- <blockquote> -->
-                        <div class="bg-success p-4 rounded">
-                            <h3 class="mt-4 text-white">Requirements:</h3>
-                            <p class="text-white">▶ At least 2 years of experience building mobile apps using React
-                                Native
-                            </p>
-                            <p class="text-white">▶ Experience using designs (PSD, Sketch etc) and converting them to
-                                React
-                                Native or CSS components</p>
-                            <p class="text-white">▶ XCode and Android Studio experience is a must</p>
-                            <p class="text-white">▶ Android (Java) and iOS (Swift) background preferred</p>
-                            <p class="text-white">▶ Intermediate to advanced level CSS</p>
+                    <div class="bg-success p-4 rounded">
+                        <h3 class="mt-4 text-white">Requirements:</h3>
+                        <p class="text-white">▶ At least 2 years of experience building mobile apps using React
+                            Native
+                        </p>
+                        <p class="text-white">▶ Experience using designs (PSD, Sketch etc) and converting them to React
+                            Native or CSS components</p>
+                        <p class="text-white">▶ XCode and Android Studio experience is a must</p>
+                        <p class="text-white">▶ Android (Java) and iOS (Swift) background preferred</p>
+                        <p class="text-white">▶ Intermediate to advanced level CSS</p>
+                        <div class="single-tags">
+                            <a class="btn text-white m-0" href="#">Apply</a>
                         </div>
+                    </div>
                     <!-- </blockquote> -->
 
                 </div>
@@ -97,21 +99,19 @@ include("includes/header.php");
             </div>
 
             <div class="col-md-4">
-                <div class="blog-sidebar mt-5 mt-lg-0 mt-md-0">
+                <div class="blog-sidebar mt-5 mt-lg-0 mt-md-0" style="position: sticky; top: 0;">
 
 
                     <div class="widget widget_news">
                         <h4 class="widget-title">Latest Job Posts</h4>
                         <ul class="recent-posts">
-                            <li>
-                                <div class="widget-post-thumb">
-                                    <a href="#"><img src="assets/images/blog/post-thumb-2.jpg" alt=""
-                                            class="img-fluid"></a>
-                                </div>
-                                <div class="widget-post-body">
-                                    <span>Latest Job Posts 1</span>
-                                    <h6> <a href="#">Organic Food in your door</a></h6>
-                                </div>
+                            <div class="widget-post-thumb">
+                                <a href="#"><img src="assets/images/blog/post-thumb-2.jpg" alt="" class="img-fluid"></a>
+                            </div>
+                            <div class="widget-post-body">
+                                <span>Latest Job Posts 1</span>
+                                <h6> <a href="#">Organic Food in your door</a></h6>
+                            </div>
                             </li>
                             <li>
                                 <div class="widget-post-thumb">

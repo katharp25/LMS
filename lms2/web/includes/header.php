@@ -121,7 +121,7 @@ $mainlink = "http://localhost/LMS/lms2/";
                                     <a class="dropdown-item " href="<?= $mainlink ?>web/about">
                                         About
                                     </a>
-                                    <a class="dropdown-item " href="#">
+                                    <a class="dropdown-item " href="<?= $mainlink ?>web/corporateGovernance">
                                         Governance
                                     </a>
                                     <a class="dropdown-item " href="<?= $mainlink ?>web/career">
@@ -132,12 +132,12 @@ $mainlink = "http://localhost/LMS/lms2/";
                                     Course List
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbar3">
-                                    <a class="dropdown-item " href="course-grid.html">
-                                        Course Style 1
-                                    </a>
-                                    <a class="dropdown-item " href="course-grid-2.html">
-                                        Course Style 2
-                                    </a>
+                                <a class="dropdown-item " href="course-grid.html">
+                                   Course Style 1
+                               </a>
+                               <a class="dropdown-item " href="course-grid-2.html">
+                                   Course Style 2
+                               </a> 
 
                                     <a class="dropdown-item " href="<?= $mainlink ?>web/career">
                                         Careers
@@ -155,7 +155,7 @@ $mainlink = "http://localhost/LMS/lms2/";
                                 </a>
                             </li>
 
-                            <li class="nav-item ">
+                             <li class="nav-item ">
                                 <a href="contact.html" class="nav-link">
                                     Affiliated
                                 </a>
