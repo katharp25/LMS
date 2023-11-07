@@ -38,6 +38,7 @@ $mainlink="http://localhost/LMS/lms2/";
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/responsive.css">
   <!-- <script src="./js/jquery-3.6.0.min.js"></script> -->
+  <img src="../../images/profilepic.png" alt="">
 
 </head>
 
@@ -111,11 +112,7 @@ $mainlink="http://localhost/LMS/lms2/";
                         </li>
 
                         <li class="nav-item dropdown">
-<<<<<<< HEAD
-                            <a class="nav-link js-scroll-trigger" href="<?=$mainlink?>web/courselist.php">
-=======
                             <a class="nav-link js-scroll-trigger" href="<?=$mainlink?>web/courselist">
->>>>>>> a889a2bde0223490d0922c1016b28f0813992814
                                 Course List
                             </a>
                             <!-- <div class="dropdown-menu" aria-labelledby="navbar3">
@@ -176,11 +173,40 @@ $mainlink="http://localhost/LMS/lms2/";
                         
                     </ul>
 
-                    <ul class="header-contact-right d-none d-lg-block">
+                    <!-- <ul class="header-contact-right d-none d-lg-block">
                         <li> <a href="#" class="header-cart"><i class="fa fa-shopping-cart"></i></a></li>
                         <li><a href="#" class="header-search search_toggle"> <i class="fa fa fa-search"></i></a></li>
+                    </ul> -->
+                    <ul>
+                    <li class="nav-item dropdown d-none d-lg-block user-dropdown">
+                        <a class="nav-link" id="UserDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img class="img-xs rounded-circle" ssrc="assets/images/profilepic.png" height="50px" width="50px" alt="Profile image"> </a>
+                            <!-- <img src="assets/images/saburi.png" alt="Edutim" class="img-fluid w-50" > -->
+
+                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
+                            <div class="dropdown-header text-center">
+                            <!-- <img src="assets/images/saburi.png" alt="Edutim" class="img-fluid w-50" height="50px" width="50px"> -->
+                                <img class="img-md rounded-circle" src="assets/images/profilepic.png" height="50px" width="50px" alt="Profile image">
+                                <p class="mb-1 mt-3 font-weight-semibold">Allen Moreno</p>
+                                <p class="fw-light text-muted mb-0">allenmoreno@gmail.com</p>
+                            </div>
+                            <a class="dropdown-item" href="<?= $mainlink?>web/profile.php"><i
+                                    class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i> My Profile
+                                <!-- <span class="badge badge-pill badge-danger">1</span></a> -->
+                            <a class="dropdown-item"><i
+                                    class="dropdown-item-icon mdi mdi-message-text-outline text-primary me-2"></i>
+                                My Orders</a>
+                            <a class="dropdown-item"><i
+                                    class="dropdown-item-icon mdi mdi-calendar-check-outline text-primary me-2"></i>
+                               My Active Courses</a>
+                            <a class="dropdown-item" href="<?= $mainlink ?>changePassword"><i
+                                    class="dropdown-item-icon mdi mdi-help-circle-outline text-primary me-2"></i>
+                                Change Password</a>
+                            <a class="dropdown-item" href="<?= $mainlink ?>"><i
+                                    class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Sign Out</a>
+                        </div>
+                    </li>
                     </ul>
-                   
                 </div> <!-- / .navbar-collapse -->
             </div> <!-- / .container -->
         </nav>

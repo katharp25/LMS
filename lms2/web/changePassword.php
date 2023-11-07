@@ -1,6 +1,6 @@
-<?php 
-include('config/config.php') 
-
+<?php
+include("includes/header.php");
+include("../functions/list_grid.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,36 +29,38 @@ include('config/config.php')
 </head>
 
 <body>
+  <form name="changePassword" action="../../lms2/functions/functions.php">
   <div class="container-scroller">
     <div class="container-fluid page-body-wrapper full-page-wrapper">
       <div class="content-wrapper d-flex align-items-center auth px-0">
-        <div class="row w-100 mx-0">
+      <div class="row w-100 mx-0">
           <div class="col-lg-4 mx-auto">
             <div class="auth-form-light text-left py-5 px-4 px-sm-5">
               <div class="brand-logo">
-                <img src="images/saburi.png" alt="logo">
+                <img src="../images/saburi.png" alt="logo" width="100px">
               </div>
               <h2>Change Password</h2>
               <!-- <h6 class="fw-light">Enter your email and we'll send you a reset your password</h6> -->
               <form class="pt-3">
                 <div class="form-group">
                   <label>Old Password</label>
-                  <input type="email" name="oldPassword" id="oldPassword" class="form-control form-control-lg" placeholder="Enter your old Password">
+                  <input type="password" name="oldPassword" id="oldPassword" class="form-control form-control-lg" placeholder="Enter your old Password">
                 </div>
                 <div class="form-group">
                   <label>New Password</label>
-                  <input type="email" name="newPassword" class="form-control form-control-lg" placeholder="Enter your New Password">
+                  <input type="password" name="newPassword" id="newPassword" class="form-control form-control-lg" placeholder="Enter your New Password">
                 </div>
                 <div class="form-group">
                   <label>Confirm Password</label>
-                  <input type="email" name="confirmPassword" class="form-control form-control-lg" placeholder="Enter your Confirm Password">
+                  <input type="password" name="confirmPassword" id="confirmPassword" class="form-control form-control-lg" placeholder="Enter your Confirm Password">
                 </div>
                 <!-- <div class="form-group">
                   <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password">
                 </div> -->
                 <div class="mt-3">
-                  <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" 
-                  href="<?= $mainlink;?>login">Submit</a>
+                  <!-- <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" 
+                  href="<?= $mainlink;?>login" name="update_password">Submit</a> -->
+                  <button name="update_password"> Update </button>
                 </div>
                 <!-- <div class="my-2 d-flex justify-content-between align-items-center">
                   <div class="form-check">
@@ -86,6 +88,7 @@ include('config/config.php')
     </div>
     <!-- page-body-wrapper ends -->
   </div>
+  </form>
   <!-- container-scroller -->
   <!-- plugins:js -->
   <script src="vendors/js/vendor.bundle.base.js"></script>

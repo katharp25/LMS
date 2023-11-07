@@ -75,6 +75,44 @@ elseif (isset($_POST['checking_user_btn'])) {
     }
 }
 
+elseif(isset($_POST['update_student_register']))
+{
+    // Assuming 'id' is a hidden input in the form to identify the student
+    $id = $_POST['id']; 
+    $fullName = $_POST['fullName'];
+    $DOB = $_POST['DOB'];
+    $address = $_POST['address'];
+    $state = $_POST['state'];
+    $pincode = $_POST['pincode'];
+    $gender = $_POST['gender'];
+    $phoneNumber = $_POST['phoneNumber'];
+    $email = $_POST['email'];
+    $idProof = $_POST['idProof'];
+    $idProofDetails = $_POST['idProofDetails'];
+    
+    // Update query
+    $update_query = "UPDATE students SET 
+                    name = '$fullName',
+                    DOB = '$DOB',
+                    address = '$address',
+                    state = '$state',
+                    pincode = '$pincode',
+                    gender = '$gender',
+                    phoneNumber = '$phoneNumber',
+                    email = '$email',
+                    idProof = '$idProof',
+                    idProofDetails = '$idProofDetails'
+                    WHERE id = $id";
+    $query = mysqli_query($con, $update_query);
+
+    if($query)
+    {
+        header("location: $mainlink" . "web/profile.php");
+    }
+    else{
+        echo "not working";
+    }
+}
 elseif(isset($_POST['update_user']))
 {
     $id = $_POST['user_id'];
@@ -94,6 +132,39 @@ elseif(isset($_POST['update_user']))
         echo "not working";
     }
 }
+// elseif(isset($_POST['update_password']))
+// {
+
+//     $oldPassword = $_POST['oldPassword'];
+//     $newPassword = $_POST['newPassword'];
+//     $confirmPassword = $_POST['confirmPassword'];
+//     // loggedInUserId = $_SESSION[''];
+//     $query = "SELECT password FROM users WHERE id = 12";
+//     $result = mysqli_query($con, $query);
+//     $user = mysqli_fetch_assoc($result);
+
+//     if (password_verify($oldPassword, $user['password']) && $newPassword === $confirmPassword){
+
+//         $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+//         // $updateQuery = "UPDATE users SET password = '$hashedPassword' WHERE id = $loggedInUserId";
+//         $updateQuery = "UPDATE users SET password = '$hashedPassword' WHERE id = 12";
+
+//         $query = mysqli_query($con, $update_topic);
+
+//     if($query)
+//     {
+//         header("location: $mainlink" . "dashboard");
+//     }
+//     else{
+//         echo "not working";
+//     }
+//     }else {
+//         echo "Old password is incorrect or new passwords do not match!";
+//     }
+
+//     // $update_topic = "UPDATE users set Name = '$name',Email = '$email',Phone = '$phone',Address = '$address' WHERE id='$id'";
+    
+// }
 elseif(isset($_POST['topic_manage'])){
     $topic = $_POST['topic'];
     $currentDate = date("Y-m-d H:i:s"); 
@@ -144,7 +215,6 @@ elseif(isset($_POST['update_topic']))
         echo "not working";
     }
 }
-
 elseif(isset($_POST['subtopic_manage'])){
     $topic = $_POST['topic'];
     $subtopic = $_POST['subtopic'];
