@@ -1,4 +1,3 @@
-
 <?php
 $host="localhost";
 $db="saburi_lms_2023";
@@ -45,7 +44,7 @@ JOIN
 courses ON subtopics.Id = courses.subTopicId ORDER By courses.id DESC");
 
 
-$fetch_list_Contect=mysqli_query($con,"SELECT * FROM ");
+// $fetch_list_Contect=mysqli_query($con,"SELECT * FROM ");
 
 
 
