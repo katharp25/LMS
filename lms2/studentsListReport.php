@@ -1,6 +1,7 @@
 <?php
 include('includes/header.php');
 include('includes/sidebar.php');
+include('functions/list_grid.php');
 ?>
 
 <div class="content-wrapper">
@@ -15,33 +16,68 @@ include('includes/sidebar.php');
                                 <tr>
                                     <th>S.no</th>
                                     <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Phone no</th>
-                                    <th>Gender</th>
                                     <th>Date Of Birth</th>
-                                    <th>Aadhar</th>
-                                    <th>Course Type</th>
-                                    <th>Course Name</th>
-                                    <th>State</th>
+                                    <th>Address</th>
                                     <th>District</th>
-                                    <th>Institue Name</th>
+                                    <th>State</th>
+                                    <th>Pincode</th>
+                                    <th>Gender</th>
+                                    <th>Phone no</th>
+                                    <th>Email</th>
+                                    <th>Id Proof</th>
+                                    <th>ID Proof Details</th>
+
                                 </tr>
                             </thead>
-                            <tbody>
+                            <?php
+                            if($fetch_list_student_query)
+                            {
+                                $i = 1;
+                                while($row=mysqli_fetch_assoc($fetch_list_student_query))
+                                {
+                                    $id = $row['id'];
+                                    $name=$row['name'];
+                                    $dob = $row['DOB'];
+                                    $address = $row['address'];
+                                    $dist = $row['district'];
+                                    $state = $row['state'];
+                                    $pincode = $row['pincode'];
+                                    $gender = $row['gender'];
+                                    $user_phone = $row['PhoneNumber'];
+                                    $email = $row['email'];
+                                    $idProof = $row['idProof'];
+                                    $idProofDetails = $row['idProofDetails'];
+                                    ?>
                                 <tr>
-                                    <td>1</td>
-                                    <td>XYZ</td>
-                                    <td>xyz@gmail.com</td>
-                                    <td>9918277764</td>
-                                    <td>female</td>
-                                    <td>23-05-1997</td>
-                                    <td>xyz</td>
-                                    <td>xyz</td>
-                                    <td>xyz</td>
-                                    <td>UP</td>
-                                    <td>Varanasi</td>
-                                    <td>xyz</td>
+                                    <td><?= $i;?></td>
+                                    <td class="edit_id" hidden><?= $id; ?>
+                                    <td><?= $name; ?></td>
+                                    <td><?= $dob; ?></td>
+                                    <td><?= $dist; ?></td>
+                                    <td><?= $state; ?></td>
+                                    <td><?= $pincode; ?></td>
+                                    <td><?= $gender; ?></td>
+                                    <td><?= $user_phone; ?></td>
+                                    <td><?= $email; ?></td>
+                                    <td><?= $idProof; ?></td>
+                                    <td><?= $idProofDetails; ?></td>
+                                    <td>
+                                        <button type="submit" class="btn btn-primary me-2 p-2 edit-button"  data-bs-toggle="modal" data-bs-target="#editmodal"
+                                        data-id="<?= $id; ?>">Edit</button>
+                                        <button type="submit" class="btn btn-danger p-2 delete-button" data-bs-toggle="modal" data-bs-target="#deleteModal"  data-id="<?= $id; ?>">Delete</button>
+
+                                    </td>
                                 </tr>
+
+
+                                <?php
+                            $i++;
+                                }
+                                
+                            }else {
+                                echo "Query failed!";
+                            }
+                            ?>
                             </tbody>
                         </table>
                     </div>

@@ -1,8 +1,21 @@
+
 <?php 
-// include("../functions/config.php");
+
+// session_start();
+include("../functions/config.php");
 $mainlink="http://localhost/LMS/lms2/";
 
+// session_start(); // Start the session
+
+// Other code for your header
+
+// Display the cart count
+$cartCount = isset($_SESSION['cart_count']) ? $_SESSION['cart_count'] : 0;
 ?>
+
+
+
+
 
 
 <!DOCTYPE html>
@@ -37,12 +50,21 @@ $mainlink="http://localhost/LMS/lms2/";
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/responsive.css">
   <!-- <script src="./js/jquery-3.6.0.min.js"></script> -->
-
+  <style>
+/* #cart-count-container{
+    background-color: #FF0000; 
+    color: #FFFFFF; 
+    font-size: 10px; 
+    border-radius: 50%; 
+    padding: 2px 5px; 
+    position: absolute;
+    top: 8;
+    right: 30; 
+} */
+</style>
 </head>
 
 <body id="top-header">
-
-  
 
     
 <header>
@@ -172,7 +194,18 @@ $mainlink="http://localhost/LMS/lms2/";
                     </ul>
 
                     <ul class="header-contact-right d-none d-lg-block">
-                        <li> <a href="#" class="header-cart"><i class="fa fa-shopping-cart"></i></a></li>
+                    <li>
+                    
+
+                     <a href="cart.php" id="cart-link" class="header-cart">
+                            <i class="fa fa-shopping-cart"></i>
+                            <!-- Inside your header.php -->
+                            <span id="cart-count-container">
+                                Cart <span id="cart-count">0</span>
+                            </span>
+                        </a>
+
+                    </li>
                         <li><a href="#" class="header-search search_toggle"> <i class="fa fa fa-search"></i></a></li>
                     </ul>
                    
@@ -181,3 +214,46 @@ $mainlink="http://localhost/LMS/lms2/";
         </nav>
     </div>
 </header>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+
+// <!-- This is your HTML for displaying the cart count -->
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    function updateCartCount() {
+        const cartJSON = localStorage.getItem('cart');
+        const cartItems = JSON.parse(cartJSON) || [];
+        const cartCount = cartItems.length;
+        const cartCountContainer = document.getElementById('cart-count');
+        cartCountContainer.textContent = cartCount;
+    }
+
+    updateCartCount();
+});
+</script>
+<script>
+    // Function to update cart count using AJAX
+    // function updateCartCount() {
+    //     $.ajax({
+    //         type: 'GET',
+    //         url: '../functions/functions.php', // Replace with the actual path to your server-side script
+    //         success: function (response) {
+    //             // Update the cart count on the page
+    //             $('#cart-count').text(response);
+    //         }
+    //     });
+    // }
+
+    // // Event handler for clicking the cart icon
+    // $('#cart-link').click(function (event) {
+    //         event.preventDefault();
+    //         // Call the updateCartCount function to update the cart count
+    //         updateCartCount();
+
+    //         // Open the cart page (cart.php)
+    //         window.location.href = $(this).attr('href');
+    //     });
+    // });
+</script>

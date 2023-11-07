@@ -1,5 +1,5 @@
 <?php
-session_start();
+// session_start();
 include('config.php');
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
@@ -763,46 +763,131 @@ elseif (isset($_POST['sending_email'])) {
     }
 }
 
-// ...
+session_start();
 
-// AJAX request to add a product to the cart
-if (isset($_POST['add_to_cart'])) {
-    $product_id = $_POST['product_id'];
-    $product_name = $_POST['product_name'];
-    $product_price = $_POST['product_price'];
-    $product_image = $_POST['product_image'];
+if (isset($_GET['id']) && isset($_GET['name']) && isset($_GET['price']) && isset($_GET['image'])) {
+    $courseId = $_GET['id'];
+    $courseName = $_GET['name'];
+    $coursePrice = $_GET['price'];
+    $courseImage = $_GET['image'];
 
-    $cart_item = [
-        'id' => $product_id,
-        'name' => $product_name,
-        'price' => $product_price,
-        'image' => $product_image,
-    ];
-
-    // Add the product to the cart in the session
+    // Check if the cart session variable exists, if not, initialize it
     if (!isset($_SESSION['cart'])) {
-        $_SESSION['cart'] = [];
+        $_SESSION['cart'] = array();
     }
 
-    $_SESSION['cart'][] = $cart_item;
+    // Check if the item is already in the cart
+    $itemIndex = 1;
+    for ($i = 0; $i < count($_SESSION['cart']); $i++) {
+        if ($_SESSION['cart'][$i]['id'] == $courseId) {
+            $itemIndex = $i;
+            break;
+        }
+    }
 
-    // Create a response array
-    $response = [
-        'success' => true, // Indicates a successful operation
-        'message' => 'Product added to the cart successfully',
-        'cart_count' => count($_SESSION['cart']), // Send the updated cart count
-    ];
+    // If the item is in the cart, update the quantity; otherwise, add it to the cart
+    if ($itemIndex != 1) {
+        $_SESSION['cart'][$itemIndex]['quantity'] += 1;
+    } else {
+        $cartItem = array(
+            'id' => $courseId,
+            'name' => $courseName,
+            'price' => $coursePrice,
+            'image' => $courseImage,
+            'quantity' => 1
+        );
+        array_push($_SESSION['cart'], $cartItem);
+    }
 
-    // Convert the response array to JSON
-    $json_response = json_encode($response);
-
-    // Send the JSON response to the client
-    header('Content-Type: application/json');
-    echo $json_response;
-    exit;
+    // Return the updated cart count
+    $cartCount = count($_SESSION['cart']);
+    echo $cartCount;
+} else {
+    echo "Invalid parameters";
 }
 
 
+// session_start();
+
+// // // Initialize the response array
+// $response = array();
+
+// // Check if the request contains a product ID
+// if (isset($_POST['productId'])) {
+//     $productId = $_POST['productId'];
+//     // $productId = $_POST['productId'];
+//         $productName = $_POST['productName'];
+//         $productPrice = $_POST['productPrice'];
+//         $productImage = $_POST['productImage'];
+    
+//         // Create a new cart item array
+//         $cartItem = array(
+//             'id' => $productId,
+//             'name' => $productName,
+//             'price' => $productPrice,
+//             'image' => $productImage
+//         );
+
+//     // Here, you can perform the necessary logic to add the product to the cart
+//     // For example, you can store the product ID in a session variable.
+
+//     // Check if the cart array exists in the session
+//     if (!isset($_SESSION['cart'])) {
+//         $_SESSION['cart'] = array();
+//     }
+
+//     // Add the product to the cart
+//     $_SESSION['cart'][] = $productId;
+
+//     // Set a success message in the response
+//     $response['success'] = true;
+//     $response['message'] = 'Product added to the cart successfully';
+// } else {
+//     // If the product ID is not provided in the request, set an error message in the response
+//     $response['success'] = false;
+//     $response['message'] = 'Product ID not provided';
+// }
+
+// // Calculate the total number of items in the cart
+// $cartCount = count($_SESSION['cart']);
+// $response['cartCount'] = $cartCount;
+
+// // Return the response as JSON
+// header('Content-Type: application/json');
+// echo json_encode($response);
+
+
+// session_start();
+
+// Check if the request contains product details
+// if (isset($_POST['productId'])) {
+//     $productId = $_POST['productId'];
+//     $productName = $_POST['productName'];
+//     $productPrice = $_POST['productPrice'];
+//     $productImage = $_POST['productImage'];
+
+//     // Create a new cart item array
+//     $cartItem = array(
+//         'id' => $productId,
+//         'name' => $productName,
+//         'price' => $productPrice,
+//         'image' => $productImage
+//     );
+
+//     // Check if the cart array exists in the session
+//     if (!isset($_SESSION['cart'])) {
+//         $_SESSION['cart'] = array();
+//     }
+
+//     // Add the new cart item to the session's cart array
+//     $_SESSION['cart'][] = $cartItem;
+
+//     // You can return a success message or response if needed
+//     echo 'Product added to the cart successfully';
+// } else {
+//     // Handle the case where the product details are missing in the request
+//     echo 'Error: Product details not provided';
+// }
 ?>
 
 

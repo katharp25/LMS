@@ -1,12 +1,8 @@
 <?php
-session_start();
 include("includes/header.php");
 include("../functions/list_grid.php");
 
 
-// include("../functions/functions.php");
-
- 
                                 if ($fetch_list_topic_query) {
                                     $i = 1;
                                     while ($row = mysqli_fetch_assoc($fetch_list_topic_query)) {
@@ -142,11 +138,11 @@ include("../functions/list_grid.php");
             <!-- <a href="#" class="button product_type_simple add_to_cart_button ajax_add_to_cart" id="cart-button-<?= $id ?>">
                 <i class="fa fa-shopping-basket"></i>
             </a> -->
-            <a href="" class="button product_type_simple add_to_cart_button ajax_add_to_cart" 
-                data-product-id="<?= $id ?>"
-                data-product-name="<?= $courseName ?>"
-                data-product-price="<?= $courseCost ?>"
-                data-product-image="<?= $courseImage ?>">
+            <a href="./functions/carts.php?id=<?= $id ?>" class="button product_type_simple add_to_cart_button ajax_add_to_cart" 
+               data-product-id="<?= $id ?>"
+               data-product-name="<?= $courseName ?>"
+               data-product-price="<?= $courseCost ?>"
+               data-product-image="<?= $courseImage ?>">
                 <i class="fa fa-shopping-basket"></i>
             </a>
                 <a href="" class="button wish-list"><i class="fa fa-heart"></i></a>
@@ -169,7 +165,6 @@ include("../functions/list_grid.php");
     <?php
     }
     ?>
-
 </ul>
 <!-- <div id="cart-count-container">Cart (<?= $cartCount ?>)</div> -->
                         
@@ -432,10 +427,10 @@ include("../functions/list_grid.php");
 <div class="fixed-btm-top">
 	<a href="#top-header" class="js-scroll-trigger scroll-to-top"><i class="fa fa-angle-up"></i></a>
 </div>
-
-
-
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+
 <script>
     // Get all subtopic links
     // Get all subtopic links
@@ -466,96 +461,94 @@ subtopicLinks.forEach(function(link) {
 
 </script>
 
+
 <script>
-
-// AJAX request to add a product to the cart
-// $('.add_to_cart_button').click(function(e) {
-//     e.preventDefault();
-
-//     var product_id = $(this).data('product-id');
-//     var product_name = $(this).data('product-name');
-//     var product_price = $(this).data('product-price');
-//     var product_image = $(this).data('product-image');
-
-//     $.ajax({
-//         type: 'POST',
-//         url: '../functions/functions.php', // Replace with the actual path to your PHP file
-//         data: {
-//             add_to_cart: true,
-//             product_id: product_id,
-//             product_name: product_name,
-//             product_price: product_price,
-//             product_image: product_image
-//         },
-//         success: function(response) {
-//             // Update the cart count in the header
-//             updateCartCount();
-//         }
-//     });
-// });
-
-// // ...
-
-// // Function to update the cart count in the header
-// function updateCartCount() {
-//     var cartCount = <?php echo isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0; ?>;
-//     console.log(cartCount);
-//     $('#cart-count-container').text(' (' + cartCount + ')');
-// }
-
-// $(document).ready(function() {
-//     updateCartCount();
-// });
-// AJAX request to add a product to the cart
-$('.add_to_cart_button').click(function(e) {
-    e.preventDefault();
-
-    var product_id = $(this).data('product-id');
-    var product_name = $(this).data('product-name');
-    var product_price = $(this).data('product-price');
-    var product_image = $(this).data('product-image');
-
-    // Check if there is an existing cart in local storage
-    var cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-    // Create a new cart item
-    var cartItem = {
-        id: product_id,
-        name: product_name,
-        price: product_price,
-        image: product_image
-    };
-
-    // Add the new item to the cart
-    cart.push(cartItem);
-
-    // Save the updated cart back to local storage
-    localStorage.setItem('cart', JSON.stringify(cart));
-
-    // Update the cart count in the header
+   
+  
+    function updateCartCount() {
+        $.ajax({
+            type: 'GET',
+            url: '../functions/functions.php', // Adjust the path to your PHP script
+            dataType: 'json',
+            success: function (response) {
+                console.log('Cart Count:', response.cartCount);
+                $('#cart-count-container').text(' (' + response.cartCount + ')');
+            },
+            error: function (xhr, status, error) {
+                console.error('AJAX Error:', error);
+                console.log('Response Text:', xhr.responseText); // Log the response for debugging
+            }
+        });
+    }
     updateCartCount();
-});
-function updateCartCount() {
-    var cart = JSON.parse(localStorage.getItem('cart')) || [];
-    var cartCount = cart.length;
-    $('#cart-count-container').text(' (' + cartCount + ')');
-}
 
-$(document).ready(function() {
-    updateCartCount(); // Call this on page load to set the initial cart count
-});
-function getCartItems() {
-    return JSON.parse(localStorage.getItem('cart')) || [];
-}
+// Update the cart count periodically (e.g., every 5 seconds)
+setInterval(updateCartCount, 5000); 
+  
+    document.querySelectorAll('.button.product_type_simple.add_to_cart_button.ajax_add_to_cart').forEach(function (cartButton) {
+        cartButton.addEventListener('click', function (event) {
+            event.preventDefault(); // Prevent the default link behavior
 
-// Example: Get the cart items and do something with them
-var cartItems = getCartItems();
-cartItems.forEach(function(item) {
-    // Do something with each item, e.g., display in a cart summary
-});
+            // Extract the product ID from the cart button's ID
+            var productId = this.id.split('-')[2];
+            console.log('Product ID:', productId);
 
-// ...
+            var productId = this.getAttribute('data-product-id');
+            var productName = this.getAttribute('data-product-name');
+            var productPrice = this.getAttribute('data-product-price');
+            var productImage = this.getAttribute('data-product-image');
+
+            console.log('Product ID:', productId);
+            console.log('Product Name:', productName);
+            console.log('Product Price:', productPrice);
+            console.log('Product Image:', productImage);
+
+            // Here, you can perform your AJAX request and add the product to the cart
+            // You can use the productId to identify the product to add to the cart
+
+            // Example of an AJAX request (you should modify this according to your setup):
+            $.ajax({
+                type: 'POST',
+                url: '../functions/functions.php', // Use the correct path to your add_to_cart.php script
+                data: { productId: productId },
+                success: function (response) {
+                    // Handle the response from the server
+
+                    // After adding the product to the cart, update the cart count immediately
+                    updateCartCount();
+
+                    
+                }
+            });
+        });
+    });
+
 </script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const addToCartButtons = document.querySelectorAll('.button product_type_simple add_to_cart_button ajax_add_to_cart');
+    const cartCount = document.getElementById('cart-count-container');
+
+    let cartItems = [];
+
+    addToCartButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            const id = this.getAttribute('data-product-id');
+            const name = this.getAttribute('data-product-name');
+            const price = this.getAttribute('data-product-price');
+
+            const item = { id, name, price };
+            cartItems.push(item);
+
+            // Update cart count
+            cartCount.innerText = cartItems.length;
+        });
+    });
+});
+
+</script>
+
+
     <?php
 include("includes/footer.php");
 ?>

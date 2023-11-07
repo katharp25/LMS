@@ -1,12 +1,8 @@
 <?php
-session_start();
 include("includes/header.php");
 include("../functions/list_grid.php");
 
 
-// include("../functions/functions.php");
-
- 
                                 if ($fetch_list_topic_query) {
                                     $i = 1;
                                     while ($row = mysqli_fetch_assoc($fetch_list_topic_query)) {
@@ -15,44 +11,6 @@ include("../functions/list_grid.php");
                                         
                                     }
                                 }
-
-                                $query = mysqli_query($con, "select * from courses ");
-
-                                if($query)
-                                {
-                                    while($row1 = mysqli_fetch_assoc($query))
-                                    {
-                                        $courseName=$row1['courseName'];
-                                        $courseCost=$row1['courseCost'];
-                                        $courseImage=$row1['bannerImage'];
-                                    }
-                                }
-
-                              
-                $totalCoursesQuery = mysqli_query($con, "SELECT COUNT(*) AS total FROM courses");
-                $totalCourses = mysqli_fetch_assoc($totalCoursesQuery)['total'];
-
-                // Number of products to display per page
-                $productsPerPage = 6;
-
-                // Calculate the total number of pages
-                $totalPages = ceil($totalCourses / $productsPerPage);
-
-                // Determine the current page
-                $currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-
-                // Ensure the current page is within valid bounds
-                if ($currentPage < 1) {
-                    $currentPage = 1;
-                } elseif ($currentPage > $totalPages) {
-                    $currentPage = $totalPages;
-                }
-
-                // Calculate the SQL query's LIMIT based on the current page
-                $offset = ($currentPage - 1) * $productsPerPage;
-
-                // Modify the SQL query to include the LIMIT and OFFSET
-                $query = mysqli_query($con, "SELECT * FROM courses LIMIT $productsPerPage OFFSET $offset");
 ?>
 
 
@@ -124,71 +82,372 @@ include("../functions/list_grid.php");
     </form>
 </div>
 <ul class="products columns-3">
-    <?php
-    // if ($totalCourses > 0) {
-    // Assuming you have an array of products, you can loop through them like this:
-    foreach ($query as $product) {
-        $id=$product['id'];
-        $courseImage = $product['bannerImage'];
-        $courseName = $product['courseName'];
-        $courseCost = $product['courseCost'];
-    ?>
-    <li class="product">
+<?php foreach ($products as $product) {
+    echo '<li class="product">';
+    echo '<div class="product-wrap">';
+    echo '<a href="#" class=""><img src="' . $product['image'] . '" alt=""></a>';
+    echo '<div class="product-btn-wrap">';
+    echo '<a href="#" class="button product_type_simple add_to_cart_button ajax_add_to_cart">';
+    echo '<i class="fa fa-shopping-basket"></i>';
+    echo '</a>';
+    echo '<a href="#" class="button wish-list"><i class="fa fa-heart"></i></a>';
+    echo '</div>';
+    echo '</div>';
+    echo '<div class="woocommerce-product-title-wrap">';
+    echo '<h2 class="woocommerce-loop-product__title">';
+    echo '<a href="#">' . $product['name'] . '</a>';
+    echo '</h2>';
+    echo '</div>';
+
+    if ($product['on_sale']) {
+        echo '<span class="onsale">Sale!</span>';
+    }
+
+    echo '<span class="price">';
+    if ($product['on_sale']) {
+        echo '<del><span class="woocommerce-Price-amount amount">';
+        echo '<span class="woocommerce-Price-currencySymbol">$</span>' . $product['sale_price'];
+        echo '</span></del>';
+    }
+    echo '<ins><span class="woocommerce-Price-amount amount">';
+    echo '<span class="woocommerce-Price-currencySymbol">$</span>' . $product['price'];
+    echo '</span></ins>';
+    echo '</span>';
+    echo '</li>';
+}
+?>
+    <!-- <li class="product">
         <div class="product-wrap">
             <a href="#" class="">
-                <img src="../functions/upload/image/<?= $courseImage ?>" alt="">
+                <img src="assets/images/shop/p1.jpg" alt="">
             </a>
             <div class="product-btn-wrap">
-            <!-- <a href="#" class="button product_type_simple add_to_cart_button ajax_add_to_cart" id="cart-button-<?= $id ?>">
-                <i class="fa fa-shopping-basket"></i>
-            </a> -->
-            <a href="" class="button product_type_simple add_to_cart_button ajax_add_to_cart" 
-                data-product-id="<?= $id ?>"
-                data-product-name="<?= $courseName ?>"
-                data-product-price="<?= $courseCost ?>"
-                data-product-image="<?= $courseImage ?>">
-                <i class="fa fa-shopping-basket"></i>
-            </a>
-                <a href="" class="button wish-list"><i class="fa fa-heart"></i></a>
+                <a href="#" class="button product_type_simple add_to_cart_button ajax_add_to_cart">
+                    <i class="fa fa-shopping-basket"></i>
+                </a>
+                <a href="#" class="button wish-list"><i class="fa fa-heart"></i></a>
             </div>
         </div>
         <div class="woocommerce-product-title-wrap">
             <h2 class="woocommerce-loop-product__title">
-                <a href="#"><?= $courseName ?></a>
+                <a href="#">Stitched leather sports shoe</a>
             </h2>
         </div>
+        <span class="onsale">Sale!</span>
         <span class="price">
+            <del>
+                <span class="woocommerce-Price-amount amount">
+                    <span class="woocommerce-Price-currencySymbol">$</span>
+                    45.00
+                </span>
+            </del>
             <ins>
                 <span class="woocommerce-Price-amount amount">
-                    <span class="woocommerce-Price-currencySymbol">$</span><?= $courseCost ?>
+                    <span class="woocommerce-Price-currencySymbol">$</span>
+                    42.00
                 </span>
             </ins>
         </span>
+
         <div class="star-rating"></div>
     </li>
-    <?php
-    }
-    ?>
+    <li class="product">
+        <div class="product-wrap">
+            <a href="#" class="">
+                <img src="assets/images/shop/p2.jpg" alt="">
+            </a>
+            <div class="product-btn-wrap">
+                <a href="#" class="button product_type_simple add_to_cart_button ajax_add_to_cart">
+                    <i class="fa fa-shopping-basket"></i>
+                </a>
+                <a href="#" class="button wish-list"><i class="fa fa-heart"></i></a>
+            </div>
+        </div>
+        <div class="woocommerce-product-title-wrap">
+            <h2 class="woocommerce-loop-product__title">
+                <a href="#">Stitched leather sports shoe</a>
+            </h2>
+        </div>
+        <span class="price">
+            <span class="woocommerce-Price-amount amount">
+                <span class="woocommerce-Price-currencySymbol">$</span> 18.00
+            </span>
+        </span>
+        <div class="star-rating"></div>
 
+    </li>
+    <li class="product last">
+        <div class="product-wrap">
+            <a href="#" class="">
+                <img src="assets/images/shop/p3.jpg" alt="">
+            </a>
+            <div class="product-btn-wrap">
+                <a href="#" class="button product_type_simple add_to_cart_button ajax_add_to_cart">
+                    <i class="fa fa-shopping-basket"></i>
+                </a>
+                <a href="#" class="button wish-list"><i class="fa fa-heart"></i></a>
+            </div>
+        </div>
+        <div class="woocommerce-product-title-wrap">
+            <h2 class="woocommerce-loop-product__title">
+                <a href="#">Stitched leather sports shoe</a>
+            </h2>
+        </div>
+        <span class="price">
+            <span class="woocommerce-Price-amount amount">
+                <span class="woocommerce-Price-currencySymbol">$</span> 18.00
+            </span>
+        </span>
+        <div class="star-rating"></div>
+
+    </li>
+    <li class="product">
+        <div class="product-wrap">
+            <a href="#" class="">
+                <img src="assets/images/shop/p4.jpg" alt="">
+            </a>
+            <div class="product-btn-wrap">
+                <a href="#" class="button product_type_simple add_to_cart_button ajax_add_to_cart">
+                    <i class="fa fa-shopping-basket"></i>
+                </a>
+                <a href="#" class="button wish-list"><i class="fa fa-heart"></i></a>
+            </div>
+        </div>
+        <div class="woocommerce-product-title-wrap">
+            <h2 class="woocommerce-loop-product__title">
+                <a href="#">Stitched leather sports shoe</a>
+            </h2>
+        </div>
+        <span class="price">
+            <span class="woocommerce-Price-amount amount">
+                <span class="woocommerce-Price-currencySymbol">$</span> 18.00
+            </span>
+        </span>
+        <div class="star-rating"></div>
+
+    </li>
+    <li class="product">
+        <div class="product-wrap">
+            <a href="#" class="">
+                <img src="assets/images/shop/p5.jpg" alt="">
+            </a>
+            <div class="product-btn-wrap">
+                <a href="#" class="button product_type_simple add_to_cart_button ajax_add_to_cart">
+                    <i class="fa fa-shopping-basket"></i>
+                </a>
+                <a href="#" class="button wish-list"><i class="fa fa-heart"></i></a>
+            </div>
+        </div>
+        <div class="woocommerce-product-title-wrap">
+            <h2 class="woocommerce-loop-product__title">
+                <a href="#">Stitched leather sports shoe</a>
+            </h2>
+        </div>
+        <span class="price">
+            <span class="woocommerce-Price-amount amount">
+                <span class="woocommerce-Price-currencySymbol">$</span> 18.00
+            </span>
+        </span>
+        <div class="star-rating"></div>
+
+    </li>
+    <li class="product last">
+        <div class="product-wrap">
+            <a href="#" class="">
+                <img src="assets/images/shop/p6.jpg" alt="">
+            </a>
+            <div class="product-btn-wrap">
+                <a href="#" class="button product_type_simple add_to_cart_button ajax_add_to_cart">
+                    <i class="fa fa-shopping-basket"></i>
+                </a>
+                <a href="#" class="button wish-list"><i class="fa fa-heart"></i></a>
+            </div>
+        </div>
+        <div class="woocommerce-product-title-wrap">
+            <h2 class="woocommerce-loop-product__title">
+                <a href="#">Stitched leather sports shoe</a>
+            </h2>
+        </div>
+        <span class="price">
+            <span class="woocommerce-Price-amount amount">
+                <span class="woocommerce-Price-currencySymbol">$</span> 18.00
+            </span>
+        </span>
+        <div class="star-rating"></div>
+
+    </li>
+    <li class="product">
+        <div class="product-wrap">
+            <a href="#" class="">
+                <img src="assets/images/shop/p7.jpg" alt="">
+            </a>
+            <div class="product-btn-wrap">
+                <a href="#" class="button product_type_simple add_to_cart_button ajax_add_to_cart">
+                    <i class="fa fa-shopping-basket"></i>
+                </a>
+                <a href="#" class="button wish-list"><i class="fa fa-heart"></i></a>
+            </div>
+        </div>
+        <div class="woocommerce-product-title-wrap">
+            <h2 class="woocommerce-loop-product__title">
+                <a href="#">Stitched leather sports shoe</a>
+            </h2>
+        </div>
+        <span class="price">
+            <span class="woocommerce-Price-amount amount">
+                <span class="woocommerce-Price-currencySymbol">$</span> 18.00
+            </span>
+        </span>
+        <div class="star-rating"></div>
+
+    </li>
+    <li class="product">
+        <div class="product-wrap">
+            <a href="#" class="">
+                <img src="assets/images/shop/p8.jpg" alt="">
+            </a>
+
+            <div class="product-btn-wrap">
+                <a href="#" class="button product_type_simple add_to_cart_button ajax_add_to_cart">
+                    <i class="fa fa-shopping-basket"></i>
+                </a>
+                <a href="#" class="button wish-list"><i class="fa fa-heart"></i></a>
+            </div>
+           
+        </div>
+        <div class="woocommerce-product-title-wrap">
+            <h2 class="woocommerce-loop-product__title">
+                <a href="#">Stitched leather sports shoe</a>
+            </h2>
+        </div>
+        <span class="price">
+            <span class="woocommerce-Price-amount amount">
+                <span class="woocommerce-Price-currencySymbol">$</span> 18.00
+            </span>
+        </span>
+        <div class="star-rating"></div>
+
+    </li>
+    <li class="product last">
+        <div class="product-wrap">
+            <a href="#" class="">
+                <img src="assets/images/shop/p9.jpg" alt="">
+            </a>
+            <div class="product-btn-wrap">
+                <a href="#" class="button product_type_simple add_to_cart_button ajax_add_to_cart">
+                    <i class="fa fa-shopping-basket"></i>
+                </a>
+                <a href="#" class="button wish-list"><i class="fa fa-heart"></i></a>
+            </div>
+        </div>
+        <div class="woocommerce-product-title-wrap">
+            <h2 class="woocommerce-loop-product__title">
+                <a href="#">Nike Running Plus jacket with printed panels in black</a>
+            </h2>
+        </div>
+        <span class="price">
+            <span class="woocommerce-Price-amount amount">
+                <span class="woocommerce-Price-currencySymbol">$</span> 18.00
+            </span>
+        </span>
+        <div class="star-rating"></div>
+
+    </li>
+    <li class="product">
+        <div class="product-wrap">
+            <a href="#" class="">
+                <img src="assets/images/shop/p1.jpg" alt="">
+            </a>
+            <div class="product-btn-wrap">
+                <a href="#" class="button product_type_simple add_to_cart_button ajax_add_to_cart">
+                    <i class="fa fa-shopping-basket"></i>
+                </a>
+                <a href="#" class="button wish-list"><i class="fa fa-heart"></i></a>
+            </div>
+        </div>
+        <div class="woocommerce-product-title-wrap">
+            <h2 class="woocommerce-loop-product__title">
+                <a href="#">Stitched leather sports shoe</a>
+            </h2>
+        </div>
+        <span class="onsale">Sale!</span>
+        <span class="price">
+            <del>
+                <span class="woocommerce-Price-amount amount">
+                    <span class="woocommerce-Price-currencySymbol">$</span>
+                    45.00
+                </span>
+            </del>
+            <ins>
+                <span class="woocommerce-Price-amount amount">
+                    <span class="woocommerce-Price-currencySymbol">$</span>
+                    42.00
+                </span>
+            </ins>
+
+        </span>
+    <div class="star-rating"></div>
+
+    </li>
+    <li class="product">
+        <div class="product-wrap">
+            <a href="#" class="">
+                <img src="assets/images/shop/p2.jpg" alt="">
+            </a>
+            <div class="product-btn-wrap">
+                <a href="#" class="button product_type_simple add_to_cart_button ajax_add_to_cart">
+                    <i class="fa fa-shopping-basket"></i>
+                </a>
+                <a href="#" class="button wish-list"><i class="fa fa-heart"></i></a>
+            </div>
+        </div>
+        <div class="woocommerce-product-title-wrap">
+            <h2 class="woocommerce-loop-product__title">
+                <a href="#">Stitched leather sports shoe</a>
+            </h2>
+        </div>
+        <span class="price">
+            <span class="woocommerce-Price-amount amount">
+                <span class="woocommerce-Price-currencySymbol">$</span> 18.00
+            </span>
+        </span>
+        <div class="star-rating"></div>
+
+    </li>
+    <li class="product last">
+        <div class="product-wrap">
+            <a href="#" class="">
+                <img src="assets/images/shop/p3.jpg" alt="">
+            </a>
+            <div class="product-btn-wrap">
+                <a href="#" class="button product_type_simple add_to_cart_button ajax_add_to_cart">
+                    <i class="fa fa-shopping-basket"></i>
+                </a>
+                <a href="#" class="button wish-list"><i class="fa fa-heart"></i></a>
+            </div>
+        </div>
+        <div class="woocommerce-product-title-wrap">
+            <h2 class="woocommerce-loop-product__title">
+                <a href="#">Stitched leather sports shoe</a>
+            </h2>
+        </div>
+        <span class="price">
+            <span class="woocommerce-Price-amount amount">
+                <span class="woocommerce-Price-currencySymbol">$</span> 18.00
+            </span>
+        </span>
+        <div class="star-rating"></div>
+
+    </li> -->
 </ul>
-<!-- <div id="cart-count-container">Cart (<?= $cartCount ?>)</div> -->
-                        
-<?php if ($totalCourses > 0) : ?>
-    <!-- Display pagination only if there are courses to show -->
-    <nav class="woocommerce-pagination">
-        <ul class="page-numbers">
-            <?php for ($page = 1; $page <= $totalPages; $page++) : ?>
-                <li>
-                    <?php if ($page == $currentPage) : ?>
-                        <span aria-current="page" class="page-numbers current"><?= $page ?></span>
-                    <?php else : ?>
-                        <a class="page-numbers" href="?page=<?= $page ?>"><?= $page ?></a>
-                    <?php endif; ?>
-                </li>
-            <?php endfor; ?>
-        </ul>
-    </nav>
-<?php endif; ?>
+
+                        <nav class="woocommerce-pagination">
+                            <ul class="page-numbers">
+                                <li><span aria-current="page" class="page-numbers current">1</span></li>
+                                <li><a class="page-numbers" href="https://ha.motologgers.com/shop/page/2/">2</a></li>
+                                <li><a class="next page-numbers" href="https://ha.motologgers.com/shop/page/2/">→</a></li>
+                            </ul>
+                        </nav>
                     </div>
 
                     <!-- product Sidebar start-->
@@ -245,10 +504,8 @@ include("../functions/list_grid.php");
                                                 <div class="single-course-lesson">
                                                     <div class="course-topic-lesson">
                                                         <!-- <i class="fab fa-youtube"></i> -->
-                                                        
-                                                        <!-- <a href="<?= $subtopic['id']; ?>"><?= $subtopic['subTopicName'].$subtopic['id'] ?></a> -->
-                                                        <a href="../functions/fetch.php?subtopicId=<?= $subtopic['id']; ?>"><?= $subtopic['subTopicName'] ?></a>
-
+                                                        <!-- <a href="#" class="subtopic-link" data-subtopic-id="<?= $subtopic['id']; ?>"> -->
+                                                        <a href="#" class="subtopic-link" data-subtopic-id="<?= $subtopic['id']; ?>"><?= $subtopic['subTopicName'].$subtopic['id'] ?></a>
                                                     </div>
                                                 </div>
                                             <?php endif; ?>
@@ -432,130 +689,31 @@ include("../functions/list_grid.php");
 <div class="fixed-btm-top">
 	<a href="#top-header" class="js-scroll-trigger scroll-to-top"><i class="fa fa-angle-up"></i></a>
 </div>
-
-
-
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script>
-    // Get all subtopic links
-    // Get all subtopic links
-var subtopicLinks = document.querySelectorAll('.course-topic-lesson a');
+    $(document).ready(function() {
+        $('.subtopic-link').click(function(event) {
+            event.preventDefault();
+            var subtopicId = $(this).data('subtopic-id');
 
-// Attach a click event handler to each subtopic link
-subtopicLinks.forEach(function(link) {
-    link.addEventListener('click', function(event) {
-        event.preventDefault(); // Prevent the default link behavior
-
-        // Get the target subtopic ID from the link's href
-        var href = this.getAttribute('href');
-        var targetId = href.split('=')[1]; // Extract the subtopic ID from the query parameter
-        console.log(targetId);
-
-        // Make an AJAX request to the server to fetch courses based on the selected subtopic
-        $.ajax({
-            type: 'GET',
-            url: '../functions/fetch.php',
-            data: { subtopicId: targetId }, // Pass the subtopic ID as a parameter
-            success: function(response) {
-                // Handle the response and update the course list
-                $('.products').html(response);
-            }
+            $.ajax({
+                type: 'POST',
+                url: 'fetch.php', // Replace with the actual server script URL
+                data: { subtopicId: subtopicId },
+                success: function(response) {
+                    // Update the course details in the cart
+                    $('#course-details').html(response);
+                },
+                error: function() {
+                    alert('Error fetching course details');
+                }
+            });
         });
     });
-});
-
 </script>
 
-<script>
 
-// AJAX request to add a product to the cart
-// $('.add_to_cart_button').click(function(e) {
-//     e.preventDefault();
-
-//     var product_id = $(this).data('product-id');
-//     var product_name = $(this).data('product-name');
-//     var product_price = $(this).data('product-price');
-//     var product_image = $(this).data('product-image');
-
-//     $.ajax({
-//         type: 'POST',
-//         url: '../functions/functions.php', // Replace with the actual path to your PHP file
-//         data: {
-//             add_to_cart: true,
-//             product_id: product_id,
-//             product_name: product_name,
-//             product_price: product_price,
-//             product_image: product_image
-//         },
-//         success: function(response) {
-//             // Update the cart count in the header
-//             updateCartCount();
-//         }
-//     });
-// });
-
-// // ...
-
-// // Function to update the cart count in the header
-// function updateCartCount() {
-//     var cartCount = <?php echo isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0; ?>;
-//     console.log(cartCount);
-//     $('#cart-count-container').text(' (' + cartCount + ')');
-// }
-
-// $(document).ready(function() {
-//     updateCartCount();
-// });
-// AJAX request to add a product to the cart
-$('.add_to_cart_button').click(function(e) {
-    e.preventDefault();
-
-    var product_id = $(this).data('product-id');
-    var product_name = $(this).data('product-name');
-    var product_price = $(this).data('product-price');
-    var product_image = $(this).data('product-image');
-
-    // Check if there is an existing cart in local storage
-    var cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-    // Create a new cart item
-    var cartItem = {
-        id: product_id,
-        name: product_name,
-        price: product_price,
-        image: product_image
-    };
-
-    // Add the new item to the cart
-    cart.push(cartItem);
-
-    // Save the updated cart back to local storage
-    localStorage.setItem('cart', JSON.stringify(cart));
-
-    // Update the cart count in the header
-    updateCartCount();
-});
-function updateCartCount() {
-    var cart = JSON.parse(localStorage.getItem('cart')) || [];
-    var cartCount = cart.length;
-    $('#cart-count-container').text(' (' + cartCount + ')');
-}
-
-$(document).ready(function() {
-    updateCartCount(); // Call this on page load to set the initial cart count
-});
-function getCartItems() {
-    return JSON.parse(localStorage.getItem('cart')) || [];
-}
-
-// Example: Get the cart items and do something with them
-var cartItems = getCartItems();
-cartItems.forEach(function(item) {
-    // Do something with each item, e.g., display in a cart summary
-});
-
-// ...
-</script>
     <?php
 include("includes/footer.php");
 ?>
