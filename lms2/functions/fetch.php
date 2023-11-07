@@ -86,7 +86,7 @@ if (isset($_POST['cart'])) {
 // Send a response back to the client (optional)
 echo 'Cart updated successfully'; 
 
-session_start();
+// session_start();
 
 // if (isset($_POST['remove_item'])) {
 //     $itemIdToRemove = $_POST['remove_item'];
@@ -123,4 +123,105 @@ if (isset($_POST['remove_item'])) {
     $_SESSION['cart'] = array_values($_SESSION['cart']);
 }
 
+
+if (isset($_POST['woocommerce_checkout_place_order'])) {
+    // Data to be inserted into the 'Orders' table
+    $orderdate = date('Y-m-d H:i:s'); // Get the current date and time
+    $subscribedby = $_POST['subscribedby']; // Replace with how you determine this
+    $subscriberid = $_POST['subscriberid']; // Replace with how you determine this
+    $paymentstatus = 'notpaid';
+    $paymentdetails = ''; // You can populate this with payment details
+    $total = $_POST['total']; // Replace with how you calculate the total
+    $couponcode = $_POST['couponcode']; // Get the coupon code from the form
+    $discount = 0; // Calculate or set the discount amount
+    $grandtotal = $total - $discount;
+
+    $insertOrderQuery = "INSERT INTO Orders (orderdate, subscribedby, subscriberid, paymentstatus, paymentdetails, total, couponcode, discount, grandtotal,createdOn)
+            VALUES ('$orderdate', '$subscribedby', '$subscriberid', '$paymentstatus', '$paymentdetails', '$total', '$couponcode', '$discount', '$grandtotal',NOW())";
+
+    if ($con->query($insertOrderQuery) === TRUE) {
+        $orderId = $con->insert_id; // Get the ID of the newly inserted order
+
+        // Now, you have the order ID ($orderId), which you can use to insert data into the 'Orderdetails' table.
+        
+        // Assuming you have the cart data in a JSON format
+        $cartData = json_decode($_POST['cart'], true);
+
+        foreach ($cartData as $item) {
+            $courseId = $item['id']; // Assuming your cart data has an 'id' field for course ID
+            $qty = $item['quantity'];
+            $rate = $item['price'];
+
+        
+            // Insert data into the 'Orderdetails' table for each item
+            $insertOrderDetailsQuery = mysqli_query($con, "INSERT INTO Orderdetails (OrderId, CourseId, quantity, price, createdOn) VALUES ($orderId, $courseId, $qty, $rate,NOW())");
+        
+            if ($insertOrderDetailsQuery) {
+                header("Location:../web/courselist.php");
+            } else {
+                echo "failed";
+            }
+        }
+
+        // Redirect to a thank you page or show a success message
+        echo "Order placed successfully!";
+    } else {
+        // Handle the error
+        echo "Error: " . $con->erxror;
+    }
+
+    // Close the database connection
+    $con->close();
+}
+
 ?>
+<script>
+$('.add_to_cart_button').click(function(e) {
+    e.preventDefault();
+
+    var product_id = $(this).data('product-id');
+    var product_name = $(this).data('product-name');
+    var product_price = $(this).data('product-price');
+    var product_image = $(this).data('product-image');
+
+    // Check if there is an existing cart in local storage
+    var cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Create a new cart item
+    var cartItem = {
+        id: product_id,
+        name: product_name,
+        price: product_price,
+        image: product_image
+    };
+
+    // Add the new item to the cart
+    cart.push(cartItem);
+
+    // Save the updated cart back to local storage
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    // Update the cart count in the header
+    updateCartCount();
+});
+function updateCartCount() {
+    var cart = JSON.parse(localStorage.getItem('cart')) || [];
+    var cartCount = cart.length;
+    $('#cart-count-container').text(' (' + cartCount + ')');
+}
+
+$(document).ready(function() {
+    updateCartCount(); // Call this on page load to set the initial cart count
+});
+function getCartItems() {
+    return JSON.parse(localStorage.getItem('cart')) || [];
+}
+
+// Example: Get the cart items and do something with them
+var cartItems = getCartItems();
+cartItems.forEach(function(item) {
+    // Do something with each item, e.g., display in a cart summary
+});
+
+// ...
+</script>

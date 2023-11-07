@@ -1,9 +1,9 @@
+<!-- $password=""; -->
 <?php
 $host="localhost";
 $db="saburi_lms_2023";
-$password="";
 $username="root";
-
+$password = "";
 $con = mysqli_connect($host,$username,$password,$db);
 
 // include "database_functions.php";
@@ -42,6 +42,12 @@ subtopics ON topics.Id = subtopics.topicId
 JOIN 
 courses ON subtopics.Id = courses.subTopicId ORDER By courses.id DESC");
 
+
+// $fetch_list_Contect=mysqli_query($con,"SELECT * FROM ");
+
+
+
+
 $fetch_list_query_subscription=mysqli_query($con,"SELECT * FROM subscriptions_1");
 
 $fetch_list_join_topics_subtopic_query=mysqli_query($con,"SELECT * FROM subtopics INNER JOIN topics ON topics.Id = subtopics.topicId;");
@@ -57,6 +63,7 @@ $fetch_list_careers_query=mysqli_query($con,"SELECT * FROM careers");
 $fetch_list_company_query=mysqli_query($con,"SELECT * FROM company");
 
 $fetch_list_corporategovernance_query=mysqli_query($con,"SELECT * FROM corporategovernance");
+
 // $fetch_list=mysqli_fetch_assoc($fetch_list_query);
 // $users_name=$fetch_list['Name'];
 // echo $users_name;

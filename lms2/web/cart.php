@@ -77,140 +77,157 @@ include("includes/header.php");
                                         </thead>
                                         <tbody>
                                             <!-- Place this script within your HTML file -->
-<script>
-    // Retrieve cart data from localStorage
-    var cart = JSON.parse(localStorage.getItem('cart')) || [];
+                                            <script>
+                                            // Retrieve cart data from localStorage
+                                            var cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-    // Reference to the cart table body
-    var tableBody = document.querySelector('.woocommerce-cart-form__contents tbody');
+                                            // Reference to the cart table body
+                                            var tableBody = document.querySelector(
+                                                '.woocommerce-cart-form__contents tbody');
 
-    // Initialize the total price
-    var totalPrice = 0;
+                                            // Initialize the total price
+                                            var totalPrice = 0;
 
-    // Loop through the cart items and display them in the table
-    cart.forEach(function (course) {
-        // Create a new row for the item
-        var row = document.createElement('tr');
-        row.className = 'woocommerce-cart-form__cart-item cart_item';
+                                            // Loop through the cart items and display them in the table
+                                            cart.forEach(function(course) {
+                                                // Create a new row for the item
+                                                var row = document.createElement('tr');
+                                                row.className = 'woocommerce-cart-form__cart-item cart_item';
 
-        // Column 1: Product Name
-        var column1 = document.createElement('td');
-        column1.className = 'product-name';
-        var productNameLink = document.createElement('a');
-        productNameLink.href = '#';
-        productNameLink.textContent = course.name;
-        column1.appendChild(productNameLink);
-        row.appendChild(column1);
+                                                // Column 1: Product Name
+                                                var column1 = document.createElement('td');
+                                                column1.className = 'product-name';
+                                                var productNameLink = document.createElement('a');
+                                                productNameLink.href = '#';
+                                                productNameLink.textContent = course.name;
+                                                column1.appendChild(productNameLink);
+                                                row.appendChild(column1);
 
-        // Column 2: Price
-        var column2 = document.createElement('td');
-        column2.className = 'product-price';
-        var priceSpan = document.createElement('span');
-        priceSpan.className = 'woocommerce-Price-amount amount';
-        var priceCurrencySymbol = document.createElement('span');
-        priceCurrencySymbol.className = 'woocommerce-Price-currencySymbol';
-        priceCurrencySymbol.innerHTML = '&#8377;';
-        var priceAmount = document.createElement('span');
-        priceAmount.textContent = course.price;
-        priceSpan.appendChild(priceCurrencySymbol);
-        priceSpan.appendChild(priceAmount);
-        column2.appendChild(priceSpan);
-        row.appendChild(column2);
+                                                // Column 2: Price
+                                                var column2 = document.createElement('td');
+                                                column2.className = 'product-price';
+                                                var priceSpan = document.createElement('span');
+                                                priceSpan.className = 'woocommerce-Price-amount amount';
+                                                var priceCurrencySymbol = document.createElement('span');
+                                                priceCurrencySymbol.className =
+                                                    'woocommerce-Price-currencySymbol';
+                                                priceCurrencySymbol.innerHTML = '&#8377;';
+                                                var priceAmount = document.createElement('span');
+                                                priceAmount.textContent = course.price;
+                                                priceSpan.appendChild(priceCurrencySymbol);
+                                                priceSpan.appendChild(priceAmount);
+                                                column2.appendChild(priceSpan);
+                                                row.appendChild(column2);
 
-        // Column 3: Quantity
-        var column3 = document.createElement('td');
-        column3.className = 'product-quantity';
-        var quantityInput = document.createElement('input');
-        quantityInput.type = 'number';
-        quantityInput.value = course.quantity;
-        quantityInput.addEventListener('input', function () {
-            // Update the quantity when the input changes
-            course.quantity = parseInt(quantityInput.value, 10);
-            updateCart(cart);
-            updateTotals(cart);
-        });
-        column3.appendChild(quantityInput);
-        row.appendChild(column3);
+                                                // Column 3: Quantity
+                                                var column3 = document.createElement('td');
+                                                column3.className = 'product-quantity';
+                                                var quantityInput = document.createElement('input');
+                                                quantityInput.type = 'number';
+                                                quantityInput.value = course.quantity;
+                                                quantityInput.addEventListener('input', function() {
+                                                    // Update the quantity when the input changes
+                                                    course.quantity = parseInt(quantityInput.value, 10);
+                                                    updateCart(cart);
 
-        // Column 4: Total
-        var column4 = document.createElement('td');
-        column4.className = 'product-subtotal';
-        var totalSpan = document.createElement('span');
-        totalSpan.className = 'woocommerce-Price-amount amount';
-        var totalCurrencySymbol = document.createElement('span');
-        totalCurrencySymbol.className = 'woocommerce-Price-currencySymbol';
-        priceCurrencySymbol.innerHTML = '&#8377;';
-        var totalAmount = document.createElement('span');
-        var itemTotal = course.price * course.quantity;
-        totalAmount.textContent = itemTotal.toFixed(2);
-        totalSpan.appendChild(totalCurrencySymbol);
-        totalSpan.appendChild(totalAmount);
-        column4.appendChild(totalSpan);
-        row.appendChild(column4);
+                                                    // Calculate the updated itemTotal based on the updated quantity
+                                                    var updatedItemTotal = course.price * course
+                                                        .quantity;
 
-        // Column 5: Remove
-        var column5 = document.createElement('td');
-        column5.className = 'product-remove';
-        var removeLink = document.createElement('a');
-        removeLink.href = '#';
-        removeLink.className = 'remove';
-        removeLink.setAttribute('aria-label', 'Remove this item');
-        removeLink.setAttribute('data-product_id', course.id);
-        removeLink.setAttribute('data-product_sku', '');
-        removeLink.textContent = '×';
+                                                    // Update the totalAmount span to display the new itemTotal
+                                                    totalAmount.textContent = updatedItemTotal.toFixed(
+                                                        2);
 
-        // Add a click event listener to the remove link
-        removeLink.addEventListener('click', function () {
-            // Remove the item from the cart
-            var index = cart.findIndex(function (cartItem) {
-                return cartItem.id === course.id;
-            });
-            if (index !== -1) {
-                cart.splice(index, 1);
-                updateCart(cart);
-                updateTotals(cart);
-                // Remove the row from the table
-                tableBody.removeChild(row);
-            }
-        });
+                                                    updateTotals(cart);
+                                                });
+                                                column3.appendChild(quantityInput);
+                                                row.appendChild(column3);
 
-        column5.appendChild(removeLink);
-        row.appendChild(column5);
+                                                // Column 4: Total
+                                                var column4 = document.createElement('td');
+                                                column4.className = 'product-subtotal';
+                                                var totalSpan = document.createElement('span');
+                                                totalSpan.className = 'woocommerce-Price-amount amount';
+                                                var totalCurrencySymbol = document.createElement('span');
+                                                totalCurrencySymbol.className =
+                                                    'woocommerce-Price-currencySymbol';
+                                                priceCurrencySymbol.innerHTML = '&#8377;';
+                                                var totalAmount = document.createElement('span');
+                                                var itemTotal = course.price * course.quantity;
+                                                totalAmount.textContent = itemTotal.toFixed(2);
+                                                totalSpan.appendChild(totalCurrencySymbol);
+                                                totalSpan.appendChild(totalAmount);
+                                                column4.appendChild(totalSpan);
+                                                row.appendChild(column4);
 
-        // Add the row to the table body
-        tableBody.appendChild(row);
+                                                // 
 
-        // Calculate item total and add it to the totalPrice
-        totalPrice += itemTotal;
-    });
+                                                // Column 5: Remove
+                                                var column5 = document.createElement('td');
+                                                column5.className = 'product-remove';
+                                                var removeLink = document.createElement('a');
+                                                removeLink.href = '#';
+                                                removeLink.className = 'remove';
+                                                removeLink.setAttribute('aria-label', 'Remove this item');
+                                                removeLink.setAttribute('data-product_id', course.id);
+                                                removeLink.setAttribute('data-product_sku', '');
+                                                removeLink.textContent = '×';
 
-    // Calculate the total of all item totals
-    var totalItemCount = cart.reduce(function (total, course) {
-        return total + course.price * course.quantity;
-    }, 0);
+                                                // Add a click event listener to the remove link
+                                                removeLink.addEventListener('click', function() {
+                                                    // Remove the item from the cart
+                                                    var index = cart.findIndex(function(cartItem) {
+                                                        return cartItem.id === course.id;
+                                                    });
+                                                    if (index !== -1) {
+                                                        cart.splice(index, 1);
+                                                        updateCart(cart);
+                                                        updateTotals(cart);
+                                                        // Remove the row from the table
+                                                        tableBody.removeChild(row);
+                                                    }
+                                                });
 
-    // Function to update the cart data in localStorage
-    function updateCart(cartData) {
-        localStorage.setItem('cart', JSON.stringify(cartData));
-    }
+                                                column5.appendChild(removeLink);
+                                                row.appendChild(column5);
 
-    // Function to update the cart totals
-    function updateTotals(cartData) {
-        // Calculate the total quantity and price
-        var totalQuantity = cartData.reduce(function (total, course) {
-            return total + course.quantity;
-        }, 0);
+                                                // Add the row to the table body
+                                                tableBody.appendChild(row);
 
-        // Update the DOM with the new totals
-        document.getElementById('total-quantity').textContent = totalQuantity;
-        document.getElementById('total-price').textContent = totalPrice.toFixed(2);
-        // document.getElementById('total-price-subtotal').textContent = totalPrice.toFixed(2);
-        document.getElementById('total-count').textContent = totalItemCount.toFixed(2); // Update Total Count
-    }
+                                                // Calculate item total and add it to the totalPrice
+                                                totalPrice += itemTotal;
+                                            });
 
-    // Initialize the cart totals when the page loads
-    updateTotals(cart);
-</script>
+                                            // Calculate the total of all item totals
+                                        
+                                            var totalItemCount = cart.reduce(function(total, course) {
+                                                return total + course.price * course.quantity;
+                                            }, 0);
+
+                                            // Function to update the cart data in localStorage
+                                            function updateCart(cartData) {
+                                                localStorage.setItem('cart', JSON.stringify(cartData));
+                                            }
+
+                                            // Function to update the cart totals
+                                            function updateTotals(cartData) {
+                                                // Calculate the total quantity and price
+                                                var totalQuantity = cartData.reduce(function(total, course) {
+                                                    return total + course.quantity;
+                                                }, 0);
+
+                                                // Update the DOM with the new totals
+                                                document.getElementById('total-quantity').textContent = totalQuantity;
+                                                document.getElementById('total-price').textContent = totalPrice.toFixed(
+                                                    2);
+                                                // document.getElementById('total-price-subtotal').textContent = totalPrice.toFixed(2);
+                                                document.getElementById('total-count').textContent = totalItemCount
+                                                    .toFixed(2); // Update Total Count
+                                            }
+
+                                            // Initialize the cart totals when the page loads
+                                            updateTotals(cart);
+                                            </script>
 
                                         </tbody>
 
@@ -236,16 +253,16 @@ include("includes/header.php");
                                         </td>
                                     </tr> -->
                                     <tr class="order-total">
-                                    <th>Grand Total</th>
-                                    <td data-title="Grand Total">
-                                        <strong>
-                                            <span class="woocommerce-Price-amount amount">
-                                                <span class="woocommerce-Price-currencySymbol">₹</span>
-                                                <span id="grand-total">0.00</span>
-                                            </span>
-                                        </strong>
-                                    </td>
-                                </tr>
+                                        <th>Grand Total</th>
+                                        <td data-title="Grand Total">
+                                            <strong>
+                                                <span class="woocommerce-Price-amount amount">
+                                                    <span class="woocommerce-Price-currencySymbol">₹</span>
+                                                    <span id="grand-total">0.00</span>
+                                                </span>
+                                            </strong>
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </table>
                             <div class="wc-proceed-to-checkout">
@@ -264,8 +281,7 @@ include("includes/header.php");
 </main>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-
-    // Update the DOM with the new totals
+// Update the DOM with the new totals
 // document.getElementById('total-quantity').textContent = totalQuantity; // Update total quantity
 
 // Function to update the cart totals
@@ -294,7 +310,7 @@ include("includes/header.php");
 function calculateTotal() {
     var total = 0;
 
-    cart.forEach(function (course) {
+    cart.forEach(function(course) {
         var itemTotal = course.price * course.quantity;
         total += itemTotal;
     });

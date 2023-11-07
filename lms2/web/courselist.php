@@ -135,7 +135,7 @@ include("../functions/list_grid.php");
     ?>
     <li class="product">
         <div class="product-wrap">
-            <a href="#" class="">
+        <a href="course_single.php?id=<?= $id ?>">
                 <img src="../functions/upload/image/<?= $courseImage ?>" alt="">
             </a>
             <div class="product-btn-wrap">

@@ -1,41 +1,43 @@
-<?php
-// Initialize your database connection. Replace with your actual database credentials.
-$host = "localhost";
-$db = "saburi_lms_2023";
-$password = "";
-$username = "root";
-
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
-
-// Create a connection to the database
-$conn = new mysqli($host, $username, $password, $db);
-
-// Check the connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-if (isset($_GET['email'])) {
-    // Get the email from the URL
-    $email = $_GET['email'];
-    // echo $email;
-    // exit();
-
-    // SQL query to mark the user as unsubscribed
-    $sql = "UPDATE newsletter SET status = 0 WHERE email = '$email'";
-
-    if ($conn->query($sql) === TRUE) {
-        // Display a confirmation message
-        echo "You have been unsubscribed successfully.";
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-    }
-} else {
-    echo "Invalid request. Please provide a valid email address.";
-}
-
-// Close the database connection
-$conn->close();
-?>
+<div class="col-md-3 mb-2">
+    <div class="single" style="margin-bottom:15px; margin-bottom: 15px;border: 3px solid #ccc;padding: 20px; ">
+        <a href="https://agastyachemicals.in/" target="_blank"><img src="images/nov/AGASTYA.png"></a>
+    </div>
+</div>
+<div class="col-md-3 mb-2">
+    <div class="single" style="margin-bottom:15px; margin-bottom: 15px;border: 3px solid #ccc;padding: 20px; ">
+    <a href="https://www.agbio.co.in/" target="_blank"><img src="images/nov/Agbio.png" ></a>
+    </div>
+</div>
+<div class="col-md-3 mb-2">
+    <div class="single" style="margin-bottom:15px; margin-bottom: 15px;border: 3px solid #ccc;padding: 20px; ">
+    <a href="https://www.agrilife.in/" target="_blank"><img src="images/nov/Agri_life.png" ></a>
+    </div>
+</div>
+<div class="col-md-3 mb-2">
+    <div class="single" style="margin-bottom:15px; margin-bottom: 15px;border: 3px solid #ccc;padding: 20px; ">
+    <a href="https://www.iplbiologicals.com/" target="_blank"><img src="images/nov/Bio_prime.png"
+                ></a>
+    </div>
+</div>
+<div class="col-md-3 mb-2">
+    <div class="single" style="margin-bottom:15px; margin-bottom: 15px;border: 3px solid #ccc;padding: 20px; ">
+    <a href="http://www.knbiosciences.com/" target="_blank"><img src="images/nov/brf.png" ></a>
+    </div>
+</div>
+<div class="col-md-3 mb-2">
+    <div class="single" style="margin-bottom:15px; margin-bottom: 15px;border: 3px solid #ccc;padding: 20px; ">
+    <a href="https://www.koppert.in/" target="_blank"><img src="images/nov/dhana_crop_science.png"
+                ></a>
+    </div>
+</div>
+<div class="col-md-3 mb-2">
+    <div class="single" style="margin-bottom:15px; margin-bottom: 15px;border: 3px solid #ccc;padding: 20px; ">
+    <a href="https://sribioaesthetics.com/" target="_blank"><img src="images/nov/inera.png"></a>
+    </div>
+</div>
+<div class="col-md-3 mb-2">
+    <div class="single" style="margin-bottom:15px; margin-bottom: 15px;border: 3px solid #ccc;padding: 20px; ">
+    <a href="https://www.varshabioscience.com/" target="_blank"><img src="images/nov/IPL_biologicals_limited.png"
+                alt="Varssha"></a>
+    </div>
+</div>

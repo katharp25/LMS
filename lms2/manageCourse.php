@@ -227,22 +227,6 @@ include('functions/phpfunctions.php');
                                         // $id = $row['id'];
                                         ?>
                                         <tr>
-<<<<<<< HEAD
-                                            <td><?= $i; ?></td>
-                                            <th class="edit_id" hidden><?= $id; ?></th>
-                                            <td><?= $topic_name; ?></td>
-                                            <td><?= $subtopic_name; ?></td>
-                                            <td><?= $course_name; ?></td>
-                                            <td><?= $price; ?></td>
-                                            <td><?= $desc; ?></td>
-                                            <td><?= $learn; ?></td>
-                                            <td><?= $requirements; ?></td>
-                                            <td><?= $tag; ?></td>
-                                            <td><img src="./functions/upload/image/<?= $img; ?>" width="80" height="80"></td>
-                                            <td><?= $file; ?></td>
-                                            <td><?= $video; ?></td>
-=======
->>>>>>> 7da0e060b91cc8d9957ee45776de852172d08555
                                             <td>
                                                 <?= $i; ?>
                                             </td>
@@ -308,50 +292,6 @@ include('functions/phpfunctions.php');
 
 
 
-<<<<<<< HEAD
-                                                                    <div class="form-group">
-                                                                        <label for="editTitle">Existing Image</label><br>
-                                                                        <!-- <input type="file" class="form-control" onchange="loadFile(event)" id="banner_image" name="banner_image"> -->
-                                                                        <img src="" id="output" name="output" width="100" height="100" />
-                                                                    </div>
-                                                                    
-                                                                    <div class="form-group">
-                                                                        <label for="image">Upload Video</label>
-                                                                        <input type="file" class="form-control-file"  id="video" name="video" accept="video/*">
-                                                                        <input type="hidden" id="oldVideo" name="oldVideo" width="100" height="100" />
-                                                                    </div>
-                                                                
-
-                                                                <div class="form-group">
-                                                                        <label for="editTitle">Existing Image</label><br>
-                                                                        <!-- <input type="file" class="form-control" onchange="loadFile(event)" id="banner_image" name="banner_image"> -->
-                                                                        <img src="" id="output1" name="output1" width="100" height="100" />
-                                                                    </div>
-                                                               </div>
-                                                                <div class="col-md-6">
-                                                                    <div class="form-group">
-                                                                        <label for="subtopic">Sub Topic Name</label>
-                                                                        <!-- <input type="text" class="form-control" name="name" placeholder="Enter Name"> -->
-                                                                        <select class="form-control" name="subtopic" id="subtopic">
-                                                                            <option> select subtopic name</option>
-                                                                        </select>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label for="price">Price</label>
-                                                                        <input type="number" class="form-control" id="price" name="price" placeholder="Enter Price">
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label for="uploadfile">Upload File</label>
-                                                                        <input type="file" class="form-control-file" id="uploadfile" name="uploadfile">
-                                                                        <input type="hidden" id="oldImage2" name="oldImage2" width="100" height="100" />
-                                                                    </div>
-
-                                                                    <div class="form-group">
-                                                                        <label for="editTitle">Existing Image</label><br>
-                                                                        <!-- <input type="file" class="form-control" onchange="loadFile(event)" id="banner_image" name="banner_image"> -->
-                                                                        <img src="" id="output2" name="output2" width="100" height="100" />
-                                                                    </div>
-=======
             <!-- Edit Modal -->
             <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editBlogModalLabel"
                 aria-hidden="true">
@@ -458,7 +398,6 @@ include('functions/phpfunctions.php');
                                                         </div>
 
 
->>>>>>> 7da0e060b91cc8d9957ee45776de852172d08555
 
                                                     </div>
                                                 </div>
@@ -512,34 +451,6 @@ include('functions/phpfunctions.php');
 </div>
 
 <script>
-<<<<<<< HEAD
-$(document).ready(function() {
-    $('.edit-button').on('click', function() {
-        // console.log('hii');
-        var courseId = $(this).closest('tr').find('.edit_id').text();
-        // console.log(blogId);
-        $.ajax({
-        type: 'POST',
-        url: './functions/functions.php', // Replace with the URL of your server-side script
-        data: { 
-            'checking_course_btn' : true,
-             'course_id': courseId, },
-        // dataType: 'json',
-        success: function(response) {
-            console.log(response);
-            $.each(response, function (key, value)
-            {
-                $('#topic').val(value['topicID']);
-                $('#subtopic').val(value['subTopicId']);
-                $('#courseName').val(value['courseName']);
-                $('#price').val(value['courseCost']);
-                $('#editDescription').val(value['description']);
-                $('#output')..attr('src', './functions/upload/image/' + value['bannerImage']); 
-                $('#course_id').val(value['id']); 
-            
-            
-                $('#editModal').modal('show'); 
-=======
     $(document).ready(function () {
         $('.edit-button').on('click', function () {
             // console.log('hii');
@@ -568,7 +479,6 @@ $(document).ready(function() {
                     });
 
                 }
->>>>>>> 7da0e060b91cc8d9957ee45776de852172d08555
             });
         });
     });

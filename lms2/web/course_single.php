@@ -4,28 +4,34 @@ include("../functions/list_grid.php");
 include("../functions/database_functions.php");
 include("includes/header.php");
 
-            // include "database_functions.php";
-            
-            // Call the function to fetch the courses list
-            $courseList = fetchCoursesList();
-            
-            // Check if the array is not empty
-            if (!empty($courseList)) {
-                // Access the first course's name (you can loop through the array to display all courses)
-                $CourseName = $courseList[0]['courseName'];
-                $CourseDesc = $courseList[0]['courseDesc'];
-                $CourseSummary = $courseList[0]['summary'];
-                $Coursewyl = $courseList[0]['learn'];
-                $Coursecost = $courseList[0]['courseCost'];
-                $Coursereq = $courseList[0]['requirements'];
-                $Coursetopicname = $courseList[0]['topicName'];
-                $Courseimage = $courseList[0]['bannerImage'];
+if (isset($_GET['id'])) {
+    $courseId = $_GET['id'];
+     
+    $fetch_data =mysqli_query($con, "select * from courses where id= $courseId");
+    // Fetch course details based on the course ID
 
+    $n = mysqli_fetch_array($fetch_data);
 
-            }
+    $id = $n['id'];
+    $topicID=$n['topicID'];
+    $subTopicId=$n['subTopicId'];
+    $courseName=$n['courseName'];
+    $courseCost=$n['courseCost'];
+    $courseDesc=$n['courseDesc'];
+    $bannerImage=$n['bannerImage'];
+    $CourseSummary=$n['summary'];
+    $tag=$n['tag'];
+    $requirement=$n['requirements'];
+    // $tag=$n['name'];
+    $createdOn=$n['createdOn'];
+}
+    
 ?>
-                
-            
+
+<!-- The rest of your HTML code for displaying the course details -->
+
+
+
 
 
 <div class="search-wrap">
@@ -56,7 +62,7 @@ include("includes/header.php");
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <div class="page-header-content">
-                    <h1><?= $CourseName; ?></h1>
+                    <h1><?= $courseName; ?></h1>
                     <ul class="list-inline mb-0">
                         <li class="list-inline-item">
                             <a href="#">Home</a>
@@ -86,19 +92,19 @@ include("includes/header.php");
                         <span>(5.00)</span>
                     </div>
 
-                    <h3 class="single-course-title"><?= $CourseName; ?></h3>
+                    <h3 class="single-course-title"><?= $courseName; ?></h3>
                     <?= $CourseSummary ?>
 
                     <div class="single-course-meta ">
                         <ul>
                             <li>
                                 <span><i class="fa fa-calendar"></i>Last Update :</span>
-                                <a href="#" class="d-inline-block">August 23, 2019 </a>
+                                <a href="#" class="d-inline-block"><?= $createdOn; ?></a>
                             </li>
 
                             <li>
-                                <span><i class="fa fa-bookmark"></i>Category :</span>
-                                <a href="#" class="d-inline-block"><?= $Coursetopicname ?></a>
+                                <span><i class="fa fa-bookmark"></i>Tag :</span>
+                                <a href="#" class="d-inline-block"><?= $tag ?></a>
                             </li>
                         </ul>
                     </div>
@@ -107,7 +113,7 @@ include("includes/header.php");
                 <div class="single-course-details ">
                     <h4 class="course-title">Description</h4>
                     <?=
-                    $CourseDesc;
+                    $courseDesc;
                     ?>
 
 
@@ -321,12 +327,23 @@ include("includes/header.php");
             <div class="col-lg-4">
                 <div class="course-sidebar">
                     <div class="course-single-thumb">
-                        <img src="../functions/upload/image/<?= $Courseimage ?>" alt="" class="img-fluid w-100">
+                        <img src="../functions/upload/image/<?= $bannerImage ?>" alt="" class="img-fluid w-100">
                         <div class="course-price-wrapper">
                             <div class="course-price ml-3">
-                                <h4>Price: <span>$<?= $Coursecost ?></span></h4>
+                                <h4>Price: <span>&#8377; <?= $courseCost ?></span></h4>
+                                <input type="number" id="quantity" name="quantity" min="1" value="1"
+                                    style="font-size:20px;width: 50px; height: 30px;">
                             </div>
-                            <div class="buy-btn"><a href="#" class="btn btn-main btn-block">Buy This Course</a></div>
+                            <div class="buy-btn">
+                                <div class="buy-btn">
+                                    <a href="" class="btn btn-main btn-block add_to_cart_button"
+                                        data-product-id="<?= $id ?>" data-product-name="<?= $courseName ?>"
+                                        data-product-price="<?= $courseCost ?>"
+                                        data-product-image="<?= $courseImage ?>">
+                                        Add To Cart
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -392,18 +409,24 @@ include("includes/header.php");
 
                     <div class="course-widget course-metarials">
                         <h4 class="course-title">Requirements</h4>
-                        <?= $Coursereq ?>
+                        <?= $requirement ?>
                     </div>
 
                     <div class="course-widget">
                         <h4 class="course-title">Tags</h4>
                         <div class="single-course-tags">
-                            <a href="#">Web Deisgn</a>
-                            <a href="#">Development</a>
-                            <a href="#">Html</a>
-                            <a href="#">css</a>
+                            <?php
+                        // Assuming $tags is an array of tags
+                        $tags = ["Web Design", "Development", "Html", "Css"];
+
+                        // Loop through the tags and generate HTML elements
+                        foreach ($tags as $tag) {
+                            echo '<a href="#">' . $tag . '</a>';
+                        }
+                        ?>
                         </div>
                     </div>
+
 
 
 
@@ -524,7 +547,58 @@ include("includes/header.php");
     </div>
 </section>
 
+<script>
+$('.add_to_cart_button').click(function(e) {
+    e.preventDefault();
 
+    var product_id = $(this).data('product-id');
+    var product_name = $(this).data('product-name');
+    var product_price = $(this).data('product-price');
+    var product_image = $(this).data('product-image');
+
+    // Check if there is an existing cart in local storage
+    var cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Create a new cart item
+    var cartItem = {
+        id: product_id,
+        name: product_name,
+        price: product_price,
+        image: product_image
+    };
+
+    // Add the new item to the cart
+    cart.push(cartItem);
+
+    // Save the updated cart back to local storage
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    // Update the cart count in the header
+    updateCartCount();
+});
+
+function updateCartCount() {
+    var cart = JSON.parse(localStorage.getItem('cart')) || [];
+    var cartCount = cart.length;
+    $('#cart-count-container').text(' (' + cartCount + ')');
+}
+
+$(document).ready(function() {
+    updateCartCount(); // Call this on page load to set the initial cart count
+});
+
+function getCartItems() {
+    return JSON.parse(localStorage.getItem('cart')) || [];
+}
+
+// Example: Get the cart items and do something with them
+var cartItems = getCartItems();
+cartItems.forEach(function(item) {
+    // Do something with each item, e.g., display in a cart summary
+});
+
+// ...
+</script>
 <?php
 include("includes/footer.php");
 ?>

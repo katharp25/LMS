@@ -5,6 +5,7 @@ include('functions/list_grid.php');
 ?>
 
 <style>
+
         .tag-container {
             display: flex;
             flex-wrap: wrap;
@@ -41,6 +42,7 @@ include('functions/list_grid.php');
 
 
     </style>
+>>>>>>> 6f43bc7ca6eccd56261b309a862c9847487810ee
 <!-- Main Content Panel -->
 <div class="content-wrapper">
     <div class="row">

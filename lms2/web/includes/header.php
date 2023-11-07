@@ -1,21 +1,11 @@
-
 <?php 
+// include("../functions/config.php");
+// $mainlink="http://localhost/LMS/lms2/";
+$mainlink="http://localhost:/LMS/lms2/web/";
 
-// session_start();
-include("../functions/config.php");
-$mainlink="http://localhost/LMS/lms2/";
-
-// session_start(); // Start the session
-
-// Other code for your header
-
-// Display the cart count
 $cartCount = isset($_SESSION['cart_count']) ? $_SESSION['cart_count'] : 0;
+
 ?>
-
-
-
-
 
 
 <!DOCTYPE html>
@@ -50,21 +40,13 @@ $cartCount = isset($_SESSION['cart_count']) ? $_SESSION['cart_count'] : 0;
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/responsive.css">
   <!-- <script src="./js/jquery-3.6.0.min.js"></script> -->
-  <style>
-/* #cart-count-container{
-    background-color: #FF0000; 
-    color: #FFFFFF; 
-    font-size: 10px; 
-    border-radius: 50%; 
-    padding: 2px 5px; 
-    position: absolute;
-    top: 8;
-    right: 30; 
-} */
-</style>
+  <img src="../../images/profilepic.png" alt="">
+
 </head>
 
 <body id="top-header">
+
+  
 
     
 <header>
@@ -121,7 +103,7 @@ $cartCount = isset($_SESSION['cart_count']) ? $_SESSION['cart_count'] : 0;
                 <div class="collapse navbar-collapse" id="navbarMenu">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item dropdown">
-                            <a class="nav-link js-scroll-trigger" href="<?=$mainlink?>web">
+                            <a class="nav-link js-scroll-trigger" href="<?=$mainlink?>">
                                 Home
                             </a>
                         </li>
@@ -132,7 +114,7 @@ $cartCount = isset($_SESSION['cart_count']) ? $_SESSION['cart_count'] : 0;
                         </li>
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link js-scroll-trigger" href="<?=$mainlink?>web/courselist">
+                            <a class="nav-link js-scroll-trigger" href="<?=$mainlink?>courselist">
                                 Course List
                             </a>
                             <!-- <div class="dropdown-menu" aria-labelledby="navbar3">
@@ -170,7 +152,7 @@ $cartCount = isset($_SESSION['cart_count']) ? $_SESSION['cart_count'] : 0;
                             </div> -->
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link js-scroll-trigger" href="<?=$mainlink?>web/blogs" >
+                            <a class="nav-link js-scroll-trigger" href="<?=$mainlink?>blogs" >
                                 Blogs
                             </a>
                         </li>
@@ -186,7 +168,7 @@ $cartCount = isset($_SESSION['cart_count']) ? $_SESSION['cart_count'] : 0;
                             </a>
                         </li>
                         <li class="nav-item ">
-                            <a href="<?= $mainlink?>web/contact" class="nav-link">
+                            <a href="<?= $mainlink?>contact" class="nav-link">
                                 Contact Us
                             </a>
                         </li>
@@ -195,27 +177,52 @@ $cartCount = isset($_SESSION['cart_count']) ? $_SESSION['cart_count'] : 0;
 
                     <ul class="header-contact-right d-none d-lg-block">
                     <li>
-                    
-
                      <a href="cart.php" id="cart-link" class="header-cart">
                             <i class="fa fa-shopping-cart"></i>
                             <!-- Inside your header.php -->
                             <span id="cart-count-container">
-                                Cart <span id="cart-count">0</span>
+                            <span id="cart-count">0</span>
                             </span>
                         </a>
-
                     </li>
-                        <li><a href="#" class="header-search search_toggle"> <i class="fa fa fa-search"></i></a></li>
+                        <!-- <li><a href="#" class="header-search search_toggle"> <i class="fa fa fa-search"></i></a></li> -->
                     </ul>
-                   
+                    <ul>
+                    <li class="nav-item dropdown d-none d-lg-block user-dropdown">
+                        <a class="nav-link" id="UserDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img class="img-xs rounded-circle" src="assets/images/profilepic.png" height="50px" width="50px" alt="Profile image"> </a>
+                            <!-- <img src="assets/images/saburi.png" alt="Edutim" class="img-fluid w-50" > -->
+
+                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
+                            <div class="dropdown-header text-center">
+                            <!-- <img src="assets/images/saburi.png" alt="Edutim" class="img-fluid w-50" height="50px" width="50px"> -->
+                                <img class="img-md rounded-circle" src="assets/images/profilepic.png" height="50px" width="50px" alt="Profile image">
+                                <p class="mb-1 mt-3 font-weight-semibold">Allen Moreno</p>
+                                <p class="fw-light text-muted mb-0">allenmoreno@gmail.com</p>
+                            </div>
+                            <a class="dropdown-item" href="<?= $mainlink?>web/profile.php"><i
+                                    class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i> My Profile
+                                <!-- <span class="badge badge-pill badge-danger">1</span></a> -->
+                            <a class="dropdown-item"><i
+                                    class="dropdown-item-icon mdi mdi-message-text-outline text-primary me-2"></i>
+                                My Orders</a>
+                            <a class="dropdown-item"><i
+                                    class="dropdown-item-icon mdi mdi-calendar-check-outline text-primary me-2"></i>
+                               My Active Courses</a>
+                            <a class="dropdown-item"><i
+                                    class="dropdown-item-icon mdi mdi-help-circle-outline text-primary me-2"></i>
+                                Change Password</a>
+                            <a class="dropdown-item" href="<?= $mainlink ?>"><i
+                                    class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Sign Out</a>
+                        </div>
+                    </li>
+                    </ul>
                 </div> <!-- / .navbar-collapse -->
             </div> <!-- / .container -->
         </nav>
     </div>
 </header>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
 <script>
 
 // <!-- This is your HTML for displaying the cart count -->
@@ -232,28 +239,4 @@ document.addEventListener('DOMContentLoaded', function () {
 
     updateCartCount();
 });
-</script>
-<script>
-    // Function to update cart count using AJAX
-    // function updateCartCount() {
-    //     $.ajax({
-    //         type: 'GET',
-    //         url: '../functions/functions.php', // Replace with the actual path to your server-side script
-    //         success: function (response) {
-    //             // Update the cart count on the page
-    //             $('#cart-count').text(response);
-    //         }
-    //     });
-    // }
-
-    // // Event handler for clicking the cart icon
-    // $('#cart-link').click(function (event) {
-    //         event.preventDefault();
-    //         // Call the updateCartCount function to update the cart count
-    //         updateCartCount();
-
-    //         // Open the cart page (cart.php)
-    //         window.location.href = $(this).attr('href');
-    //     });
-    // });
 </script>
