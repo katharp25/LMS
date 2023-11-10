@@ -27,10 +27,11 @@ include('includes/sidebar.php');
                         </div>
                         <div class="form-group">
                             <label for="banner_desc">Description</label>
-                            <textarea class="richtext">
-                                        Welcome to Saburi LMS
-                                    </textarea>
+                            <textarea class="rte">
+                                        
+                            </textarea>
                         </div>
+                        
                         <!-- <div class="form-group">
                             <label for="banner_image">Banner Image</label>
                             <input type="file" class="form-control-file" id="banner_image" accept="image/*">

@@ -152,9 +152,9 @@ include('../functions/registerStudent.php');
     $(document).ready(function() {
         $('#countryList').on('change', function() {
             var countryId = $(this).val();
-
+            // console.log('countryId');
             $.ajax({
-                method:'get',
+                method:'GET',
                 url:'../functions/registerStudent.php',
                 data: {countryId : countryId},
                 success: function(datas){

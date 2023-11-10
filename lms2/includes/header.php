@@ -3,6 +3,7 @@ include("./functions/config.php");
 include('./functions/list_grid.php');
 // include('./functions/modals_data.php');
 // $mainlink="http://localhost:8080/LMS/lms2/";
+$mainlink="http://localhost/LMS/lms2/";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,14 +21,21 @@ include('./functions/list_grid.php');
     <link rel="stylesheet" href="vendors/simple-line-icons/css/simple-line-icons.css">
     <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
     <!-- endinject -->
+    <link rel="stylesheet" href="vendors/richtexteditor/rte_theme_default.css" />
     <!-- Plugin css for this page -->
     <link rel="stylesheet" href="vendors/datatables.net-bs4/dataTables.bootstrap4.css">
     <!-- <link rel="stylesheet" href="js/select.dataTables.min.css"> -->
     <!-- End plugin css for this page -->
     <!-- Rich Text Editor -->
-    <script src="https://cdn.tiny.cloud/1/rnq798i697frg8htdej9ur8w0jc59pic7kqe5eysm8mti1ch/tinymce/6/tinymce.min.js">
-    </script>
+    <script src="https://cdn.tiny.cloud/1/rnq798i697frg8htdej9ur8w0jc59pic7kqe5eysm8mti1ch/tinymce/6/tinymce.min.js"></script>
     <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script>
+      tinymce.init({
+        selector: '#mytextarea'
+      });
+    </script>
     <!-- <script src="./outsides/richtexteditor/tinymce.min.js"></script> -->
     
     <!-- inject:css -->

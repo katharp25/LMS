@@ -1,6 +1,7 @@
 <?php
 include('includes/header.php');
 include('includes/sidebar.php');
+include('functions/list_grid.php');
 ?>
 
 
@@ -15,25 +16,20 @@ include('includes/sidebar.php');
                         You can Write the content for about page.
                     </p> -->
                    
-                    <form class="forms-sample">
+                    <form class="forms-sample" method="POST" action="./functions/functions.php">
                         <div class="form-group">
-                            <label for="title">Title</label>
-                            <input type="text" class="form-control" name="title"
-                                placeholder="Enter Blog Title">
+                            <label for="title">Email</label>
+                            <input type="email" class="form-control" name="email"
+                                placeholder="Enter Email">
                         </div>
                         <div class="form-group">
-                            <label for="image">Image</label>
-                            <input type="file" class="form-control-file" id="image" accept="image/*">
+                            <label for="image">phone Number</label>
+                            <input type="text" class="form-control" name="phone_no" >
                         </div>
-                        <!-- <div class="form-group">
-                            <label for="writer">Writer</label>
-                            <input type="text" class="form-control" name="writer"
-                                placeholder="Enter Writer Name">
-                        </div> -->
+                       
                         <div class="form-group">
-                            <label for="desc">Description</label>
-                            <textarea class="richtext" name="desc">
-                                        Welcome to Saburi LMS
+                            <label for="desc">Address</label>
+                            <textarea class="rte" name="address">    
                                     </textarea>
                         </div>
                         <!-- <div class="form-group">
@@ -41,7 +37,7 @@ include('includes/sidebar.php');
                             <input type="file" class="form-control-file" id="banner_image" accept="image/*">
                         </div> -->
 
-                        <button type="submit" class="btn btn-primary me-2">Submit</button>
+                        <button type="submit" class="btn btn-primary me-2" name="contact_details">Submit</button>
                         <button class="btn btn-light">Cancel</button>
                     </form>
                 </div>

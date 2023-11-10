@@ -1,4 +1,7 @@
-<?php include('config/config.php') ?>
+<?php 
+include('config/config.php') 
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,15 +43,15 @@
               <form class="pt-3">
                 <div class="form-group">
                   <label>Old Password</label>
-                  <input type="email" class="form-control form-control-lg" placeholder="Enter your old Password">
+                  <input type="email" name="oldPassword" id="oldPassword" class="form-control form-control-lg" placeholder="Enter your old Password">
                 </div>
                 <div class="form-group">
                   <label>New Password</label>
-                  <input type="email" class="form-control form-control-lg" placeholder="Enter your New Password">
+                  <input type="email" name="newPassword" class="form-control form-control-lg" placeholder="Enter your New Password">
                 </div>
                 <div class="form-group">
                   <label>Confirm Password</label>
-                  <input type="email" class="form-control form-control-lg" placeholder="Enter your Confirm Password">
+                  <input type="email" name="confirmPassword" class="form-control form-control-lg" placeholder="Enter your Confirm Password">
                 </div>
                 <!-- <div class="form-group">
                   <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password">

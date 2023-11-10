@@ -68,12 +68,12 @@ include('includes/sidebar.php');
                             ?>
                                     <tr>
                                         <td><?= $i; ?></td>
-                                        <td hidden><?= $row['id']; ?></td>
+                                        <td class="edit_id" hidden><?= $row['id']; ?></td>
                                         <td><?= $row['topicName']; ?></td>
                                         <td><?= $row['subTopicName']; ?></td>
                                         <td>
                                             <button type="submit" class="btn btn-primary me-2 p-2 edit-button" data-bs-toggle="modal" data-bs-target="#editmodal" data-id="<?= $row['id']; ?>">Edit</button>
-                                            <button class="btn btn-danger p-2">Delete</button>
+                                            <button type="submit" class="btn btn-danger p-2 delete-button" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="<?= $row['id']; ?>">Delete</button>
                                         </td>
                                     </tr>
                             <?php
@@ -133,6 +133,30 @@ include('includes/sidebar.php');
                     </div>
                 </div>
                 <!-- Edit Modal end -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteConfirmationModalLabel">Confirm Deletion</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="delete_blog.php" method="POST">
+
+            <div class="modal-body">
+
+                <input type="hidden" id="delete_id" name="delete_id">
+                Are you sure you want to delete this record?
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-danger" name="delete_subtopic" id="delete_subtopic">Delete</button>
             </div>
         </div>
     </div>
@@ -206,7 +230,20 @@ include('includes/sidebar.php');
 </script>
 
 
+<script>
 
+$(document).ready(function() {
+    $('.delete-button').on('click', function(e) {
+        e.preventDefault();
+        var deleteId = $(this).data('id');
+
+        console.log(deleteId);
+        $('#delete_id').val(deleteId);
+        $('#deleteModal').modal('show'); 
+    
+    });
+});
+</script>
 
 
 <?php
