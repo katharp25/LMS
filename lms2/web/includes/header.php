@@ -232,6 +232,7 @@ $cartCount = isset($_SESSION['cart_count']) ? $_SESSION['cart_count'] : 0;
 
 // <!-- This is your HTML for displaying the cart count -->
 
+<<<<<<< HEAD
 
 document.addEventListener('DOMContentLoaded', function () {
     function updateCartCount() {
@@ -245,3 +246,10 @@ document.addEventListener('DOMContentLoaded', function () {
     updateCartCount();
 });
 </script>
+=======
+                    </div> <!-- / .navbar-collapse -->
+                </div> <!-- / .container -->
+            </nav>
+        </div>
+    </header>
+>>>>>>> 2e1417a5cfeb87b0481d2ce1619ecb7d47ca1673

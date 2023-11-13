@@ -377,7 +377,7 @@ elseif (isset($_POST['blog_manage'])) {
         $imageFile = $_FILES['image'];
         $imageFileName = $imageFile['name'];
         // Process and move the image file to your desired location
-        move_uploaded_file($imageFile['tmp_name'], 'upload/image/' . $imageFileName);
+        move_uploaded_file($imageFile['tmp_name'], 'upload/image/blogImage/' . $imageFileName);
     }
     $writer = $_POST['writer'];
     $desc = $_POST['desc'];
