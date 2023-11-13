@@ -33,9 +33,9 @@ if (isset($_GET['subtopicId'])) {
             // Output each course as HTML
             echo '<li class="product">
                 <div class="product-wrap">
-                    <a href="#" class="">
-                        <img src="../functions/upload/image/' . $courseImage . '" alt="">
-                    </a>
+                <a href="course_single.php?course_id=' . $id .'">
+                   <img src="../functions/upload/image/'. $courseImage .'" alt="">
+                </a>
                     <div class="product-btn-wrap">
                         <a href="cart.php?id=' . $id . '&name=' . $courseName . '&price=' . $courseCost . '&image=' . $courseImage . '" class="button product_type_simple add_to_cart_button ajax_add_to_cart" 
                             data-product-id="' . $id . '"
@@ -55,7 +55,7 @@ if (isset($_GET['subtopicId'])) {
                 <span class="price">
                     <ins>
                         <span class="woocommerce-Price-amount amount">
-                            <span class="woocommerce-Price-currencySymbol">$</span>' . $courseCost . '
+                            <span class="woocommerce-Price-currencySymbol">&#8377;</span>' . $courseCost . '
                         </span>
                     </ins>
                 </span>
@@ -83,33 +83,6 @@ if (isset($_POST['cart'])) {
     // You can also calculate the total or perform other cart-related actions here if needed
 }
 
-// Send a response back to the client (optional)
-echo 'Cart updated successfully'; 
-
-// session_start();
-
-// if (isset($_POST['remove_item'])) {
-//     $itemIdToRemove = $_POST['remove_item'];
-    
-//     // Loop through the cart items and remove the item with a matching ID
-//     $updatedCart = $_SESSION['cart'];
-//     foreach ($updatedCart as $key => $item) {
-//         if ($item['id'] === $itemIdToRemove) {
-//             unset($updatedCart[$key]);
-//             break; // Exit the loop once the item is found and removed
-//         }
-//     }
-
-//     $_SESSION['cart'] = array_values($updatedCart); // Reindex the array
-
-//     // Send a JSON response to indicate the operation's success
-//     $response = ['success' => true, 'updatedCart' => $_SESSION['cart']];
-//     echo json_encode($response);
-// } else {
-//     // Send a JSON response to indicate failure
-//     $response = ['success' => false];
-//     echo json_encode($response);
-// }
 if (isset($_POST['remove_item'])) {
     $itemId = $_POST['remove_item'];
     // Remove the item from the cart based on its ID
@@ -141,10 +114,6 @@ if (isset($_POST['woocommerce_checkout_place_order'])) {
 
     if ($con->query($insertOrderQuery) === TRUE) {
         $orderId = $con->insert_id; // Get the ID of the newly inserted order
-
-        // Now, you have the order ID ($orderId), which you can use to insert data into the 'Orderdetails' table.
-        
-        // Assuming you have the cart data in a JSON format
         $cartData = json_decode($_POST['cart'], true);
 
         foreach ($cartData as $item) {
@@ -152,7 +121,6 @@ if (isset($_POST['woocommerce_checkout_place_order'])) {
             $qty = $item['quantity'];
             $rate = $item['price'];
 
-        
             // Insert data into the 'Orderdetails' table for each item
             $insertOrderDetailsQuery = mysqli_query($con, "INSERT INTO Orderdetails (OrderId, CourseId, quantity, price, createdOn) VALUES ($orderId, $courseId, $qty, $rate,NOW())");
         

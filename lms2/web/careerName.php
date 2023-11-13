@@ -1,5 +1,18 @@
 <?php
 include("includes/header.php");
+if (isset($_GET['id'])) {
+    $career = $_GET['id'];
+    $fetch_list_career_query = mysqli_query($con, "SELECT * FROM careers WHERE Id = $career");
+
+    $n=mysqli_fetch_array($fetch_list_career_query);
+    $id = $n['Id'];
+    $title=$n['Title'];
+    $exp=$n['Experience'];
+    $desc=$n['Description'];
+    $createdOn=$n['createdOn'];
+    
+
+}
 ?>
 
 <div class="search-wrap">
@@ -61,17 +74,11 @@ include("includes/header.php");
 
                     <div class="single-post-content">
                         <div class="post-meta mt-4">
-                            <span class="post-date"><i class="fa fa-calendar-alt mr-2"></i>Current date</span>
+                            <span class="post-date"><i class="fa fa-calendar-alt mr-2"></i><?= $created_on?></span>
                             <span><a href="#" class="post-author"><i class="fa fa-user mr-2"></i>Admin</a></span>
                         </div>
-                        <h4 class="mt-4">SEO is a Cost-Effective Advertising Strategy</h4>
-                        <p>Some SEO-related tools such as the Google Keyword Planner and Google Analytics provide
-                            quantitative data to help you understand your market, analyze the trends, and know your
-                            competitors’ standings. It helps you identify popular and valuable keywords so you can
-                            decide how to structure or revise your content. It also gives you insights on your market’s
-                            behavior such as location, times of activity, frequency of searches, technologies used,
-                            product preferences, etc. All these metrics are useful in helping you get to know your
-                            audience.</p>
+                        <h4 class="mt-4"><?= $title?></h4>
+                        <p><?= $desc?></p>
                     </div>
 
                     <div class="single-tags">

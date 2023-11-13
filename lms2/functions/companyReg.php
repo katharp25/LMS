@@ -9,25 +9,7 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 $con = mysqli_connect($host,$username,$password,$db);
-// Fetch CountryList
-
-$fetchCountries = mysqli_query($con, "SELECT * FROM awt_countries");
-// $countryId = [];
-if (isset($_GET['selectedCountryId'])) {
-    $selectedCountryId = $_GET['selectedCountryId'];
-
-    $fetchStates = mysqli_query($con, "SELECT * FROM awt_states WHERE country_id = '$selectedCountryId'");
-
-    $states = array();
-
-    while ($row = mysqli_fetch_assoc($fetchStates)) {
-        $states[] = $row;
-    }
-
-    echo json_encode($states);
-    // exit; // Terminate the script after sending JSON response
-}
-
+// Start Inserting Company Registration
 if (isset($_POST['registerCompany'])) {
     $companyName = $_POST['company_name'];
     $contactName = $_POST['contact_name'];
@@ -80,7 +62,30 @@ if (isset($_POST['registerCompany'])) {
         echo "Failed to insert data.";
     }
 }
+// Ending Insertin Company Registration 
 
+// start Fetching Company Restitration
+
+$fetchCountries = mysqli_query($con, "SELECT * FROM awt_countries");
+// $countryId = [];
+if (isset($_GET['selectedCountryId'])) {
+    $selectedCountryId = $_GET['selectedCountryId'];
+
+    $fetchStates = mysqli_query($con, "SELECT * FROM awt_states WHERE country_id = '$selectedCountryId'");
+
+    $states = array();
+
+    while ($row = mysqli_fetch_assoc($fetchStates)) {
+        $states[] = $row;
+    }
+
+    echo json_encode($states);
+    // exit; // Terminate the script after sending JSON response
+}
+
+// Ending Fetching Company Restitration
+
+// Start Inserting Contact 
 elseif (isset($_POST['add'])){
     $name = $_POST['name'];
     $email = $_POST['email'];
@@ -127,6 +132,9 @@ elseif (isset($_POST['add'])){
         echo "Failed to insert data.";
     }
 }
+// End Inserting Contact
+
+// start Inserting mail from frontend
 
 elseif(isset($_POST['send_email']))
 {
@@ -145,8 +153,8 @@ elseif(isset($_POST['send_email']))
     
 }
 
+// End Inserting mail from frontend
 
-// Include your database connection code here
 
 ?>
 

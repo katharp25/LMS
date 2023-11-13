@@ -42,7 +42,7 @@ include('functions/list_grid.php');
 
 
     </style>
->>>>>>> 6f43bc7ca6eccd56261b309a862c9847487810ee
+
 <!-- Main Content Panel -->
 <div class="content-wrapper">
     <div class="row">
@@ -119,7 +119,6 @@ include('functions/list_grid.php');
                                     $image=$row['bannerImage'];
                                     $description=$row['description'];
                                     $created_on=$row['createdOn'];
-                                    
                                     ?>
                                     <tr>
                                     <td><?= $i;?></td>
@@ -133,7 +132,6 @@ include('functions/list_grid.php');
                                                 data-bs-target="#editBlogModal" data-blog-id="<?= $id ?>">
                                                 edit
                                             </button>
-
                                             <button class="btn btn-danger p-2 delete-button" data-bs-toggle="modal"
                                                 data-bs-target="#deleteBlogModal" data-blog-id="<?= $id ?>">Delete</button>
                                         </td>

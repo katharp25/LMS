@@ -113,6 +113,10 @@ include('../functions/companyReg.php');
                         </p>
 
                         <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                            <label>GST&nbsp;<span class="required">*</span></label>
+                            <input type="text" class="woocommerce-Input woocommerce-Input--text input-text form-control" name="address" id="address" autocomplete="password" value="">
+                        </p>
+                        <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
                             <label>Select Country&nbsp;<span class="required">*</span></label>
                             <select class="form-select" name="country" class='countryList' id="countryList">
                                 <option>Choose Country..</option>

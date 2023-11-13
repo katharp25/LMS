@@ -135,7 +135,7 @@ include("../functions/list_grid.php");
     ?>
     <li class="product">
         <div class="product-wrap">
-        <a href="course_single.php?id=<?= $id ?>">
+        <a href="course_single.php?course_id=<?= $id ?>">
                 <img src="../functions/upload/image/<?= $courseImage ?>" alt="">
             </a>
             <div class="product-btn-wrap">
@@ -160,7 +160,7 @@ include("../functions/list_grid.php");
         <span class="price">
             <ins>
                 <span class="woocommerce-Price-amount amount">
-                    <span class="woocommerce-Price-currencySymbol">$</span><?= $courseCost ?>
+                    <span class="woocommerce-Price-currencySymbol">&#8377;</span><?= $courseCost ?>
                 </span>
             </ins>
         </span>
@@ -468,44 +468,6 @@ subtopicLinks.forEach(function(link) {
 
 <script>
 
-// AJAX request to add a product to the cart
-// $('.add_to_cart_button').click(function(e) {
-//     e.preventDefault();
-
-//     var product_id = $(this).data('product-id');
-//     var product_name = $(this).data('product-name');
-//     var product_price = $(this).data('product-price');
-//     var product_image = $(this).data('product-image');
-
-//     $.ajax({
-//         type: 'POST',
-//         url: '../functions/functions.php', // Replace with the actual path to your PHP file
-//         data: {
-//             add_to_cart: true,
-//             product_id: product_id,
-//             product_name: product_name,
-//             product_price: product_price,
-//             product_image: product_image
-//         },
-//         success: function(response) {
-//             // Update the cart count in the header
-//             updateCartCount();
-//         }
-//     });
-// });
-
-// // ...
-
-// // Function to update the cart count in the header
-// function updateCartCount() {
-//     var cartCount = <?php echo isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0; ?>;
-//     console.log(cartCount);
-//     $('#cart-count-container').text(' (' + cartCount + ')');
-// }
-
-// $(document).ready(function() {
-//     updateCartCount();
-// });
 // AJAX request to add a product to the cart
 $('.add_to_cart_button').click(function(e) {
     e.preventDefault();

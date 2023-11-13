@@ -63,4 +63,27 @@ if(isset($_POST['update']))
         echo "not working";
     }
 }
+if(isset($_POST["cat"]))
+{   
+    $output = '';
+    $query = "SELECT * FROM careercategory WHERE name LIKE '%".$_POST["cat"]."%'";
+    $result = mysqli_query($con, $query);
+    $output = '<ul class ="list-unstyled">';
+    if(mysqli_num_rows($result) > 0)
+    {
+        while($row = mysqli_fetch_array($result))
+        {
+            $output .= '<li>'.$row["name"].'</li>';
+        }
+    }
+    else{
+        $output .= '<li>Tag Not Found</li>';
+    }
+    $output .= '</ul>';
+    echo $output;
+}
+
+
+
+
 ?>

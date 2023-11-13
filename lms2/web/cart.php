@@ -1,7 +1,5 @@
 <?php
- 
 include("includes/header.php");
-
 ?>
 
 
@@ -124,19 +122,17 @@ include("includes/header.php");
                                                 column3.className = 'product-quantity';
                                                 var quantityInput = document.createElement('input');
                                                 quantityInput.type = 'number';
-                                                quantityInput.value = course.quantity;
+                                                quantityInput.value = 1; // Set the quantity input to 1
                                                 quantityInput.addEventListener('input', function() {
                                                     // Update the quantity when the input changes
                                                     course.quantity = parseInt(quantityInput.value, 10);
                                                     updateCart(cart);
 
                                                     // Calculate the updated itemTotal based on the updated quantity
-                                                    var updatedItemTotal = course.price * course
-                                                        .quantity;
+                                                    var updatedItemTotal = course.price * course.quantity;
 
                                                     // Update the totalAmount span to display the new itemTotal
-                                                    totalAmount.textContent = updatedItemTotal.toFixed(
-                                                        2);
+                                                    totalAmount.textContent = updatedItemTotal.toFixed(2);
 
                                                     updateTotals(cart);
                                                 });

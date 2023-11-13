@@ -90,13 +90,8 @@
                                         List</a></li>
                                 <li class="nav-item"> <a class="nav-link" href="<?= $mainlink;?>studentsListReport">Students
                                         List</a></li>
-<<<<<<< HEAD
                                 <li class="nav-item"> <a class="nav-link" href="<?= $mainlink;?>studentsListReport">User Contact List
                                         List</a></li>
-=======
-                                        <li class="nav-item"> <a class="nav-link" href="<?= $mainlink;?>newsLetter">Newsletter</a></li>
-                                        <li class="nav-item"> <a class="nav-link" href="<?= $mainlink;?>userContactList">User Contact List</a></li>
->>>>>>> 6f43bc7ca6eccd56261b309a862c9847487810ee
                             </ul>
                         </div>
                     </li>

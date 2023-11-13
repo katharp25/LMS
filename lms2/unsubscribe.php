@@ -5,16 +5,20 @@ $db = "saburi_lms_2023";
 $password = "";
 $username = "root";
 
+// Create a database connection
+$con = mysqli_connect($host, $username, $password, $db);
+
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 // Create a connection to the database
-$conn = new mysqli($host, $username, $password, $db);
+
 
 // Check the connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+if ($con->conect_error) {
+    die("connection failed: " . $con->conect_error);
 }
 
 if (isset($_GET['email'])) {
@@ -36,11 +40,11 @@ if (isset($_GET['email'])) {
             // SQL query to mark the user as unsubscribed
             $sql = "UPDATE newsletter SET status = 0 WHERE email = '$email'";
     
-            if ($conn->query($sql) === TRUE) {
+            if ($con->query($sql) === TRUE) {
                 // Display a confirmation message
                 echo "You have been unsubscribed successfully.";
             } else {
-                echo "Error: " . $sql . "<br>" . $conn->error;
+                echo "Error: " . $sql . "<br>" . $con->error;
             }
         } elseif ($_GET['confirm'] === 'no') {
             // User chose not to unsubscribe
@@ -51,6 +55,6 @@ if (isset($_GET['email'])) {
     echo "Invalid request. Please provide a valid email address.";
 }
 
-// Close the database connection
-$conn->close();
+// Close the database conection
+$con->close();
 ?>

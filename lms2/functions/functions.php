@@ -77,6 +77,44 @@ elseif (isset($_POST['checking_user_btn'])) {
     }
 }
 
+elseif(isset($_POST['update_student_register']))
+{
+    // Assuming 'id' is a hidden input in the form to identify the student
+    $id = $_POST['id']; 
+    $fullName = $_POST['fullName'];
+    $DOB = $_POST['DOB'];
+    $address = $_POST['address'];
+    $state = $_POST['state'];
+    $pincode = $_POST['pincode'];
+    $gender = $_POST['gender'];
+    $phoneNumber = $_POST['phoneNumber'];
+    $email = $_POST['email'];
+    $idProof = $_POST['idProof'];
+    $idProofDetails = $_POST['idProofDetails'];
+    
+    // Update query
+    $update_query = "UPDATE students SET 
+                    name = '$fullName',
+                    DOB = '$DOB',
+                    address = '$address',
+                    state = '$state',
+                    pincode = '$pincode',
+                    gender = '$gender',
+                    phoneNumber = '$phoneNumber',
+                    email = '$email',
+                    idProof = '$idProof',
+                    idProofDetails = '$idProofDetails'
+                    WHERE id = $id";
+    $query = mysqli_query($con, $update_query);
+
+    if($query)
+    {
+        header("location: $mainlink" . "web/profile.php");
+    }
+    else{
+        echo "not working";
+    }
+}
 elseif(isset($_POST['update_user']))
 {
     $id = $_POST['user_id'];
@@ -96,6 +134,39 @@ elseif(isset($_POST['update_user']))
         echo "not working";
     }
 }
+// elseif(isset($_POST['update_password']))
+// {
+
+//     $oldPassword = $_POST['oldPassword'];
+//     $newPassword = $_POST['newPassword'];
+//     $confirmPassword = $_POST['confirmPassword'];
+//     // loggedInUserId = $_SESSION[''];
+//     $query = "SELECT password FROM users WHERE id = 12";
+//     $result = mysqli_query($con, $query);
+//     $user = mysqli_fetch_assoc($result);
+
+//     if (password_verify($oldPassword, $user['password']) && $newPassword === $confirmPassword){
+
+//         $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+//         // $updateQuery = "UPDATE users SET password = '$hashedPassword' WHERE id = $loggedInUserId";
+//         $updateQuery = "UPDATE users SET password = '$hashedPassword' WHERE id = 12";
+
+//         $query = mysqli_query($con, $update_topic);
+
+//     if($query)
+//     {
+//         header("location: $mainlink" . "dashboard");
+//     }
+//     else{
+//         echo "not working";
+//     }
+//     }else {
+//         echo "Old password is incorrect or new passwords do not match!";
+//     }
+
+//     // $update_topic = "UPDATE users set Name = '$name',Email = '$email',Phone = '$phone',Address = '$address' WHERE id='$id'";
+    
+// }
 elseif(isset($_POST['topic_manage'])){
     $topic = $_POST['topic'];
     $currentDate = date("Y-m-d H:i:s"); 
@@ -146,7 +217,6 @@ elseif(isset($_POST['update_topic']))
         echo "not working";
     }
 }
-
 elseif(isset($_POST['subtopic_manage'])){
     $topic = $_POST['topic'];
     $subtopic = $_POST['subtopic'];
@@ -518,6 +588,7 @@ elseif(isset($_POST['update_affiliate']))
     $contact_person = $_POST['contact_person'];
     $address = $_POST['address'];
     
+    
     $update = "UPDATE affiliates set companyName='$company_name', details ='$details', contactDetail='$contact_details', contactPerson='$contact_person', address='$address' WHERE id='$id'";
     $query = mysqli_query($con, $update);
 
@@ -529,11 +600,13 @@ elseif(isset($_POST['update_affiliate']))
         echo "not working";
     }
 }elseif (isset($_POST['career_manage'])){
+
+    $selectedCategoryId = $_POST['selectedCategoryId'];
     $title = $_POST['title'];
     $exp = $_POST['exp'];
     $desc = $_POST['desc'];
    
-    $insert_query = mysqli_query($con, "INSERT INTO careers(Title, Experience, Description) VALUES('$title', '$exp', '$desc')");
+    $insert_query = mysqli_query($con, "INSERT INTO careers(categoryId,Title, Experience, Description,createdOn) VALUES('$selectedCategoryId','$title', '$exp', '$desc',NOW())");
 
     if ($insert_query) {
         header("location: $mainlink" . "career");
@@ -799,7 +872,23 @@ if (isset($_POST['add_to_cart'])) {
     // Send the JSON response to the client
     header('Content-Type: application/json');
     echo $json_response;
-    exit;
+    // exit;
+}
+
+elseif(isset($_POST['addCategory']))
+{
+    $category=$_POST['category'];
+
+    $addCategory = mysqli_query($con, "INSERT INTO careercategory(name,createdOn) VALUES ('$category',NOW())");
+
+    if($addCategory)
+    {
+        header("location: $mainlink" . "career");
+
+    }
+    else{
+        echo "failed";
+    }
 }
 
 

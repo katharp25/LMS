@@ -1,4 +1,6 @@
-<?php include('config/config.php') ?>
+<?php include('functions/list_grid.php'); 
+$mainlink="http://localhost:/LMS/lms2/";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -46,7 +48,7 @@
                 </div> -->
                 <div class="mt-3">
                   <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" 
-                  href="<?= $mainlink;?>login">Submit</a>
+                  href="<?= $mainlink;?>">Submit</a>
                 </div>
                 <!-- <div class="my-2 d-flex justify-content-between align-items-center">
                   <div class="form-check">
@@ -63,7 +65,7 @@
                   </button>
                 </div> -->
                 <div class="text-center mt-4 fw-light">
-                <span class="fa-solid fa-angle-left "></span> <a href="<?= $mainlink;?>login" class="text-primary" style="text-decoration: none">Back to Login</a>
+                <span class="fa-solid fa-angle-left "></span> <a href="<?= $mainlink;?>" class="text-primary" style="text-decoration: none">Back to Login</a>
                 </div>
               </form>
             </div>

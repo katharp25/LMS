@@ -1,7 +1,7 @@
 <?php 
 // include("../functions/config.php");
 // $mainlink="http://localhost/LMS/lms2/";
-$mainlink="http://localhost:/LMS/lms2/web/";
+$mainlink="http://localhost:/LMS/lms2/";
 
 $cartCount = isset($_SESSION['cart_count']) ? $_SESSION['cart_count'] : 0;
 
@@ -114,7 +114,7 @@ $cartCount = isset($_SESSION['cart_count']) ? $_SESSION['cart_count'] : 0;
                         </li>
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link js-scroll-trigger" href="<?=$mainlink?>courselist">
+                            <a class="nav-link js-scroll-trigger" href="<?=$mainlink?>web/courselist">
                                 Course List
                             </a>
                             <!-- <div class="dropdown-menu" aria-labelledby="navbar3">
@@ -152,8 +152,13 @@ $cartCount = isset($_SESSION['cart_count']) ? $_SESSION['cart_count'] : 0;
                             </div> -->
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link js-scroll-trigger" href="<?=$mainlink?>blogs" >
+                            <a class="nav-link js-scroll-trigger" href="<?=$mainlink?>web/blogs" >
                                 Blogs
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link js-scroll-trigger" href="<?=$mainlink?>web/career" >
+                               Career
                             </a>
                         </li>
                         <li class="nav-item dropdown">
@@ -168,7 +173,7 @@ $cartCount = isset($_SESSION['cart_count']) ? $_SESSION['cart_count'] : 0;
                             </a>
                         </li>
                         <li class="nav-item ">
-                            <a href="<?= $mainlink?>contact" class="nav-link">
+                            <a href="<?= $mainlink?>web/contact.php" class="nav-link">
                                 Contact Us
                             </a>
                         </li>
@@ -203,7 +208,7 @@ $cartCount = isset($_SESSION['cart_count']) ? $_SESSION['cart_count'] : 0;
                             <a class="dropdown-item" href="<?= $mainlink?>web/profile.php"><i
                                     class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i> My Profile
                                 <!-- <span class="badge badge-pill badge-danger">1</span></a> -->
-                            <a class="dropdown-item"><i
+                            <a href="<?= $mainlink?>web/myOrders.php" class="dropdown-item"><i
                                     class="dropdown-item-icon mdi mdi-message-text-outline text-primary me-2"></i>
                                 My Orders</a>
                             <a class="dropdown-item"><i

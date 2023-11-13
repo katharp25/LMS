@@ -15,9 +15,9 @@ if (isset($_POST['delete_blog'])) {
     // Create a database connection (adjust these settings according to your database)
    
     // Check the database connection
-   
+    // UPDATE orderdetails SET status = 1 WHERE id = $co_id
     // Perform the delete operation using the ID (replace "your_table" with your table name)
-    $sql = "DELETE FROM blogs WHERE id = $id";
+    $sql = "UPDATE blogs SET isActive = 0 WHERE id = $id";
     $query=mysqli_query($con, $sql);
     if ($query) {
         // If the delete operation is successful, you can redirect to a success page
@@ -34,7 +34,7 @@ if (isset($_POST['delete_blog'])) {
 if (isset($_POST['delete_user'])) {
     // Get the ID from the URL
     $id = $_POST['delete_id'];
-    $sql = "DELETE FROM users WHERE Id = $id";
+    $sql = "UPDATE users SET IsActive = 0 WHERE Id = $id";
     $query=mysqli_query($con, $sql);
     if ($query) {
         // If the delete operation is successful, you can redirect to a success page
@@ -86,7 +86,7 @@ if (isset($_POST['delete_topic'])) {
 if (isset($_POST['delete_resources'])) {
     // Get the ID from the URL
     $id = $_POST['delete_id'];
-    $sql = "DELETE FROM freeresources WHERE Id = $id";
+    $sql = "UPDATE freeresources SET isActive = 0 WHERE Id = $id";
     $query=mysqli_query($con, $sql);
     if ($query) {
         // If the delete operation is successful, you can redirect to a success page
@@ -103,7 +103,7 @@ if (isset($_POST['delete_resources'])) {
 if (isset($_POST['delete_affiliate'])) {
     // Get the ID from the URL
     $id = $_POST['delete_id'];
-    $sql = "DELETE FROM affiliates WHERE Id = $id";
+    $sql = "UPDATE affiliates SET isActive = 0 WHERE Id = $id";
     $query=mysqli_query($con, $sql);
     if ($query) {
         // If the delete operation is successful, you can redirect to a success page
@@ -120,7 +120,7 @@ if (isset($_POST['delete_affiliate'])) {
 if (isset($_POST['delete_career'])) {
     // Get the ID from the URL
     $id = $_POST['delete_id'];
-    $sql = "DELETE FROM careers WHERE Id = $id";
+    $sql = "UPDATE careers SET isActive = 0  WHERE Id = $id";
     $query=mysqli_query($con, $sql);
     if ($query) {
         // If the delete operation is successful, you can redirect to a success page
@@ -137,7 +137,7 @@ if (isset($_POST['delete_career'])) {
 if (isset($_POST['delete_cg'])) {
     // Get the ID from the URL
     $id = $_POST['delete_id'];
-    $sql = "DELETE FROM corporategovernance WHERE Id = $id";
+    $sql = "UPDATE corporategovernance SET isActive = 0 WHERE Id = $id";
     $query=mysqli_query($con, $sql);
     if ($query) {
         // If the delete operation is successful, you can redirect to a success page

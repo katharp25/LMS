@@ -4,35 +4,59 @@ include("../functions/list_grid.php");
 include("../functions/database_functions.php");
 include("includes/header.php");
 
-if (isset($_GET['id'])) {
-    $courseId = $_GET['id'];
-     
-    $fetch_data =mysqli_query($con, "select * from courses where id= $courseId");
-    // Fetch course details based on the course ID
+// $courseId = isset($_GET['course_id']) ? $_GET['course_id'] : null;
+// $orderId = isset($_GET['order_id']) ? $_GET['order_id'] : null;
 
-    $n = mysqli_fetch_array($fetch_data);
+if (isset($_GET['course_id'])) {
+    $co_id = $_GET['course_id'];
+    $fetch_data = mysqli_query($con, "SELECT * FROM courses WHERE id = $co_id");
+    if ($fetch_data && mysqli_num_rows($fetch_data) > 0) {
+        $n = mysqli_fetch_array($fetch_data);
+        $courseName = $n['courseName'];
+        
+        $courseCost = $n['courseCost'];
+        $bannerImage = $n['bannerImage'];
+        $courseDesc = $n['courseDesc'];
+        $createdOn=$n['createdOn'];
+        $CourseSummary = $n['summary'];
+        $Coursewyl=$n['learn'];
+        $tag = $n['tag'];
+        $requirement = $n['requirements'];
+        $createdOn = $n['createdOn'];
+            // echo $courseName;
+        } else {
+            echo "Course not found.";
+        }
+} else {
+    $o_id = $_GET['order_id'];
+    $payment_data = mysqli_query($con, "SELECT od.id, o.paymentstatus, o.orderdate, c.*, od.orderId, od.courseId
+    FROM orderdetails AS od
+    JOIN `orders` AS o ON od.orderId = o.id
+    JOIN courses AS c ON od.courseId = c.id
+    WHERE od.id = $o_id");
+    if ($payment_data && mysqli_num_rows($payment_data) > 0) {
+        $n = mysqli_fetch_array($payment_data);
+        $courseName = $n['courseName'];
+        $paymentstatus = $n['paymentstatus'];
+        $courseCost = $n['courseCost'];
+        $bannerImage = $n['bannerImage'];
+        $courseDesc = $n['courseDesc'];
+        $createdOn=$n['createdOn'];
+        $Coursewyl=$n['learn'];
+        $CourseSummary = $n['summary'];
+        $tag = $n['tag'];
+        $requirement = $n['requirements'];
+        $createdOn = $n['createdOn'];
+            // echo $courseName;
+        } else {
+            echo "Order not found.";
+        }
+}    
 
-    $id = $n['id'];
-    $topicID=$n['topicID'];
-    $subTopicId=$n['subTopicId'];
-    $courseName=$n['courseName'];
-    $courseCost=$n['courseCost'];
-    $courseDesc=$n['courseDesc'];
-    $bannerImage=$n['bannerImage'];
-    $CourseSummary=$n['summary'];
-    $tag=$n['tag'];
-    $requirement=$n['requirements'];
-    // $tag=$n['name'];
-    $createdOn=$n['createdOn'];
-}
     
 ?>
 
 <!-- The rest of your HTML code for displaying the course details -->
-
-
-
-
 
 <div class="search-wrap">
     <div class="overlay">
@@ -329,22 +353,45 @@ if (isset($_GET['id'])) {
                     <div class="course-single-thumb">
                         <img src="../functions/upload/image/<?= $bannerImage ?>" alt="" class="img-fluid w-100">
                         <div class="course-price-wrapper">
-                            <div class="course-price ml-3">
-                                <h4>Price: <span>&#8377; <?= $courseCost ?></span></h4>
-                                <input type="number" id="quantity" name="quantity" min="1" value="1"
-                                    style="font-size:20px;width: 50px; height: 30px;">
-                            </div>
-                            <div class="buy-btn">
-                                <div class="buy-btn">
-                                    <a href="" class="btn btn-main btn-block add_to_cart_button"
-                                        data-product-id="<?= $id ?>" data-product-name="<?= $courseName ?>"
-                                        data-product-price="<?= $courseCost ?>"
-                                        data-product-image="<?= $courseImage ?>">
-                                        Add To Cart
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+    <?php
+    if (isset($_GET['order_id'])) {
+        $co_id=$_GET['order_id'];
+        // If an order ID is present, hide the course price and quantity input
+        ?>
+        <div class="buy-btn">
+        <a href="MyActiveCourse.php?start_id=<?= $co_id ?>" class="btn btn-main btn-block">
+           
+            Start Course
+        </a>
+
+        </div>
+        <?php
+    } else {
+        // If not, show the course price and quantity input
+        ?>
+        <h4>Price: <span>&#8377; <?= $courseCost ?></span></h4>
+        <input type="number" id="quantity" name="quantity" min="1" value="1"
+            style="font-size: 20px; width: 50px; height: 30px;">
+        <div class="buy-btn">
+            <?php
+            if (isset($_GET['course_id'])) {
+                // If a course ID is present, display the "Start Course" button
+                ?>
+                <a href="start_course_url.php" class="btn btn-main btn-block add_to_cart_button"
+                   data-product-id="<?= $co_id ?>" data-product-name="<?= $courseName ?>"
+                   data-product-price="<?= $courseCost ?>" data-product-image="<?= $bannerImage ?>">
+                    Add To Cart
+                </a>
+                <?php
+            }
+            ?>
+        </div>
+        <?php
+    }
+    ?>
+</div>
+
+
                     </div>
 
 
