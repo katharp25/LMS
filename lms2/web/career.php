@@ -102,7 +102,7 @@ $careerQuery = mysqli_query($con, "SELECT * FROM careers ");
                     // echo '<div class="course-meta">';
                     // echo '</div>';
 
-                    echo '<div class="buy-btn text-center"><a href="blog_single.php?id=' . $id . '" class="btn btn-main-2 btn-small">Apply</a></div>';
+                    echo '<div class="buy-btn text-center"><a href="careerName.php?id=' . $id . '" class="btn btn-main-2 btn-small">Apply</a></div>';
                     echo '</div>';
                     echo '</div>';
                     echo '</div>';

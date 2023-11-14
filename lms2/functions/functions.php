@@ -671,6 +671,7 @@ elseif (isset($_POST['corporateGovernance_manage'])){
         echo "not done";
     }
 }
+
 elseif (isset($_POST['checking_cg_btn'])) {
     $careerId = $_POST['cgId'];
     $result_array = [];
@@ -890,6 +891,38 @@ elseif(isset($_POST['addCategory']))
         echo "failed";
     }
 }
+
+elseif(isset($_POST['apply_job']))
+{
+    $name = $_POST['name'];
+    $phone = $_POST['phone'];
+    $email = $_POST['email'];
+    $exp = $_POST['experience'];
+    $careerId = $_POST['CareerId'];
+    
+    // Process file upload
+    $cvpath = '';
+    if (isset($_FILES['cv'])) {
+        $imageFile = $_FILES['cv'];
+        $cvpath = 'upload/image/' . $imageFile['name'];
+        // Process and move the image file to your desired location
+        move_uploaded_file($imageFile['tmp_name'], $cvpath);
+    }
+
+    // Insert data into the database
+    $insertQuery = "INSERT INTO careersapplications (Name, Phone, Email, Experience, Attachment, CareerId,CreatedOn) 
+                    VALUES ('$name', '$phone', '$email', '$exp', '$cvpath', '$careerId',NOW())";
+
+    if(mysqli_query($con, $insertQuery))
+    {
+        header("location: $mainlink" . "web/career");
+
+    }
+    else{
+        echo "failed";
+    }
+}
+
 
 
 ?>
