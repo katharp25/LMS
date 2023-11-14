@@ -804,10 +804,10 @@ include("../functions/home_newCourses.php");
 
          <div class="row">
          <?php
-        if ($result->num_rows > 0) {
+        if ($blogs->num_rows > 0) {
             // echo $result;
         // Output data of each row
-        while ($row = $result->fetch_assoc()) {
+        while ($row = $blogs->fetch_assoc()) {
             echo '<div class="col-lg-4 col-md-6">';
             echo '<div class="blog-item">';
             echo '<img src="../functions/upload/image/blogImage/' . $row['bannerImage'] . '" alt="loading.." class="img-fluid">';

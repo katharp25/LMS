@@ -78,7 +78,7 @@ if (isset($_GET['id'])) {
                         <div class="post-meta mt-4">
                             <span class="post-date"><i class="fa fa-calendar-alt mr-2"></i><?= $createdOn ?></span>
                             <!-- <span class="post-comment"><i class="fa fa-comments mr-2"></i>1 Comment</span> -->
-                            <!-- <span><a href="#" class="post-author"><i class="fa fa-user mr-2"></i>Admin</a></span> -->
+                            <span><a href="#" class="post-author"><i class="fa fa-user mr-2"></i><?= $writer; ?></a></span>
                         </div>
 
                         <p class="mt-4 "><?= $description ?></p>
