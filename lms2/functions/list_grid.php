@@ -71,7 +71,11 @@ subtopics ON topics.Id = subtopics.topicId
 JOIN
 courses ON subtopics.Id = courses.subTopicId
 JOIN
-chapters ON courses.id = chapters.courseId ORDER BY chapters.id DESC");
+chapters ON courses.id = chapters.courseId
+WHERE
+chapters.isActive = 1
+ORDER BY
+chapters.id DESC");
 
 
 

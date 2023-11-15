@@ -958,7 +958,27 @@ elseif(isset($_POST['chapter_manage']))
     $result_array = [];
 
     // Prepare and execute a query to fetch the blog data by ID
-    $query = "SELECT * FROM `chapters` WHERE id = $chapterId";
+    $query = "SELECT 
+    topics.Id AS topic_id,
+    topics.topicName,
+    subtopics.Id AS subtopic_id,
+    subtopics.subtopicName,
+    courses.id AS course_id,
+    courses.courseName,
+    chapters.id AS chapter_id,
+    chapters.chapterName,
+    chapters.uploadFile,
+    chapters.video
+    FROM
+    topics
+    JOIN
+    subtopics ON topics.Id = subtopics.topicId
+    JOIN
+    courses ON subtopics.Id = courses.subTopicId
+    JOIN
+    chapters ON courses.id = chapters.courseId
+    WHERE chapters.id=$chapterId";
+    // $query = "SELECT * FROM `chapters` WHERE id = $chapterId";
     $query_run = mysqli_query($con, $query);
     if(mysqli_num_rows($query_run) > 0)
     {
@@ -971,6 +991,47 @@ elseif(isset($_POST['chapter_manage']))
     }
     else{
         echo $return = "<h5>No Record Found</h5>";
+    }
+}elseif(isset($_POST['update_chapter'])){
+    $chapterId = $_POST['chapterId'];
+    $chapterName = $_POST['chapter'];
+    $date = date("Y-m-d H:i:s");
+    $maxUploadFileSize = 10 * 1024 * 1024; 
+    $maxVideoFileSize = 100 * 1024 * 1024; 
+
+if (isset($_FILES['uploadfile'])) {
+    $uploadFile = $_FILES['uploadfile'];
+    $uploadFileName = $uploadFile['name'];
+
+    // if ($uploadFile['size'] > $maxUploadFileSize) {
+    //     echo "File size exceeds the maximum allowed size for upload file.";
+    //     exit();
+    // }
+
+    // Process and move the upload file to your desired location
+    move_uploaded_file($uploadFile['tmp_name'], 'upload/file/' . $uploadFileName);
+}
+
+if (isset($_FILES['video'])) {
+    $videoFile = $_FILES['video'];
+    $videoFileName = $videoFile['name'];
+
+    // if ($videoFile['size'] > $maxVideoFileSize) {
+    //     echo "File size exceeds the maximum allowed size for video file.";
+    //     // Handle the error as needed, e.g., redirect or display a message
+    //     exit();
+    // }
+
+    move_uploaded_file($videoFile['tmp_name'], 'upload/video/' . $videoFileName);
+}
+
+    $update = "UPDATE chapters SET chapterName='$chapterName', uploadFile='$uploadFileName', video='$videoFileName', modifiedOn='$date' WHERE id='$chapterId'";
+    $query = mysqli_query($con, $update);
+
+    if($query) {
+        header("location: $mainlink" . "manageChapter");
+    } else {
+        echo "not working";
     }
 }
 

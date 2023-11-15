@@ -131,7 +131,7 @@ include('functions/phpfunctions.php');
                                 </div>
                                 <div class="form-group">
                                     <label for="chapter">Chapter Name</label>
-                                    <input type="text" class="form-control" name="chapter" placeholder="Enter Chapter Name">
+                                    <input type="text" class="form-control" name="chapter" placeholder="Enter Chapter Name" id="chapterName">
                                 </div>
                                 <div class="form-group">
                                     <label for="image">Upload Video</label>
@@ -262,17 +262,18 @@ include('functions/phpfunctions.php');
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label for="topic"> Topic Name</label>
-                                                            <input type="hidden" class="form-control" name="name"
-                                                                placeholder="Enter Name" id="editrow">
-                                                                <select class="form-control" name="topic" id="topic">
+                                                            <input type="hidden" class="form-control" name="chapterId"
+                                                                placeholder="Enter Name" id="chapterId">
+                                                                <!-- <select class="form-control" name="topic" id="topic">
 
-                                                                </select>
+                                                                </select> -->
+                                                                <input type="text" class="form-control" name="topic" id="topicName" readonly>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label for="courseName">Course Name</label>
-                                                            <input type="text" class="form-control" id="courseName"
-                                                                name="courseName" placeholder="Enter Course Name">
+                                                            <input type="text" class="form-control" id="course"
+                                                                name="courseName" placeholder="Enter Course Name" readonly>
                                                         </div>
 
                                                         <div class="form-group">
@@ -287,14 +288,15 @@ include('functions/phpfunctions.php');
                                                         <div class="form-group">
                                                             <label for="subtopic">Sub Topic Name</label>
                                                             <!-- <input type="text" class="form-control" name="name" placeholder="Enter Name"> -->
-                                                            <select class="form-control" name="subtopic" id="subtopic">
+                                                            <!-- <select class="form-control" name="subtopic" id="subtopic">
                                                                 <option> select subtopic name</option>
-                                                            </select>
+                                                            </select> -->
+                                                            <input type="text" class="form-control" name="subtopic" id="subtopicName" readonly>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label for="price">Chapter Name</label>
-                                                            <input type="number" class="form-control" id="price"
-                                                                name="price" placeholder="Enter Price">
+                                                            <label for="chapter">Chapter Name</label>
+                                                            <input type="text" class="form-control" id="chapter"
+                                                                name="chapter" placeholder="Enter Chapter Name">
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="uploadfile">Upload File</label>
@@ -314,7 +316,7 @@ include('functions/phpfunctions.php');
 
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary update_sb_tpc" name="update_sb_tpc">Update
+                                <button type="submit" class="btn btn-primary update_chapter" name="update_chapter">Update
                                     Changes</button>
                             </div>
                     </div>
@@ -335,7 +337,7 @@ include('functions/phpfunctions.php');
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="deleteConfirmationModalLabel">Confirm Deletion</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -343,12 +345,12 @@ include('functions/phpfunctions.php');
 
                 <div class="modal-body">
 
-                    <input type="text" id="delete_id" name="delete_id">
+                    <input type="hidden" id="delete_id" name="delete_id">
                     Are you sure you want to delete this record?
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-danger" name="delete_blog" id="delete_course">Delete</button>
+                    <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-danger" name="deleteChapter" id="delete_course">Delete</button>
                 </div>
         </div>
     </div>
@@ -372,12 +374,11 @@ include('functions/phpfunctions.php');
                 success: function (response) {
                     console.log(response);
                     $.each(response, function (key, value) {
-                        $('#topic').val(value['topicId']);
-                        $('#subtopic').val(value['subTopicId']);
-                        $('#courseName').val(value['courseName']);
-                        $('#price').val(value['courseCost']);
-                        $('#editDescription').val(value['description']);
-                        $('#course_id').val(value['id']);
+                        $('#topicName').val(value['topicName']);
+                        $('#subtopicName').val(value['subtopicName']);
+                        $('#course').val(value['courseName']);
+                        $('#chapter').val(value['chapterName']);
+                        $('#chapterId').val(value['chapter_id']);
 
 
                         $('#editModal').modal('show');
