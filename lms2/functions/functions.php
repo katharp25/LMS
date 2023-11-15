@@ -923,6 +923,57 @@ elseif(isset($_POST['apply_job']))
     }
 }
 
+elseif(isset($_POST['chapter_manage']))
+{
+    $topicName=$_POST['topic'];
+    $subtopicName = $_POST['subtopic'];
+    $courseName = $_POST['courseName'];
+    $chapterName = $_POST['chapter'];
+    if (isset($_FILES['uploadfile'])) {
+        $uploadFile = $_FILES['uploadfile'];
+        $uploadFileName = $uploadFile['name'];
+        // Process and move the upload file to your desired location
+        move_uploaded_file($uploadFile['tmp_name'], 'upload/file/' . $uploadFileName);
+    }
+
+    if (isset($_FILES['video'])) {
+        $videoFile = $_FILES['video'];
+        $videoFileName = $videoFile['name'];
+        // Process and move the video file to your desired location
+        move_uploaded_file($videoFile['tmp_name'], 'upload/video/' . $videoFileName);
+    }
+
+    
+    $insert_chapters = mysqli_query($con,"INSERT INTO chapters(topicID,subTopicId,courseId,chapterName,uploadfile,video,isActive) VALUES('$topicName','$subtopicName','$courseName','$chapterName','$uploadFileName','$videoFileName',1)");
+
+    if ($insert_chapters) {
+        header("location: $mainlink" . "manageChapter");
+    } else {
+        echo "not done";
+    }
+
+
+}elseif (isset($_POST['checking_chapters_btn'])) {
+    $chapterId = $_POST['chapterId'];
+    $result_array = [];
+
+    // Prepare and execute a query to fetch the blog data by ID
+    $query = "SELECT * FROM `chapters` WHERE id = $chapterId";
+    $query_run = mysqli_query($con, $query);
+    if(mysqli_num_rows($query_run) > 0)
+    {
+        foreach($query_run as $row)
+        {
+            array_push($result_array, $row);
+            header('Content-type: application/json');
+            echo json_encode($result_array);
+        }
+    }
+    else{
+        echo $return = "<h5>No Record Found</h5>";
+    }
+}
+
 
 
 ?>

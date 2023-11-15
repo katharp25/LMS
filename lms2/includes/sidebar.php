@@ -53,6 +53,8 @@
                                         Topic admin</a></li>
                                 <li class="nav-item"><a class="nav-link" href="<?= $mainlink;?>manageCourse">Manage
                                         Courses</a></li>
+                                <li class="nav-item"><a class="nav-link" href="<?= $mainlink;?>manageChapter">Manage
+                                        Chapters</a></li>
                                 <li class="nav-item"><a class="nav-link" href="<?= $mainlink;?>manageStudents">Manage
                                         Students</a></li>
                                 <li class="nav-item"><a class="nav-link"
