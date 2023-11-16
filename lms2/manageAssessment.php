@@ -396,9 +396,9 @@ include('functions/phpfunctions.php');
                                                             <label for="uploadfile">Correct Answer</label>
                                                             <!-- <input type="text" class="form-control" id="correctAns"
                                                                 name="correctAnswer"> -->
-                                                                <select class="form-control" name="correctAnswer" selected="selected">
+                                                                <select class="form-control" name="correctAnswer" id="correctAns" >
                                                                     <option>Choose the correct Answer</option>
-                                                                    <option value="a">Option A</option>
+                                                                    <option data-option="" value="a">Option A</option>
                                                                     <option value="b">Option B</option>
                                                                     <option value="c">Option C</option>
                                                                     <option value="d">Option D</option>
