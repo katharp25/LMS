@@ -6,9 +6,11 @@ include('config.php');
 // Get the selected topic ID from the AJAX request
 $topicId = $_GET['topicId'];
 
+
 // Query the database to get subtopics for the selected topic
 $query = "SELECT Id, subtopicName FROM subtopics WHERE topicId = $topicId";
 $result = mysqli_query($con, $query);
+
 
 if ($result) {
     $options = '<option>select subtopic name</option>';
@@ -21,6 +23,5 @@ if ($result) {
     echo '<option>Failed to fetch subtopics</option>';
 }
 
-// Close the database connection
-mysqli_close($con);
+
 ?>

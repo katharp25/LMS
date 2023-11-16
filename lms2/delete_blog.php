@@ -184,4 +184,32 @@ if (isset($_POST['delete_course'])) {
     // Close the database connection
     mysqli_close($conn);
 }
+
+if (isset($_POST['deleteChapter'])) {
+    // Get the ID from the URL
+    $id = $_POST['delete_id'];
+    $sql = "UPDATE chapters SET isActive = 0 WHERE Id = $id";
+    $query=mysqli_query($con, $sql);
+    if ($query) {
+        header("location: $mainlink" . "manageChapter");
+    } else {
+        echo "Error: " . $sql . "<br>" . mysqli_error($con);
+    }
+
+    mysqli_close($conn);
+}
+
+if (isset($_POST['deleteAssesment'])) {
+    // Get the ID from the URL
+    $id = $_POST['delete_id'];
+    $sql = "UPDATE assessment SET isActive = 0 WHERE id = $id";
+    $query=mysqli_query($con, $sql);
+    if ($query) {
+        header("location: $mainlink" . "manageAssessment");
+    } else {
+        echo "Error: " . $sql . "<br>" . mysqli_error($con);
+    }
+
+    mysqli_close($conn);
+}
 ?>

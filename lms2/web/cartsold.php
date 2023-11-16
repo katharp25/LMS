@@ -1,5 +1,5 @@
 <?php
-session_start(); // Start the session at the very beginning
+//session_start(); // Start the session at the very beginning
 
 include("includes/header.php");
 // include("..functions/functions.php");
@@ -28,7 +28,7 @@ if (isset($_GET['id'])) {
 
 
 
-// session_start();
+// //session_start();
 // include("includes/header.php");
 
 // if (!isset($_SESSION['cart'])) {

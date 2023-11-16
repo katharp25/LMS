@@ -1,5 +1,5 @@
 <?php
-// session_start();
+// //session_start();
 include('config.php');
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
@@ -965,6 +965,222 @@ elseif(isset($_POST['apply_job']))
         echo "failed";
     }
 }
+
+elseif(isset($_POST['chapter_manage']))
+{
+    $topicName=$_POST['topic'];
+    $subtopicName = $_POST['subtopic'];
+    $courseName = $_POST['courseName'];
+    $chapterName = $_POST['chapter'];
+    if (isset($_FILES['uploadfile'])) {
+        $uploadFile = $_FILES['uploadfile'];
+        $uploadFileName = $uploadFile['name'];
+        // Process and move the upload file to your desired location
+        move_uploaded_file($uploadFile['tmp_name'], 'upload/file/' . $uploadFileName);
+    }
+
+    if (isset($_FILES['video'])) {
+        $videoFile = $_FILES['video'];
+        $videoFileName = $videoFile['name'];
+        // Process and move the video file to your desired location
+        move_uploaded_file($videoFile['tmp_name'], 'upload/video/' . $videoFileName);
+    }
+
+    
+    $insert_chapters = mysqli_query($con,"INSERT INTO chapters(topicID,subTopicId,courseId,chapterName,uploadfile,video,isActive) VALUES('$topicName','$subtopicName','$courseName','$chapterName','$uploadFileName','$videoFileName',1)");
+
+    if ($insert_chapters) {
+        header("location: $mainlink" . "manageChapter");
+    } else {
+        echo "not done";
+    }
+
+
+}elseif (isset($_POST['checking_chapters_btn'])) {
+    $chapterId = $_POST['chapterId'];
+    $result_array = [];
+
+    // Prepare and execute a query to fetch the blog data by ID
+    $query = "SELECT 
+    topics.Id AS topic_id,
+    topics.topicName,
+    subtopics.Id AS subtopic_id,
+    subtopics.subtopicName,
+    courses.id AS course_id,
+    courses.courseName,
+    chapters.id AS chapter_id,
+    chapters.chapterName,
+    chapters.uploadFile,
+    chapters.video
+    FROM
+    topics
+    JOIN
+    subtopics ON topics.Id = subtopics.topicId
+    JOIN
+    courses ON subtopics.Id = courses.subTopicId
+    JOIN
+    chapters ON courses.id = chapters.courseId
+    WHERE chapters.id=$chapterId";
+    // $query = "SELECT * FROM `chapters` WHERE id = $chapterId";
+    $query_run = mysqli_query($con, $query);
+    if(mysqli_num_rows($query_run) > 0)
+    {
+        foreach($query_run as $row)
+        {
+            array_push($result_array, $row);
+            header('Content-type: application/json');
+            echo json_encode($result_array);
+        }
+    }
+    else{
+        echo $return = "<h5>No Record Found</h5>";
+    }
+}elseif(isset($_POST['update_chapter'])){
+    $chapterId = $_POST['chapterId'];
+    $chapterName = $_POST['chapter'];
+    $date = date("Y-m-d H:i:s");
+    $maxUploadFileSize = 10 * 1024 * 1024; 
+    $maxVideoFileSize = 100 * 1024 * 1024; 
+
+if (isset($_FILES['uploadfile'])) {
+    $uploadFile = $_FILES['uploadfile'];
+    $uploadFileName = $uploadFile['name'];
+
+    // if ($uploadFile['size'] > $maxUploadFileSize) {
+    //     echo "File size exceeds the maximum allowed size for upload file.";
+    //     exit();
+    // }
+
+    // Process and move the upload file to your desired location
+    move_uploaded_file($uploadFile['tmp_name'], 'upload/file/' . $uploadFileName);
+}
+
+if (isset($_FILES['video'])) {
+    $videoFile = $_FILES['video'];
+    $videoFileName = $videoFile['name'];
+
+    // if ($videoFile['size'] > $maxVideoFileSize) {
+    //     echo "File size exceeds the maximum allowed size for video file.";
+    //     // Handle the error as needed, e.g., redirect or display a message
+    //     exit();
+    // }
+
+    move_uploaded_file($videoFile['tmp_name'], 'upload/video/' . $videoFileName);
+}
+
+    $update = "UPDATE chapters SET chapterName='$chapterName', uploadFile='$uploadFileName', video='$videoFileName', modifiedOn='$date' WHERE id='$chapterId'";
+    $query = mysqli_query($con, $update);
+
+    if($query) {
+        header("location: $mainlink" . "manageChapter");
+    } else {
+        echo "not working";
+    }
+}
+elseif(isset($_POST['assessment_manage']))
+{
+    $topicName=$_POST['topic'];
+    $subtopicName = $_POST['subtopic'];
+    $courseName = $_POST['courseName'];
+    $chapterName = $_POST['chapter'];
+    $question = $_POST['question'];
+    $optionA = $_POST['optionA'];
+    $optionB = $_POST['optionB'];
+    $optionC = $_POST['optionC'];
+    $optionD = $_POST['optionD'];
+    $correctAnswer = $_POST['correctAns'];
+
+    
+    $insert_assessment = mysqli_query($con,"INSERT INTO assessment(topicId,subTopicId,courseId,chapterId,questions,a,b,c,d,correctAnswer,isActive) VALUES('$topicName','$subtopicName','$courseName','$chapterName','$question','$optionA','$optionB','$optionC','$optionD','$correctAnswer',1)");
+
+    if ($insert_assessment) {
+        header("location: $mainlink" . "manageAssessment");
+    } else {
+        echo "not done";
+    }
+
+
+}
+elseif (isset($_POST['checking_assessment_btn'])) {
+    $assessmentId = $_POST['assessmentId'];
+    $result_array = [];
+
+    // Prepare and execute a query to fetch the blog data by ID
+    $query = "SELECT 
+    topics.Id AS topic_id,
+    topics.topicName,
+    subtopics.Id AS subtopic_id,
+    subtopics.subtopicName,
+    courses.id AS course_id,
+    courses.courseName,
+    chapters.id AS chapter_id,
+    chapters.chapterName,
+    assessment.id AS assessment_id,
+    assessment.questions,
+    assessment.a,
+    assessment.b,
+    assessment.c,
+    assessment.d,
+    CASE assessment.correctAnswer
+        WHEN 'a' THEN assessment.a
+        WHEN 'b' THEN assessment.b
+        WHEN 'c' THEN assessment.c
+        WHEN 'd' THEN assessment.d
+        ELSE NULL
+    END AS correctAnswer
+    FROM
+    topics
+    JOIN
+    subtopics ON topics.Id = subtopics.topicId
+    JOIN
+    courses ON subtopics.Id = courses.subTopicId
+    JOIN
+    chapters ON courses.id = chapters.courseId
+    JOIN 
+    assessment ON chapters.id = assessment.chapterId
+    WHERE
+    assessment.id = $assessmentId";
+    // $query = "SELECT * FROM `chapters` WHERE id = $chapterId";
+    $query_run = mysqli_query($con, $query);
+    if(mysqli_num_rows($query_run) > 0)
+    {
+        foreach($query_run as $row)
+        {
+            array_push($result_array, $row);
+            header('Content-type: application/json');
+            echo json_encode($result_array);
+        }
+    }
+    else{
+        echo $return = "<h5>No Record Found</h5>";
+    }
+}
+elseif(isset($_POST['update_assessment'])){
+    $assessmentId = $_POST['assessmentId'];
+    $optionA = $_POST['optionA'];
+    $optionB = $_POST['optionB'];
+    $optionC = $_POST['optionC'];
+    $optionD = $_POST['optionD'];
+    $correctAns = $_POST['correctAnswer'];
+
+    $update = "UPDATE assessment SET 
+                a='$optionA',
+                b='$optionB',
+                c='$optionC',
+                d='$optionD',
+                correctAnswer='$correctAns',
+                modifiedOn=NOW() 
+                WHERE id='$assessmentId'";
+
+    $query = mysqli_query($con, $update);
+
+    if ($query) {
+        header("location: $mainlink" . "manageAssessment");
+    } else {
+        echo "Error: " . mysqli_error($con);
+    }
+}
+
 
 
 
