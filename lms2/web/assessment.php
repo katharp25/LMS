@@ -5,6 +5,12 @@ include('../functions/list_grid.php');
 
 ?>
 
+<?php
+    if(isset($_GET['courseId'])){
+        $courseId = $_GET['courseId'];
+        $fetch_list_assessment_query = mysqli_query($con, "SELECT * FROM assessment WHERE courseId = $courseId AND isActive =1");
+    }
+    ?>
 <style>
         .question-container {
             margin-bottom: 20px;
