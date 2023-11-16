@@ -1,5 +1,5 @@
 <?php
-// session_start();
+// //session_start();
 
 $host = "localhost";
 $db = "saburi_lms_2023";

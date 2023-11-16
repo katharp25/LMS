@@ -1,5 +1,5 @@
 <?php
-// session_start();
+// //session_start();
 include('config.php');
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
@@ -763,7 +763,7 @@ elseif (isset($_POST['sending_email'])) {
     }
 }
 
-session_start();
+//session_start();
 
 if (isset($_GET['id']) && isset($_GET['name']) && isset($_GET['price']) && isset($_GET['image'])) {
     $courseId = $_GET['id'];
@@ -807,7 +807,7 @@ if (isset($_GET['id']) && isset($_GET['name']) && isset($_GET['price']) && isset
 }
 
 
-// session_start();
+// //session_start();
 
 // // // Initialize the response array
 // $response = array();
@@ -857,7 +857,7 @@ if (isset($_GET['id']) && isset($_GET['name']) && isset($_GET['price']) && isset
 // echo json_encode($response);
 
 
-// session_start();
+// //session_start();
 
 // Check if the request contains product details
 // if (isset($_POST['productId'])) {
