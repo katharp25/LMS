@@ -3671,7 +3671,7 @@ input[type=submit] {
   border-radius: 4px;
   outline: 0;
   background: 0 0;
-  background-color: #43454b;
+  /* background-color: #43454b; */
   text-shadow: none;
 }
 
@@ -3680,10 +3680,10 @@ input[type=submit] {
 button:hover,
 input[type=button]:hover,
 input[type=reset]:hover,
-input[type=submit]:hover {
+/* input[type=submit]:hover {
   border-color: #000;
   background: #000;
-}
+} */
 
 table.cart td.actions .coupon {
   margin-right: 1rem;
