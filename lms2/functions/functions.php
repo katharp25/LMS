@@ -1121,13 +1121,7 @@ elseif (isset($_POST['checking_assessment_btn'])) {
     assessment.b,
     assessment.c,
     assessment.d,
-    CASE assessment.correctAnswer
-        WHEN 'a' THEN assessment.a
-        WHEN 'b' THEN assessment.b
-        WHEN 'c' THEN assessment.c
-        WHEN 'd' THEN assessment.d
-        ELSE NULL
-    END AS correctAnswer
+    assessment.correctAnswer
     FROM
     topics
     JOIN
