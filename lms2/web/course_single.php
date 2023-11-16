@@ -252,10 +252,12 @@ if (isset($_GET['course_id'])) {
                                     <div class="course-lessons">
                                         <div class="single-course-lesson">
                                             <div class="course-topic-lesson">
-                                                <i class="fa-solid fa-file"></i>
-                                                <a href="../functions/upload/file/<?= $row['uploadFile']; ?>" target="_blank"><?= $row['uploadFile'] ?></a>                                            </div>
+                                                <i class="fa fa-file"></i>
+                                                <a href="../functions/upload/file/<?= $row['uploadFile']; ?>" target="_blank"><?= $row['uploadFile'] ?></a>                                            
+                                            </div>
                                             <div class="course-lesson-duration">
-
+                                            <i class="fa fa-question"></i>
+                                                <a href="assessment.php?courseId=<?= $row['course_id']; ?>">Assessment</a>
                                             </div>
                                         </div>
                                     </div>
