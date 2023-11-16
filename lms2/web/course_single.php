@@ -1,15 +1,62 @@
 <?php
 include("../functions/functions.php");
 include("../functions/list_grid.php");
-include("../functions/database_functions.php");
+// include("../functions/database_functions.php");
 include("includes/header.php");
 
-// $courseId = isset($_GET['course_id']) ? $_GET['course_id'] : null;
-// $orderId = isset($_GET['order_id']) ? $_GET['order_id'] : null;
+include('../vendors/getid3/getid3/getid3.php');
+
+// Function to get formatted duration
+// Function to get formatted duration
+function getFormattedDuration($videoFilePath)
+{
+    // Initialize getID3
+    $getID3 = new getID3();
+
+    // Analyze the video file
+    $fileInfo = $getID3->analyze($videoFilePath);
+
+    // Get video duration
+    if (isset($fileInfo['playtime_seconds'])) {
+        $duration = $fileInfo['playtime_seconds'];
+
+        // Format the duration as HH:MM:SS
+        $formattedDuration = gmdate('H:i:s', $duration);
+    } else {
+        $formattedDuration = "Unknown";
+    }
+
+    return $formattedDuration;
+}
+
+// Variable to store the total duration
+$totalDurationInSeconds = 0;
 
 if (isset($_GET['course_id'])) {
     $co_id = $_GET['course_id'];
     $fetch_data = mysqli_query($con, "SELECT * FROM courses WHERE id = $co_id");
+    $fetch_chaepter_list=mysqli_query($con,"SELECT 
+        topics.Id AS topic_id,
+        topics.topicName,
+        subtopics.Id AS subtopic_id,
+        subtopics.subtopicName,
+        courses.id AS course_id,
+        courses.courseName,
+        chapters.id AS chapter_id,
+        chapters.chapterName,
+        chapters.uploadFile,
+        chapters.video
+        FROM
+        topics
+        JOIN
+        subtopics ON topics.Id = subtopics.topicId
+        JOIN
+        courses ON subtopics.Id = courses.subTopicId
+        JOIN
+        chapters ON courses.id = chapters.courseId
+        WHERE
+        chapters.courseId = $co_id AND
+        chapters.isActive = 1");
     if ($fetch_data && mysqli_num_rows($fetch_data) > 0) {
         $n = mysqli_fetch_array($fetch_data);
         $courseName = $n['courseName'];
@@ -153,125 +200,83 @@ if (isset($_GET['course_id'])) {
                             <h4 class="course-title">Topics for this course</h4>
                         </div>
                         <div class="edutim-course-topics-header-right">
-                            <span> Total learning: <strong>14 Lessons</strong></span>
-                            <span> Time: <strong>13h 20m 20s</strong> </span>
+                            <span>Total learning: <strong><?= gmdate('H:i:s', $totalDurationInSeconds) ?></strong></span>
                         </div>
                     </div>
-
+                    <?php if ($fetch_chaepter_list->num_rows > 0):?>
                     <div class="edutim-course-topics-contents">
-                        <div class="edutim-course-topic ">
-                            <div class="accordion" id="accordionExample">
-                                <div class="card">
-                                    <div class="card-header" id="headingOne">
-                                        <h2 class="mb-0">
-                                            <button class="btn-block text-left curriculmn-title-btn" type="button"
-                                                data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
-                                                aria-controls="collapseOne">
-                                                <h4 class="curriculmn-title">Introduction & Get Started</h4>
-                                            </button>
-                                        </h2>
-                                    </div>
+                        <div class="accordion" id="accordionExample">
+                            <?php while ($row = $fetch_chaepter_list->fetch_assoc()):
+                            $videoFilePath = "../functions/upload/video/" . $row['video'];
+                                $videoDuration = getFormattedDuration($videoFilePath);
+                                if ($videoDuration !== 'Unknown') {
+                                   // Add the duration in seconds to the total duration
+                                    $totalDurationInSeconds += getDurationInSeconds($videoDuration); 
+                                    
+                                }
+                                // echo $totalDurationInSeconds; 
+                                $chapterName = $row['chapterName'];
+                             ?>
+                            <div class="card">
+                                <div class="card-header" id="heading<?= $row['chapter_id'] ?>">
+                                    <h2 class="mb-0">
+                                        <button class="btn-block text-left curriculmn-title-btn" type="button"
+                                            data-toggle="collapse" data-target="#collapse<?= $row['chapter_id'] ?>"
+                                            aria-expanded="true" aria-controls="collapse<?= $row['chapter_id'] ?>">
+                                            <h4 class="curriculmn-title"><?= $row['chapterName'] ?></h4>
+                                        </button>
+                                    </h2>
+                                </div>
 
-                                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
-                                        data-parent="#accordionExample">
-                                        <div class="course-lessons">
-                                            <div class="single-course-lesson">
-                                                <div class="course-topic-lesson">
-                                                    <i class="fab fa-youtube"></i>
-                                                    <span> Work with Smart Objects</span>
+                                <div id="collapse<?= $row['chapter_id'] ?>" class="collapse"
+                                    aria-labelledby="heading<?= $row['chapter_id'] ?>" data-parent="#accordionExample">
+                                    <div class="course-lessons">
+                                        <div class="single-course-lesson">
+                                            <div class="course-topic-lesson">
+                                                <i class="fab fa-youtube"></i>
+                                                <video width="320" height="240" controls>
+                                                    <source src="../functions/upload/video/<?= $row['video'] ?>"
+                                                        type="video/mp4">
+                                                    Your browser does not support the video tag.
+                                                </video>
+                                                <div class="video-duration">
+                                                    Duration:
+                                                    <?= getFormattedDuration("../functions/upload/video/" . $row['video']) ?>
                                                 </div>
-                                                <div class="course-lesson-duration">
-                                                    00:05:20
-                                                </div>
+                                            </div>
+                                            <div class="course-lesson-duration">
+
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-
-                                <div class="card">
-                                    <div class="card-header" id="headingTwo">
-                                        <h2 class="mb-0">
-                                            <button class="btn-block text-left collapsed curriculmn-title-btn"
-                                                type="button" data-toggle="collapse" data-target="#collapseTwo"
-                                                aria-expanded="false" aria-controls="collapseTwo">
-                                                <h4 class="curriculmn-title"> Artboards & Raster Layers</h4>
-                                            </button>
-                                        </h2>
-                                    </div>
-                                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-                                        data-parent="#accordionExample">
-                                        <div class="course-lessons">
-                                            <div class="single-course-lesson">
-                                                <div class="course-topic-lesson">
-                                                    <i class="fab fa-youtube"></i>
-                                                    <span>Use Photoshop’s Interface Efficiently</span>
-                                                </div>
-                                                <div class="course-lesson-duration">
-                                                    00:05:20
-                                                </div>
+                                    <div class="course-lessons">
+                                        <div class="single-course-lesson">
+                                            <div class="course-topic-lesson">
+                                                <i class="fa-solid fa-file"></i>
+                                                <a href=""><?= $row['uploadFile'] ?></a>
                                             </div>
-                                            <div class="single-course-lesson">
-                                                <div class="course-topic-lesson">
-                                                    <i class="fab fa-youtube"></i>
-                                                    <span>Use the Eye Dropper & Swatches</span>
-                                                </div>
-                                                <div class="course-lesson-duration">
-                                                    00:05:20
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                            <div class="course-lesson-duration">
 
-                                <div class="card">
-                                    <div class="card-header" id="headingThree">
-                                        <h2 class="mb-0">
-                                            <button class="btn-block text-left collapsed curriculmn-title-btn"
-                                                type="button" data-toggle="collapse" data-target="#collapseThree"
-                                                aria-expanded="false" aria-controls="collapseThree">
-                                                <h4 class="curriculmn-title">Work with Smart Objects</h4>
-                                            </button>
-                                        </h2>
-                                    </div>
-
-                                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
-                                        data-parent="#accordionExample">
-                                        <div class="course-lessons">
-                                            <div class="single-course-lesson">
-                                                <div class="course-topic-lesson">
-                                                    <i class="fab fa-youtube"></i>
-                                                    <span>Smart Objects Explained</span>
-                                                </div>
-                                                <div class="course-lesson-duration">
-                                                    00:05:20
-                                                </div>
-                                            </div>
-                                            <div class="single-course-lesson">
-                                                <div class="course-topic-lesson">
-                                                    <i class="fab fa-youtube"></i>
-                                                    <span>Filters with Smart Objects</span>
-                                                </div>
-                                                <div class="course-lesson-duration">
-                                                    00:05:20
-                                                </div>
-                                            </div>
-
-                                            <div class="single-course-lesson">
-                                                <div class="course-topic-lesson">
-                                                    <i class="fab fa-youtube"></i>
-                                                    <span>Clean Up Face Imperfections</span>
-                                                </div>
-                                                <div class="course-lesson-duration">
-                                                    00:05:20
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <?php endwhile; ?>
                         </div>
                     </div>
+                    <?php endif; ?>
+                    <?php
+// Function to convert HH:MM:SS to seconds
+function getDurationInSeconds($duration)
+{
+    list($hours, $minutes, $seconds) = explode(':', $duration);
+    return $hours * 3600 + $minutes * 60 + $seconds;
+}
+?>
+
                 </div>
+
                 <!--  COurse Topics End -->
 
                 <div class="course-widget course-info">
@@ -353,43 +358,43 @@ if (isset($_GET['course_id'])) {
                     <div class="course-single-thumb">
                         <img src="../functions/upload/image/<?= $bannerImage ?>" alt="" class="img-fluid w-100">
                         <div class="course-price-wrapper">
-    <?php
+                            <?php
     if (isset($_GET['order_id'])) {
         $co_id=$_GET['order_id'];
         // If an order ID is present, hide the course price and quantity input
         ?>
-        <div class="buy-btn">
-        <a href="MyActiveCourse.php?start_id=<?= $co_id ?>" class="btn btn-main btn-block">
-           
-            Start Course
-        </a>
+                            <div class="buy-btn">
+                                <a href="MyActiveCourse.php?start_id=<?= $co_id ?>" class="btn btn-main btn-block">
 
-        </div>
-        <?php
+                                    Start Course
+                                </a>
+
+                            </div>
+                            <?php
     } else {
         // If not, show the course price and quantity input
         ?>
-        <h4>Price: <span>&#8377; <?= $courseCost ?></span></h4>
-        <input type="number" id="quantity" name="quantity" min="1" value="1"
-            style="font-size: 20px; width: 50px; height: 30px;">
-        <div class="buy-btn">
-            <?php
+                            <h4>Price: <span>&#8377; <?= $courseCost ?></span></h4>
+                            <input type="number" id="quantity" name="quantity" min="1" value="1"
+                                style="font-size: 20px; width: 50px; height: 30px;">
+                            <div class="buy-btn">
+                                <?php
             if (isset($_GET['course_id'])) {
                 // If a course ID is present, display the "Start Course" button
                 ?>
-                <a href="start_course_url.php" class="btn btn-main btn-block add_to_cart_button"
-                   data-product-id="<?= $co_id ?>" data-product-name="<?= $courseName ?>"
-                   data-product-price="<?= $courseCost ?>" data-product-image="<?= $bannerImage ?>">
-                    Add To Cart
-                </a>
-                <?php
+                                <a href="start_course_url.php" class="btn btn-main btn-block add_to_cart_button"
+                                    data-product-id="<?= $co_id ?>" data-product-name="<?= $courseName ?>"
+                                    data-product-price="<?= $courseCost ?>" data-product-image="<?= $bannerImage ?>">
+                                    Add To Cart
+                                </a>
+                                <?php
             }
             ?>
-        </div>
-        <?php
+                            </div>
+                            <?php
     }
     ?>
-</div>
+                        </div>
 
 
                     </div>
@@ -646,6 +651,22 @@ cartItems.forEach(function(item) {
 
 // ...
 </script>
+<script>
+    // Initialize total duration variable
+    let totalDurationInSeconds = 0;
+
+    // Function to convert HH:MM:SS to seconds
+    function getDurationInSeconds(duration) {
+        const [hours, minutes, seconds] = duration.split(':');
+        return parseInt(hours) * 3600 + parseInt(minutes) * 60 + parseInt(seconds);
+    }
+
+    // Function to update the total duration
+    function updateTotalDuration(duration) {
+        totalDurationInSeconds += duration;
+        const formattedTotalDuration = new Date(totalDurationInSeconds * 1000).toISOString().substr(11, 8);
+        document.getElementById('total-learning-duration').innerText = formattedTotalDuration;
+    }
 <?php
 include("includes/footer.php");
 ?>

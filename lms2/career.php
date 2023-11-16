@@ -115,6 +115,8 @@ $result = $con->query($sql);
                                     <button type="submit" class="btn btn-danger p-2 delete-button"
                                         data-bs-toggle="modal" data-bs-target="#deleteModal"
                                         data-id="<?= $id; ?>">Delete</button>
+                                        <a style="text-decoration:none;color:white;"href="viewApplication.php?id=<?php echo $row['Id']; ?>"><button type="submit" class="btn btn-success p-2"
+                                        data-id="<?= $id; ?>">View Application</a></button>
                                 </td>
                             </tr>
                             <?php

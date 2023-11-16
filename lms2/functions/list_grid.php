@@ -51,7 +51,28 @@ JOIN
 courses ON subtopics.Id = courses.subTopicId ORDER By courses.id DESC");
 
 
-// $fetch_list_Contect=mysqli_query($con,"SELECT * FROM ");
+$fetch_chaepter_list=mysqli_query($con,"SELECT 
+topics.Id AS topic_id,
+topics.topicName,
+subtopics.Id AS subtopic_id,
+subtopics.subtopicName,
+courses.id AS course_id,
+courses.courseName,
+chapters.id AS chapter_id,
+chapters.chapterName,
+chapters.uploadFile,
+chapters.video
+FROM
+topics
+JOIN
+subtopics ON topics.Id = subtopics.topicId
+JOIN
+courses ON subtopics.Id = courses.subTopicId
+JOIN
+chapters ON courses.id = chapters.courseId
+WHERE
+chapters.courseId = 8 AND
+chapters.isActive = 1");
 
 $fetch_list_join_topics_subtopics_course_chapters_query = mysqli_query($con, "SELECT 
 topics.Id AS topic_id,
@@ -110,7 +131,7 @@ chapters ON courses.id = chapters.courseId
 JOIN 
 assessment ON chapters.id = assessment.chapterId
 WHERE
-assessment.isActive = 1
+chapters.isActive = 1
 ORDER BY
 chapters.id DESC");
 
