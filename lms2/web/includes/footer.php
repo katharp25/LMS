@@ -127,7 +127,7 @@
     <script src="assets/vendors/counterup/waypoint.js"></script>
     <script src="assets/vendors/counterup/jquery.counterup.min.js"></script>
     <script src="assets/vendors/jquery.isotope.js"></script>
-    <script src="assets/vendors/imagesloaded.js"></script>
+    <!-- <script src="assets/vendors/imagesloaded.js"></script> -->
     <!--  Owlk Carousel-->
     <script src="assets/vendors/owl/owl.carousel.min.js"></script>
     <script src="assets/js/script.js"></script>

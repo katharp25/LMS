@@ -6,15 +6,18 @@ $password="";
 $username="root";
 
 $con = mysqli_connect($host,$username,$password,$db);
-
-// ... (database connection and other code)
-
 if (isset($_GET['subtopicId'])) {
     $targetId = $_GET['subtopicId'];
 
-    // Query to fetch courses based on the selected subtopic
+    // Pagination parameters
+    $perPage = 5;
+    $page = isset($_GET['page']) ? $_GET['page'] : 1;
+    $offset = ($page - 1) * $perPage;
+
+    // Query to fetch courses based on the selected subtopic with pagination
     $query = "SELECT courses.* FROM courses
-              WHERE courses.subTopicId = $targetId";
+              WHERE courses.subTopicId = $targetId
+              LIMIT $offset, $perPage";
 
     $result = mysqli_query($con, $query);
 
@@ -29,13 +32,13 @@ if (isset($_GET['subtopicId'])) {
             $courseImage = $row['bannerImage'];
             $courseName = $row['courseName'];
             $courseCost = $row['courseCost'];
-        
+
             // Output each course as HTML
             echo '<li class="product">
                 <div class="product-wrap">
-                <a href="course_single.php?course_id=' . $id .'">
-                   <img src="../functions/upload/image/'. $courseImage .'" alt="">
-                </a>
+                    <a href="course_single.php?course_id=' . $id . '">
+                        <img src="../functions/upload/image/' . $courseImage . '" alt="">
+                    </a>
                     <div class="product-btn-wrap">
                         <a href="cart.php?id=' . $id . '&name=' . $courseName . '&price=' . $courseCost . '&image=' . $courseImage . '" class="button product_type_simple add_to_cart_button ajax_add_to_cart" 
                             data-product-id="' . $id . '"
@@ -62,10 +65,27 @@ if (isset($_GET['subtopicId'])) {
                 <div class="star-rating"></div>
             </li>';
         }
-        
 
         // Close the HTML block
         echo '</ul>';
+
+        // Output pagination links
+        echo '<nav class="woocommerce-pagination">';
+        echo ' <ul class="page-numbers">';
+        $totalCoursesQuery = mysqli_query($con, "SELECT COUNT(*) as total FROM courses WHERE subTopicId = $targetId");
+        $totalCoursesData = mysqli_fetch_assoc($totalCoursesQuery);
+        $totalCourses = $totalCoursesData['total'];
+        $totalPages = ceil($totalCourses / $perPage);
+
+         for ($i = 1; $i <= $totalPages; $i++) : ?>
+            <li>
+                <a href="?page=<?= $i ?>" <?= $i == $page ? 'class="page-numbers current"' : 'class="page-numbers"' ?>>
+                    <?= $i ?>
+                </a>
+            </li>
+        <?php endfor;
+
+        echo '</ul></nav>';
     } else {
         echo 'No courses found.';
     }
@@ -135,12 +155,14 @@ if (isset($_POST['woocommerce_checkout_place_order'])) {
         echo "Order placed successfully!";
     } else {
         // Handle the error
-        echo "Error: " . $con->erxror;
+        echo "Error: " . $con->error;
     }
 
     // Close the database connection
     $con->close();
 }
+
+
 
 ?>
 <script>

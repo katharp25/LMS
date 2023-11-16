@@ -7,7 +7,7 @@ use PHPMailer\PHPMailer\Exception;
 
 
 
-// Admin Login
+// Start Fetching Admin Login
 
 if (isset($_POST['login_admin'])) {
 
@@ -35,7 +35,7 @@ if (isset($_POST['login_admin'])) {
         // Handle the case where no user with the specified 'Name' was found
     }
 
-
+// Start inserting user 
     // if($password = )
 
     // header('location: ../dashboard');
@@ -56,6 +56,11 @@ if (isset($_POST['login_admin'])) {
         echo "not done";
     }
 }
+
+// End Inserting User
+
+// Start Fetching User
+
 elseif (isset($_POST['checking_user_btn'])) {
     $userId = $_POST['user_id'];
     $result_array = [];
@@ -76,6 +81,9 @@ elseif (isset($_POST['checking_user_btn'])) {
         echo $return = "<h5>No Record Found</h5>";
     }
 }
+// End Fetching User
+
+// Start Updating User
 
 elseif(isset($_POST['update_student_register']))
 {
@@ -115,6 +123,8 @@ elseif(isset($_POST['update_student_register']))
         echo "not working";
     }
 }
+
+
 elseif(isset($_POST['update_user']))
 {
     $id = $_POST['user_id'];
@@ -167,6 +177,8 @@ elseif(isset($_POST['update_user']))
 //     // $update_topic = "UPDATE users set Name = '$name',Email = '$email',Phone = '$phone',Address = '$address' WHERE id='$id'";
     
 // }
+
+// Start Inserting topic 
 elseif(isset($_POST['topic_manage'])){
     $topic = $_POST['topic'];
     $currentDate = date("Y-m-d H:i:s"); 
@@ -177,10 +189,11 @@ elseif(isset($_POST['topic_manage'])){
     } else {
         echo "not done";
     }
-
-
-
 }
+// End Inserting topic
+
+// Start Fetching Topic
+
 elseif (isset($_POST['checking_topic_btn'])) {
     $topic_id = $_POST['topicId'];
     $result_array = [];
@@ -201,6 +214,10 @@ elseif (isset($_POST['checking_topic_btn'])) {
         echo $return = "<h5>No Record Found</h5>";
     }
 }
+
+// End Fetching Topic
+
+// Start Updating Topic
 elseif(isset($_POST['update_topic']))
 {
     $id = $_POST['topicId'];
@@ -217,6 +234,9 @@ elseif(isset($_POST['update_topic']))
         echo "not working";
     }
 }
+// End Updateing Topic
+
+// Start Inserting SubTopic 
 elseif(isset($_POST['subtopic_manage'])){
     $topic = $_POST['topic'];
     $subtopic = $_POST['subtopic'];
@@ -230,7 +250,12 @@ elseif(isset($_POST['subtopic_manage'])){
         echo "not done";
         echo $topic, $subtopic,$currentDate ;
     }
-} elseif (isset($_POST['course_manage'])) {
+}
+// End Inserting SubTopic
+
+// Start Inserting Course
+
+elseif (isset($_POST['course_manage'])) {
     $topic = $_POST['topic'];
     $subtopic = $_POST['subtopic'];
     $courseName = $_POST['courseName'];
@@ -295,6 +320,10 @@ elseif(isset($_POST['subtopic_manage'])){
         echo "not done";
     }
 }
+// End Inserting Code
+
+// Start Fetching Course
+
 elseif (isset($_POST['checking_course_btn'])) {
     $courseId = $_POST['course_id'];
     $result_array = [];
@@ -315,6 +344,9 @@ elseif (isset($_POST['checking_course_btn'])) {
         echo $return = "<h5>No Record Found</h5>";
     }
 }
+// End Fetching Course
+
+// Start Inserting Subscriptions
 elseif (isset($_POST['subscription_manage'])){
     $subscription = $_POST['subscription'];
     $type = $_POST['type'];
@@ -330,6 +362,11 @@ elseif (isset($_POST['subscription_manage'])){
         echo "not done";
     }
 }
+
+// End Inserting Subscription 
+
+// Start Fetching Subscription
+
 elseif (isset($_POST['checking_subscription_btn'])) {
     $subscriptionId = $_POST['subscription_id'];
     $result_array = [];
@@ -350,6 +387,11 @@ elseif (isset($_POST['checking_subscription_btn'])) {
         echo $return = "<h5>No Record Found</h5>";
     }
 }
+
+// End Fetching Subscription
+
+// Start Updating Subscription
+
 elseif(isset($_POST['update_subscription']))
 {
     $id = $_POST['subscription_id'];
@@ -370,6 +412,7 @@ elseif(isset($_POST['update_subscription']))
         echo "not working";
     }
 }
+// End Upadating Subscription
 elseif (isset($_POST['blog_manage'])) {
     // Process the form data as needed
     $title = $_POST['title'];
