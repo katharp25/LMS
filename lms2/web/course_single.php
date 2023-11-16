@@ -253,8 +253,7 @@ if (isset($_GET['course_id'])) {
                                         <div class="single-course-lesson">
                                             <div class="course-topic-lesson">
                                                 <i class="fa-solid fa-file"></i>
-                                                <a href=""><?= $row['uploadFile'] ?></a>
-                                            </div>
+                                                <a href="../functions/upload/file/<?= $row['uploadFile']; ?>" target="_blank"><?= $row['uploadFile'] ?></a>                                            </div>
                                             <div class="course-lesson-duration">
 
                                             </div>

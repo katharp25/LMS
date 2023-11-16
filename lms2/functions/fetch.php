@@ -5,6 +5,23 @@ $db="saburi_lms_2023";
 $password="";
 $username="root";
 
+
+$file = $_GET['file'];
+
+// Ensure the file exists
+if (file_exists("../functions/upload/file/" . $file)) {
+    // Set the appropriate headers
+    header('Content-Type: application/octet-stream');
+    header('Content-Disposition: inline; filename="' . $file . '"');
+    header('Content-Length: ' . filesize("../functions/upload/file/" . $file));
+
+    // Output the file content
+    readfile("../functions/upload/file/" . $file);
+} else {
+    echo 'File not found';
+}
+
+
 $con = mysqli_connect($host,$username,$password,$db);
 if (isset($_GET['subtopicId'])) {
     $targetId = $_GET['subtopicId'];
