@@ -130,7 +130,7 @@ $fetch_list_company_query=mysqli_query($con,"SELECT * FROM company Where isActiv
 
 $fetch_list_corporategovernance_query=mysqli_query($con,"SELECT * FROM corporategovernance where isActive = 1");
 
-$fetch_list_assessment_query = mysqli_query($con, "SELECT * FROM assessment WHERE courseId = 9 AND isActive =1");
+
 
 // if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 //     // Collect the form data
