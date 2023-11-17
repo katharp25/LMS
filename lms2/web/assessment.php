@@ -77,52 +77,123 @@ include('../functions/list_grid.php');
 
         
     <div class="container mt-4">
-    <?php 
-    if($fetch_list_assessment_query){
-        $questionNumber = 1; // Assuming you have a way to identify each question uniquely
-        while($row = mysqli_fetch_assoc($fetch_list_assessment_query)){
-            $questions = $row['questions'];
-            $optionA = $row['a'];
-            $optionB = $row['b'];
-            $optionC = $row['c'];
-            $optionD = $row['d'];
-    ?>
-            <div class="question-container">
-                <p class="question">Q) <?= $questions ?></p>                        
-                <div class="option">
-                    <div class="custom-control custom-radio">
-                        <input type="radio" id="optionA<?= $questionNumber ?>" name="option<?= $questionNumber ?>" class="custom-control-input" value="A">    
-                        <label class="custom-control-label" for="optionA<?= $questionNumber ?>"><?= $optionA ?></label>
-                    </div>
-                </div>
-                <div class="option">
-                    <div class="custom-control custom-radio">
-                        <input type="radio" id="optionB<?= $questionNumber ?>" name="option<?= $questionNumber ?>" class="custom-control-input" value="B">    
-                        <label class="custom-control-label" for="optionB<?= $questionNumber ?>"><?= $optionB ?></label>
-                    </div>
-                </div>
-                <div class="option">
-                    <div class="custom-control custom-radio">
-                        <input type="radio" id="optionC<?= $questionNumber ?>" name="option<?= $questionNumber ?>" class="custom-control-input" value="C">    
-                        <label class="custom-control-label" for="optionC<?= $questionNumber ?>"><?= $optionC ?></label>
-                    </div>
-                </div>
-                <div class="option">
-                    <div class="custom-control custom-radio">
-                        <input type="radio" id="optionD<?= $questionNumber ?>" name="option<?= $questionNumber ?>" class="custom-control-input" value="D">    
-                        <label class="custom-control-label" for="optionD<?= $questionNumber ?>"><?= $optionD ?></label>
-                    </div>
-                </div>
-            </div>
-    <?php
-            $questionNumber++;
-        }
-    }
-    ?>
-</div>
-           
+        <form id="assessmentForm">
+            <?php 
+                if ($fetch_list_assessment_query) {
+                    $questionNumber = 1; 
+                    $questionsAndAnswers = []; // Initialize an array to store questions and correct answers
 
+                    while ($row = mysqli_fetch_assoc($fetch_list_assessment_query)) {
+                        $questionsAndAnswers[$questionNumber] = [
+                            'question' => $row['questions'],
+                            'options' => [
+                                'A' => $row['a'],
+                                'B' => $row['b'],
+                                'C' => $row['c'],
+                                'D' => $row['d'],
+                            ],
+                            'correctAnswer' => $row['correctAnswer'],
+                        ];
+                ?>
+
+                    <div class="question-container">
+                        <p class="question">Q) <?= $questionsAndAnswers[$questionNumber]['question']; ?></p>                        
+                        <div class="option">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" id="optionA<?= $questionNumber ?>" name="option<?= $questionNumber ?>" class="custom-control-input" value="a">    
+                                <label class="custom-control-label" for="optionA<?= $questionNumber ?>"><?= $questionsAndAnswers[$questionNumber]['options']['A']; ?></label>
+                            </div>
+                        </div>
+                        <div class="option">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" id="optionB<?= $questionNumber ?>" name="option<?= $questionNumber ?>" class="custom-control-input" value="b">    
+                                <label class="custom-control-label" for="optionB<?= $questionNumber ?>"><?= $questionsAndAnswers[$questionNumber]['options']['B']; ?></label>
+                            </div>
+                        </div>
+                        <div class="option">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" id="optionC<?= $questionNumber ?>" name="option<?= $questionNumber ?>" class="custom-control-input" value="c">    
+                                <label class="custom-control-label" for="optionC<?= $questionNumber ?>"><?= $questionsAndAnswers[$questionNumber]['options']['C']; ?></label>
+                            </div>
+                        </div>
+                        <div class="option">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" id="optionD<?= $questionNumber ?>" name="option<?= $questionNumber ?>" class="custom-control-input" value="d">    
+                                <label class="custom-control-label" for="optionD<?= $questionNumber ?>"><?= $questionsAndAnswers[$questionNumber]['options']['D']; ?></label>
+                            </div>
+                        </div>
+                    </div>
+            <?php
+                    $questionNumber++;
+                }
+            }
+            ?>
+            <button type="submit" class="btn btn-warning">Submit</button>
+            <button class="btn btn-danger">Cancel</button>
+        </form>
+        <div id="correctAnswersContainer" style="display: none;">
+            <h3>Correct Answers:</h3>
+            <ul id="correctAnswersList"></ul>
+        </div>
+    </div>      
 </section>
+<script>
+    $(document).ready(function () {
+    // Declare questionsAndAnswers in a global scope
+    var questionsAndAnswers = <?php echo json_encode($questionsAndAnswers); ?>;
+
+    $('#assessmentForm').submit(function (event) {
+        event.preventDefault();
+
+        // Collect selected answers
+        var selectedAnswers = {};   
+
+        $('input[type="radio"]:checked').each(function () {
+            var questionNumber = $(this).attr('name').replace('option', '');
+            var answer = $(this).val();
+            console.log(answer);
+
+            selectedAnswers[questionNumber] = answer;
+        });
+
+        // Compare selected answers with correct answers and calculate score
+        var score = 0;
+
+        $.each(selectedAnswers, function (questionNumber, selectedAnswer) {
+            var correctAnswer = questionsAndAnswers[questionNumber].correctAnswer;
+
+            if (correctAnswer === selectedAnswer) {
+                score++;
+            }
+        });
+
+        // Display or handle the score as needed
+        alert('Your score: ' + score);
+         displayCorrectAnswers();
+    });
+    function displayCorrectAnswers() {
+        var correctAnswersList = $('#correctAnswersList');
+
+        // Clear previous correct answers
+        correctAnswersList.empty();
+
+        $.each(questionsAndAnswers, function (questionNumber, questionData) {
+            var correctAnswer = questionData.correctAnswer;
+
+            // Create list item and append to the correct answers list
+            var listItem = $('<li>').text('Q' + questionNumber + ': ' + correctAnswer);
+            correctAnswersList.append(listItem);
+        });
+
+        // Show the correct answers container
+        $('#correctAnswersContainer').show();
+    }
+});
+
+
+
+
+</script>
 
 <?php
 include("includes/footer.php");
