@@ -17,9 +17,9 @@ use PHPMailer\PHPMailer\Exception;
 
 
 // Check the connection
-if ($con->conect_error) {
-    die("connection failed: " . $con->conect_error);
-}
+// if ($con->conect_error) {
+//     die("connection failed: " . $con->conect_error);
+// }
 
 if (isset($_GET['email'])) {
     // Get the email from the URL

@@ -1035,6 +1035,37 @@ elseif(isset($_POST['chapter_manage']))
     else{
         echo $return = "<h5>No Record Found</h5>";
     }
+// }elseif(isset($_POST['update_chapter'])){
+//     $chapterId = $_POST['chapterId'];
+//     $chapterName = $_POST['chapter'];
+//     $date = date("Y-m-d H:i:s");
+//     $maxUploadFileSize = 10 * 1024 * 1024; 
+//     $maxVideoFileSize = 100 * 1024 * 1024; 
+
+// if (isset($_FILES['uploadfile'])) {
+//     $uploadFile = $_FILES['uploadfile'];
+//     $uploadFileName = $uploadFile['name'];
+
+//     // Process and move the upload file to your desired location
+//     move_uploaded_file($uploadFile['tmp_name'], 'upload/file/' . $uploadFileName);
+// }
+
+// if (isset($_FILES['video'])) {
+//     $videoFile = $_FILES['video'];
+//     $videoFileName = $videoFile['name'];
+
+//     move_uploaded_file($videoFile['tmp_name'], 'upload/video/' . $videoFileName);
+// }
+
+//     $update = "UPDATE chapters SET chapterName='$chapterName', uploadFile='$uploadFileName', video='$videoFileName', modifiedOn='$date' WHERE id='$chapterId'";
+//     $query = mysqli_query($con, $update);
+
+//     if($query) {
+//         header("location: $mainlink" . "manageChapter");
+//     } else {
+//         echo "not working";
+//     }
+// }
 }elseif(isset($_POST['update_chapter'])){
     $chapterId = $_POST['chapterId'];
     $chapterName = $_POST['chapter'];
@@ -1042,33 +1073,42 @@ elseif(isset($_POST['chapter_manage']))
     $maxUploadFileSize = 10 * 1024 * 1024; 
     $maxVideoFileSize = 100 * 1024 * 1024; 
 
-if (isset($_FILES['uploadfile'])) {
-    $uploadFile = $_FILES['uploadfile'];
-    $uploadFileName = $uploadFile['name'];
+    // Check if uploadfile is provided in the form
+    if (isset($_FILES['uploadfile'])) {
+        $uploadFile = $_FILES['uploadfile'];
+        $uploadFileName = $uploadFile['name'];
 
-    // if ($uploadFile['size'] > $maxUploadFileSize) {
-    //     echo "File size exceeds the maximum allowed size for upload file.";
-    //     exit();
-    // }
+        // Process and move the upload file to your desired location
+        move_uploaded_file($uploadFile['tmp_name'], 'upload/file/' . $uploadFileName);
+    } else {
+        // If not provided, keep the existing value
+        $uploadFileName = ''; // Assuming it's a string field in the database
+    }
 
-    // Process and move the upload file to your desired location
-    move_uploaded_file($uploadFile['tmp_name'], 'upload/file/' . $uploadFileName);
-}
+    // Check if video is provided in the form
+    if (isset($_FILES['video'])) {
+        $videoFile = $_FILES['video'];
+        $videoFileName = $videoFile['name'];
 
-if (isset($_FILES['video'])) {
-    $videoFile = $_FILES['video'];
-    $videoFileName = $videoFile['name'];
+        move_uploaded_file($videoFile['tmp_name'], 'upload/video/' . $videoFileName);
+    } else {
+        // If not provided, keep the existing value
+        $videoFileName = ''; // Assuming it's a string field in the database
+    }
 
-    // if ($videoFile['size'] > $maxVideoFileSize) {
-    //     echo "File size exceeds the maximum allowed size for video file.";
-    //     // Handle the error as needed, e.g., redirect or display a message
-    //     exit();
-    // }
+    // Update the database, considering the file values
+    $update = "UPDATE chapters SET chapterName='$chapterName',";
 
-    move_uploaded_file($videoFile['tmp_name'], 'upload/video/' . $videoFileName);
-}
+    if (!empty($uploadFileName)) {
+        $update .= " uploadFile='$uploadFileName',";
+    }
 
-    $update = "UPDATE chapters SET chapterName='$chapterName', uploadFile='$uploadFileName', video='$videoFileName', modifiedOn='$date' WHERE id='$chapterId'";
+    if (!empty($videoFileName)) {
+        $update .= " video='$videoFileName',";
+    }
+
+    $update .= " modifiedOn='$date' WHERE id='$chapterId'";
+
     $query = mysqli_query($con, $update);
 
     if($query) {
@@ -1077,6 +1117,7 @@ if (isset($_FILES['video'])) {
         echo "not working";
     }
 }
+
 elseif(isset($_POST['assessment_manage']))
 {
     $topicName=$_POST['topic'];

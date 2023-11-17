@@ -15,7 +15,7 @@ $fetch_user_contact_query=mysqli_query($con,"SELECT * FROM contact where status 
 $fetch_user_contact_details_query=mysqli_query($con,"SELECT * FROM contact_details where status = 1");
 
 $fetch_user_newsletter_query=mysqli_query($con,"SELECT * FROM newsletter where status = 1");
-// $fetch_list_student_query=mysqli_query($con,"SELECT * FROM students ");
+$fetch_list_student_query=mysqli_query($con,"SELECT * FROM students ");
 
 $fetch_list_students_query=mysqli_query($con,"SELECT * FROM students");
 $fetch_list_order_query=mysqli_query($con,"SELECT od.id,o.paymentstatus, o.orderdate, c.courseDesc,c.courseName

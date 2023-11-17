@@ -234,14 +234,12 @@ if (isset($_GET['course_id'])) {
                                         <div class="single-course-lesson">
                                             <div class="course-topic-lesson">
                                                 <i class="fab fa-youtube"></i>
-                                                <video width="320" height="240" controls>
-                                                    <source src="../functions/upload/video/<?= $row['video'] ?>"
-                                                        type="video/mp4">
+                                                <video id="myVideo" width="320" height="240" controls>
+                                                    <source src="../functions/upload/video/<?= $row['video'] ?>" type="video/mp4">
                                                     Your browser does not support the video tag.
                                                 </video>
                                                 <div class="video-duration">
-                                                    Duration:
-                                                    <?= getFormattedDuration("../functions/upload/video/" . $row['video']) ?>
+                                                    Duration: <?= getFormattedDuration("../functions/upload/video/" . $row['video']) ?>
                                                 </div>
                                             </div>
                                             <div class="course-lesson-duration">
@@ -499,104 +497,80 @@ function getDurationInSeconds($duration)
             </div>
         </div>
 
-        <div class="row">
+        <?php
+// $related_courses_query = mysqli_query($con, "SELECT * FROM courses WHERE category = (SELECT category FROM courses WHERE id = $co_id) AND id != $co_id ORDER BY RAND() LIMIT 3");
+$fetch_course_list_data=mysqli_query($con,"SELECT 
+
+topics.Id AS topic_id,
+topics.topicName,
+subtopics.Id AS subtopic_id,
+subtopics.subTopicName,
+courses.id AS course_id,
+courses.courseName,
+courses.courseCost,
+courses.courseDesc,
+courses.bannerImage,
+courses.uploadfile,
+courses.learn,
+courses.requirements,
+courses.tag,
+courses.video
+FROM 
+topics
+JOIN 
+subtopics ON topics.Id = subtopics.topicId
+JOIN 
+courses ON subtopics.Id = courses.subTopicId ORDER By courses.id DESC LIMIT 3");
+
+if ($fetch_course_list_data && mysqli_num_rows($fetch_course_list_data) > 0) {
+    ?>
+    <div class="row">
+        <?php
+        while ($related_course = mysqli_fetch_array($fetch_course_list_data)) {
+
+            $id = $related_course['course_id'];
+            $courseName = $related_course['courseName'];
+            $courseCost = $related_course['courseCost'];
+            $courseDesc = $related_course['courseDesc']; 
+            $bannerImage = $related_course['bannerImage'];
+            ?>
             <div class="col-lg-4 col-md-6">
                 <div class="course-block">
                     <div class="course-img">
-                        <img src="assets/images/course/course1.jpg" alt="" class="img-fluid">
-                        <span class="course-label">Beginner</span>
+                        <img src="../functions/upload/image/<?= $bannerImage ?>" alt="" class="img-fluid">
+                        <!-- You can use the course category or any other relevant information -->
+                        <span class="course-label"><?= $courseName; ?></span>
                     </div>
 
                     <div class="course-content">
-                        <div class="course-price ">$50</div>
+                        <div class="course-price"><?= "&#8377;" . $courseCost; ?></div>
 
-                        <h4><a href="#">Information About UI/UX Design Degree</a></h4>
+                        <h4><a href="course_single.php?course_id=<?= $id; ?>"><?= $courseName; ?></a></h4>
                         <div class="rating">
-                            <a href="#"><i class="fa fa-star"></i></a>
-                            <a href="#"><i class="fa fa-star"></i></a>
-                            <a href="#"><i class="fa fa-star"></i></a>
-                            <a href="#"><i class="fa fa-star"></i></a>
-                            <a href="#"><i class="fa fa-star"></i></a>
-                            <span>(5.00)</span>
+                            <!-- Your rating display logic here -->
                         </div>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis, alias.</p>
+                        <p><?= $courseDesc; ?></p>
 
                         <div class="course-footer d-lg-flex align-items-center justify-content-between">
                             <div class="course-meta">
-                                <span class="course-student"><i class="bi bi-group"></i>340</span>
-                                <span class="course-duration"><i class="bi bi-badge3"></i>82 Lessons</span>
+                                <!-- <span class="course-student"><i class="bi bi-group"></i><?= $related_course['students']; ?></span>
+                                <span class="course-duration"><i class="bi bi-badge3"></i><?= $related_course['lessons']; ?> Lessons</span> -->
                             </div>
 
-                            <div class="buy-btn"><a href="#" class="btn btn-main-2 btn-small">Details</a></div>
+                            <div class="buy-btn"><a href="course_single.php?course_id=<?= $id; ?>" class="btn btn-main-2 btn-small">Details</a></div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="course-block">
-                    <div class="course-img">
-                        <img src="assets/images/course/course2.jpg" alt="" class="img-fluid">
-                        <span class="course-label">Advanced</span>
-                    </div>
-
-                    <div class="course-content">
-                        <div class="course-price ">$80 <span class="del">$120</span></div>
-
-                        <h4><a href="#">Photography Crash Course for Photographer</a></h4>
-                        <div class="rating">
-                            <a href="#"><i class="fa fa-star"></i></a>
-                            <a href="#"><i class="fa fa-star"></i></a>
-                            <a href="#"><i class="fa fa-star"></i></a>
-                            <a href="#"><i class="fa fa-star"></i></a>
-                            <a href="#"><i class="fa fa-star"></i></a>
-                            <span>(5.00)</span>
-                        </div>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis, alias.</p>
-
-                        <div class="course-footer d-lg-flex align-items-center justify-content-between">
-                            <div class="course-meta">
-                                <span class="course-student"><i class="bi bi-group"></i>340</span>
-                                <span class="course-duration"><i class="bi bi-badge3"></i>82 Lessons</span>
-                            </div>
-
-                            <div class="buy-btn"><a href="#" class="btn btn-main-2 btn-small">Details</a></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="course-block">
-                    <div class="course-img">
-                        <img src="assets/images/course/course3.jpg" alt="" class="img-fluid">
-                        <span class="course-label">Expert</span>
-                    </div>
-
-                    <div class="course-content">
-                        <div class="course-price ">$100 <span class="del">$180</span></div>
-
-                        <h4><a href="#">React – The Complete Guide (React Router)</a></h4>
-                        <div class="rating">
-                            <a href="#"><i class="fa fa-star"></i></a>
-                            <a href="#"><i class="fa fa-star"></i></a>
-                            <a href="#"><i class="fa fa-star"></i></a>
-                            <a href="#"><i class="fa fa-star"></i></a>
-                            <a href="#"><i class="fa fa-star"></i></a>
-                            <span>(5.00)</span>
-                        </div>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis, alias.</p>
-
-                        <div class="course-footer d-lg-flex align-items-center justify-content-between">
-                            <div class="course-meta">
-                                <span class="course-student"><i class="bi bi-group"></i>340</span>
-                                <span class="course-duration"><i class="bi bi-badge3"></i>82 Lessons</span>
-                            </div>
-
-                            <div class="buy-btn"><a href="#" class="btn btn-main-2 btn-small">Details</a></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+            <?php
+        }
+        ?>
+    </div>
+    <?php
+} else {
+    echo "No related courses found.";
+}
+?>
     </div>
 </section>
 
@@ -668,6 +642,15 @@ cartItems.forEach(function(item) {
         const formattedTotalDuration = new Date(totalDurationInSeconds * 1000).toISOString().substr(11, 8);
         document.getElementById('total-learning-duration').innerText = formattedTotalDuration;
     }
+    </script>
+    <script>
+    var video = document.getElementById("myVideo");
+
+    video.addEventListener("ended", function() {
+        video.controls = false; // Disable video controls after video ends
+    });
+</script>
+
 <?php
 include("includes/footer.php");
 ?>

@@ -97,7 +97,7 @@ if (isset($_GET['id'])) {
                         <a class="btn" href="#" data-toggle="modal" data-target="#exampleModal">Apply</a>
                     </div>
                     <!-- <blockquote> -->
-                    <div class="bg-success p-4 rounded">
+                    <!-- <div class="bg-success p-4 rounded">
                         <h3 class="mt-4 text-white">Requirements:</h3>
                         <p class="text-white">▶ At least 2 years of experience building mobile apps using React
                             Native
@@ -110,7 +110,7 @@ if (isset($_GET['id'])) {
                         <div class="single-tags">
                             <a class="btn text-white m-0" href="#">Apply</a>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- </blockquote> -->
 
                 </div>
@@ -200,11 +200,11 @@ if (isset($_GET['id'])) {
                             </select>
                         </label>
 
-                        <label class="d-block mb-4">
+                        <!-- <label class="d-block mb-4">
                             <span class="form-label d-block">Tell us more about yourself</span>
                             <textarea name="message" class="form-control" rows="3"
                                 placeholder="What motivates you?"></textarea>
-                        </label>
+                        </label> -->
 
                         <label class="d-block mb-4">
                             <span class="form-label d-block">Your CV</span>
@@ -217,7 +217,7 @@ if (isset($_GET['id'])) {
 
 
             <div class="modal-footer">
-                <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-primary" name="apply_job"> Apply</button>
             </div>
             </form>

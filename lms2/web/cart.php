@@ -117,6 +117,7 @@ include("includes/header.php");
                                                 column2.appendChild(priceSpan);
                                                 row.appendChild(column2);
 
+                                                
                                                 // Column 3: Quantity
                                                 var column3 = document.createElement('td');
                                                 column3.className = 'product-quantity';
@@ -134,7 +135,10 @@ include("includes/header.php");
                                                     // Update the totalAmount span to display the new itemTotal
                                                     totalAmount.textContent = updatedItemTotal.toFixed(2);
 
+                                                    // totalPrice = calculateTotal();
                                                     updateTotals(cart);
+                                                    updateGrandTotal(cart);
+
                                                 });
                                                 column3.appendChild(quantityInput);
                                                 row.appendChild(column3);
@@ -172,9 +176,10 @@ include("includes/header.php");
                                                 // Add a click event listener to the remove link
                                                 removeLink.addEventListener('click', function() {
                                                     // Remove the item from the cart
-                                                    var index = cart.findIndex(function(cartItem) {
+                                                    var index = cart.findIndex(function (cartItem) {
                                                         return cartItem.id === course.id;
                                                     });
+
                                                     if (index !== -1) {
                                                         cart.splice(index, 1);
                                                         updateCart(cart);
@@ -220,7 +225,6 @@ include("includes/header.php");
                                                 document.getElementById('total-count').textContent = totalItemCount
                                                     .toFixed(2); // Update Total Count
                                             }
-
                                             // Initialize the cart totals when the page loads
                                             updateTotals(cart);
                                             </script>
@@ -277,32 +281,6 @@ include("includes/header.php");
 </main>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-// Update the DOM with the new totals
-// document.getElementById('total-quantity').textContent = totalQuantity; // Update total quantity
-
-// Function to update the cart totals
-// Function to update the cart totals
-// Function to update the cart totals
-// function updateTotals(cartData) {
-//     // Calculate the total quantity and price
-//     var totalQuantity = 0;
-//     var totalPrice = 0;
-
-//     cartData.forEach(function(course) {
-//         totalQuantity += course.quantity;
-//         totalPrice += course.price * course.quantity;
-//     });
-
-//     var totalPriceFormatted = totalPrice.toFixed(2);
-
-//     // Update the DOM with the new totals
-//     document.getElementById('total-quantity').textContent = totalQuantity; // Update total quantity
-//     document.getElementById('total-price').textContent = totalPriceFormatted; // Update total price
-//     document.getElementById('total-price-subtotal').textContent = totalPriceFormatted; // Update subtotal as well
-// }
-
-// // Initialize the cart totals when the page loads
-// updateTotals(cart);
 function calculateTotal() {
     var total = 0;
 
@@ -315,13 +293,20 @@ function calculateTotal() {
 }
 
 // Call the calculateTotal function to get the total
-function updateGrandTotal() {
-    var grandTotal = calculateTotal();
-    document.getElementById('grand-total').textContent = grandTotal.toFixed(2);
+function updateGrandTotal(cartData) {
+    var grandTotal = calculateTotal(cartData).toFixed(2);
+    document.getElementById('grand-total').textContent = grandTotal;
 }
 
-// Call the updateGrandTotal function to initially set the grand total
-updateGrandTotal();
+// Function to calculate the total of all items in the cart
+function calculateTotal(cartData) {
+    return cartData.reduce(function (total, course) {
+        return total + course.price * course.quantity;
+    }, 0);
+}
+
+// Initialize the grand total when the page loads
+updateGrandTotal(cart);
 </script>
 
 <!--shop category end-->
