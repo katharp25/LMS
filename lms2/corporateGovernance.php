@@ -60,15 +60,16 @@ include('functions/list_grid.php');
                                 while($row=mysqli_fetch_assoc($fetch_list_corporategovernance_query))
                                 {
                                     $id=$row['id'];
-                                    $title=$row['title'];
-                                    $image=$row['image'];
+                                    $title=$row['title'];   
                                     $name=$row['name'];
+                                    $image=$row['image'];
                                     ?>
                                     <tr>
                                     <td><?= $i;?></td>
                                     <td class="edit_id" hidden><?= $id;?></td>
                                     <td><?= $title; ?></td>
-                                    <td><img src="./functions/<?= $image; ?>" width="80" height="80"></td>                                    <td><?= $name; ?></td>
+                                    <td><?= $name; ?></td>
+                                    <td><img src="./functions/upload/image/<?= $image; ?>" width="80" height="80"></td>                            
                                     <td>
                                         <button type="submit" class="btn btn-primary me-2 p-2 edit-button"  data-bs-toggle="modal" data-bs-target="#editmodal"
                                         data-id="<?= $id; ?>">Edit</button>
@@ -182,7 +183,7 @@ $(document).ready(function() {
                 // Populate the input elements with data received from the server
                 $('#title').val(value['title']);
                 $('#name').val(value['name']); 
-                $('#output').attr('src', './functions/' + value['image']); 
+                $('#output').attr('src', './functions/upload/image/' + value['image']); 
                 $('#cgId').val(value['id']); 
                 $('#editmodal').modal('show'); 
             });

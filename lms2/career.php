@@ -17,16 +17,20 @@ $result = $con->query($sql);
                 <div class="card-body">
                     <h4 class="card-title">Career Page</h4>
                     <form class="forms-sample" action="functions/functions" method="POST">
-                        <div class="form-group d-flex justify-content-between">
-                            <label for="title">Category</label>
-                            <input type="text" class="form-control" name="category" placeholder="Enter Title">
-                            <!-- Button to add data -->
-                            <button class="btn btn-primary" name="addCategory" type="submit">ADD</button>
+                        <div class="form-row d-flex">
+                            <div class="form-group col-md-10">
+                                <label for="title">Category</label>
+                                <input type="text" class="form-control" name="category" placeholder="Enter Title" required>
+                            </div>
+
+                            <div class="form-group col-md-2">
+                                <label>&nbsp;</label>
+                                <button class="btn btn-primary " name="addCategory" type="submit">ADD</button>
+                            </div>
                         </div>
                         <!-- Additional row for displaying added data -->
-
-
                     </form>
+
                 </div>
             </div>
         </div>

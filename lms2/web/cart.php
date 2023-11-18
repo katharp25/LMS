@@ -1,9 +1,6 @@
 <?php
 include("includes/header.php");
 ?>
-
-
-
 <!--search overlay start-->
 <div class="search-wrap">
     <div class="overlay">
@@ -123,7 +120,7 @@ include("includes/header.php");
                                                 column3.className = 'product-quantity';
                                                 var quantityInput = document.createElement('input');
                                                 quantityInput.type = 'number';
-                                                quantityInput.value = 1; // Set the quantity input to 1
+                                                quantityInput.value = course.quantity; // Set the quantity input to 1
                                                 quantityInput.addEventListener('input', function() {
                                                     // Update the quantity when the input changes
                                                     course.quantity = parseInt(quantityInput.value, 10);
@@ -218,12 +215,10 @@ include("includes/header.php");
                                                 }, 0);
 
                                                 // Update the DOM with the new totals
-                                                document.getElementById('total-quantity').textContent = totalQuantity;
-                                                document.getElementById('total-price').textContent = totalPrice.toFixed(
-                                                    2);
-                                                // document.getElementById('total-price-subtotal').textContent = totalPrice.toFixed(2);
-                                                document.getElementById('total-count').textContent = totalItemCount
-                                                    .toFixed(2); // Update Total Count
+                                                document.getElementById('total-quantity').textContent = totalQuantity ? totalQuantity : 0;
+                                                document.getElementById('total-price').textContent = totalPrice ? totalPrice.toFixed(2) : 0;
+                                                document.getElementById('total-count').textContent = totalItemCount ? totalItemCount.toFixed(2) : 0;
+                                                // Update Total Count
                                             }
                                             // Initialize the cart totals when the page loads
                                             updateTotals(cart);
@@ -281,16 +276,16 @@ include("includes/header.php");
 </main>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-function calculateTotal() {
-    var total = 0;
+// function calculateTotal() {
+//     var total = 0;
 
-    cart.forEach(function(course) {
-        var itemTotal = course.price * course.quantity;
-        total += itemTotal;
-    });
-
-    return total;
-}
+//     cart.forEach(function(course) {
+//         var itemTotal = course.price * course.quantity;
+//         total += itemTotal;
+//     });
+//     console.log(total);
+//     return total;
+// }
 
 // Call the calculateTotal function to get the total
 function updateGrandTotal(cartData) {
@@ -303,6 +298,7 @@ function calculateTotal(cartData) {
     return cartData.reduce(function (total, course) {
         return total + course.price * course.quantity;
     }, 0);
+    console.log(cartData);
 }
 
 // Initialize the grand total when the page loads
