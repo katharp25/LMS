@@ -96,7 +96,7 @@ include("../functions/list_grid.php");
                                                         <td><?= $courseDesc; ?></td>
                                                     
                                                         <td>
-                                                            <a href="course_single.php?order_id=<?= $id; ?>" class="btn btn-primary text-white me-2 p-2 add-to-cart-button">View Course</a>
+                                                            <a href="course_single.php?order_id=<?= $id; ?>&oid=<?= $id ?>" class="btn btn-primary text-white me-2 p-2 add-to-cart-button">View Course</a>
                                                         </td>
 
                                                     </tr>

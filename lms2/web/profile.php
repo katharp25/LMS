@@ -1,11 +1,7 @@
 <?php
 include("includes/header.php");
-<<<<<<< HEAD
 include('../functions/list_grid.php');
 
-=======
-include("../../lms2/functions/list_grid.php");
->>>>>>> 2e1417a5cfeb87b0481d2ce1619ecb7d47ca1673
 ?>
 
 <body id="top-header">
@@ -20,23 +16,15 @@ include("../../lms2/functions/list_grid.php");
                                 <div class="entry-content">
 
                                     <div class="woocommerce-notices-wrapper"></div>
-<<<<<<< HEAD
                                     <form name="checkout" method="POST" action="../functions/functions.php"
                                         class="checkout woocommerce-checkout row" enctype="multipart/form-data"
                                         novalidate="novalidate">
-=======
-                                    <form name="checkout" method="post" action="../../lms2/functions/functions.php" class="checkout woocommerce-checkout row" enctype="multipart/form-data" novalidate="novalidate">
->>>>>>> 2e1417a5cfeb87b0481d2ce1619ecb7d47ca1673
                                         <?php if ($fetch_list_students_query) {
                                             // Fetch student details, assuming it fetches a single row for the currently logged-in student
                                             $student_data = mysqli_fetch_assoc($fetch_list_students_query);
 
                                             // Set retrieved values into variables
-<<<<<<< HEAD
                                             $id = $student_data['id'];
-=======
-                                            $id = $student_data["id"];
->>>>>>> 2e1417a5cfeb87b0481d2ce1619ecb7d47ca1673
                                             $fullName = $student_data['name'];
                                             $DOB = $student_data['DOB'];
                                             $address = $student_data['address'];
@@ -56,7 +44,6 @@ include("../../lms2/functions/list_grid.php");
                                                         <h3>My Profile</h3>
 
                                                         <div class="woocommerce-billing-fields__field-wrapper">
-<<<<<<< HEAD
                                                             <p class="form-row form-row-first form-group validate-required"
                                                                 id="" data-priority="10">
                                                                 <label for="fullName" class="control-label">Full
@@ -198,80 +185,6 @@ include("../../lms2/functions/list_grid.php");
                                                             <!-- Add a hidden input to store the student ID -->
                                                             <input type="hidden" id="id" name="id"
                                                                 value="<?php echo $id; ?>">
-=======
-                                                            <p class="form-row form-row-first form-group validate-required" id="" data-priority="10">
-                                                                <label for="fullName" class="control-label">Full Name&nbsp;<abbr class="required" title="required">*</abbr></label>
-                                                                <span class="woocommerce-input-wrapper">
-                                                                    <input type="text" class="input-text form-control input-lg" name="fullName" id="fullNmae" placeholder="" value="<?php echo $fullName; ?>" autocomplete="given-name">
-                                                                </span>
-                                                            </p>
-                                                            <p class="form-row form-row-last form-group validate-required" id="" data-priority="20">
-                                                                <label for="billing_last_name" class="control-label">
-                                                                    DOB&nbsp;<abbr class="required" title="required">*</abbr>
-                                                                </label>
-                                                                <span class="woocommerce-input-wrapper">
-                                                                    <input type="date" class="input-text form-control input-lg" name="DOB" id="DOB" placeholder="" value="<?php echo $DOB; ?>" autocomplete="family-name">
-                                                                </span>
-                                                            </p>
-                                                            <p class="form-row form-row-first form-group validate-required" id="address" data-priority="10">
-                                                                <label for="address" class="control-label">Address &nbsp;<abbr class="required" title="required">*</abbr></label>
-                                                                <span class="woocommerce-input-wrapper">
-                                                                    <input type="text" class="input-text form-control input-lg" name="address" id="address" placeholder="" value="<?php echo $address; ?>" autocomplete="given-name">
-                                                                </span>
-                                                            </p>
-                                                            <p class="form-row form-row-last form-group validate-required" data-priority="20">
-                                                                <label for="state" class="control-label">
-                                                                    State &nbsp;<abbr class="required" title="required">*</abbr>
-                                                                </label>
-                                                                <span class="woocommerce-input-wrapper">
-                                                                    <input type="text" class="input-text form-control input-lg" name="state" id="state" placeholder="" value="<?php echo $state; ?>" autocomplete="family-name">
-                                                                </span>
-                                                            </p>
-                                                            <p class="form-row form-row-first form-group validate-required" data-priority="10">
-                                                                <label for="pincode" class="control-label">Pincode&nbsp;<abbr class="required" title="required">*</abbr></label>
-                                                                <span class="woocommerce-input-wrapper">
-                                                                    <input type="text" class="input-text form-control input-lg" name="pincode" id="state" placeholder="" value="<?php echo $pincode; ?>" autocomplete="given-name">
-                                                                </span>
-                                                            </p>
-                                                            <p class="form-row form-row-last form-group validate-required" data-priority="20">
-                                                                <label for="gender" class="control-label">
-                                                                    Gender&nbsp;<abbr class="required" title="required">*</abbr>
-                                                                </label>
-                                                                <span class="woocommerce-input-wrapper">
-                                                                    <input type="text" class="input-text form-control input-lg" name="gender" id="gender" placeholder="" value="<?php echo $gender; ?>" autocomplete="family-name">
-                                                                </span>
-                                                            </p>
-                                                            <p class="form-row form-row-first form-group validate-required" data-priority="10">
-                                                                <label for="phoneNumber" class="control-label">Phone Number &nbsp;<abbr class="required" title="required">*</abbr></label>
-                                                                <span class="woocommerce-input-wrapper">
-                                                                    <input type="text" class="input-text form-control input-lg" name="phoneNumber" id="phoneNumber" placeholder="" value="<?php echo $phoneNumber; ?>" autocomplete="given-name">
-                                                                </span>
-                                                            </p>
-                                                            <p class="form-row form-row-last form-group validate-required" data-priority="20">
-                                                                <label for="email" class="control-label">
-                                                                    Email&nbsp;<abbr class="required" title="required">*</abbr>
-                                                                </label>
-                                                                <span class="woocommerce-input-wrapper">
-                                                                    <input type="text" class="input-text form-control input-lg" name="email" id="email" placeholder="" value="<?php echo $email; ?>" autocomplete="family-name">
-                                                                </span>
-                                                            </p>
-                                                            <p class="form-row form-row-first form-group validate-required" data-priority="10">
-                                                                <label for="idProof" class="control-label">Id Proof&nbsp;<abbr class="required" title="required">*</abbr></label>
-                                                                <span class="woocommerce-input-wrapper">
-                                                                    <input type="text" class="input-text form-control input-lg" name="idProof" id="idProof" placeholder="" value="<?php echo $idProof; ?>" autocomplete="given-name">
-                                                                </span>
-                                                            </p>
-                                                            <p class="form-row form-row-last form-group validate-required" data-priority="20">
-                                                                <label for="idProofDetails" class="control-label">
-                                                                    Id Proof Details&nbsp;<abbr class="required" title="required">*</abbr>
-                                                                </label>
-                                                                <span class="woocommerce-input-wrapper">
-                                                                    <input type="text" class="input-text form-control input-lg" name="idProofDetails" id="idProofDetails" placeholder="" value="<?php echo $idProofDetails; ?>" autocomplete="family-name">
-                                                                </span>
-                                                            </p>
-                                                             <!-- Add a hidden input to store the student ID -->
-                                                               <input type="hidden" id="id" name="id" value="<?php echo $id; ?>">
->>>>>>> 2e1417a5cfeb87b0481d2ce1619ecb7d47ca1673
                                                             <button name="update_student_register"> Update </button>
 
                                                         </div>
