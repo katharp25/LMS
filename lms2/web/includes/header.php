@@ -117,39 +117,6 @@ $cartCount = isset($_SESSION['cart_count']) ? $_SESSION['cart_count'] : 0;
                             <a class="nav-link js-scroll-trigger" href="<?=$mainlink?>web/courselist">
                                 Course List
                             </a>
-                            <!-- <div class="dropdown-menu" aria-labelledby="navbar3">
-                                <a class="dropdown-item " href="course-grid.html">
-                                   Course Style 1
-                               </a>
-                               <a class="dropdown-item " href="course-grid-2.html">
-                                   Course Style 2
-                               </a> 
-
-                               <a class="dropdown-item " href="course-grid-3.html">
-                                   Course Style 3
-                               </a> 
-                               <a class="dropdown-item " href="course-grid-4.html">
-                                   Course Style 4
-                               </a> 
-                               <a class="dropdown-item " href="course-grid-5.html">
-                                   Course Filter
-                               </a>
-                               <a class="dropdown-item " href="course-grid-6.html">
-                                   Course List
-                               </a>
-                                <a class="dropdown-item " href="course-single.html">
-                                   Course Details Style 1
-                               </a> 
-                               <a class="dropdown-item " href="course-single2.html">
-                                   Course Details Style Tab
-                               </a> 
-                               <a class="dropdown-item " href="course-single3.html">
-                                   Course Details Style Tab2
-                               </a> 
-                               <a class="dropdown-item " href="course-single4.html">
-                                   Course Details Classic
-                               </a> 
-                            </div> -->
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link js-scroll-trigger" href="<?=$mainlink?>web/blogs" >
@@ -241,6 +208,13 @@ document.addEventListener('DOMContentLoaded', function () {
         const cartCountContainer = document.getElementById('cart-count');
         cartCountContainer.textContent = cartCount;
     }
+//     function updateCartCount() {
+//     var cart = JSON.parse(localStorage.getItem('cart')) || [];
+//     var cartCount = cart.reduce(function (acc, item) {
+//         return acc + item.quantity; // Consider the quantity of each item
+//     }, 0);
+//     $('#cart-count-container').text(' (' + cartCount + ')');
+// }
 
     updateCartCount();
 });

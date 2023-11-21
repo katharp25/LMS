@@ -163,7 +163,7 @@ include('functions/list_grid.php');
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method="POST" action="./functions/functions.php">
+            <form method="POST" action="./functions/functions.php" enctype="multipart/form-data" >
               <div class="modal-body">
                 <!-- Form for editing the blog content -->
                 

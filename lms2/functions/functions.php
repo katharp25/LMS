@@ -470,35 +470,50 @@ elseif (isset($_POST['blog_manage'])) {
         echo $return = "<h5>No Record Found</h5>";
     }
 }
-elseif(isset($_POST['update']))
-{
+elseif(isset($_POST['update'])) {
     $id = $_POST['blog_id'];
-    $title = $_POST['editTitle'];
-    $writer = $_POST['editWriter'];
-    $image = $_POST['editImage'];
-    $description = $_POST['editDescription'];
+    $title = mysqli_real_escape_string($con, $_POST['editTitle']);
+    $writer = mysqli_real_escape_string($con, $_POST['editWriter']);
+    $description = mysqli_real_escape_string($con, $_POST['editDescription']);
 
     if(isset($_FILES['editImage']['tmp_name']) && !empty($_FILES['editImage']['tmp_name'])) {
         // Handle the new image upload
-        $newImage = $_FILES['editImage']['name'];
+        $newImage = mysqli_real_escape_string($con, $_FILES['editImage']['name']);
         $imagePath = "upload/image/" . $newImage; // Update with your actual image upload path
         move_uploaded_file($_FILES['editImage']['tmp_name'], $imagePath);
     } else {
         // No new image uploaded, keep the old image
-        $imagePath = $_POST['oldImage']; // This should be the path to the old image
+        $newImage = mysqli_real_escape_string($con, $_POST['oldImage']); // This should be the filename of the old image
     }
 
-    $update = "UPDATE blogs set blogTitle='$title', writer ='$writer', bannerImage='$image', description='$description' WHERE id='$id'";
+    // Debugging: print the values to check if they are correct
+    echo "Title: $title<br>";
+    echo "Writer: $writer<br>";
+    echo "Description: $description<br>";
+    echo "New Image: $newImage<br>";
+
+    $update = "UPDATE blogs SET blogTitle='$title', writer ='$writer', description='$description'";
+
+    if (!empty($newImage)) {
+        // If a new image is provided, include it in the update statement
+        $update .= ", bannerImage='$newImage'";
+    }
+
+    $update .= " WHERE id='$id'";
+
     $query = mysqli_query($con, $update);
 
-    if($query)
-    {
+    if($query) {
         header("location: $mainlink" . "blog");
-    }
-    else{
+    } else {
         echo "not working";
     }
 }
+
+
+
+
+
 elseif (isset($_POST['freeResources_manage'])){
     $heading = $_POST['heading'];
     $title = $_POST['title'];
@@ -756,23 +771,34 @@ elseif (isset($_POST['checking_cg_btn'])) {
 // }
 elseif(isset($_POST['update_cg'])) {
     $id = $_POST['cgId'];
-    $title = $_POST['title'];
-    $name = $_POST['name'];
-    $image = $_POST['image'];
+    $title = mysqli_real_escape_string($con, $_POST['title']);
+    $name = mysqli_real_escape_string($con, $_POST['name']);
+    // $image = $_POST['image'];
 
-    // Check if a new image has been uploaded
     if(isset($_FILES['image']['tmp_name']) && !empty($_FILES['image']['tmp_name'])) {
         // Handle the new image upload
-        $newImage = $_FILES['image']['name'];
+        $newImage = mysqli_real_escape_string($con, $_FILES['image']['name']);
         $imagePath = "upload/image/" . $newImage; // Update with your actual image upload path
         move_uploaded_file($_FILES['image']['tmp_name'], $imagePath);
     } else {
         // No new image uploaded, keep the old image
-        $imagePath = $_POST['oldImage']; // This should be the path to the old image
+        $newImage = mysqli_real_escape_string($con, $_POST['oldImage']); // This should be the filename of the old image
+    }
+    // Check if a new image has been uploaded
+    $update = "UPDATE corporategovernance SET Title='$title', name ='$name'";
+
+    if (!empty($newImage)) {
+        // If a new image is provided, include it in the update statement
+        $update .= ", image='$newImage'";
     }
 
-    $update = "UPDATE corporategovernance SET Title='$title', name='$name', image='$imagePath' WHERE id='$id'";
+    $update .= " WHERE id='$id'";
+
     $query = mysqli_query($con, $update);
+
+
+    // $update = "UPDATE corporategovernance SET Title='$title', name='$name', image='$imagePath' WHERE id='$id'";
+    // $query = mysqli_query($con, $update);
 
     if($query) {
         header("location: $mainlink" . "corporateGovernance");

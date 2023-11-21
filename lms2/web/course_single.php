@@ -200,9 +200,9 @@ if (isset($_GET['course_id'])) {
                         <div class="edutim-course-topics-header-left">
                             <h4 class="course-title">Topics for this course</h4>
                         </div>
-                        <div class="edutim-course-topics-header-right">
+                        <!-- <div class="edutim-course-topics-header-right">
                             <span>Total learning: <strong><?= gmdate('H:i:s', $totalDurationInSeconds) ?></strong></span>
-                        </div>
+                        </div> -->
                     </div>
                     <?php if ($fetch_chaepter_list->num_rows > 0):?>
                     <div class="edutim-course-topics-contents">
@@ -235,10 +235,11 @@ if (isset($_GET['course_id'])) {
                                         <div class="single-course-lesson">
                                             <div class="course-topic-lesson">
                                                 <i class="fab fa-youtube"></i>
-                                                <video id="myVideo" width="320" height="240" controls>
+                                                <video id="myVideo<?= $row['chapter_id'] ?>" width="320" height="240" controls onended="handleVideoEnd(<?= $row['chapter_id'] ?>)">
                                                     <source src="../functions/upload/video/<?= $row['video'] ?>" type="video/mp4">
                                                     Your browser does not support the video tag.
                                                 </video>
+
                                                 <div class="video-duration">
                                                     Duration: <?= getFormattedDuration("../functions/upload/video/" . $row['video']) ?>
                                                 </div>
@@ -360,8 +361,8 @@ function getDurationInSeconds($duration)
                         <div class="course-price-wrapper">
                             <?php
                             if (isset($_GET['order_id'])) {
-                                $co_id=$_GET['order_id'];
-                                $id = $_GET['oid'];
+                            $co_id=$_GET['order_id'];
+                            $id = $_GET['oid'];
                                 $chapterData = mysqli_query($con, "SELECT * FROM orderdetails where id = $id");
                                 $data = mysqli_fetch_array($chapterData);
                                 $courseId = $data['courseId'];
@@ -369,43 +370,39 @@ function getDurationInSeconds($duration)
                                 $d = mysqli_fetch_array($chapters);
                                 // $courseId = $_GET['course_id'];
                                 // If an order ID is present, hide the course price and quantity input
-                                ?>
+                                                    ?>
                             <div class="buy-btn">
                                 <a href="chapterSingle.php?start_id=<?= $courseId ?>&chapterId=<?=$d['id'] ?>" class="btn btn-main btn-block">
 
                                     Start Course
                                 </a>
-
                             </div>
                             <?php
-    } else {
-        // If not, show the course price and quantity input
-        ?>
+                                } else {
+                                    // If not, show the course price and quantity input
+                            ?>
                             <h4>Price: <span>&#8377; <?= $courseCost ?></span></h4>
                             <input type="number" id="quantity" name="quantity" min="1" value="1"
                                 style="font-size: 20px; width: 50px; height: 30px;">
                             <div class="buy-btn">
                                 <?php
-            if (isset($_GET['course_id'])) {
-                // If a course ID is present, display the "Start Course" button
-                ?>
+                                    if (isset($_GET['course_id'])) {
+                                        // If a course ID is present, display the "Start Course" button
+                                ?>
                                 <a href="start_course_url.php" class="btn btn-main btn-block add_to_cart_button"
                                     data-product-id="<?= $co_id ?>" data-product-name="<?= $courseName ?>"
                                     data-product-price="<?= $courseCost ?>" data-product-image="<?= $bannerImage ?>">
                                     Add To Cart
                                 </a>
                                 <?php
-            }
-            ?>
+                                    }
+                                ?>
                             </div>
-                            <?php
-    }
-    ?>
-                        </div>
-
-
-                    </div>
-
+                        <?php
+                        }
+                      ?>
+                 </div>
+                </div>
 
                     <div class="course-widget single-info">
                         <i class="bi bi-group"></i>
@@ -485,10 +482,6 @@ function getDurationInSeconds($duration)
                         ?>
                         </div>
                     </div>
-
-
-
-
                 </div>
             </div>
         </div>
@@ -506,7 +499,7 @@ function getDurationInSeconds($duration)
         </div>
 
         <?php
-// $related_courses_query = mysqli_query($con, "SELECT * FROM courses WHERE category = (SELECT category FROM courses WHERE id = $co_id) AND id != $co_id ORDER BY RAND() LIMIT 3");
+
 $fetch_course_list_data=mysqli_query($con,"SELECT 
 
 topics.Id AS topic_id,
@@ -570,16 +563,16 @@ if ($fetch_course_list_data && mysqli_num_rows($fetch_course_list_data) > 0) {
                     </div>
                 </div>
             </div>
-            <?php
-        }
+           <?php
+          }
         ?>
     </div>
     <?php
-} else {
-    echo "No related courses found.";
-}
-?>
-    </div>
+        } else {
+            echo "No related courses found.";
+        }
+        ?>
+   </div>
 </section>
 
 <script>
@@ -652,11 +645,33 @@ cartItems.forEach(function(item) {
     }
     </script>
     <script>
-    var video = document.getElementById("myVideo");
+  // Function to handle the end of the video
+function handleVideoEnd(chapterId) {
+    var videoPlayer = document.getElementById('myVideo' + chapterId);
 
-    video.addEventListener("ended", function() {
-        video.controls = false; // Disable video controls after video ends
-    });
+    // Check if the video has been completed in the current session
+    if (!sessionStorage.getItem('videoCompleted' + chapterId)) {
+        // Disable the video player once it has ended
+        videoPlayer.controls = false;
+
+        // Mark the video as completed in sessionStorage
+        sessionStorage.setItem('videoCompleted' + chapterId, 'true');
+    } else {
+        // Video has already been completed in this session, prevent playback
+        videoPlayer.removeEventListener('click', handleVideoClick);
+    }
+}
+
+// Add a click event listener to the video to prevent manual playback
+document.getElementById('myVideo' + chapterId).addEventListener('click', handleVideoClick);
+
+// Function to handle the click on the video
+function handleVideoClick(event) {
+    event.preventDefault();
+    var chapterId = this.id.replace('myVideo', '');
+    alert('Video has already been completed for chapter ' + chapterId + '. You can\'t replay it.');
+}
+
 </script>
 
 <?php
