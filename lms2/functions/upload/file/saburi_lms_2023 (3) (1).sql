@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `saburi_lms_2023`
+-- Database: `saburi_lms_live`
 --
 
 -- --------------------------------------------------------
@@ -225,7 +225,7 @@ CREATE TABLE `courses` (
 --
 
 INSERT INTO `courses` (`id`, `topicID`, `subTopicId`, `courseName`, `courseCost`, `courseDesc`, `learn`, `requirements`, `tag`, `bannerImage`, `uploadfile`, `video`, `createdBy`, `createdOn`, `modifiedBy`, `modifiedOn`, `isActive`) VALUES
-(5, 4, 6, 'javascript', 549, '<p>Welcome to JavaScript</p>', '', '', '', 'javascript.webp', 'saburi_lms_2023 (1).sql', 'Gmail - Google Chrome 2023-09-18 15-13-38.mp4', NULL, NULL, NULL, NULL, NULL),
+(5, 4, 6, 'javascript', 549, '<p>Welcome to JavaScript</p>', '', '', '', 'javascript.webp', 'saburi_lms_live (1).sql', 'Gmail - Google Chrome 2023-09-18 15-13-38.mp4', NULL, NULL, NULL, NULL, NULL),
 (6, 5, 9, 'React', 9999, '<p>Welcome to Saburi LMS</p>', '', '', 'kkkk\r\nppp\r\n', '344431282_658158216155231_3701909582556454848_n.jp', 'bank invoice.pdf', 'Gmail - Google Chrome 2023-09-18 15-13-38.mp4', NULL, NULL, NULL, NULL, NULL),
 (7, 0, 0, '', 0, '<p>Welcome to Saburi LMS</p>', '', '', '', '', '', '', NULL, NULL, NULL, NULL, NULL),
 (8, 0, 0, '', 0, '<p>Welcome to Saburi LMS</p>', '', '', '', '', '', '', NULL, NULL, NULL, NULL, NULL),

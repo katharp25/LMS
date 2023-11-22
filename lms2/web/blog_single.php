@@ -77,7 +77,7 @@ if (isset($_GET['id'])) {
             <div class="col-md-8">
                 <div class="post-single">
                     <div class="post-thumb">
-                    <img src="assets/images/blog/<?= $image;?>" alt="" class="img-fluid">
+                    <img src="../functions/upload/image/<?= $image;?>" alt="" class="img-fluid">
                     </div>
 
                     <div class="single-post-content">

@@ -364,7 +364,7 @@ function getDurationInSeconds($duration)
                                 // If an order ID is present, hide the course price and quantity input
                             ?>
                             <div class="buy-btn">
-                                <a href="MyActiveCourse.php?start_id=<?= $co_id ?>" class="btn btn-main btn-block">
+                                <a href="MyActiveCourse.pxhp?start_id=<?= $co_id ?>" class="btn btn-main btn-block">
                                     Start Course
                                 </a>
                             </div>

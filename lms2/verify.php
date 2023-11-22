@@ -1,6 +1,6 @@
 <?php
 $host="localhost";
-$db="saburi_lms_2023";
+$db="saburi_lms_live";
 $password="";
 $username="root";
 $con = mysqli_connect($host,$username,$password,$db);

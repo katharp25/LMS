@@ -1,9 +1,5 @@
 <?php 
-<<<<<<< HEAD
 include('functions/list_grid.php');
-=======
-include('config/config.php') 
->>>>>>> 2e1417a5cfeb87b0481d2ce1619ecb7d47ca1673
 
 ?>
 <!DOCTYPE html>

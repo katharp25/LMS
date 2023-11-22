@@ -487,10 +487,10 @@ elseif(isset($_POST['update'])) {
     }
 
     // Debugging: print the values to check if they are correct
-    echo "Title: $title<br>";
-    echo "Writer: $writer<br>";
-    echo "Description: $description<br>";
-    echo "New Image: $newImage<br>";
+    // echo "Title: $title<br>";
+    // echo "Writer: $writer<br>";
+    // echo "Description: $description<br>";
+    // echo "New Image: $newImage<br>";
 
     $update = "UPDATE blogs SET blogTitle='$title', writer ='$writer', description='$description'";
 
@@ -574,23 +574,32 @@ elseif (isset($_POST['freeResources_manage'])){
 //     }
 // }
 if(isset($_POST['update_resources'])) {
-    $id = $_POST['resource_id'];
-    $resourcename = $_POST['resourses_name'];
-    $title = $_POST['title'];
-    $description = $_POST['description'];
+    $id = mysqli_real_escape_string($con, $_POST['resource_id']);
+    $resourcename = mysqli_real_escape_string($con, $_POST['resourses_name']);
+    $title = mysqli_real_escape_string($con, $_POST['title']);
+    $description = mysqli_real_escape_string($con, $_POST['description']);
 
+
+   
     // Check if a new image has been uploaded
     if(isset($_FILES['banner_image']['tmp_name']) && !empty($_FILES['banner_image']['tmp_name'])) {
         // Handle the new image upload
-        $newImage = $_FILES['banner_image']['name'];
+        $newImage = mysqli_real_escape_string($con, $_FILES['banner_image']['name']);
         $imagePath = "upload/image/" . $newImage; // Update with your actual image upload path
         move_uploaded_file($_FILES['banner_image']['tmp_name'], $imagePath);
     } else {
         // No new image uploaded, keep the old image
-        $imagePath = $_POST['oldImage']; // This should be the path to the old image
+        $newImage = mysqli_real_escape_string($con, $_POST['oldImage']);// This should be the path to the old image
     }
 
-    $update = "UPDATE freeresources SET resourcesName='$resourcename', title='$title', bannerImage='$imagePath', description='$description' WHERE id='$id'";
+    $update = "UPDATE freeresources SET resourcesName='$resourcename', title='$title', description='$description'";
+    if (!empty($newImage)) {
+        // If a new image is provided, include it in the update statement
+        $update .= ", bannerImage='$newImage'";
+    }
+
+    $update .= " WHERE id='$id'";
+
     $query = mysqli_query($con, $update);
 
     if($query) {
