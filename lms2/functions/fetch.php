@@ -1,7 +1,7 @@
 <?php
 // Assuming you have a database connection established
 $host="localhost";
-$db="saburi_lms_live";
+$db="saburi_lms_2023";
 $password="";
 $username="root";
 

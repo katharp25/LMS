@@ -2,7 +2,7 @@
 // //session_start();
 
 $host="localhost";
-$db="saburi_lms_live";
+$db="saburi_lms_2023";
 $password="";
 $username="root";
 use PHPMailer\PHPMailer\PHPMailer;

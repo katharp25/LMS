@@ -76,11 +76,12 @@ if (isset($_GET['course_id'])) {
         }
 } else {
     $o_id = $_GET['order_id'];
+    $courseId = $_GET['oid'];
     $payment_data = mysqli_query($con, "SELECT od.id, o.paymentstatus, o.orderdate, c.*, od.orderId, od.courseId
     FROM orderdetails AS od
     JOIN `orders` AS o ON od.orderId = o.id
     JOIN courses AS c ON od.courseId = c.id
-    WHERE od.id = $o_id");
+    WHERE od.id = $courseId");
     if ($payment_data && mysqli_num_rows($payment_data) > 0) {
         $n = mysqli_fetch_array($payment_data);
         $courseName = $n['courseName'];
@@ -359,12 +360,24 @@ function getDurationInSeconds($duration)
                         <img src="../functions/upload/image/<?= $bannerImage ?>" alt="" class="img-fluid w-100">
                         <div class="course-price-wrapper">
                             <?php
-                                if (isset($_GET['order_id'])) {
-                                $co_id=$_GET['order_id'];
+                            if (isset($_GET['order_id'])) {
+                            $co_id=$_GET['order_id'];
+                            $id = $_GET['oid'];
+                                $chapterData = mysqli_query($con, "SELECT * FROM orderdetails where id = $id");
+                                $data = mysqli_fetch_array($chapterData);
+                                $courseId = $data['courseId'];
+                                $chapters = mysqli_query($con, "SELECT * FROM `chapters` WHERE courseId = $courseId ORDER BY id ASC LIMIT 1");
+                                $d = mysqli_fetch_array($chapters);
+                                // $courseId = $_GET['course_id'];
                                 // If an order ID is present, hide the course price and quantity input
-                            ?>
+                                                    ?>
                             <div class="buy-btn">
+<<<<<<< HEAD
                                 <a href="MyActiveCourse.pxhp?start_id=<?= $co_id ?>" class="btn btn-main btn-block">
+=======
+                                <a href="chapterSingle.php?start_id=<?= $courseId ?>&chapterId=<?=$d['id'] ?>" class="btn btn-main btn-block">
+
+>>>>>>> 12a1aa55baa0d47238213b3a943a856f85fdd9e9
                                     Start Course
                                 </a>
                             </div>
