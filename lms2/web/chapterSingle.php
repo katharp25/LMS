@@ -60,7 +60,7 @@ include('../vendors/getid3/getid3/getid3.php');
                         <div><a href="" target="_blank" id="chpterContent"></a></div>
                     <h5>Video</h5>
                         <video id="myVideo" width="320" height="240" controls controlsList="nodownload">
-                            <source src="../functions/upload/video/<?= $video ?>" type="video/mp4">
+                            <source src="" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
                 </div>
